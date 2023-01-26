@@ -4,7 +4,6 @@
 * [Description du projet](#description-projet)
 * [Règles du jeu](#règle-du-jeu)
 * [Installation](#installation)
-* [Contact](#contact)
 
 
 ## Description du projet
@@ -17,10 +16,6 @@ Le nombre de ponts entre chaque îlot est déterminer par la valeur indiquée pa
 
 ## Installation
 //TODO
-
-
-## Contact
-En cas de problème n'hésitez pas à contacter //QQN
 
 Ce programme a été réalisé par :
 - Remoué Camille
