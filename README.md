@@ -1,6 +1,6 @@
 # hashi-groupe-4
 <!-- TABLE OF CONTENTS -->
-## Table des matières 
+## Table des matières
 * [Description du projet](#description-projet)
 * [Règles du jeu](#règle-du-jeu)
 * [Installation](#installation)
@@ -22,7 +22,7 @@ Le nombre de ponts entre chaque îlot est déterminer par la valeur indiquée pa
 ## Contact
 En cas de problème n'hésitez pas à contacter //QQN
 
-Ce programe a été réalisé par :
+Ce programme a été réalisé par :
 - Remoué Camille
 - Péchon Morgane
 - Fonte Clément
