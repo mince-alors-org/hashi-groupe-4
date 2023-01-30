@@ -20,12 +20,20 @@ public class SauvegardeGrille{
      * Undo
      */
     public void retablir(){
+        pileCoups.add(pileRetablissements.get(taillePileCoups-1));
+        pileRetablissements.remove(taillePileCoups-1);
+        pileCoups.add(pileRetablissements.get(taillePileCoups-2));
+        pileRetablissements.remove(taillePileCoups-2);
     }
 
     /**
      * Redo
      */
-    public void annuler(){
+    public void annuler(){ 
+        pileRetablissements.add(pileCoups.get(taillePileCoups-1));
+        pileCoups.remove(taillePileCoups-1);
+        pileRetablissements.add(pileCoups.get(taillePileCoups-2));
+        pileCoups.remove(taillePileCoups-2);
     }
 
     /**
