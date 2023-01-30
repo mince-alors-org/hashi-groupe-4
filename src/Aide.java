@@ -27,6 +27,8 @@ public class Aide {
         "Si un Ilot a 6 cardinalité a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités:
         - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pond avec tout ces autres voisins
         - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponds avec tout ces voisins");
+        technique.put("", 
+        "");
     }
 
     /**
