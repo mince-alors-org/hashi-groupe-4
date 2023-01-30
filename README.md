@@ -26,3 +26,9 @@ Ce programme a été réalisé par :
 - Rollet Gabrielle
 - Collard Matthis
 - Ter Léon
+
+
+## Ressources
+Gantt : https://docs.google.com/spreadsheets/d/1CPETcg0Pn3U2H4MysIL6rABfdqXEL41kV9FmI762z7I/edit#gid=0
+Cahier des charges : https://www.overleaf.com/project/63b42270fc0b268d4cbd6de3
+Diagramme de classes : https://app.diagrams.net/#G1HK-bY_dhJ2xu9c3005I1e34wCg1shHNK
