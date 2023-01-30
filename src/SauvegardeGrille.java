@@ -5,8 +5,9 @@ import java.util.ArrayList;
 public class SauvegardeGrille{  
 
     private FileWriter fileWriter;  //écrire dans un fichier
-    ArrayList<Pont> pileCoups = new ArrayList<Pont>();
-    ArrayList<Pont> pileRetablissements = new ArrayList<Pont>();
+    ArrayList<Pont> pileCoups = new ArrayList<Pont>();  //pile des coups joués et actifs sur la grille
+    ArrayList<Pont> pileRetablissements = new ArrayList<Pont>();    //pile des coups précédemment joués mais annulés
+    int taillePileCoups = pileCoups.size();
     
     public SauvegardeGrille(){
         try{
@@ -15,26 +16,36 @@ public class SauvegardeGrille{
             e.printStackTrace();
         }
     }
-
-    public void retablir(){ //undo
-
+    /**
+     * Undo
+     */
+    public void retablir(){
     }
 
-    public void annuler(){  //redo
-
+    /**
+     * Redo
+     */
+    public void annuler(){
     }
 
     /**
      * ajout du coup dans la pileCoups
+     * @param p1 
      */
-    public void ajoutCoup(){ 
-
+    public void ajoutCoup(Pont p1){ 
+        pileCoups.add(p1);
     }
 
     /**
      * sauvegarde des coups dans le fichier
      */
-    public void actualiserFichier(){    
-
+    public void actualiserFichier(){
+        Pont p1 = pileCoups.get(taillePileCoups-1);
+        try{
+            fileWriter.write(p1.coords[1] + p1.coords[2] + "\n");
+            fileWriter.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
