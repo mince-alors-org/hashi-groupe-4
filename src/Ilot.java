@@ -33,12 +33,12 @@ public class Ilot {
      * @param valeur nombre de ponts supportés par this
      * @param pontsSolution
      */
-    public Ilot(int posX, int posY, int valeur, ArrayList<Pont> pontsSolution) {
+    public Ilot(int posX, int posY, int valeur) {
         this.posX = posX;
         this.posY = posY;
         this.valeur = valeur;
         ponts = new ArrayList<>();
-        this.pontsSolution = pontsSolution;
+        this.pontsSolution = new ArrayList<>() ;
     }
 
 
