@@ -8,7 +8,6 @@ public class SauvegardeGrille{
     ArrayList<Pont> pileCoups = new ArrayList<Pont>();
     ArrayList<Pont> pileRetablissements = new ArrayList<Pont>();
     
-    
     public SauvegardeGrille(){
         try{
             fileWriter = new FileWriter("save_move.txt");
