@@ -1,58 +1,22 @@
-class Pont{
+public class Pont {
+	int nombreTraits;
+	ArrayList <Ilot> coords;
+	Pont(Ilot ile1, Ilot ile2){
+		this.nombreTraits;
+		coords =new ArrayList <>();
+		coords.add(ile1);
+		coords.add(ile2);
+		ile1.addPont(this);
+		ile2.addPont(this);
+	}
+	public void incrementer(){
+		if(this.nombreTraits.equals(2))
+			this.nombreTraits=0;
+		else
+			this.nombreTraits++;
+	}
 
-    private int nbTraits;
-    private int coords[];  //TODO Sera une liste de deux Ilot
-
-
-    /**
-     * 
-     * @param a Premier ilot auquel le pont est relié
-     * @param b Deuxième ilot
-     */
-    Pont(int a, int b){
-        nbTraits = 0;
-        
-        //TODO changer les int en Ilot
-
-        coords[1] = a;
-        coords[2] = b;
-
-    }
-
-    /**
-     * Ajoute un trait sur le pont
-     * Si le pont a deux traits, il repasse à 0.
-     * @return Le nombre de traits après modification
-     * @author Camille Remoué
-     */
-    public int incrementer(){
-        
-        nbTraits = (nbTraits + 1) % 3;
-        return nbTraits;
-    }
-
-
-
-
-
-
-    /**
-     * Ajoute un trait sur le pont
-     * Si le pont a deux traits, il repasse à 0.
-     * @return Le nombre de traits après modification
-     * @author Camille Remoué
-     */
-    public int decrementer(){
-        
-        nbTraits = (nbTraits + 1) % 3;
-        return nbTraits;
-    }
-
-    public int getCoords1(){
-        return coords[1];
-    }
-
-    public int getCoords2(){
-        return coords[2];
-    }
+	public int tailleTrait(){
+		return sqlrt((coords.get(1).posX-coords.get(2).posX)**2+(coords.get(1).posY-coords.get(2).posY)**2);
+	}
 }
