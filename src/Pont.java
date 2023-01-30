@@ -34,6 +34,8 @@ class Pont{
 
 
 
+
+
     /**
      * Ajoute un trait sur le pont
      * Si le pont a deux traits, il repasse à 0.
@@ -46,5 +48,11 @@ class Pont{
         return nbTraits;
     }
 
+    public int getCoords1(){
+        return coords[1];
+    }
 
+    public int getCoords2(){
+        return coords[2];
+    }
 }
