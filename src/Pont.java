@@ -1,8 +1,7 @@
 class Pont{
 
     private int nbTraits;
-    private int coords[];  //TODO Sera une liste de deux Ilot
-
+    private int [] coords = new int[2];  //TODO Sera une liste de deux Ilot
 
     /**
      * 
@@ -14,8 +13,8 @@ class Pont{
         
         //TODO changer les int en Ilot
 
-        coords[1] = a;
-        coords[2] = b;
+        this.coords[0] = a;
+        this.coords[1] = b;
 
     }
 
