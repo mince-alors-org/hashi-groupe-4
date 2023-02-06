@@ -30,7 +30,7 @@ public class Aide {
 
     /**
      * Constantes qui correspondent aux codes d'erreurs qui sont reconnus dans le reste du code
-     * /
+     */
 
     // Code d'erreur qui signifie qu'un ilot a trop de pond (erreur de cardinalité) 
     final String nbCardinaliteIncorrect="ERR101";
@@ -40,7 +40,8 @@ public class Aide {
 
     // Code d'erreur qui signifie qu'il y a un endroit fermé sur la grille
     final String endroitLock="ERR103";
-    1 Date cardinalité
+
+    /**
      * pour cela la méthode parcours le plateau et avec une série de conditions détermine la bonne technique a renvoyer
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
      */
