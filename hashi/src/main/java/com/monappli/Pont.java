@@ -42,7 +42,7 @@ public class Pont {
 	}
 
 	public double tailleTrait(){
-		return Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
+		return Math.sqrt(Math.pow((coords.get(0).getPosX()-coords.get(1).getPosX()),2)+Math.pow((coords.get(0).getPosY()-coords.get(1).getPosY()),2));
 	}
 
 }
