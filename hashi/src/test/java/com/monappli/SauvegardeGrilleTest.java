@@ -1,7 +1,9 @@
 package com.monappli;
 
+import java.io.IOException;
+
 public class SauvegardeGrilleTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
 
         SauvegardeGrille s = new SauvegardeGrille();
 
@@ -15,10 +17,24 @@ public class SauvegardeGrilleTest {
         s.ajoutCoup(p1);
         s.ajoutCoup(p2);
 
+        System.out.print("Affichage de la premiere sauvegarde : \n\n");
+        
         s.actualiserFichier();
 
-    }
-    
+        s.lireFichier();
 
-    
+        System.out.print("Affichage de la deuxieme sauvegarde : \n\n");
+
+        s.annuler();    
+        
+        s.actualiserFichier();
+
+        s.lireFichier();
+
+        System.out.print("Affichage de la troisieme sauvegarde : \n\n");
+
+        s.retablir();
+        s.actualiserFichier();
+        s.lireFichier();
+    }
 }
