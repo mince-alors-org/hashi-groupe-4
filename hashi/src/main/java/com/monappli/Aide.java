@@ -45,25 +45,25 @@ public class Aide {
      * pour cela la méthode parcours le plateau et avec une série de conditions détermine la bonne technique a renvoyer
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
      */
-    public HashMap<String, String> getTechnique(){
-        for(/*parcourir la table*/)
-    }
+    // public HashMap<String, String> getTechnique(){
+    //     for(/*parcourir la table*/)
+    // }
     
     /**
      * Verifie si le plateau actuel contient des erreurs ou non
      * @return Bool : True si le plateau contient une erreur, false sinon
      */ 
-    public Boolean checkErreur(){
-        Boolean erreur = false;
-        for(Ilot.getIles()){
-            int nbPontCorrects = ilot.valeur(); 
-            int nbPontsActuels = ilot.getNombreDePonts();
-            if(nbPontCorrects != nbPontsActuels){
-                erreur = true;
-            }
-        }
-        return erreur;
-    }
+    // public Boolean checkErreur(){
+    //     Boolean erreur = false;
+    //     for(Ilot.getIles()){
+    //         int nbPontCorrects = ilot.valeur(); 
+    //         int nbPontsActuels = ilot.getNombreDePonts();
+    //         if(nbPontCorrects != nbPontsActuels){
+    //             erreur = true;
+    //         }
+    //     }
+    //     return erreur;
+    // }
 
     /**
      * Colorie des ilots a changer pour aider le joueur 

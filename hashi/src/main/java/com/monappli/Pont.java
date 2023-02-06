@@ -19,6 +19,10 @@ public class Pont {
 			this.nombreTraits++;
 	}
 
+	public ArrayList<Ilot> getCoords() {
+		return coords;
+	}
+
 	public int tailleTrait(){
 		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
 	}
