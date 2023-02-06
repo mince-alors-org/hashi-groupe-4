@@ -1,0 +1,209 @@
+Détection des techniques applicable :
+1. Les îles qu'on peut dès le début (2 avec 1 voisin, 4 avec 2 voisins ...) :
+
+booléen île_debut (île)
+	si ((île.nb_voisin_restant() / 2) == île.cardinalité)
+		renvoyer vrai
+		//cette île peut être relié avec ses voisins avec des doubles ponts
+	sinon
+		renvoyer faux
+	fin si
+fin île_debut
+
+2. les îles avec un seul voisin
+
+booléen île_seule (île)
+	si (île.cardinalite > 2)
+		renvoyer faux
+	fin si
+	
+	si (île.nb_voisin_restant == 1)
+		renvoyer vrai
+		//cette îles peut être relié avec son voisin avec sa cardinalité (1 ou 2)
+	fin si
+fin île_seule
+
+3. les 3 dans un coins (2 voisins), 5 sur un côté (3 voisins) et 7 au milieux (4 voisins)
+
+booléen île_debut_moins (île)
+	si( île.nb_voisin_restant().division_euclidienne(2) == île.cardinalite - 1 )
+		renvoyer vrai
+		// cette île peut être relié à tous ses voisins avec un pont simple
+	fin si
+	renvoyer faux
+	
+fin île_debut_moins
+
+4. même cas que au dessus, mais l'un des voisins est un 1
+
+booléen île_debut_moins_spécial (île)
+	si (île_debut_moins(île))
+		parcour( île.listeVoisin() )en_tant_que v
+			si (v.cardinalité == 1)
+				renvoyer vrai
+				//cette île peut être relié à ses voisin avec le maximum de pont (2 ou 1 pour son voisin avec une cardinalité de 1)
+			fin si
+		fin parcour
+	sinon
+		renvoyer faux 
+	fin si
+fin île_debut_moins_spécial
+
+5. cas d'un 4 avec deux voisin à 1 (et trois voisin aux total)
+
+booléen quatre_deux_un (île)
+	si (île.cardinalité == 4 ET île.nb_voisin_restant == 3)
+		i = 0
+		parcour( île.listeVoisin() )en_tant_que v
+			si (v.cardinalite == 1)
+				i++
+			fin si
+		fin parcour
+		si (i == 2)
+			renvoyer vrai
+			//cette île peut être relié à ses voisin avec le maximum de pont (double normalement et simple pour ses voisins avec une cardinalité de 1)
+		fin si
+	sinon
+		renvoyer faux
+	fin si
+fin quatre_deux_un
+
+6. cas d'un 6 avec un voisin à 1 (et quatres voisins au total)
+
+booléen six_un_un (île)
+	si (île.cardinalité == 6) //pas besoin de préciser qu'il faut 4 voisins
+		parcour( île.listeVoisin() )en_tant_que v
+			si (v.cardinalite == 1)
+				renvoyer vrai
+				//cette île peut être relié à tous ses voisin par un pont simple
+			fin si
+		fin parcour
+	sinon
+		renvoyer faux
+	fin si
+fin six_un_un
+
+7. cas d'un 6 avec deux voisin à 1 (et quatres voisins au total)
+
+booléen six_deux_un (île)
+	si (île.cardinalité == 6) //pas besoin de préciser qu'il faut 4 voisins
+	i = 0
+		parcour( île.listeVoisin() )en_tant_que v
+			si (v.cardinalite == 1)
+				i++
+			fin si
+		fin parcour
+		si (i == 2)
+			renvoyer vrai
+			//cette île peut être relié à ses voisin avec le maximum de pont (double normalement et simple pour ses voisins avec une cardinalité de 1)
+		fin si
+	sinon
+		renvoyer faux
+	fin si
+fin six_deux_un
+
+8. cas d'un 1 avec un seul voisin qui n'est pas un 1 
+
+booléen un_isolation (île)
+	si (île.cardinalité == 1)
+		i = 0
+		parcour(île.liste_voisin()) en_tant_que v
+			si(v.cardinalité != 1)
+				i++
+			fin si
+		fin parcour
+		si (i > 1)
+			renvoyer faux
+		sinon
+			renvoyer vrai
+			//cette île ne peut être relié qu'à une seul autre île sans faire un graph isolé
+	sinon
+		renvoyer faux 
+	fin si
+fin un_isolation
+
+9. cas d'un 2 avec un 2 comme voisin et deux voisins
+
+booléen deux_isolation (île)
+	si(île.cardinalité == 2 ET île.nb_voisin_restant == 2)
+		parcour(île.liste_voisin_restant()) en_tant_que v
+			si(v.cardinalité == 2)
+				renvoyer vrai
+				//cette île à un pont simple vers l'île qui n'est pas 2
+			fin si
+		fin parcoure
+	fin si
+	renvoyer faux
+fin deux_isolation
+
+
+10. cas d'un 3 avec 2 et 1 comme voisin et trois voisin
+
+booléen trois_isolation (île)
+	si (île.cardinalité == 3 ET île.nb_voisin_restant == 3)
+		booléen deux = faux
+		booléen un = faux
+		parcour(île.liste_voisin_restant()) en_tant_que v
+			si (v.cardinalité == 1)
+				un = vrai
+			sinon si (v.cardinalité == 2)
+				deux = vrai
+			fin si 
+		fin parcour
+		si(un ET deux)
+			renvoyer vrai
+			// cette île a un pont qui la relit à la troisième (celle qui n'est ni le deux ni le trois) 
+		fin si
+	fin si
+	renvoyer faux
+fin trois_isolation	
+
+11. cas d'une île avec autant de 1 dans ses voisins que sa cardinalité
+
+booléen un_egal_card (île)
+	si (île.cardinalité == 3 OU (île.cardinalité == 2 ET île.nb_voisin_restant() == 3))
+		un = 0
+		parcour(île.liste_voisin_restant()) en_tant_que v
+			si (v.cardinalité == 1)
+				un ++
+			fin si
+		fin parcour
+		
+		si(un == île.cardinalité)
+			renvoyer vrai
+			//cette île a un pont qui la relit à la dernière île qui n'est pas un 1
+		fin si
+	fin si
+fin un_egal_card
+
+12. cas d'un 4 avec quatres voisins dont trois 1
+
+boolean quatre_trois_un (île)
+
+	si(île.cardinalité == 4 ET île.nb_voisins_restant == 4)
+
+fin quatres_trois_un
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
