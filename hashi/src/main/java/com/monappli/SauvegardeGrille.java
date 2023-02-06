@@ -61,19 +61,6 @@ public class SauvegardeGrille{
     // }
     }
 
-    public static void main(String[] args) {
-
-        SauvegardeGrille s = new SauvegardeGrille();
-
-        Ilot ilot1 = new Ilot(1, 2, 4);
-        Ilot ilot2 = new Ilot(6, 7, 8);
-
-        Pont p1 = new Pont(ilot1, ilot2);
-
-        s.ajoutCoup(p1);
-
-        s.actualiserFichier();
-
-    }
+    
 
 }
