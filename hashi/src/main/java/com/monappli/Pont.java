@@ -1,5 +1,6 @@
+package com.monappli;
 import java.util.ArrayList;
-import java.math.*;
+//import java.math.*;
 
 /**
  * 
@@ -36,6 +37,10 @@ public class Pont {
 	 * @return
 	 * @author
 	 */
+	public ArrayList<Ilot> getCoords() {
+		return coords;
+	}
+
 	public int tailleTrait(){
 		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
 	}
