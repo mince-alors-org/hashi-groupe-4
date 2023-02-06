@@ -181,9 +181,72 @@ fin un_egal_card
 boolean quatre_trois_un (île)
 
 	si(île.cardinalité == 4 ET île.nb_voisins_restant == 4)
+		un = 0
+		parcour(île.liste_voisin_restant()) en_tant_que v
+			si (v.cardinalité == 0)
+				un ++ 
+			fin si
+		fin parcour
+		
+		si (un == 3)
+			renvoyer vrai
+			//cette île est relié avec un pont à son voisin qui n'est pas un 1
+		fin si
+	fin si
+	
+	renvoyer faux
 
 fin quatres_trois_un
 
+13. cas d'une île qui est la dernière sortie de son graphe et qui peut se relier à deux voisin dont un 1 et qui ne peut plus se relier qu'à une île 
+
+boolean isolation_graph_un(île)
+	
+	si (île.cardinalitéRestante == 1 ET île.nb_voisin_restant == 2 ET île.sortieGraph().tailleListe() == 1)
+		parcour(île.liste_voisin_restant()) en_tant_que v
+			si(v.cardinalité == 1)
+				renvoyer vrai
+				// cette île ne peut être relié qu'à son voisin qui n'est pas un 1
+			fin si
+		fin parcour
+	fin si
+	
+	renvoyer faux
+	
+fin isolation_graph_un
+
+14. cas d'une île qui est la dernière sortie de son graphe, qui n'a plus que deux pont possible et qui a pour voisin deux îles dont un 2
+
+boolean isolation_graph_deux(île)
+	
+	si (île.cardinalitéRestante == 2 ET île.nb_voisin_restant == 2 ET île.sortieGraph().tailleListe() == 1)
+		parcour(île.liste_voisin_restant()) en_tant_que v
+			si(v.cardinalité == 2)
+				renvoyer vrai
+				//cette île possède un pont vers son voisin qui n'est pas un 2
+			fin si
+		fin parcour
+	fin si
+	
+	renvoyer faux
+fin isolation_graph_deux
+
+15. cas d'une île qui peut refermer son graph si elle fait les mauvais ponts, et qui n'a qu'un seul autre voisin
+
+boolean isolation_graph_refermer(île)
+
+	card = île.cardinalitéRestante ;
+	
+	si( île.nb_voisin_restant == 2 ET île.sortieGraph().tailleListe() == 2 ET card < 3)
+		parcour(île.liste_voisin_restant()) en_tant_que v
+			si(île.sortieGraph().contient(v) ET v.cardinalité = card)
+				renvoyer vrai
+				// cette île a un pont qui la relit à son voisin qui n'est pas dans son graphe
+			fin si 
+		fin parcour
+	fin si
+	renvoyer faux
+fin isolation_graph_refermer
 
 
 
