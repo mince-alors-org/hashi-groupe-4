@@ -20,7 +20,7 @@ public class Pont {
 	}
 
 	public int tailleTrait(){
-		return Math.sqlrt(Math.pow((coords.get(1).posX-coords.get(2).posX),2)+Math.pow((coords.get(1).posY-coords.get(2).posY),2));
+		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
 	}
 	public static void main(String[] args){
 		Ilot ilot1 = new Ilot(2,5,3);
