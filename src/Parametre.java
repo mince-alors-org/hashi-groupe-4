@@ -36,10 +36,6 @@ public class Parametre {
         super();
     }
 
-    /**
-     * 
-     * @return
-     */
     public Color getCouleur_texte() {
         return couleur_texte;
     }
