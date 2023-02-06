@@ -3,7 +3,7 @@ import java.util.ArrayList;
 //import java.math.*;
 
 /**
- *
+ * 
  * @author
  */
 public class Pont {
@@ -12,7 +12,7 @@ public class Pont {
 	/**
 	 * @param ile1 :
 	 * @param ile2 :
-	 * @author
+	 * @author 
 	 */
 	Pont(Ilot ile1, Ilot ile2){
 		this.nombreTraits=0;
@@ -33,16 +33,13 @@ public class Pont {
 			this.nombreTraits++;
 	}
 
-
 	/**
 	 * @return
 	 * @author
 	 */
-
 	public ArrayList<Ilot> getCoords() {
 		return coords;
 	}
-
 
 	public int tailleTrait(){
 		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
