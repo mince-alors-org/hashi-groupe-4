@@ -1,4 +1,5 @@
-package com.monappli;
+package main.java.com.monappli;
+
 import java.util.ArrayList;
 
 /**
@@ -31,7 +32,7 @@ public class Ilot {
      * @param posX position du l'ilot courant dans l'axe des abscisses (X)
      * @param posY position de l'ilot courant dans l'axe des ordonnées (Y)
      * @param valeur nombre de ponts supportés par this
-     * @param pontsSolution
+
      */
     public Ilot(int posX, int posY, int valeur) {
         this.posX = posX;
