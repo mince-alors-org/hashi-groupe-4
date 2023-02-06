@@ -1,9 +1,9 @@
-package com.monappli;
+package main.java.com.monappli;
 import java.util.ArrayList;
 //import java.math.*;
 
 /**
- * 
+ *
  * @author
  */
 public class Pont {
@@ -12,9 +12,9 @@ public class Pont {
 	/**
 	 * @param ile1 :
 	 * @param ile2 :
-	 * @author 
+	 * @author
 	 */
-	Pont(Ilot ile1, Ilot ile2){
+  public Pont(Ilot ile1, Ilot ile2){
 		this.nombreTraits=0;
 		coords =new ArrayList <>();
 		coords.add(ile1);
@@ -41,8 +41,8 @@ public class Pont {
 		return coords;
 	}
 
-	public int tailleTrait(){
-		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
+	public double tailleTrait(){
+		return Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
 	}
 
 }
