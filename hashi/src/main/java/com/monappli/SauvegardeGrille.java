@@ -1,3 +1,4 @@
+package com.monappli;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,15 +10,16 @@ public class SauvegardeGrille{
     private ArrayList<Pont> pileRetablissements = new ArrayList<Pont>();    //pile des coups précédemment joués mais annulés
     private int taillePileCoups = pileCoups.size();
     
-    public SauvegardeGrille(){
+    SauvegardeGrille(){
         try{
-            fileWriter = new FileWriter("save_move.txt");
+            fileWriter = new FileWriter("./save_move.txt");
         } catch (IOException e){
             e.printStackTrace();
         }
     }
     /**
-     * Undo
+     * Redo
+     * @author TER Leon
      */
     public void retablir(){
         pileCoups.add(pileRetablissements.get(taillePileCoups-1));
@@ -25,7 +27,8 @@ public class SauvegardeGrille{
     }
 
     /**
-     * Redo
+     * Undo
+     * @author TER Leon
      */
     public void annuler(){ 
         pileRetablissements.add(pileCoups.get(taillePileCoups-1));
@@ -45,10 +48,9 @@ public class SauvegardeGrille{
      */
     public void actualiserFichier(){
         
-        for (int i = 0; i < taillePileCoups; i++){
-            Pont p1 = pileCoups.get(i);
+        for (Pont p1 : pileCoups){
             try{
-                fileWriter.write(p1.getCoords1()+ p1.getCoords2() + "\n");
+                fileWriter.write(p1.getCoords() + "\n");
                 fileWriter.flush();
             } catch (IOException e){
                 e.printStackTrace();
@@ -56,6 +58,9 @@ public class SauvegardeGrille{
         }
 
        
+    // }
     }
+
+    
 
 }

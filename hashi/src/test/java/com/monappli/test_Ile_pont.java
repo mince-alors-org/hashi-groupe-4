@@ -1,5 +1,5 @@
-import org.junit.Test;
-import static org.junit.Assert.*;
+package com.monappli;
+import org.junit.jupiter.api.Test;
 
 public class test_Ile_pont{
 	@Test
