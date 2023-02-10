@@ -1,40 +1,48 @@
 package com.monappli;
 
-import java.io.IOException;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
+
+@TestInstance(Lifecycle.PER_CLASS)
 public class SauvegardeGrilleTest {
-    public static void main(String[] args) throws IOException{
+    private SauvegardeGrille sauvegarde;
 
-        SauvegardeGrille s = new SauvegardeGrille();
+    private Ilot ilot1;
+    private Ilot ilot2;
+    private Ilot ilot3;
+    private Pont p1;
+    private Pont p2;
+    @BeforeAll
+    void initAll(){
+        sauvegarde = new SauvegardeGrille();
 
-        Ilot ilot1 = new Ilot(1, 2, 4);
-        Ilot ilot2 = new Ilot(6, 7, 8);
-        Ilot ilot3 = new Ilot(0, 0, 0);
-
-        Pont p1 = new Pont(ilot1, ilot2);
-        Pont p2 = new Pont(ilot1, ilot3);
-
-        s.ajoutCoup(p1);
-        s.ajoutCoup(p2);
-
-        System.out.print("Affichage de la premiere sauvegarde : \n\n");
-        
-        s.actualiserFichier();
-
-        s.lireFichier();
-
-        System.out.print("Affichage de la deuxieme sauvegarde : \n\n");
-
-        s.annuler();    
-        
-        s.actualiserFichier();
-
-        s.lireFichier();
-
-        System.out.print("Affichage de la troisieme sauvegarde : \n\n");
-
-        s.retablir();
-        s.actualiserFichier();
-        s.lireFichier();
+        ilot1 = new Ilot(1, 2, 4);
+        ilot2 = new Ilot(6, 7, 8);
+        ilot3 = new Ilot(0, 0, 0);
+        p1 = new Pont(ilot1, ilot2);
+        p2 = new Pont(ilot1, ilot3);
     }
+
+    @AfterEach
+    void afficheOk(TestInfo testInfo){
+        System.out.println(testInfo.getDisplayName() + " Ok");
+    }
+
+    @Test
+    void ajoutCoupDeuxValeurs(){
+        sauvegarde.ajoutCoup(p1);
+        sauvegarde.ajoutCoup(p2);
+        assertEquals(2, sauvegarde.getPileCoupsSize());
+        sauvegarde.actualiserFichier();
+    
+    }
+
+
 }

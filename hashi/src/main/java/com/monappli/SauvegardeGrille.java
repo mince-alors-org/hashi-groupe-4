@@ -54,6 +54,10 @@ public class SauvegardeGrille{
         
     }
 
+    public int getPileCoupsSize(){
+        return pileCoups.size();
+    }
+
     /**
      * lecture du fichier de sauvegarde
      * @throws IOException
