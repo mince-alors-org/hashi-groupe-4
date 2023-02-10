@@ -28,7 +28,7 @@ public class SauvegardeGrilleTest {
         ilot3 = new Ilot(0, 0, 0);
         p1 = new Pont(ilot1, ilot2);
         p2 = new Pont(ilot1, ilot3);
-    }
+    }d
 
     @AfterEach
     void afficheOk(TestInfo testInfo){
