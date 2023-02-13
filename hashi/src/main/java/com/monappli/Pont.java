@@ -1,4 +1,4 @@
-package main.java.com.monappli;
+package com.monappli;
 import java.util.ArrayList;
 //import java.math.*;
 
@@ -35,7 +35,7 @@ public class Pont {
 	}
 	/**
 	 * Permet de conaitre le voisin de l'île entrée
-	 * @param Ilot : ile qui demande sont voisin
+	 * @param demande : ile qui demande sont voisin
 	 * @return Ilot : ile qui ce situe de l'autre côter du pont
 	 */
 	public Ilot voisin(Ilot demande){
@@ -43,7 +43,7 @@ public class Pont {
 	}
 
 	/**
-	 * @return la liste des coordonné d'un pont
+	 * @return la liste des coordonnées d'un pont
 	 * @author
 	 */
 	public ArrayList<Ilot> getCoords() {

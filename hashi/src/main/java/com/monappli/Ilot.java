@@ -1,8 +1,6 @@
-package main.java.com.monappli;
+package com.monappli;
 
 import java.util.ArrayList;
-
-import java.util.Collections;
 
 /**
  * Cette classe permet de représenter un Ilot
@@ -31,7 +29,7 @@ public class Ilot implements Comparable<Ilot>{
 
 	/**
 	 *
-	 * @param posX position du l'ilot courant dans l'axe des abscisses (X)
+	 * @param posX position de l'ilot courant dans l'axe des abscisses (X)
 	 * @param posY position de l'ilot courant dans l'axe des ordonnées (Y)
 	 * @param valeur nombre de ponts supportés par this
 	*/
@@ -76,7 +74,7 @@ public class Ilot implements Comparable<Ilot>{
 	}
 
 	/**
-	 * Ajout d'un pont connecté au noeud courant
+	 * Ajout d'un pont connecté au nœud courant
 	 * @param pont : le pont à ajouter
 	 */
 	public void addPont(Pont pont){
@@ -89,7 +87,7 @@ public class Ilot implements Comparable<Ilot>{
 	}
 
 	/**
-	 * Suppression d'un pont connecté au noeud courant
+	 * Suppression d'un pont connecté au nœud courant
 	 * @param pont : le pont à supprimer
 	 */
 	public void deletePont(Pont pont){
@@ -99,59 +97,59 @@ public class Ilot implements Comparable<Ilot>{
 
 	/**
 	 * Indique si l'ilot peut être connecté à un pont
-	 * @return true si l'ilot peut faire parti d'un pont
+	 * @return true si l'ilot peut faire partie d'un pont
 	 */
 	public boolean valide(){
 		return ponts.size() < valeur;
 	}
 
 	/**
-	 * Indique le nombre de pont activer
-	 * @return Le nombre de pont activer
+	 * Indique le nombre de ponts activer
+	 * @return Le nombre de ponts activer
 	 */
 	public int nbPont(){
 		int somme =0;
-		for(Pont p :this.pont){
+		for(Pont p :this.ponts){
 			somme+=p.nombreTraits;
 		}
 		return somme;
 	}
 
 	/**
-	 * Indique si le nombre de pont est dépasser ou non
-	 * @return vrai si le nombre de pont est trop grand faux si non
+	 * Indique si le nombre de ponts est dépassé ou non
+	 * @return vrai si le nombre de ponts est trop grand faux sinon
 	 */
 	public boolean pontDepasse(){
-		return this.nbPont()>this.valeur? true: false;
+		return this.nbPont() > this.valeur;
 	}
 	/**
-	 * Indique si le nombre de pont est valide
-	 * @return vrai si le nombre de pont est égale à la valeur faux si non
+	 * Indique si le nombre de ponts est valide
+	 * @return vrai si le nombre de ponts est égale à la valeur false sinon
 	 */
 	public boolean pontValide(){
-		return this.nbPont()==this.valeur? true: false;
+		return this.nbPont() == this.valeur;
 	}
 	/**
-	 * Indique les voisin de l'ilot
-	 * @return ArrayList<Ilot> : retourne la liste des voisin de l'ile
+	 * Indique les voisins de l'ilot
+	 * @return ArrayList<Ilot> : retourne la liste des voisins de l'ile
 	 * @author Morgane
 	 */
 	public ArrayList<Ilot> listeVoisin(){
 		ArrayList<Ilot> voisin =new ArrayList<>();
-		for(Pont p : this.pont){
+		for(Pont p : this.ponts){
 			voisin.add(p.voisin(this));
 		}
 		return voisin;
 	}
 
 	/**
-	 * Pour vérifier si deux ile sont identique
-	 * @param Ilot : ile à comparer
-	 * @return vrai si les ile sont identique
+	 * Pour vérifier si deux iles sont identiques
+	 * @param ilot : ile à comparer
+	 * @return vrai si les iles sont identiques
 	 * @author Morgane
 	 */
-	public int compareTo(Ilot o) {
-		if (this.posX==o.posX && this.posY==o.posY)
+	public int compareTo(Ilot ilot) {
+		if (this.posX==ilot.posX && this.posY==ilot.posY)
 			return 1;
 		return 0;
 	}
