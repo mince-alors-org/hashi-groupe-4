@@ -1,7 +1,9 @@
 package com.monappli;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
+
+import java.io.IOException;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -13,22 +15,24 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 @TestInstance(Lifecycle.PER_CLASS)
 public class SauvegardeGrilleTest {
     private SauvegardeGrille sauvegarde;
-
     private Ilot ilot1;
     private Ilot ilot2;
-    private Ilot ilot3;
     private Pont p1;
-    private Pont p2;
     @BeforeAll
-    void initAll(){
-        sauvegarde = new SauvegardeGrille();
+    void initAll() throws Exception{
+        this.sauvegarde = new SauvegardeGrille();
 
-        ilot1 = new Ilot(1, 2, 4);
-        ilot2 = new Ilot(6, 7, 8);
-        ilot3 = new Ilot(0, 0, 0);
-        p1 = new Pont(ilot1, ilot2);
-        p2 = new Pont(ilot1, ilot3);
-    }d
+        this.ilot1 = new Ilot(3, 2, 1);
+        this.ilot2 = new Ilot(2, 1, 1);
+
+        this.p1 = new Pont(ilot2, ilot1);
+        try {
+            sauvegarde.chargerFichier();
+
+        } catch (IOException e) {
+            fail("Exception thrown: " + e);
+        }
+    }
 
     @AfterEach
     void afficheOk(TestInfo testInfo){
@@ -36,13 +40,20 @@ public class SauvegardeGrilleTest {
     }
 
     @Test
-    void ajoutCoupDeuxValeurs(){
+    public void ajoutUnPont(){
+        p1 = new Pont(ilot2, ilot1);
         sauvegarde.ajoutCoup(p1);
-        sauvegarde.ajoutCoup(p2);
-        assertEquals(2, sauvegarde.getPileCoupsSize());
+        assertEquals(14, sauvegarde.getPileCoupsSize());
         sauvegarde.actualiserFichier();
-    
     }
 
-
+    @Test
+    void annulerRetablir(){
+        sauvegarde.annuler();
+        assertEquals(13, sauvegarde.getPileCoupsSize());
+        sauvegarde.actualiserFichier();
+        sauvegarde.retablir();
+        assertEquals(14, sauvegarde.getPileCoupsSize());
+        sauvegarde.actualiserFichier();
+    }
 }
