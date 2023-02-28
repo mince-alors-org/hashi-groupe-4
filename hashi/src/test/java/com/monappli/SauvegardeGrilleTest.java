@@ -18,6 +18,7 @@ public class SauvegardeGrilleTest {
     private Ilot ilot1;
     private Ilot ilot2;
     private Pont p1;
+    String fichier_sauvegarde = "./save_move.txt";
     @BeforeAll
     void initAll() throws Exception{
         this.sauvegarde = new SauvegardeGrille();
@@ -27,11 +28,12 @@ public class SauvegardeGrilleTest {
 
         this.p1 = new Pont(ilot2, ilot1);
         try {
-            sauvegarde.chargerFichier();
+            sauvegarde.chargerFichier(fichier_sauvegarde);
 
         } catch (IOException e) {
             fail("Exception thrown: " + e);
         }
+        assertEquals(13, sauvegarde.getPileCoupsSize());
     }
 
     @AfterEach
@@ -41,19 +43,18 @@ public class SauvegardeGrilleTest {
 
     @Test
     public void ajoutUnPont(){
+        System.out.println("Nom du fichier " + fichier_sauvegarde);
         p1 = new Pont(ilot2, ilot1);
         sauvegarde.ajoutCoup(p1);
         assertEquals(14, sauvegarde.getPileCoupsSize());
-        sauvegarde.actualiserFichier();
     }
 
     @Test
     void annulerRetablir(){
         sauvegarde.annuler();
         assertEquals(13, sauvegarde.getPileCoupsSize());
-        sauvegarde.actualiserFichier();
+        sauvegarde.actualiserFichier(fichier_sauvegarde);
         sauvegarde.retablir();
         assertEquals(14, sauvegarde.getPileCoupsSize());
-        sauvegarde.actualiserFichier();
     }
 }

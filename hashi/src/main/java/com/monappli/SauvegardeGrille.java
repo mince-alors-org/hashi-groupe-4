@@ -44,9 +44,9 @@ public class SauvegardeGrille{
     /**
      * sauvegarde des coups dans le fichier
      */
-    public void actualiserFichier(){
+    public void actualiserFichier(String fichier_sauvegarde){
         try{
-            fileWriter = new FileWriter("./save_move.txt");
+            fileWriter = new FileWriter(fichier_sauvegarde);
             for (Pont p1 : pileCoups){
                 fileWriter.write(p1.getCoords() + "\n");
                 fileWriter.flush();
@@ -66,8 +66,8 @@ public class SauvegardeGrille{
      * @throws Exception
      * @author Ter Leon
      */
-    public void chargerFichier() throws IOException {
-        FileReader fileReader = new FileReader("./save_move.txt");
+    public void chargerFichier(String fichier_sauvegarde) throws IOException {
+        FileReader fileReader = new FileReader(fichier_sauvegarde);
 
         // Lit les lignes du fichier
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -143,8 +143,8 @@ public class SauvegardeGrille{
      * Lit le fichier de sauvegarde sur le terminal 
      * @throws IOException
      */
-    public void lireFichier() throws IOException{
-        fileReader = new FileReader("./save_move.txt");
+    public void lireFichier(String fichier_sauvegarde) throws IOException{
+        fileReader = new FileReader(fichier_sauvegarde);
         int i;
         while((i=fileReader.read()) != -1){
             System.out.print((char)i);
