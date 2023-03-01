@@ -15,14 +15,16 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 @TestInstance(Lifecycle.PER_CLASS)
 public class SauvegardeGrilleTest {
     private SauvegardeGrille sauvegarde;
+    private Parametre parametre;
     private Ilot ilot1;
     private Ilot ilot2;
     private Pont p1;
     String fichier_sauvegarde = "./save_move.txt";
+    String fichier_parametre = "./param.txt";
     @BeforeAll
     void initAll() throws Exception{
         this.sauvegarde = new SauvegardeGrille();
-
+        this.parametre = new Parametre();
         this.ilot1 = new Ilot(3, 2, 1);
         this.ilot2 = new Ilot(2, 1, 1);
 
@@ -56,5 +58,12 @@ public class SauvegardeGrilleTest {
         sauvegarde.actualiserFichier(fichier_sauvegarde);
         sauvegarde.retablir();
         assertEquals(14, sauvegarde.getPileCoupsSize());
+    }
+
+    @Test
+    void chargerFichierParametre() throws IOException{
+        sauvegarde.chargerFichierParametre(fichier_parametre, parametre);
+        System.out.println(parametre.getCouleur_texte());
+        System.out.println(parametre.getTaille_texte());
     }
 }
