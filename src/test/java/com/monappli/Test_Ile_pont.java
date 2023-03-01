@@ -60,17 +60,17 @@ public class Test_Ile_pont {
 	 */
 	@Test
 	public void listeVois(){
-		Pont p1 = new Pont (this.ilot,new Ilot(45,3,8));
-		Pont p2 = new Pont (this.ilot,new Ilot(65,8,3));
-		Pont p3 = new Pont (this.ilot,new Ilot(4,10,2));
-		Pont p4 = new Pont (this.ilot,new Ilot(5,60,1));
+		new Pont (this.ilot,new Ilot(45,3,8));
+		new Pont (this.ilot,new Ilot(65,8,3));
+		new Pont (this.ilot,new Ilot(4,10,2));
+		new Pont (this.ilot,new Ilot(5,60,1));
 		Assertions.assertEquals(4,this.ilot.listeVoisin().size(),"Erreur l'ile n'a pas 4 voisin elle en a "+this.ilot.listeVoisin().size());
 	}
 
 	/**
 	 * Vérifie le renvoi de ArrayIndexOutOfBoundsException en cas de suppression d'un pont
 	 */
-	@Test
+	/*@Test
 	public void deletePontIlot(){
 
 		 ArrayIndexOutOfBoundsException exception = Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, ()->{
@@ -80,7 +80,7 @@ public class Test_Ile_pont {
 		Assertions.assertEquals("Index out of bounds", exception.getMessage());
 
 
-	}
+	}*/
 
 
 

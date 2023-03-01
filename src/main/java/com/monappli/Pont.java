@@ -16,7 +16,7 @@ public class Pont {
 	 */
 	public Pont(Ilot ile1, Ilot ile2){
 		this.nombreTraits=0;
-		coords =new ArrayList <>();
+		coords =new ArrayList <Ilot>();
 		coords.add(ile1);
 		coords.add(ile2);
 		ile1.addPont(this);

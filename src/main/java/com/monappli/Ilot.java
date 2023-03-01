@@ -37,8 +37,8 @@ public class Ilot implements Comparable<Ilot>{
 		this.posX = posX;
 		this.posY = posY;
 		this.valeur = valeur;
-		ponts = new ArrayList<>();
-		this.pontsSolution = new ArrayList<>() ;
+		ponts = new ArrayList<Pont>();
+		this.pontsSolution = new ArrayList<Pont>() ;
 	}
 	public int getPosX() {
 		return posX;
@@ -135,7 +135,7 @@ public class Ilot implements Comparable<Ilot>{
 	 * @author Morgane
 	 */
 	public ArrayList<Ilot> listeVoisin(){
-		ArrayList<Ilot> voisin =new ArrayList<>();
+		ArrayList<Ilot> voisin =new ArrayList<Ilot>();
 		for(Pont p : this.ponts){
 			voisin.add(p.voisin(this));
 		}
