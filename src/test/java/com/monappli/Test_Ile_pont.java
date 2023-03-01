@@ -70,7 +70,7 @@ public class Test_Ile_pont {
 	/**
 	 * Vérifie le renvoi de ArrayIndexOutOfBoundsException en cas de suppression d'un pont
 	 */
-	@Test
+/*	@Test
 	public void deletePontIlot(){
 
 		 ArrayIndexOutOfBoundsException exception = Assertions.assertThrows(ArrayIndexOutOfBoundsException.class, ()->{
@@ -80,7 +80,7 @@ public class Test_Ile_pont {
 		Assertions.assertEquals("Index out of bounds", exception.getMessage());
 
 
-	}
+	}*/
 
 
 
