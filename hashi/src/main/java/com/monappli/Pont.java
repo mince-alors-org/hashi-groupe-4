@@ -1,10 +1,20 @@
+package com.monappli;
 import java.util.ArrayList;
-import java.math.*;
+//import java.math.*;
 
+/**
+ *cette Objet permet l'utilisation des pont qui lie de ile entre elle
+ * @author Morgane
+ */
 public class Pont {
 	int nombreTraits;
 	ArrayList <Ilot> coords;
-	Pont(Ilot ile1, Ilot ile2){
+	/**
+	 * @param ile1 : la où commence le pont
+	 * @param ile2 : la où termine le pont
+	 * @author Morgane
+	 */
+	public Pont(Ilot ile1, Ilot ile2){
 		this.nombreTraits=0;
 		coords =new ArrayList <>();
 		coords.add(ile1);
@@ -12,22 +22,42 @@ public class Pont {
 		ile1.addPont(this);
 		ile2.addPont(this);
 	}
+
+	/**
+	 * Permet d'incrémenté le nombre de pont entre deux ile
+	 * @author Morgane
+	 */
 	public void incrementer(){
 		if(this.nombreTraits == 2)
 			this.nombreTraits=0;
 		else
 			this.nombreTraits++;
 	}
-
-	public int tailleTrait(){
-		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
+	/**
+	 * Permet de conaitre le voisin de l'île entrée
+	 * @param demande : ile qui demande sont voisin
+	 * @return Ilot : ile qui ce situe de l'autre côter du pont
+	 */
+	public Ilot voisin(Ilot demande){
+		return demande == coords.get(0) ? coords.get(1) : coords.get(0);
 	}
-	public static void main(String[] args){
-		Ilot ilot1 = new Ilot(2,5,3);
-		Ilot ilot2 = new Ilot(4,3,5);
-		Pont pont =new Pont(ilot1,ilot2);
-		System.out.println(pont.tailleTrait());
-		System.out.println(ilot1.valide());
+
+	/**
+	 * @return la liste des coordonnées d'un pont
+	 * @author
+	 */
+	public ArrayList<Ilot> getCoords() {
+		return coords;
+	}
+
+	/**
+	 *Permet de connaître la taille d'un pont
+	 *@return la taille du pont
+	 @author Morgane
+	 */
+
+	public double tailleTrait(){
+		return Math.sqrt(Math.pow((coords.get(0).getPosX()-coords.get(1).getPosX()),2)+Math.pow((coords.get(0).getPosY()-coords.get(1).getPosY()),2));
 	}
 
 }
