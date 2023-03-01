@@ -6,13 +6,6 @@ package com.monappli;
 import org.junit.jupiter.api.*;
 
 
-import org.junit.jupiter.api.*;
-
-
-
-import static org.junit.jupiter.api.Assertions.*;
-
-
 /**
  * Test pour Ilot et Pont
  */
