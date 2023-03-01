@@ -1,0 +1,4 @@
+#bg{
+    -fx-background-color:  #00aeff;
+    -fx-background-image:  url("./textures/background/caustics_atlas.png");
+}

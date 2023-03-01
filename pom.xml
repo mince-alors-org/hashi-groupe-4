@@ -19,19 +19,19 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>${openjfx.version}</version>
+      <version>19</version>
     </dependency>
     <!-- Import FXML pour Scene Builder -->
     <dependency>
       <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
-      <version>${openjfx.version}</version>
+      <version>19</version>
     </dependency>
     <!-- Import JUnit (mvn test uniquement) -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>
-      <version>${junit.version}</version>
+      <version>5.8.2</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
