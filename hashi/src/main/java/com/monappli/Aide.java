@@ -46,7 +46,15 @@ public class Aide {
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
      */
     public HashMap<String, String> getTechnique(){
-        for(/*parcourir la table*/)
+        for(int i=0;i<grille.listeIlots;i++) {
+            if(ile_debut(grille.listeIlots[i])) {
+                    return this.technique.get("");
+                }
+            }
+            else if (ile_1_voisin) {
+                return this.technique.get("Iles avec un seul voisin");
+            }
+            else if ()
     }
     
     /**
@@ -80,4 +88,74 @@ public class Aide {
     public void fixErreurs(){
 
     }  
+
+    /**
+     * 
+     */
+     public boolean ile_debut(Ilot ile) {
+        if ((ile.nbVoisinRestant()/2)== ile.valeur) {
+            return true;
+        }
+        else {
+            return false;
+        }
+     }
+
+     public boolean ile_1_voisin(Ilot ile) {
+        if (ile.nbVoisin==1 && ile.ponts.isEmpty()) {
+            return true;
+        }
+        else {
+            return false;
+        }
+     }
+
+    public boolean cas_3_coin_5_cote_7_milieu(Ilot ile) {
+        if (ile.valeur == 3 || ile.valeur == 5 || ile.valeur == 7) {
+            for (Ilot neighbor : ile.voisins) {
+                if (neighbor.valeur == 1) {
+                    return true;
+                }
+                return false;
+            }
+        }
+    }
+
+    public boolean cas_4_avec_3_voisin_dont_2_1(Ilot ile) {
+        int compteur;
+        if (ile.valeur == 4 && ile.voisins.length == 3) {
+            for (Ilot voisin : ile.voisins) {
+                if (voisin.valeur==1) {
+                    compteur+=1;
+                }
+            }    
+            if (compteur==2) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean 6_milieu(Ilot iles) {
+        if (ile.valeur == 6 && ile.voisins.length == 4) {
+            for (Ilot voisin : ile.voisins) {
+                if (voisin.valeur==1) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public boolean isolation_3_iles(Ilot ile) {
+        
+    }
 }
