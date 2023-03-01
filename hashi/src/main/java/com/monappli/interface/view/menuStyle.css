@@ -7,7 +7,7 @@
     -fx-background-radius: 30px;
     -fx-text-fill: #ffffff; 
     -fx-pref-height:100.0px;
-    -fx-pref-width:350.0px;
+    -fx-pref-width:450.0px;
     -fx-font-size: 35pt;
     -fx-alignment: center;
 }
@@ -22,10 +22,6 @@
     -fx-background-radius: 35px;
     -fx-pref-height:70.0px;
     -fx-pref-width:70.0px;
-    -fx-max-height:70.0px;
-    -fx-max-width:70.0px;
-    -fx-min-height:70.0px;
-    -fx-min-width:70.0px;
 }
 
 #powerButton{

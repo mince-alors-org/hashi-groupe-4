@@ -41,7 +41,7 @@ public class Hashi extends Application{
 
         Scene scene = new Scene(page);
         primaryStage.setHeight(800);
-        primaryStage.setWidth(450);
+        primaryStage.setWidth(600);
         primaryStage.setScene(scene); 
 
 
