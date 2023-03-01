@@ -1,0 +1,37 @@
+#title{
+    -fx-effect: dropshadow( gaussian , black , 5, 1.0, 1 , 1 );
+}
+
+.mainButton{
+    -fx-background-color: #1e52bb;
+    -fx-background-radius: 30px;
+    -fx-text-fill: #ffffff; 
+    -fx-pref-height:100.0px;
+    -fx-pref-width:350.0px;
+    -fx-font-size: 35pt;
+    -fx-alignment: center;
+}
+
+.mainButton:hover{     
+    -fx-background-color:#019632;
+}
+
+.optionalButton{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 35px;
+    -fx-pref-height:70.0px;
+    -fx-pref-width:70.0px;
+    -fx-max-height:70.0px;
+    -fx-max-width:70.0px;
+    -fx-min-height:70.0px;
+    -fx-min-width:70.0px;
+}
+
+#powerButton{
+    -fx-background-image: url("./textures/icons/powerButton.png");
+}
+
+#paramButton{
+    -fx-background-image: url("./textures/icons/parameters.png");
+}
