@@ -1,3 +1,5 @@
+package com.monappli;
+
 
 import java.util.ArrayList;
 
@@ -140,6 +142,15 @@ public class Ilot implements Comparable<Ilot>{
 		}
 		return voisin;
 	}
+	public ArrayList<Ilot> listeVoisinRelier(){
+		ArrayList<Ilot> voisin = new ArrayList<Ilot>();
+		for(Pont p : this.ponts){
+			if(p.getNbTraits()!=0){
+				voisin.add(p.voisin(this));
+			}
+		}
+		return voisin;
+	}
 
 	/**
 	 * Pour vérifier si deux iles sont identiques
@@ -162,5 +173,6 @@ public class Ilot implements Comparable<Ilot>{
 			", valeur=" + valeur +
 			", listePontsSolution=" + ponts +
 			'}';
+	}
 
  }

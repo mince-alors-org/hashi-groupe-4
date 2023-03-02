@@ -1,5 +1,6 @@
+package com.monappli;
+
 import java.util.ArrayList;
-import java.math.*;
 
 public class Pont {
 	int nombreTraits;
@@ -12,6 +13,9 @@ public class Pont {
 		ile1.addPont(this);
 		ile2.addPont(this);
 	}
+	public int getNbTraits(){
+		return this.nombreTraits;
+	}
 	public void incrementer(){
 		if(this.nombreTraits == 2)
 			this.nombreTraits=0;
@@ -22,12 +26,11 @@ public class Pont {
 	public int tailleTrait(){
 		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
 	}
-	public static void main(String[] args){
-		Ilot ilot1 = new Ilot(2,5,3);
-		Ilot ilot2 = new Ilot(4,3,5);
-		Pont pont =new Pont(ilot1,ilot2);
-		System.out.println(pont.tailleTrait());
-		System.out.println(ilot1.valide());
+	public Ilot voisin(Ilot a){
+		if(coords.get(0)==a){
+			return coords.get(1);
+		}
+		return coords.get(0);
 	}
 
 }
