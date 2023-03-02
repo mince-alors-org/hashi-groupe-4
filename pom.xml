@@ -45,7 +45,7 @@
         <version>0.0.8</version>
         <configuration>
             <!-- Classe de lancement du programme -->
-            <mainClass>${project.mainClass}</mainClass>
+            <mainClass>com.monappli.Hashi</mainClass>
         </configuration>
       </plugin>
 

@@ -1,4 +1,4 @@
-package handlers;
+package com.monappli.handlers;
 
 import javafx.scene.layout.Pane;
 

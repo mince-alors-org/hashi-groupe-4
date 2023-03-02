@@ -1,10 +1,10 @@
-package hashiScene;
+package com.monappli.hashiScene;
 
 import javafx.scene.layout.Pane;
-import javafx.fxml.FXML;
+//import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
-import handlers.*;
+import com.monappli.handlers.*;
 
 public class PopUp extends DynamicScene{
 

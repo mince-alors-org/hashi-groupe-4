@@ -142,6 +142,11 @@ public class Ilot implements Comparable<Ilot>{
 		}
 		return voisin;
 	}
+	/**
+	 * Indique les voisins relier à l'ilot
+	 * @return ArrayList<Ilot> : retourne la liste des voisins relier à l'ile
+	 * @author Morgane
+	 */
 	public ArrayList<Ilot> listeVoisinRelier(){
 		ArrayList<Ilot> voisin = new ArrayList<Ilot>();
 		for(Pont p : this.ponts){

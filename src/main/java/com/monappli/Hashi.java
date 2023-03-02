@@ -1,17 +1,17 @@
+package com.monappli;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
+//import javafx.scene.layout.VBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
-import javafx.fxml.*;
-import javafx.event.ActionEvent;
-import javafx.scene.control.*;
+//import javafx.scene.Parent;
+//import javafx.fxml.*;
+//import javafx.event.ActionEvent;
+//import javafx.scene.control.*;
 
-import java.net.URL;
-
-import handlers.*;
+import com.monappli.handlers.*;
+import com.monappli.handlers.handlers.mainMenuEventHandler;
 
 public class Hashi extends Application{
     Handler cont;
@@ -29,10 +29,10 @@ public class Hashi extends Application{
 
         Pane page= backLoader.load();
         
-        cont = new mainMenuEventHandler(page);
+        this.cont = new mainMenuEventHandler(page);
         
         FXMLLoader menuLoader= new FXMLLoader(getClass().getResource("view/main_menu.fxml"));
-        menuLoader.setController(cont);
+        menuLoader.setController(this.cont);
         
         Pane newP= menuLoader.load();
 

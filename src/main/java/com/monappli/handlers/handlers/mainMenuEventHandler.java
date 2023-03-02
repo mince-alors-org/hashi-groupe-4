@@ -1,20 +1,21 @@
-package handlers;
+package com.monappli.handlers.handlers;
 
 
-import javax.swing.Action;
+//import javax.swing.Action;
 
-import org.w3c.dom.events.MouseEvent;
+//import org.w3c.dom.events.MouseEvent;
 
-import hashiScene.*;
-import javafx.event.*;  
+import com.monappli.handlers.*;
+import com.monappli.hashiScene.*;
+//import javafx.event.*;  
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+//import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.Parent;
-import java.io.IOException;
+//import javafx.scene.Parent;
+//import java.io.IOException;
 
-public class mainMenuEventHandler extends DynamicEventHandler {
+public class mainMenuEventHandler extends  DynamicEventHandler{
 
     @FXML
     private Button playButton;
@@ -41,8 +42,8 @@ public class mainMenuEventHandler extends DynamicEventHandler {
 
     public void tutoClicked() throws Exception {
         tutoButton.setStyle("-fx-background-color: #00ff00 ;");
-        MainPanel tuto= new MainPanel(parentPane);
-        tuto.pasteAndHandle("../view/tuto.fxml", new TutorialEventHandler(parentPane));
+        MainPanel tuto= new MainPanel(this.parentPane);
+        tuto.pasteAndHandle("../view/tuto.fxml", new TutorialEventHandler(this.parentPane));
     }
 
     public void challClicked() {
@@ -52,7 +53,7 @@ public class mainMenuEventHandler extends DynamicEventHandler {
     public void paramClicked() throws Exception{
         paramDeac();
         PopUp pop = new PopUp(menuPane);
-        pop.pasteAndHandle("../view/parameters.fxml", new TutorialEventHandler(menuPane));
+        pop.pasteAndHandle("../view/parameters.fxml", new TutorialEventHandler(this.menuPane));
     }
 
 
