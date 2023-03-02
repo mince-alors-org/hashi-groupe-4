@@ -1,4 +1,3 @@
-package com.monappli;
 
 import java.util.ArrayList;
 
@@ -163,7 +162,5 @@ public class Ilot implements Comparable<Ilot>{
 			", valeur=" + valeur +
 			", listePontsSolution=" + ponts +
 			'}';
-	}
 
-
-}
+ }
