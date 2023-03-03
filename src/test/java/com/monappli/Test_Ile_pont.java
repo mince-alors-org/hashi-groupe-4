@@ -23,7 +23,7 @@ public class Test_Ile_pont {
 	public void afficheOK(TestInfo testInfo){
 		this.ilot=null;
 		this.p=null;
-		System.out.println("Test Ok "+testInfo.getTestClass().get().getName());
+		System.out.println("Test Ok "+testInfo.getTestMethod());
 		Assertions.assertTrue(true);
 	}
 

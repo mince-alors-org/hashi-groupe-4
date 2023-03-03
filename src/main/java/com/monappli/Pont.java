@@ -31,7 +31,7 @@ public class Pont {
 	}
 
 	/**
-	 *@return nombreTraits indique la quantiter de trait afficher 
+	 *@return nombreTraits indique la quantiter de trait afficher
 	 */
 	public int getNbTraits(){
 		return this.nombreTraits;
@@ -49,8 +49,8 @@ public class Pont {
 	 * Renvoit la taille du trait entre les deux île
 	 * @return int taille du trai parapore au coordonée des l'îles
 	 */
-	public int tailleTrait(){
-		return (int) Math.sqrt(Math.pow((coords.get(1).getPosX()-coords.get(2).getPosX()),2)+Math.pow((coords.get(1).getPosY()-coords.get(2).getPosY()),2));
+	public double tailleTrait(){
+		return Math.sqrt(Math.pow((coords.get(0).getPosX()-coords.get(1).getPosX()),2)+Math.pow((coords.get(0).getPosY()-coords.get(1).getPosY()),2));
 	}
 	/**
 	 * permet de trouver le voisin de l'ile entrée en paramètre
