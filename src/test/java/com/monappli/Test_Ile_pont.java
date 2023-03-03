@@ -15,8 +15,8 @@ public class Test_Ile_pont {
 	private Pont p;
 	@BeforeEach
 	public void init(TestInfo testInfo){
-		this.ilot = new Ilot(5,6,6);
-		this.p = new Pont(new Ilot(10,5,3),new Ilot(9,6,4));
+		this.ilot = new Ilot("A",5,6,6);
+		this.p = new Pont(this.ilot,new Ilot("B",9,6,4));
 		System.out.println("Lancement du Test " + testInfo.getTestClass().get().getSimpleName());
 	}
 	@AfterEach
@@ -40,8 +40,8 @@ public class Test_Ile_pont {
 	 */
 	@Test
 	public void test_addPont(){
-		this.ilot.addPont(new Pont(new Ilot(8,6,7),new Ilot(5,6,7)));
-		this.ilot.addPont(new Pont(new Ilot(8,6,7),new Ilot(5,6,7)));
+		//this.ilot.addPont(new Pont(new Ilot(8,6,7),new Ilot(5,6,7)));
+		this.ilot.addPont(new Pont(this.ilot,new Ilot("C",5,6,7)));
 		Assertions.assertEquals(this.ilot.getPonts().size(),2,"Erreur il n'y a pas deux pont il y a "+this.ilot.getPonts().size()+" pont");
 	}
 
@@ -50,7 +50,7 @@ public class Test_Ile_pont {
 	 */
 	@Test
 	public void voisin(){
-		Ilot ile = new Ilot(16,2,5);
+		Ilot ile = new Ilot("D",16,2,5);
 		Pont pTest= new Pont(this.ilot,ile);
 		Assertions.assertEquals(this.ilot,pTest.voisin(ile),"Erreur Ile retourner n'est pas la bonne");
 	}
@@ -60,11 +60,11 @@ public class Test_Ile_pont {
 	 */
 	@Test
 	public void listeVois(){
-		new Pont (this.ilot,new Ilot(45,3,8));
-		new Pont (this.ilot,new Ilot(65,8,3));
-		new Pont (this.ilot,new Ilot(4,10,2));
-		new Pont (this.ilot,new Ilot(5,60,1));
-		Assertions.assertEquals(4,this.ilot.listeVoisin().size(),"Erreur l'ile n'a pas 4 voisin elle en a "+this.ilot.listeVoisin().size());
+		new Pont (this.ilot,new Ilot("E",45,3,8));
+		new Pont (this.ilot,new Ilot("F",65,8,3));
+		new Pont (this.ilot,new Ilot("G",4,10,2));
+		new Pont (this.ilot,new Ilot("H",5,60,1));
+		Assertions.assertEquals(5,this.ilot.listeVoisin().size(),"Erreur l'ile n'a pas 4 voisin elle en a "+this.ilot.listeVoisin().size());
 	}
 
 	/**
