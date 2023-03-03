@@ -25,17 +25,23 @@ public class Grille {
         // Le fichier d'entrée
         File file = new File("file.txt");
         // Créer l'objet File Reader
-        FileReader fr = new FileReader(file);
-        // Créer l'objet BufferedReader
-        BufferedReader br = new BufferedReader(fr);
-        StringBuffer sb = new StringBuffer();
-        String line;
-        while ((line = br.readLine()) != null) {
-            // ajoute la ligne au buffer
-            sb.append(line);
-            sb.append("\n");
+        FileReader fr = null;
+        try {
+            fr = new FileReader(file);
+            // Créer l'objet BufferedReader
+            BufferedReader br = new BufferedReader(fr);
+            StringBuffer sb = new StringBuffer();
+            String line;
+            while ((line = br.readLine()) != null) {
+                // ajoute la ligne au buffer
+                sb.append(line);
+                sb.append("\n");
+            }
+            fr.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        fr.close();
+
 
     }
 
