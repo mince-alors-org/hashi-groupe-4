@@ -71,4 +71,18 @@ public class Pont {
 		return coords;
 	}
 
+	public String toString(){
+		StringBuilder result = new StringBuilder();
+		for (Ilot i : coords){
+			result.append(i.nom);
+			result.append(" ");
+		}
+		result.deleteCharAt(result.length()-1);
+
+		return result.toString();
+
+	}
+
+
+
 }

@@ -3,7 +3,9 @@ package com.monappli;
 import java.util.ArrayList;
 import java.io.*;
 import java.io.FileReader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,6 +21,8 @@ public class Grille {
     private int longueur;
     private int largeur;
     private List<Ilot> listeIlot;
+
+    private static Pattern pontsDetection = Pattern.compile("[A-Z],?[0-9](?=(\\)])|(\\),))");
 
     /**
      * Initialisation de la grille
@@ -42,19 +46,39 @@ public class Grille {
             }
             fr.close();
             System.out.println(sb);
-            Pattern ilotsDetection = Pattern.compile("[A-Z],?[1-9](?=\\))");
+            Map<String,Ilot> ilots = new HashMap<String,Ilot>();
+
+            Pattern ilotsDetection = Pattern.compile("[A-Z],?[1-9](?=\\)\\[)");
             Matcher m = ilotsDetection.matcher(sb);
+
+
+            Matcher m2 = Grille.pontsDetection.matcher(sb);
 
             while (m.find()){
                 String s = m.group();
                 String[] values = s.split(",");
-                System.out.println(values[0]);
-                System.out.println(values[1]);
-                Ilot ilot = new Ilot(values[0],Integer.parseInt(values[1]));
-                System.out.println();
-                System.out.println(ilot);
+                ilots.put(values[0],new Ilot(values[0],Integer.parseInt(values[1])));
 
 
+
+            }
+
+            m = ilotsDetection.matcher(sb);
+
+
+            while (m2.find() && m.find()){
+                String s = m.group();
+                String s2 = m2.group();
+                String[] values2 = s2.split(",");
+
+
+                String[] values = s.split(",");
+
+                Pont pont = new Pont(ilots.get(values[0]),ilots.get(values2[0]));
+
+            }
+            for (String key : ilots.keySet()){
+                System.out.println(key + " " + ilots.get(key));
             }
 
         } catch (IOException e) {
