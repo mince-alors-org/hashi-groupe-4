@@ -19,13 +19,13 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>19</version>
+      <version>16</version>
     </dependency>
     <!-- Import FXML pour Scene Builder -->
     <dependency>
       <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
-      <version>19</version>
+      <version>16</version>
     </dependency>
     <!-- Import JUnit (mvn test uniquement) -->
     <dependency>
@@ -38,6 +38,44 @@
 
   <build>
     <plugins>
+    <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+      <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <version>3.1.0</version>
+      </plugin>
+      <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+      <plugin>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.0.2</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.1</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>3.0.2</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <!-- Classe de lancement du programme -->
+              <mainClass>com.monapplie.Hashi</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-install-plugin</artifactId>
+        <version>2.5.2</version>
+      </plugin>
+      <plugin>
+        <artifactId>maven-deploy-plugin</artifactId>
+        <version>2.8.2</version>
+      </plugin>
       <!-- Plugin JavaFX -->
       <plugin>
         <groupId>org.openjfx</groupId>
@@ -59,6 +97,7 @@
           <reportOutputDirectory>.</reportOutputDirectory>
         </configuration>
       </plugin>
+      <!-- Plugin du compilateur-->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
