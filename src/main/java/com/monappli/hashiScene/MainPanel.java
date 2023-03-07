@@ -1,8 +1,7 @@
 package com.monappli.hashiScene;
 
 import  javafx.scene.layout.Pane;
-//import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 
 import com.monappli.handlers.*;
 

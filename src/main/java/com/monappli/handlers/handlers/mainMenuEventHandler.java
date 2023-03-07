@@ -8,8 +8,7 @@ package com.monappli.handlers.handlers;
 import com.monappli.handlers.*;
 import com.monappli.hashiScene.*;
 //import javafx.event.*;  
-import javafx.fxml.FXML;
-//import javafx.fxml.FXMLLoader;
+import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 //import javafx.scene.Parent;
@@ -71,6 +70,4 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
             }
         } );
     }
-
-
 }

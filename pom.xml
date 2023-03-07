@@ -19,13 +19,13 @@
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
-      <version>16</version>
+      <version>19</version>
     </dependency>
     <!-- Import FXML pour Scene Builder -->
     <dependency>
       <groupId>org.openjfx</groupId>
         <artifactId>javafx-fxml</artifactId>
-      <version>16</version>
+      <version>19</version>
     </dependency>
     <!-- Import JUnit (mvn test uniquement) -->
     <dependency>
@@ -37,6 +37,11 @@
   </dependencies>
 
   <build>
+    <!--resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources-->
     <plugins>
     <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
       <plugin>

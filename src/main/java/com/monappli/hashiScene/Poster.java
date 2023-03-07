@@ -1,6 +1,6 @@
 package com.monappli.hashiScene;
 
-import com.monappli.handlers.*;;
+import com.monappli.handlers.*;
 
 abstract interface Poster {
     abstract void paste(String name) throws Exception;
