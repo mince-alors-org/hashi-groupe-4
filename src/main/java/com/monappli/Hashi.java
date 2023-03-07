@@ -1,64 +1,47 @@
 package com.monappli;
+
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-//import javafx.scene.layout.VBox;
+import javafx.fxml.*;
+import javafx.scene.*;
+import javafx.scene.control.Button;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-//import javafx.scene.Parent;
-//import javafx.fxml.*;
-//import javafx.event.ActionEvent;
-//import javafx.scene.control.*;
+import javafx.event.ActionEvent;
+
+import java.io.File;
+import java.net.URL;
 
 import com.monappli.handlers.*;
 import com.monappli.handlers.handlers.mainMenuEventHandler;
 
-public class Hashi extends Application{
+public class Hashi extends Application {
     Handler cont;
 
     public static void main(String[] args) {
-        launch(args);
+        Application.launch(Hashi.class,args);
     }
 
     @Override
     public void start(Stage stage) throws Exception {
+       FXMLLoader backLoader = new FXMLLoader(new File("src/main/resources/view/Background.fxml").toURI().toURL());
 
-        
-        //FXMLLoader backLoader= new FXMLLoader();
-        //backLoader.setLocation(getClass().getResource("/view/Background.fxml"));
-        //backLoader.setController(this);
+        Node page= backLoader.load();
+        Pane root = new Pane(page);
+        this.cont = new mainMenuEventHandler(root);
+        backLoader.setController(this);
 
-        // Pane page= backLoader.load();
-        
-        // this.cont = new mainMenuEventHandler(page);
-        
-        // FXMLLoader menuLoader= new FXMLLoader(getClass().getResource("/view/main_menu.fxml"));
-        // menuLoader.setController(this.cont);
-        
-        // Pane newP= menuLoader.load();
+        FXMLLoader menuLoader= new FXMLLoader(new File("src/main/resources/view/main_menu.fxml").toURI().toURL());
+        menuLoader.setController(this.cont);
+        HBox box=new HBox();
+        box.getChildren().addAll((Pane)menuLoader.load());
+        root.getChildren().add(box);
 
-        // page.getChildren().setAll(newP);
+        Scene scene =new Scene(root,450,800);
+        stage.setTitle("Hashi");
+        stage.setScene(scene);
 
-        // Pane pane = new Pane();
-
-        // mainMenuEventHandler event = new mainMenuEventHandler(pane);
-
-
-        // Scene scene = backLoader.load();
-        // primaryStage.setHeight(800);
-        // primaryStage.setWidth(450);
-        // primaryStage.setScene(scene); 
-
-
-
-        // primaryStage.show();
-        String javaVersion = System.getProperty("java.version");
-String javafxVersion = System.getProperty("javafx.version");
-Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-Scene scene = new Scene(new StackPane(l), 640, 480);
-stage.setScene(scene);
-stage.show();
+        stage.show();
     }
 }
