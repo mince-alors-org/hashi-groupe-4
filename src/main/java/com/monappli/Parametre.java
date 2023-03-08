@@ -1,5 +1,3 @@
-package com.monappli;
-
 import java.awt.*;
 
 /**
