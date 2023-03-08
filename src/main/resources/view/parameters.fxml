@@ -13,13 +13,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<<<<<<< HEAD
-
-<Pane fx:id="paramPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="450.0" style="-fx-background-color: blue;" stylesheets="@menuStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-        <HBox alignment="CENTER" layoutX="25.0" layoutY="50.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" style="-fx-background-color: #aaaaaa;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" />
-        </HBox>
-=======
 <Pane layoutX="30.0" layoutY="25.0" prefHeight="800.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0">
@@ -181,6 +174,5 @@
             </SplitPane>
          </children>
       </VBox>
->>>>>>> d42b5bba594ebd75efdab7dc4f2cc9a7d6277a04
    </children>
 </Pane>

@@ -15,8 +15,8 @@ public class Test_Ile_pont {
 	private Pont p;
 	@BeforeEach
 	public void init(TestInfo testInfo){
-		this.ilot = new Ilot("A",5,6,6);
-		this.p = new Pont(this.ilot,new Ilot("B",9,6,4));
+		this.ilot = new Ilot(5,6,6);
+		this.p = new Pont(this.ilot,new Ilot(9,6,4));
 		System.out.println("Lancement du Test " + testInfo.getTestClass().get().getSimpleName());
 	}
 	@AfterEach
@@ -32,7 +32,7 @@ public class Test_Ile_pont {
 	 */
 	@Test
 	public void taillePont(){
-		Assertions.assertEquals(Math.sqrt(2), p.tailleTrait(), "Erronnée : "+Math.sqrt(2)+" != "+ p.tailleTrait());
+		Assertions.assertEquals(4, this.p.tailleTrait(), "Erronnée : "+Math.sqrt(2)+" != "+ this.p.tailleTrait());
 	}
 
 	/**

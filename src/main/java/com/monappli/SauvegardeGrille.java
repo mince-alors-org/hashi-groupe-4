@@ -1,3 +1,5 @@
+package com.monappli;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -48,7 +50,7 @@ public class SauvegardeGrille{
         for (int i = 0; i < taillePileCoups; i++){
             Pont p1 = pileCoups.get(i);
             try{
-                fileWriter.write(p1.getCoords1()+ p1.getCoords2() + "\n");
+                //fileWriter.write(p1.getCoords1()+ p1.getCoords2() + "\n");
                 fileWriter.flush();
             } catch (IOException e){
                 e.printStackTrace();

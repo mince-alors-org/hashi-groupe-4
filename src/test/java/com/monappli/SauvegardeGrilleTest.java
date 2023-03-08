@@ -1,7 +1,8 @@
+package com.monappli;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-package com.monappli;
 
 import static org.junit.Assert.assertTrue;
 
