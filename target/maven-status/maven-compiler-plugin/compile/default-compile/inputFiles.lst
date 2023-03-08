@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/TutorialEventHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/Handler.java
@@ -21,6 +22,8 @@
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/SauvegardeGrille.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/DynamicScene.java
 =======
+=======
+>>>>>>> refs/remotes/origin/grille
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/hashiScene/DynamicScene.java
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/handlers/Handler.java
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/handlers/handlers/mainMenuEventHandler.java
@@ -42,4 +45,7 @@
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/App.java
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/Fenetre.java
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/hashiScene/MainPanel.java
+<<<<<<< HEAD
 >>>>>>> 3e830c319e2c22d2ce712413214dfecf205c5bf6
+=======
+>>>>>>> refs/remotes/origin/grille
