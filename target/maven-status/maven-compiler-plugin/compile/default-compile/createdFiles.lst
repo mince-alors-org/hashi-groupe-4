@@ -1,0 +1,18 @@
+<<<<<<< HEAD
+=======
+com/monappli/hashiScene/Poster.class
+com/monappli/Parametre.class
+com/monappli/Main.class
+com/monappli/Grille.class
+com/monappli/Ilot.class
+com/monappli/handlers/DynamicEventHandler.class
+com/monappli/handlers/mainMenuEventHandler.class
+com/monappli/hashiScene/DynamicScene.class
+com/monappli/Pont.class
+com/monappli/handlers/TutorialEventHandler.class
+com/monappli/Hashi.class
+com/monappli/hashiScene/PopUp.class
+com/monappli/handlers/Handler.class
+com/monappli/App.class
+com/monappli/hashiScene/MainPanel.class
+>>>>>>> d42b5bba594ebd75efdab7dc4f2cc9a7d6277a04
