@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 /**
  * Cette classe permet de représenter une Grille
- * 
+ *
  * @author Morgane Pechon
  */
 public class Grille {
@@ -46,7 +46,71 @@ public class Grille {
             }
             fr.close();
             System.out.println(sb);
-            Map<String,Ilot> ilots = new HashMap<String,Ilot>();
+
+
+
+
+            Pattern ilotsCoord = Pattern.compile("[0-9] [0-9] [0-9] [0-9] [0-9]");
+            Matcher m = ilotsCoord.matcher(sb);
+
+            while(m.find()){
+
+              String s = m.group();
+
+              String[] results = s.split(" ");
+              System.out.println(s);
+              int xa = Integer.parseInt(results[0]);
+              int ya = Integer.parseInt(results[1]);
+
+
+              int xb = Integer.parseInt(results[2]);
+              int yb = Integer.parseInt(results[3]);
+
+              int nbTraits = Integer.parseInt(results[4]);
+
+
+
+              Ilot a = new Ilot(xa,ya);
+
+              Ilot b = new Ilot(xb,yb);
+              if (listeIlot.isEmpty()){
+                listeIlot.add(a);
+                listeIlot.add(b);
+              }
+
+
+              if (!listeIlot.contains(a)){
+                listeIlot.add(a);
+              }
+
+              if (!listeIlot.contains(b)){
+                listeIlot.add(b);
+              }
+
+              Pont pont = new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
+              Pont pont1 = new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits);
+
+              /*if (!contientMemeIlot(ilots,a)){
+                ilots.add(a);
+
+              }
+              if (!contientMemeIlot(ilots,b)){
+                ilots.add(b);
+
+              }*/
+
+
+
+
+
+
+
+            }
+
+          for (Ilot i: listeIlot){
+            System.out.println(i);
+          }
+           /* Map<String,Ilot> ilots = new HashMap<String,Ilot>();
 
             Pattern ilotsDetection = Pattern.compile("[A-Z],?[1-9](?=\\)\\[)");
             Matcher m = ilotsDetection.matcher(sb);
@@ -79,13 +143,27 @@ public class Grille {
             }
             for (String key : ilots.keySet()){
                 System.out.println(key + " " + ilots.get(key));
-            }
+            }*/
+
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
 
+    }
+
+
+    public boolean contientMemeIlot(List<Ilot> ilots, Ilot ilot){
+      boolean result = false;
+      for (Ilot i : ilots){
+        if (i.equals(ilot)){
+          return true;
+        }
+
+      }
+      return false;
     }
 
 }
