@@ -50,7 +50,7 @@ public class Test_Ile_pont {
 	 */
 	@Test
 	public void voisin(){
-		Ilot ile = new Ilot("D",16,2,5);
+		Ilot ile = new Ilot(16,2,5);
 		Pont pTest= new Pont(this.ilot,ile);
 		Assertions.assertEquals(this.ilot,pTest.voisin(ile),"Erreur Ile retourner n'est pas la bonne");
 	}
@@ -60,10 +60,10 @@ public class Test_Ile_pont {
 	 */
 	@Test
 	public void listeVois(){
-		new Pont (this.ilot,new Ilot("E",45,3,8));
-		new Pont (this.ilot,new Ilot("F",65,8,3));
-		new Pont (this.ilot,new Ilot("G",4,10,2));
-		new Pont (this.ilot,new Ilot("H",5,60,1));
+		new Pont (this.ilot,new Ilot(45,3,8));
+		new Pont (this.ilot,new Ilot(65,8,3));
+		new Pont (this.ilot,new Ilot(4,10,2));
+		new Pont (this.ilot,new Ilot(5,60,1));
 		Assertions.assertEquals(5,this.ilot.listeVoisin().size(),"Erreur l'ile n'a pas 4 voisin elle en a "+this.ilot.listeVoisin().size());
 	}
 
