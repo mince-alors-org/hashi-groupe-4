@@ -32,7 +32,7 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void playClicked() {
-        playButton.setStyle("-fx-background-color: #ff0000 ;"); 
+        MainPanel game= new MainPanel(this.parentPane);
         System.out.println("Je suis jeux Libre");
     }
     public void quitClicked() {
@@ -54,9 +54,11 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void paramClicked() throws Exception{
-        PopUp pop = new PopUp(menuPane);
-        pop.pasteAndHandle("/view/parameters.fxml", new TutorialEventHandler(this.menuPane));
-        System.out.println("Je suis Paramètre");
+        if (menuPane.lookup("#pop") == null){
+            PopUp pop = new PopUp(menuPane);
+            pop.pasteAndHandle("/view/parameters.fxml", new ParamHandler(this.menuPane));
+            System.out.println("Je suis Paramètre");
+        }
     }
 
 }
