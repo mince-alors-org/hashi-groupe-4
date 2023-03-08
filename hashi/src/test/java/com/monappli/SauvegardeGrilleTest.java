@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+import java.util.Arrays;
+import java.awt.*;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class SauvegardeGrilleTest {
@@ -63,7 +65,28 @@ public class SauvegardeGrilleTest {
     @Test
     void chargerFichierParametre() throws IOException{
         sauvegarde.chargerFichierParametre(fichier_parametre, parametre);
-        System.out.println(parametre.getCouleur_texte());
-        System.out.println(parametre.getTaille_texte());
+        System.out.println("Couleur_texte = " + parametre.getCouleur_texte());
+        System.out.println("Couleur_ilot = " + parametre.getCouleur_ilot());
+        System.out.println("Couleur_pont = " + parametre.getCouleur_pont());
+        System.out.println("Couleur_aide_erreur = " + parametre.getCouleur_aide_erreur());
+        System.out.println("Couleur_fond = "+ parametre.getCouleur_fond());
+        System.out.println("Taille_texte = " + parametre.getTaille_texte());
+        System.out.println("Taille_fenetre = " + Arrays.toString(parametre.getTaille_fenetre()));
+        System.out.println("Affichage_depassement_cardinalite = " + parametre.isAffichage_depassment_cardinalite());
+        System.out.println("Affichage_groupe_ferme = " + parametre.isAffichage_groupe_ferme());
+        System.out.println("Affichage_ponts_possible = " + parametre.isAffichage_ponts_possible());
+        
+    }
+
+    @Test
+    void actualiserFichierParametre(){
+        Color couleur_texte_test = new Color(122, 100, 100);
+        Color couleur_texte_init = parametre.getCouleur_texte();
+        parametre.setCouleur_texte(couleur_texte_test);
+        System.out.println("Modif de Couleur_texte = " + parametre.getCouleur_texte());
+        sauvegarde.actualiserFichierParametre(fichier_parametre, parametre);
+        parametre.setCouleur_texte(couleur_texte_init);
+        sauvegarde.actualiserFichierParametre(fichier_parametre, parametre);
     }
 }
+    

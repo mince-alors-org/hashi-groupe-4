@@ -69,6 +69,14 @@ public class Parametre {
         this.couleur_aide_erreur = couleur_aide_erreur;
     }
 
+    public Color getCouleur_fond(){
+        return couleur_fond;
+    }
+
+    public void setCouleur_fond(Color couleur_fond) {
+        this.couleur_fond = couleur_fond;
+    }
+
     public int getTaille_texte() {
         return taille_texte;
     }
@@ -107,5 +115,21 @@ public class Parametre {
 
     public void setAffichage_ponts_possible(boolean affichage_ponts_possible) {
         this.affichage_ponts_possible = affichage_ponts_possible;
+    }
+
+    @Override
+    public String toString(){
+        return "Param{" +
+                "couleur_texte=" + couleur_texte.getRed() + "," + couleur_texte.getGreen() + "," + couleur_texte.getBlue() + 
+                ", couleur_ilot=" + couleur_ilot.getRed() + "," + couleur_ilot.getGreen() + "," + couleur_ilot.getBlue() +
+                ", couleur_pont=" + couleur_pont.getRed() + "," + couleur_pont.getGreen() + "," + couleur_pont.getBlue() +
+                ", couleur_aide_erreur=" + couleur_aide_erreur.getRed() + "," + couleur_aide_erreur.getGreen() + "," + couleur_aide_erreur.getBlue() +
+                ", couleur_fond=" + couleur_fond.getRed() + "," + couleur_fond.getGreen() + "," + couleur_fond.getBlue() +
+                ", taille_texte=" + taille_texte +
+                ", taille_fenetre=" + taille_fenetre[0] + "," + taille_fenetre[1] +
+                ", affichage_depassment_cardinalite=" + affichage_depassment_cardinalite +
+                ", affichage_groupe_ferme=" + affichage_groupe_ferme +
+                ", affichage_ponts_possible=" + affichage_ponts_possible +
+                "}";
     }
 }

@@ -152,6 +152,16 @@ public class SauvegardeGrille{
         }
     }
 
+    public void actualiserFichierParametre(String fichier_parametre, Parametre param){
+        try{
+            fileWriter = new FileWriter(fichier_parametre);
+            fileWriter.write(param + "\n");
+            fileWriter.flush();
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public Parametre chargerFichierParametre(String fichier_parametre, Parametre param) throws IOException{
         FileReader fileReader = new FileReader(fichier_parametre);
 
@@ -174,31 +184,59 @@ public class SauvegardeGrille{
     }
 
     public Parametre parseParametreString(String paramString, Parametre param) throws IOException{
+        int red, green, blue;
         //Extrait couleur_texte
-        String couleur_texteStr = paramString.split("couleur_texte=")[1].split(",")[0];
-        Color couleur_texte = Color.getColor(couleur_texteStr);
+        String[] couleur_texteStr = paramString.split("couleur_texte=")[1].split(",");
+        red = Integer.parseInt(couleur_texteStr[0].trim());
+        green = Integer.parseInt(couleur_texteStr[1].trim());
+        blue = Integer.parseInt(couleur_texteStr[2].trim());
+        Color couleur_texte = new Color(red, green, blue);
         param.setCouleur_texte(couleur_texte);
 
         //Extrait couleur_ilot
-        String couleur_ilotStr = paramString.split("couleur_ilot=")[1].split(",")[0];
-        Color couleur_ilot = Color.getColor(couleur_ilotStr);
+        String[] couleur_ilotStr = paramString.split("couleur_ilot=")[1].split(",");
+        red = Integer.parseInt(couleur_ilotStr[0].trim());
+        green = Integer.parseInt(couleur_ilotStr[1].trim());
+        blue = Integer.parseInt(couleur_ilotStr[2].trim());
+        Color couleur_ilot = new Color(red, green, blue);
         param.setCouleur_ilot(couleur_ilot);
 
         //Extrait couleur_pont
-        String couleur_pontStr = paramString.split("couleur_pont=")[1].split(",")[0];
-        Color couleur_pont = Color.getColor(couleur_pontStr);
+        String[] couleur_pontStr = paramString.split("couleur_pont=")[1].split(",");
+        red = Integer.parseInt(couleur_pontStr[0].trim());
+        green = Integer.parseInt(couleur_pontStr[1].trim());
+        blue = Integer.parseInt(couleur_pontStr[2].trim());
+        Color couleur_pont = new Color(red, green, blue);
         param.setCouleur_pont(couleur_pont);
 
 
         //Extrait couleur_aide_erreur
-        String couleur_aide_erreurStr = paramString.split("couleur_aide_erreur=")[1].split(",")[0];
-        Color couleur_aide_erreur = Color.getColor(couleur_aide_erreurStr);
+        String[] couleur_aide_erreurStr = paramString.split("couleur_aide_erreur=")[1].split(",");
+        red = Integer.parseInt(couleur_aide_erreurStr[0].trim());
+        green = Integer.parseInt(couleur_aide_erreurStr[1].trim());
+        blue = Integer.parseInt(couleur_aide_erreurStr[2].trim());
+        Color couleur_aide_erreur = new Color(red, green, blue);
         param.setCouleur_aide_erreur(couleur_aide_erreur);
+
+        //Extrait couleur_fond
+        String[] couleur_fondStr = paramString.split("couleur_fond=")[1].split(",");
+        red = Integer.parseInt(couleur_fondStr[0].trim());
+        green = Integer.parseInt(couleur_fondStr[1].trim());
+        blue = Integer.parseInt(couleur_fondStr[2].trim());
+        Color couleur_fond = new Color(red, green, blue);
+        param.setCouleur_fond(couleur_fond);
 
         //Extrait taille_texte
         String taille_texteStr = paramString.split("taille_texte=")[1].split(",")[0];
         int taille_texte = Integer.parseInt(taille_texteStr);
         param.setTaille_texte(taille_texte);
+
+        //Extrait taille_fenetre
+        String[] taille_fenetreStr = paramString.split("taille_fenetre=")[1].split(",");
+        int width = Integer.parseInt(taille_fenetreStr[0].trim());
+        int height = Integer.parseInt(taille_fenetreStr[1].trim());
+        int[] taille_fenetre = {width, height};
+        param.setTaille_fenetre(taille_fenetre);
 
         //Extrait affichage_depassment_cardinalite
         String affichage_depassment_cardinaliteStr = paramString.split("affichage_depassment_cardinalite=")[1].split(",")[0];
@@ -209,6 +247,11 @@ public class SauvegardeGrille{
         String affichage_groupe_fermeStr = paramString.split("affichage_groupe_ferme=")[1].split(",")[0];
         Boolean affichage_groupe_ferme = Boolean.parseBoolean(affichage_groupe_fermeStr);
         param.setAffichage_groupe_ferme(affichage_groupe_ferme);
+
+        //Extrait affichage_ponts_possible
+        String affichage_ponts_possibleStr = paramString.split("affichage_ponts_possible=")[1].split(",")[0];
+        Boolean affichage_ponts_possible = Boolean.parseBoolean(affichage_ponts_possibleStr);
+        param.setAffichage_ponts_possible(affichage_ponts_possible);
         return param;
     }
 
