@@ -9,6 +9,12 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.naming.InitialContext;
+
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+
 /**
  * Cette classe permet de représenter une Grille
  *
@@ -21,6 +27,7 @@ public class Grille {
     private int longueur;
     private int largeur;
     private List<Ilot> listeIlot;
+    private Pane parent;
 
     private static Pattern pontsDetection = Pattern.compile("[A-Z],?[0-9](?=(\\)])|(\\),))");
 
@@ -29,7 +36,8 @@ public class Grille {
      * @author nmention
      * @param nomF nom du fichier à lire pour creer la grille
      */
-    Grille(String nomF) {
+    Grille(String nomF, Pane parent) {
+        this.parent=parent;
         listeIlot = new ArrayList<>();
         // Le fichier d'entrée
         File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
@@ -146,13 +154,29 @@ public class Grille {
                 System.out.println(key + " " + ilots.get(key));
             }*/
 
-
+          //initGrid(largeur);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
 
+    }
+
+
+    public void initInterface(){
+
+    }
+
+    public GridPane initGrid(int size){
+      GridPane grid= new GridPane();
+      for(Ilot ilot : this.listeIlot ){
+        grid.add(new Button("oui"), ilot.getPosX(), ilot.getPosY());
+      }
+
+      System.out.println(grid);
+
+      return grid;
     }
 
 

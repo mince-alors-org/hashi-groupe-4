@@ -19,6 +19,6 @@ public class TestHashi {
     }
     @Test
     public void afficheRes(){
-        new Grille("1-1.niv");
+        new Grille("1-1.niv", null);
     }
 }
