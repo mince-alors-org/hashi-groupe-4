@@ -1,5 +1,6 @@
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/PopUp.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/TutorialEventHandler.java
+/home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/mainMenuEventHandler.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/Poster.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/App.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/DynamicScene.java
@@ -13,7 +14,6 @@
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/SauvegardeGrille.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/Main.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/Joueur.java
-/home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/handlers/mainMenuEventHandler.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/Hashi.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/Fenetre.java
 /home/lunette/Hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
