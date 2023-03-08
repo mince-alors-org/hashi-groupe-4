@@ -53,6 +53,14 @@ public class Ilot implements Comparable<Ilot>{
 	}
 
 
+  public Ilot(int posX, int posY){
+    this.posX = posX;
+    this.posY = posY;
+    ponts = new ArrayList<>();
+    pontsSolution = new ArrayList<>();
+  }
+
+
 	public int getPosX() {
 		return posX;
 	}
@@ -181,16 +189,39 @@ public class Ilot implements Comparable<Ilot>{
 		return 0;
 	}
 
+  /**
+   * Détermine si l'ilot courant et un autre ilot sont égaux en prenant en compte uniquement leurs coordonnées x et y
+   *
+   * @param obj ilot à comparer
+   * @return true si les coordonnées x et y de l'objet courant et ilot sont égales
+   * @throws ClassCastException si une instance d'une autre classe qu'Ilot est fourni en paramètre
+   */
+  @Override
+  public boolean equals(Object obj) throws ClassCastException {
+    if (!(obj instanceof Ilot)){
+      throw new ClassCastException("Mauvais type en argument");
+    }
+    Ilot ilot = (Ilot) obj;
+    if (this.getPosX() == ilot.getPosX() && this.getPosY() == ilot.getPosY()){
+      return true;
+    }
+    return false;
+  }
 
-	@Override
+
+  public void calculValeur(int add){
+    this.setValeur(valeur+add);
+  }
+
+  @Override
 	public String toString() {
 		return "Ilot{" +
 				"nom='" + nom + '\'' +
 				", posX=" + posX +
 				", posY=" + posY +
 				", valeur=" + valeur +
-				", ponts=" + ponts +
-				", pontsSolution=" + pontsSolution +
-				'}';
+      ", ponts=" + ponts +
+      ", pontsSolution=" + pontsSolution;
+
 	}
 }

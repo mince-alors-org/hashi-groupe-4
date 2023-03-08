@@ -29,13 +29,15 @@ public class Pont {
 		ile1.addPont(this);
 		ile2.addPont(this);
 	}
-	Pont(Ilot ile1, Ilot ile2,int nbPont){
-		this.nombreTraits=nbPont;
+	Pont(Ilot ile1, Ilot ile2,int nbTraits){
+		this.nombreTraits=nbTraits;
 		coords =new ArrayList <Ilot>();
 		coords.add(ile1);
 		coords.add(ile2);
 		ile1.addPontSolution(this);
 		ile2.addPontSolution(this);
+    ile1.calculValeur(nbTraits);
+    ile2.calculValeur(nbTraits);
 	}
 
 	/**
@@ -66,7 +68,7 @@ public class Pont {
 	 * @return Ilot opposer à l'ile entrée en paramètre
 	 */
 	public Ilot voisin(Ilot a){
-		if(coords.get(0)==a){
+		if(coords.get(0).equals(a)){
 			return coords.get(1);
 		}
 		return coords.get(0);
@@ -79,18 +81,10 @@ public class Pont {
 		return coords;
 	}
 
-	public String toString(){
-		StringBuilder result = new StringBuilder();
-		for (Ilot i : coords){
-			result.append(i.nom);
-			result.append(" ");
-		}
-		result.deleteCharAt(result.length()-1);
+  @Override
+  public String toString() {
+    return "Pont{" +
+      "nombreTraits=" + nombreTraits;
 
-		return result.toString();
-
-	}
-
-
-
+  }
 }
