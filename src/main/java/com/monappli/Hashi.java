@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 import java.io.File;
 
 import com.monappli.handlers.*;
-import com.monappli.handlers.handlers.mainMenuEventHandler;
 
 public class Hashi extends Application {
     Handler cont;

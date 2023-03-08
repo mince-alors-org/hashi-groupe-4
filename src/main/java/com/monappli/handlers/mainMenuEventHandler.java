@@ -1,19 +1,10 @@
-package com.monappli.handlers.handlers;
+package com.monappli.handlers;
 
+import com.monappli.hashiScene.MainPanel;
 
-//import javax.swing.Action;
-
-//import org.w3c.dom.events.MouseEvent;
-
-import com.monappli.handlers.*;
-import com.monappli.hashiScene.*;
-//import javafx.event.*;  
 import javafx.fxml.*;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
-//import javafx.scene.Parent;
-//import java.io.IOException;
 import javafx.stage.Stage;
 
 public class mainMenuEventHandler extends  DynamicEventHandler{
@@ -50,11 +41,9 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void tutoClicked() throws Exception {
-        //tutoButton.setStyle("-fx-background-color: #00ff00 ;");
-        //MainPanel tuto= new MainPanel(this.parentPane);
-        //tuto.pasteAndHandle("src/main/resources/view/tuto.fxml", new TutorialEventHandler(this.parentPane));
-        //Label l = new Label("Salut");
-        //tuto.
+        tutoButton.setStyle("-fx-background-color: #00ff00 ;");
+        MainPanel tuto= new MainPanel(this.parentPane);
+        tuto.pasteAndHandle("view/tuto.fxml", new TutorialEventHandler(this.parentPane));
         System.out.println("Je suis tuto");
     }
 
