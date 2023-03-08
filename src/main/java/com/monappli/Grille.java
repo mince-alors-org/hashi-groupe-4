@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.naming.InitialContext;
+
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -32,7 +36,7 @@ public class Grille {
      * @author nmention
      * @param nomF nom du fichier à lire pour creer la grille
      */
-    Grille(String nomF,Pane parent) {
+    Grille(String nomF, Pane parent) {
         this.parent=parent;
         listeIlot = new ArrayList<>();
         // Le fichier d'entrée
@@ -157,7 +161,7 @@ public class Grille {
                 System.out.println(key + " " + ilots.get(key));
             }*/
 
-
+          //initGrid(largeur);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -166,8 +170,20 @@ public class Grille {
 
     }
 
+
     public void initInterface(){
-      
+
+    }
+
+    public GridPane initGrid(int size){
+      GridPane grid= new GridPane();
+      for(Ilot ilot : this.listeIlot ){
+        grid.add(new Button("oui"), ilot.getPosX(), ilot.getPosY());
+      }
+
+      System.out.println(grid);
+
+      return grid;
     }
 
 
