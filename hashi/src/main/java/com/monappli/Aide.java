@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class Aide {
     private String type;    
     private static final HashMap<String, String> technique = new HashMap<String, String>();
-    static {<
+    static {
         technique.put("Iles avec autant de voisin que la moitié de leur cardinalité","Une ile qui a une cardinalité égale à 2 fois son nombre de voisins est forcément connecté avec ces derniers")
         technique.put("Iles avec un seul voisin", 
         "Les îles qui ont 1 ou 2 cardinalités et qui n'ont qu'un voisin sont forcement liée a celui-ci");
@@ -66,6 +66,9 @@ public class Aide {
             else if (isolation_iles(grille.listeIlots[i])) {
                 return this.technique.get("Isolation des segments");
             }
+            else if (isolation_iles_3(grille.listeIlots[i])) {
+                return this.technique.get("");
+            }
         }
     }
     
@@ -74,15 +77,7 @@ public class Aide {
      * @return Bool : True si le plateau contient une erreur, false sinon
      */ 
     public Boolean checkErreur(){
-        Boolean erreur = false;
-        for(Ilot.getIles()){
-            int nbPontCorrects = ilot.getValeur()(); 
-            int nbPontsActuels = ilot.getNombreDePonts();
-            if(nbPontCorrects != nbPontsActuels){
-                erreur = true;
-            }
-        }
-        return erreur;
+        
     }
 
     /**
@@ -91,7 +86,7 @@ public class Aide {
      * @return void
      */
     public void indiceVisuel(){
-        if()
+        
     }
     /** 
     * Corrige les erreurs trouvees dans le plateau de jeu
@@ -115,7 +110,7 @@ public class Aide {
 
 
      public boolean ile_1_voisin(Ilot ile) {
-        if (ile.nbVoisin==1 && ile.ponts.isEmpty()) {
+        if (ile.listeVoisin().size()==1 && ile.listeVoisinRelie().isEmpty()) {
             return true;
         }
         else {
@@ -125,7 +120,7 @@ public class Aide {
 
     public boolean cas_3_coin_5_cote_7_milieu(Ilot ile) {
         if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
-            for (Ilot neighbor : ile.voisins) {
+            for (Ilot neighbor : ile.listeVoisin()) {
                 if (neighbor.getValeur() == 1) {
                     return true;
                 }
@@ -137,9 +132,9 @@ public class Aide {
     public boolean cas_4_avec_3_voisin_dont_2_1(Ilot ile) {
         int compteur;
         // si l'ilot a un voisin qui a une cardinalité de 4 et 3 voisins
-        if (ile.getValeur() == 4 && ile.voisins.length == 3) {
+        if (ile.getValeur() == 4 && ile.listeVoisin().size() == 3) {
             // compte le nombre de voisin avec une cardinalité de 1
-            for (Ilot voisin : ile.voisins) {
+            for (Ilot voisin : ile.listeVoisin()) {
                 if (voisin.getValeur()==1) {
                     compteur+=1;
                 }
@@ -157,7 +152,7 @@ public class Aide {
     }
 
     public boolean 6_milieu(Ilot ile) {
-        if (ile.getValeur() == 6 && ile.voisins.length == 4) {
+        if (ile.getValeur() == 6 && ile.listeVoisin().size() == 4) {
             for (Ilot voisin : ile.voisins) {
                 if (voisin.getValeur()==1) {
                     return true;
@@ -173,38 +168,38 @@ public class Aide {
     public boolean isolation_iles(Ilot ile) {
         boolean condition = false;
         if (ile.getPosX == grille.taille-1 && ile.getValeur() == 2) {
-            if (island.voisins.size() == 2) {
-                Ilot voisinGauche = // get voisin de gauche
-                satisfiesConditions = (voisin.getValeur() == 1 && voisinGauche.voisins.size() == 1);
+            if (ile.listeVoisin().size() == 2) {
+                Ilot voisinGauche = getVoisinDirection(ile,"gauche");
+                condition = (voisin.getValeur() == 1 && voisinGauche.listeVoisin().size() == 1);
             } else {
                 int requiredCol = ile.getPosY() + 2; // a revoir
                 Ilot voisin = getIle(ile.getPosX(), requiredCol);
-                if (ile.voisins.contains(voisin)) {
-                    satisfiesConditions = true
+                if (ile.listeVoisin().contains(voisin)) {
+                    condition = true;
                 }
             }
         } else if (ile.getPosY() == 0 && ile.getValeur() == 3) {
-            if (island.voisins.size() == 3) {
-                Ilot voisinHaut = // get voisin du haut
-                satisfiesConditions = (voisinHaut.getValeur() == 2 && voisinHaut.voisins.size() == 2);
+            if (ile.listeVoisin().size() == 3) {
+                Ilot voisinHaut = getVoisinDirection(ile,"haut");
+                condition = (voisinHaut.getValeur() == 2 && voisinHaut.listeVoisin().size() == 2);
             } else {
                 int requiredRow = ile.getPosX() - 2; // a revoir
                 Ilot voisin = getIle(requiredRow, ile.getPosY());
-                if (ile.voisins.contains(voisin)) {
-                    satisfiesConditions = true
+                if (ile.listeVoisin().contains(voisin)) {
+                    condition = true;
                 }
             }
         } else {
-            satisfiesConditions = false;
+            condition = false;
         }
-        return satisfiesConditions;
+        return condition;
     }
 
     public boolean isolation_iles_3(Ilot ile) {
         if (ile.getValeur()-ile.nbVoisinRestant() > 0) {
-            for (Ilot voisin : ile.voisins) {
+            for (Ilot voisin : ile.listeVoisin()) {
                 int voisinValeur = voisin.getValeur();
-                int pontConnecteVoisin = voisin.listevoisinrelie().size();
+                int pontConnecteVoisin = voisin.listeVoisinRelie().size();
                 int pontManquantVoisin = voisinValeur - pontConnecteVoisin;
                 if (pontManquantVoisin >= ile.getValeur()-ile.nbVoisinRestant()) {
                     return true;
@@ -214,21 +209,38 @@ public class Aide {
         }
         for (Ilot voisin : ile.listeVoisin()) {
             if (voisin.getValeur() > ile.getValeur()) {
-                int valeurIsolé = voisin.getValeur() - ile.getValeur() + 1;
-                int pontIsolé = 0;
+                int valeurIsole = voisin.getValeur() - ile.getValeur() + 1;
+                int pontIsole = 0;
                 for (Ilot voisinIsole : voisin.listeVoisin()) {
-                    if (voisinIsole != ile && voisinIsole//.isConnected(neighbor)) {
-                        pontIsolé++;
+                    if (voisinIsole != ile && voisinIsole.listeVoisinRelie.contains(voisin)) {
+                        pontIsole++;
                     }
                 }
-                if (valeurIsolé == pontIsolé) {
-                    return false; // isolated segment found
+                if (valeurIsole == pontIsole) {
+                    return false;
                 }
             }
         }
-        return true; // island is connected correctly
+        return true; 
     }
 
+
+    public static Ilot getVoisinDirection(Ilot ile,String positions) {
+        for(int i=0;i<ile.listeVoisin().size;i++) {
+            if (ile.listeVoisin()[i].getPosX()>ile.getPosX() && positions=="gauche") {
+                return ile.listeVoisin()[i];
+            }
+            else if (ile.listeVoisin()[i].getPosX()<ile.getPosX() && positions=="droit") {
+                return ile.listeVoisin()[i];
+            }
+            else if (ile.listeVoisin()[i].getPosY()>ile.getPosY() && positions=="haut") {
+                return ile.listeVoisin()[i];
+            }
+            else if (ile.listeVoisin()[i].getPosY()<ile.getPosY() && positions=="bas") {
+                return ile.listeVoisin()[i];
+            }
+        }
+    }
 }
 
 
