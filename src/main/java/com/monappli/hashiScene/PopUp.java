@@ -24,7 +24,7 @@ public class PopUp extends DynamicScene{
         loader.setController(hand);
 
         Pane newP= loader.load();
-
+        newP.setId("pop");
         parentPane.getChildren().add(newP);
     }
 }
