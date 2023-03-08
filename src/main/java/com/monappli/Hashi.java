@@ -1,5 +1,7 @@
 package com.monappli;
 
+import com.monappli.handlers.*;
+
 import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.*;
@@ -9,7 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 
-import com.monappli.handlers.*;
 
 public class Hashi extends Application {
     Handler cont;

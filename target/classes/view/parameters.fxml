@@ -17,7 +17,7 @@
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0">
          <children>
-            <Button contentDisplay="CENTER" mnemonicParsing="false" text="RETOUR">
+            <Button fx:id="backButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#backClicked" text="RETOUR">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>

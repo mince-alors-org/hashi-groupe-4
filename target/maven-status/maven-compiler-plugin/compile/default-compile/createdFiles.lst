@@ -1,8 +1,8 @@
 com/monappli/handlers/ParamHandler.class
+Parametre.class
 com/monappli/hashiScene/Poster.class
-com/monappli/Parametre.class
-com/monappli/Main.class
 com/monappli/Grille.class
+com/monappli/Main.class
 com/monappli/Ilot.class
 com/monappli/handlers/DynamicEventHandler.class
 com/monappli/handlers/mainMenuEventHandler.class

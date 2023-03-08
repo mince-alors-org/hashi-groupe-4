@@ -48,7 +48,7 @@ public class Aide {
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
      */
     //public HashMap<String, String> getTechnique(){
-    //    for(/*parcourir la table*/)
+        //for(/*parcourir la table*/)
     //}
     
     /**
