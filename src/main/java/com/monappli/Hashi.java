@@ -3,16 +3,12 @@ package com.monappli;
 import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.*;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
 
 import java.io.File;
-import java.net.URL;
 
 import com.monappli.handlers.*;
 import com.monappli.handlers.handlers.mainMenuEventHandler;

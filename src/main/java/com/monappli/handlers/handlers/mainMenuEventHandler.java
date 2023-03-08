@@ -33,6 +33,8 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     @FXML
     private Button paramButton; 
 
+    @FXML
+    private Button powerButton;
     public mainMenuEventHandler(Pane parentPane){
         super(parentPane);
     }
@@ -42,9 +44,8 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
         System.out.println("Je suis jeux Libre");
     }
     public void quitClicked() {
-        //Node closeButton;
-        //Stage stage = (Stage) closeButton.getScene().getWindow();
-        //stage.close();
+        Stage stage = (Stage) powerButton.getScene().getWindow();
+        stage.close();
         System.out.println("Je quitte");
     }
 
