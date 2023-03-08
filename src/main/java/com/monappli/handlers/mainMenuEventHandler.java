@@ -64,25 +64,9 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void paramClicked() throws Exception{
-        //paramDeac();
-        //PopUp pop = new PopUp(menuPane);
-        //pop.pasteAndHandle("../../../resources/view/parameters.fxml", new TutorialEventHandler(this.menuPane));
+        PopUp pop = new PopUp(menuPane);
+        pop.pasteAndHandle("src/main/resources/view/parameters.fxml", new TutorialEventHandler(this.menuPane));
         System.out.println("Je suis Paramètre");
     }
 
-
-    public void paramDeac(){
-        paramButton.setOnAction(null);
-    }
-
-    public void paramAct(){
-        paramButton.setOnAction(action -> {
-            try {
-                paramClicked();
-            } 
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        } );
-    }
 }
