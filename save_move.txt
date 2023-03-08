@@ -1,0 +1,2 @@
+[Ilot{posX=1, posY=2, valeur=4, listePontsSolution=[com.monappli.Pont@8bcc55f, com.monappli.Pont@58644d46]}, Ilot{posX=6, posY=7, valeur=8, listePontsSolution=[com.monappli.Pont@8bcc55f]}]
+[Ilot{posX=1, posY=2, valeur=4, listePontsSolution=[com.monappli.Pont@8bcc55f, com.monappli.Pont@58644d46]}, Ilot{posX=0, posY=0, valeur=0, listePontsSolution=[com.monappli.Pont@58644d46]}]
