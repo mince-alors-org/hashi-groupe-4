@@ -31,8 +31,9 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
         super(parentPane);
     }
 
-    public void playClicked() {
+    public void playClicked() throws Exception {
         MainPanel game= new MainPanel(this.parentPane);
+        game.pasteAndHandle("/view/gameLayout.fxml", new TutorialEventHandler(this.parentPane));
         System.out.println("Je suis jeux Libre");
     }
     public void quitClicked() {
@@ -42,9 +43,8 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void tutoClicked() throws Exception {
-        tutoButton.setStyle("-fx-background-color: #00ff00 ;");
         MainPanel tuto= new MainPanel(this.parentPane);
-        tuto.pasteAndHandle("view/tuto.fxml", new TutorialEventHandler(this.parentPane));
+        tuto.pasteAndHandle("/view/tuto.fxml", new TutorialEventHandler(this.parentPane));
         System.out.println("Je suis tuto");
     }
 

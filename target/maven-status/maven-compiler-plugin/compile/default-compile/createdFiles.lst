@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 com/monappli/handlers/ParamHandler.class
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 7dde3529bb01e52f9e1e7008ff183b587be4df86
+Parametre.class
 com/monappli/hashiScene/Poster.class
-com/monappli/Parametre.class
-com/monappli/Main.class
 com/monappli/Grille.class
+com/monappli/Main.class
 com/monappli/Ilot.class
 com/monappli/handlers/DynamicEventHandler.class
 com/monappli/handlers/mainMenuEventHandler.class
@@ -15,8 +10,9 @@ com/monappli/hashiScene/DynamicScene.class
 com/monappli/Pont.class
 com/monappli/handlers/TutorialEventHandler.class
 com/monappli/Hashi.class
+com/monappli/SauvegardeGrille.class
 com/monappli/hashiScene/PopUp.class
 com/monappli/handlers/Handler.class
 com/monappli/App.class
+com/monappli/Aide.class
 com/monappli/hashiScene/MainPanel.class
->>>>>>> d42b5bba594ebd75efdab7dc4f2cc9a7d6277a04
