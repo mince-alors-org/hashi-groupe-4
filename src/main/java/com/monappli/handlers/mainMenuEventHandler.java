@@ -1,6 +1,7 @@
 package com.monappli.handlers;
 
 import com.monappli.hashiScene.MainPanel;
+import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.*;
 import javafx.scene.control.*;
@@ -54,7 +55,7 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
 
     public void paramClicked() throws Exception{
         PopUp pop = new PopUp(menuPane);
-        pop.pasteAndHandle("src/main/resources/view/parameters.fxml", new TutorialEventHandler(this.menuPane));
+        pop.pasteAndHandle("/view/parameters.fxml", new TutorialEventHandler(this.menuPane));
         System.out.println("Je suis Paramètre");
     }
 

@@ -24,7 +24,7 @@ public class Hashi extends Application {
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: gray");
         this.cont = new mainMenuEventHandler(root);
-        FXMLLoader menuLoader= new FXMLLoader(new File("src/main/resources/view/main_menu.fxml").toURI().toURL());
+        FXMLLoader menuLoader= new FXMLLoader(getClass().getResource("/view/main_menu.fxml"));/*new File("src/main/resources/view/main_menu.fxml").toURI().toURL()*/
         menuLoader.setController(this.cont);
         HBox box=new HBox();
         box.getChildren().addAll((Pane) menuLoader.load());

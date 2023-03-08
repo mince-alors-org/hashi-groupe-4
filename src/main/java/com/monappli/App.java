@@ -6,7 +6,8 @@ package com.monappli;
  */
 public class App 
 {
-    public static void main( String[] args ) {
-        Grille grille = new Grille("niveau1.txt");
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
     }
 }
