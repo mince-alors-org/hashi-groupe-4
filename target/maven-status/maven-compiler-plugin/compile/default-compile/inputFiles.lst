@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/TutorialEventHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/Handler.java
@@ -24,6 +25,29 @@
 =======
 =======
 >>>>>>> refs/remotes/origin/grille
+=======
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Joueur.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Main.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Fenetre.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/MainPanel.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Niveau.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/DynamicEventHandler.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/SauvegardeGrille.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Hashi.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/Handler.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/Poster.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Ilot.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/handlers/mainMenuEventHandler.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/TutorialEventHandler.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Classement.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Pont.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Parametre.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/DynamicScene.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Aide.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/PopUp.java
+/info/etu/l3info/s193670/Documents/Hashi/hashi-groupe-4/src/main/java/com/monappli/App.java
+>>>>>>> d5e6e28d9aacb0db58b79fde08bf2df095b7cbfc
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/hashiScene/DynamicScene.java
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/handlers/Handler.java
 /info/etu/l3info/s204054/Bureau/hashi/src/main/java/com/monappli/handlers/handlers/mainMenuEventHandler.java

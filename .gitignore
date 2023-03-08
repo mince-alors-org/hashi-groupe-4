@@ -2,3 +2,4 @@
 .vscode/
 .idea
 hashi.iml
+target/
