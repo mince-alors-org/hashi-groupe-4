@@ -13,6 +13,7 @@ com/monappli/Hashi.class
 com/monappli/SauvegardeGrille.class
 com/monappli/hashiScene/PopUp.class
 com/monappli/handlers/Handler.class
+com/monappli/handlers/ParametresEventHandler.class
 com/monappli/App.class
 com/monappli/Aide.class
 com/monappli/hashiScene/MainPanel.class

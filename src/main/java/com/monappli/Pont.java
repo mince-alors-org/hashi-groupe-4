@@ -36,8 +36,8 @@ public class Pont {
 		coords.add(ile2);
 		ile1.addPontSolution(this);
 		ile2.addPontSolution(this);
-    ile1.calculValeur(nbTraits);
-    ile2.calculValeur(nbTraits);
+		ile1.calculValeur(nbTraits);
+		ile2.calculValeur(nbTraits);
 	}
 
 	/**

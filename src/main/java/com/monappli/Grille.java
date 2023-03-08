@@ -26,6 +26,8 @@ public class Grille {
 
     /**
      * Initialisation de la grille
+     * @author nmention
+     * @param nomF nom du fichier à lire pour creer la grille
      */
     Grille(String nomF) {
         listeIlot = new ArrayList<>();
@@ -86,9 +88,8 @@ public class Grille {
               if (!listeIlot.contains(b)){
                 listeIlot.add(b);
               }
-
-              Pont pont = new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
-              Pont pont1 = new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits);
+              new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
+              new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits);
 
               /*if (!contientMemeIlot(ilots,a)){
                 ilots.add(a);
@@ -165,5 +166,4 @@ public class Grille {
       }
       return false;
     }
-
 }

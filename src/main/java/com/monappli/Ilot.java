@@ -10,10 +10,6 @@ import java.util.ArrayList;
  */
 public class Ilot implements Comparable<Ilot>{
 	/**
-	 * identifiant de this
-	 */
-	String nom;
-	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
 	private int posX;
@@ -39,18 +35,17 @@ public class Ilot implements Comparable<Ilot>{
 	 * @param posY position de l'ilot courant dans l'axe des ordonnées (Y)
 	 * @param valeur nombre de ponts supportés par this
 	*/
-	public Ilot(String nom, int posX, int posY, int valeur) {
+	public Ilot(int posX, int posY, int valeur) {
 		this.posX = posX;
 		this.posY = posY;
 		this.valeur = valeur;
-		this.nom = nom;
 		ponts = new ArrayList<Pont>();
 		this.pontsSolution = new ArrayList<Pont>() ;
 	}
 
 
-	public Ilot(String nom, int valeur){
-		this(nom,0,0,valeur);
+	public Ilot(int valeur){
+		this(0,0,valeur);
 	}
 
 
@@ -217,8 +212,7 @@ public class Ilot implements Comparable<Ilot>{
   @Override
 	public String toString() {
 		return "Ilot{" +
-				"nom='" + nom + '\'' +
-				", posX=" + posX +
+				"posX=" + posX +
 				", posY=" + posY +
 				", valeur=" + valeur +
       ", ponts=" + ponts +
