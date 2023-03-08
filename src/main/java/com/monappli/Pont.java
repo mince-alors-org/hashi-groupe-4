@@ -29,6 +29,14 @@ public class Pont {
 		ile1.addPont(this);
 		ile2.addPont(this);
 	}
+	Pont(Ilot ile1, Ilot ile2,int nbPont){
+		this.nombreTraits=nbPont;
+		coords =new ArrayList <Ilot>();
+		coords.add(ile1);
+		coords.add(ile2);
+		ile1.addPontSolution(this);
+		ile2.addPontSolution(this);
+	}
 
 	/**
 	 *@return nombreTraits indique la quantiter de trait afficher
