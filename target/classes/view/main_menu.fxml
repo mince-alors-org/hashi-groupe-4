@@ -13,7 +13,7 @@
       <HBox prefHeight="300.0" prefWidth="450.0" spacing="260.0">
          <children>
             <Button id="paramButton" fx:id="paramButton" alignment="CENTER" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
-            <Button id="powerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="optionalButton" />
+            <Button id="powerButton" alignment="CENTER" contentDisplay="CENTER" onAction="#quitClicked"  mnemonicParsing="false" styleClass="optionalButton" />
          </children>
          <opaqueInsets>
             <Insets />

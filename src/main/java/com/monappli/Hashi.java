@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -25,17 +26,13 @@ public class Hashi extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-       FXMLLoader backLoader = new FXMLLoader(new File("src/main/resources/view/Background.fxml").toURI().toURL());
-
-        Node page= backLoader.load();
-        Pane root = new Pane(page);
+        StackPane root = new StackPane();
+        root.setStyle("-fx-background-color: gray");
         this.cont = new mainMenuEventHandler(root);
-        backLoader.setController(this);
-
         FXMLLoader menuLoader= new FXMLLoader(new File("src/main/resources/view/main_menu.fxml").toURI().toURL());
         menuLoader.setController(this.cont);
         HBox box=new HBox();
-        box.getChildren().addAll((Pane)menuLoader.load());
+        box.getChildren().addAll((Pane) menuLoader.load());
         root.getChildren().add(box);
 
         Scene scene =new Scene(root,450,800);
