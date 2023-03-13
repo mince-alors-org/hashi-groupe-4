@@ -23,18 +23,14 @@ public class Hashi extends Application {
     public void start(Stage stage) throws Exception {
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: gray");
-        this.cont = new TestController(root);
-        FXMLLoader menuLoader= new FXMLLoader(getClass().getResource("/view/test.fxml"));
+        this.cont = new mainMenuEventHandler(root);
+        FXMLLoader menuLoader= new FXMLLoader(getClass().getResource("/view/main_menu.fxml"));
         menuLoader.setController(this.cont);
         HBox box=new HBox();
         box.getChildren().addAll((Pane) menuLoader.load());
         root.getChildren().add(box);
 
-        TestButton oui=  new TestButton(53, "Bonjour!!");
-        oui.setPrefSize(200, 100);
-
-        root.getChildren().add(oui);
-        Scene scene =new Scene(root,600,400);
+        Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);
 

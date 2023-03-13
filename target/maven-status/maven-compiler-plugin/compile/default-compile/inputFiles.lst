@@ -1,10 +1,10 @@
-<<<<<<< HEAD
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/ParamHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/TutorialEventHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/Handler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/Poster.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/MainPanel.java
+/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/TestController.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/App.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/PopUp.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Joueur.java
@@ -17,33 +17,8 @@
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Hashi.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Ilot.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Classement.java
+/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/TestButton.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Aide.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Niveau.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/SauvegardeGrille.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/DynamicScene.java
-=======
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Pont.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/hashiScene/MainPanel.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Fenetre.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/handlers/DynamicEventHandler.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Ilot.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/handlers/ParamHandler.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/hashiScene/Poster.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Aide.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Hashi.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/TestController.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/hashiScene/PopUp.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/App.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Niveau.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Grille.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Classement.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/handlers/Handler.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/SauvegardeGrille.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Main.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/handlers/mainMenuEventHandler.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/TestButton.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Joueur.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/handlers/TutorialEventHandler.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/Parametre.java
-/info/etu/l3info/s181408/test/hashi-groupe-4/src/main/java/com/monappli/hashiScene/DynamicScene.java
->>>>>>> be4c8c928250a63675e2d4ed0c0ced776aabd0e0
