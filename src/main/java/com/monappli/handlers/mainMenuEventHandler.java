@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+import com.monappli.Grille;
 import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
@@ -34,6 +35,7 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     public void playClicked() throws Exception {
         MainPanel game= new MainPanel(this.parentPane);
         game.pasteAndHandle("/view/gameLayout.fxml", new TutorialEventHandler(this.parentPane));
+        Grille grille = new Grille("../niveaux/1-1.niv", (Pane)game.parentPane.lookup("#gridPlacement"));
         System.out.println("Je suis jeux Libre");
     }
     public void quitClicked() {

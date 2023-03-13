@@ -18,6 +18,10 @@
     -fx-pref-width:50.0px;
 }
 
+.gameIsle  {
+    -fx-background-radius: 200px;
+}
+
 #levelButton{
     -fx-background-radius: 20px;
     -fx-pref-height:50.0px;
@@ -31,3 +35,4 @@
 #paramButton{
     -fx-background-image: url("./textures/icons/parameters.png");
 }
+ 

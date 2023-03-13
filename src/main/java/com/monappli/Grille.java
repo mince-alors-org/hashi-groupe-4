@@ -11,9 +11,13 @@ import java.util.regex.Pattern;
 
 import javax.naming.InitialContext;
 
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
 
 /**
  * Cette classe permet de représenter une Grille
@@ -28,6 +32,7 @@ public class Grille {
     private int largeur;
     private List<Ilot> listeIlot;
     private Pane parent;
+    private GridPane grid;
 
     private static Pattern pontsDetection = Pattern.compile("[A-Z],?[0-9](?=(\\)])|(\\),))");
 
@@ -36,7 +41,7 @@ public class Grille {
      * @author nmention
      * @param nomF nom du fichier à lire pour creer la grille
      */
-    Grille(String nomF, Pane parent) {
+    public Grille(String nomF, Pane parent) {
         this.parent=parent;
         listeIlot = new ArrayList<>();
         // Le fichier d'entrée
@@ -154,7 +159,12 @@ public class Grille {
                 System.out.println(key + " " + ilots.get(key));
             }*/
 
-          //initGrid(largeur);
+            largeur= calculateHeight();
+            longueur= calculateWidth();
+
+            grid = initGrid();
+            parent.getChildren().add(grid);
+
 
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -168,13 +178,31 @@ public class Grille {
 
     }
 
-    public GridPane initGrid(int size){
+    public GridPane initGrid(){
       GridPane grid= new GridPane();
+
+      for(int i=0; i<largeur; i++)
+        grid.getColumnConstraints().add(new ColumnConstraints(1.0*parent.getPrefWidth() / (largeur)));
+      
+      for(int i=0; i<longueur;i++)
+        grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));
+
       for(Ilot ilot : this.listeIlot ){
-        grid.add(new Button("oui"), ilot.getPosX(), ilot.getPosY());
+        Button button =new Button(Integer.toString(ilot.getValeur()));
+        GridPane.setHalignment(button, HPos.CENTER);
+        GridPane.setValignment(button, VPos.CENTER);
+        button.setPrefSize(
+              (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3, 
+              (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 );
+        
+        button.getStyleClass().add("gameIsle");
+        button.setStyle("-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;");
+              
+
+        grid.add(button, ilot.getPosX(), ilot.getPosY(),1,1);
+
       }
 
-      System.out.println(grid);
 
       return grid;
     }
@@ -189,5 +217,21 @@ public class Grille {
 
       }
       return false;
+    }
+
+    public int calculateWidth(){
+      int max=-1;
+      for (Ilot ilot : listeIlot){
+        max = ilot.getPosX() > max ? ilot.getPosX() : max; 
+      }
+      return max+1;
+    }
+
+    public int calculateHeight(){
+      int max=-1;
+      for (Ilot ilot : listeIlot){
+        max = ilot.getPosY() > max ? ilot.getPosY() : max; 
+      }
+      return max+1;
     }
 }

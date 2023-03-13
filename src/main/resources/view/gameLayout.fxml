@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="450.0" stylesheets="@game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="800.0" prefWidth="450.0">
@@ -54,7 +53,10 @@
                               <Insets top="20.0" />
                            </padding>
                         </HBox>
-                        <Pane prefHeight="550.0" prefWidth="450.0" />
+                        <Pane id="gridPlacement" fx:id="gridPlacement" prefHeight="420.0" prefWidth="420.0">
+                           <VBox.margin>
+                              <Insets left="15.0" />
+                           </VBox.margin></Pane>
                      </children>
                   </VBox>
                </children>
