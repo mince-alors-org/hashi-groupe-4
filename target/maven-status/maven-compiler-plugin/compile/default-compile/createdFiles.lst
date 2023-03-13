@@ -1,8 +1,13 @@
 com/monappli/handlers/ParamHandler.class
 com/monappli/hashiScene/Poster.class
+<<<<<<< HEAD
+=======
+com/monappli/TestButton.class
+>>>>>>> be4c8c928250a63675e2d4ed0c0ced776aabd0e0
 com/monappli/Parametre.class
 com/monappli/Grille.class
 com/monappli/Main.class
+com/monappli/TestController.class
 com/monappli/Ilot.class
 com/monappli/handlers/DynamicEventHandler.class
 com/monappli/handlers/mainMenuEventHandler.class
