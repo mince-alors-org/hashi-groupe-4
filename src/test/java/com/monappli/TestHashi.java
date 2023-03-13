@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
 import javafx.application.Application;
+import javafx.scene.layout.Pane;
 
 public class TestHashi {
     
@@ -19,6 +20,6 @@ public class TestHashi {
     }
     @Test
     public void afficheRes(){
-        new Grille("1-1.niv", null);
+        new Grille("1-1.niv",new Pane());
     }
 }

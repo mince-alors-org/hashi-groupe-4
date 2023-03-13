@@ -54,6 +54,10 @@ public class Grille {
             BufferedReader br = new BufferedReader(fr);
             StringBuffer sb = new StringBuffer();
             String line;
+            line=br.readLine();
+            System.out.println("line = "+line.split(" ")[0]);
+            this.largeur=Integer.parseInt(line.split(" ")[0]);
+            this.longueur=Integer.parseInt(line.split(" ")[1]);
             while ((line = br.readLine()) != null) {
                 // ajoute la ligne au buffer
                 sb.append(line);
@@ -66,7 +70,10 @@ public class Grille {
 
 
             Pattern ilotsCoord = Pattern.compile("[0-9] [0-9] [0-9] [0-9] [0-9]");
+            Pattern tailleP = Pattern.compile("[0-9]+ [0-9]+");
             Matcher m = ilotsCoord.matcher(sb);
+            //Matcher t = tailleP.matcher(sb);
+            //System.out.println(t.group());
 
             while(m.find()){
 
