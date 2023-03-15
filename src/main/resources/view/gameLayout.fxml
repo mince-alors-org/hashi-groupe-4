@@ -38,13 +38,13 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                            <children>
-                              <Button id="undoButton" fx:id="undoButton" mnemonicParsing="false" styleClass="optionalGameButton">
+                              <Button id="aideButton" fx:id="aideButton" mnemonicParsing="false" styleClass="optionalGameButton">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
                               <Button id="levelButton" mnemonicParsing="false" text="levelButton" />
-                              <Button mnemonicParsing="false" styleClass="optionalGameButton" />
+                              <Button id="undoButton" mnemonicParsing="false" styleClass="optionalGameButton" />
                            </children>
                            <VBox.margin>
                               <Insets />

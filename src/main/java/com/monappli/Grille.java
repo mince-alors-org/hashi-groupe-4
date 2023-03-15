@@ -70,7 +70,7 @@ public class Grille {
 
 
             Pattern ilotsCoord = Pattern.compile("[0-9] [0-9] [0-9] [0-9] [0-9]");
-            Pattern tailleP = Pattern.compile("[0-9]+ [0-9]+");
+            //Pattern tailleP = Pattern.compile("[0-9]+ [0-9]+");
             Matcher m = ilotsCoord.matcher(sb);
             //Matcher t = tailleP.matcher(sb);
             //System.out.println(t.group());
@@ -182,9 +182,6 @@ public class Grille {
     }
 
 
-    public void initInterface(){
-
-    }
 
     public GridPane initGrid(){
       GridPane grid= new GridPane();

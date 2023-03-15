@@ -40,6 +40,10 @@
     -fx-background-color: white;
     -fx-background-image: url("./textures/icons/undo.png");
 }
+#aideButton{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/lamp.png");
+}
 
 
  
