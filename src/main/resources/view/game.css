@@ -13,7 +13,7 @@
 .optionalGameButton{
     -fx-border-color: transparent;
     -fx-background-color: transparent;
-    -fx-background-radius: 20px;
+    -fx-background-radius: 200px;
     -fx-pref-height:50.0px;
     -fx-pref-width:50.0px;
 }
@@ -35,4 +35,11 @@
 #paramButton{
     -fx-background-image: url("./textures/icons/parameters.png");
 }
+
+#undoButton{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/undo.png");
+}
+
+
  

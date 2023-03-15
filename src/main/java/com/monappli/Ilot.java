@@ -4,11 +4,13 @@ package com.monappli;
 
 import java.util.ArrayList;
 
+import javafx.scene.control.Button;
+
 /**
  * Cette classe permet de représenter un Ilot
  * @author nmention
  */
-public class Ilot implements Comparable<Ilot>{
+public class Ilot extends Button implements Comparable<Ilot>{
 	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
@@ -36,6 +38,7 @@ public class Ilot implements Comparable<Ilot>{
 	 * @param valeur nombre de ponts supportés par this
 	*/
 	public Ilot(int posX, int posY, int valeur) {
+		super();
 		this.posX = posX;
 		this.posY = posY;
 		this.valeur = valeur;
@@ -50,6 +53,7 @@ public class Ilot implements Comparable<Ilot>{
 
 
   public Ilot(int posX, int posY){
+	super();
     this.posX = posX;
     this.posY = posY;
     ponts = new ArrayList<>();

@@ -100,13 +100,14 @@ public class Grille {
                 listeIlot.add(b);
               }
 
+              else  {
+                if (!listeIlot.contains(a)){
+                  listeIlot.add(a);
+                }
 
-              if (!listeIlot.contains(a)){
-                listeIlot.add(a);
-              }
-
-              if (!listeIlot.contains(b)){
-                listeIlot.add(b);
+                if (!listeIlot.contains(b)){
+                  listeIlot.add(b);
+                }
               }
               new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
               new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits);
@@ -195,18 +196,22 @@ public class Grille {
         grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));
 
       for(Ilot ilot : this.listeIlot ){
-        Button button =new Button(Integer.toString(ilot.getValeur()));
-        GridPane.setHalignment(button, HPos.CENTER);
-        GridPane.setValignment(button, VPos.CENTER);
-        button.setPrefSize(
+
+        GridPane.setHalignment(ilot, HPos.CENTER);
+        GridPane.setValignment(ilot, VPos.CENTER);
+
+        ilot.setText(Integer.toString(ilot.getValeur()));
+
+        ilot.setPrefSize(
               (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3, 
-              (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 );
+              (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 
+        );
         
-        button.getStyleClass().add("gameIsle");
-        button.setStyle("-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;");
+        ilot.getStyleClass().add("gameIsle");
+        ilot.setStyle("-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;");
               
 
-        grid.add(button, ilot.getPosX(), ilot.getPosY(),1,1);
+        grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
 
       }
 

@@ -8,19 +8,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="450.0" stylesheets="@game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="gameBG" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="450.0" stylesheets="@game.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="800.0" prefWidth="450.0">
          <children>
             <HBox prefHeight="150.0" prefWidth="450.0" spacing="52.0">
                <children>
-                  <Button id="paramButton" mnemonicParsing="false" styleClass="optionalButton" />
+                  <Button id="paramButton" fx:id="paramButton" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
                   <Label id="title" alignment="CENTER" text="Hashi" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="65.0" />
                      </font>
                   </Label>
-                  <Button id="powerButton" mnemonicParsing="false" styleClass="optionalButton" />
+                  <Button id="powerButton" fx:id="powerButton" mnemonicParsing="false" onAction="#quitClicked" styleClass="optionalButton" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -36,21 +36,21 @@
                <children>
                   <VBox prefHeight="650.0" prefWidth="450.0">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="75.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                            <children>
-                              <Button mnemonicParsing="false" styleClass="optionalGameButton" text="Button">
+                              <Button id="undoButton" fx:id="undoButton" mnemonicParsing="false" styleClass="optionalGameButton">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
                               <Button id="levelButton" mnemonicParsing="false" text="levelButton" />
-                              <Button mnemonicParsing="false" styleClass="optionalGameButton" text="Button" />
+                              <Button mnemonicParsing="false" styleClass="optionalGameButton" />
                            </children>
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
                            <padding>
-                              <Insets top="20.0" />
+                              <Insets left="15.0" top="20.0" />
                            </padding>
                         </HBox>
                         <Pane id="gridPlacement" fx:id="gridPlacement" prefHeight="420.0" prefWidth="420.0">
