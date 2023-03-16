@@ -4,6 +4,8 @@ package com.monappli;
 
 import java.util.ArrayList;
 
+import com.monappli.hashiScene.MainPanel;
+
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -97,6 +99,14 @@ public class Ilot extends Button implements Comparable<Ilot>{
 
 	public void setValeur(int valeur) {
 		this.valeur = valeur;
+	}
+
+	public void setStyleParam(int longueur, int largeur){
+		this.setStyle(			 "-fx-background-radius: 200px;"+
+								 "\n-fx-background-insets: 0 0 0 0;"+
+								 "\n-fx-background-color: "+ Parametre.toRGBForCSS(MainPanel.getParameter().getCouleur_ilot())+";"+
+								 "\n-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;"
+								 );
 	}
 
 	public void setActive(boolean active){

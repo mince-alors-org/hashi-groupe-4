@@ -39,6 +39,7 @@ public class Parametre {
         this.setCouleur_texte(Color.BLACK);
         this.setCouleur_ilot(Color.WHITE);
         this.setCouleur_pont(Color.BLACK);
+        this.setCouleur_fond(new Color( 1.0*89/255 ,1.0*149/255,1.0*237/255,1 ));
     }
 
     public Color getCouleur_texte() {
@@ -47,6 +48,14 @@ public class Parametre {
 
     public void setCouleur_texte(Color couleur_texte) {
         this.couleur_texte = couleur_texte;
+    }
+
+    public void setCouleur_fond(Color fond){
+        couleur_fond=fond;
+    }
+
+    public Color getCouleur_fond(){
+        return couleur_fond;
     }
 
     public Color getCouleur_ilot() {

@@ -207,8 +207,7 @@ public class Grille {
         );
         
         ilot.getStyleClass().add("gameIsle");
-        ilot.setStyle("-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;");
-              
+         ilot.setStyleParam(longueur, largeur);
 
         grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
 

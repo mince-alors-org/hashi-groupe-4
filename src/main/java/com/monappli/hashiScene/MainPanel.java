@@ -26,6 +26,7 @@ public class MainPanel extends DynamicScene {
         Pane newP= loader.load();
 
         this.getParent().getChildren().setAll(newP);
+        this.setStyleParam();
         
     }
 }

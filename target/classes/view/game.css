@@ -19,9 +19,6 @@
 }
 
 .gameIsle  {
-    -fx-background-color: white;
-    -fx-background-radius: 200px;
-    -fx-background-insets: 0 0 0 0;
 }
 
 #levelButton{
