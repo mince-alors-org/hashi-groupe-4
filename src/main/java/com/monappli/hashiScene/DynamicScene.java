@@ -34,5 +34,8 @@ abstract class DynamicScene implements Poster{
         return param;
     }
 
-    //public static setStye
+    public void setStyleParam(){
+        parentPane.setStyle("-fx-text-fill: "+ Parametre.toRGBForCSS(MainPanel.getParameter().getCouleur_texte())+";"+
+                            "\n-fx-background-color: "+ Parametre.toRGBForCSS(MainPanel.getParameter().getCouleur_fond())+";");
+    }
 }

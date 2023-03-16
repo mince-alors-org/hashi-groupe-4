@@ -30,17 +30,16 @@ public class Hashi extends Application {
 
         MainPanel.setParameter(param);
         param.setCouleur_texte(Color.PURPLE);
+        param.setCouleur_ilot(Color.BLUE);
 
 
         StackPane root = new StackPane();
         root.setStyle("-fx-background-color: #5995ED");
         this.cont = new mainMenuEventHandler(root);
-        FXMLLoader menuLoader= new FXMLLoader(getClass().getResource("/view/main_menu.fxml"));
-        menuLoader.setController(this.cont);
-        HBox box=new HBox();
-        box.getChildren().addAll((Pane) menuLoader.load());
+        MainPanel menuLoader= new MainPanel(root);
+        menuLoader.pasteAndHandle("/view/main_menu.fxml", cont);
 
-        root.getChildren().add(box);
+
 
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");

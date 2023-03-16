@@ -29,13 +29,7 @@ public class PopUp extends DynamicScene{
         Pane newP= loader.load();
         newP.setId("pop");
         this.getParent().getChildren().add(newP);
-    }
-
-    public Object getContent() {
-        return null;
-    }
-
-    public void show(Stage stage) {
+        this.setStyleParam();
     }
 
     public void pasteAndHandle(URL url, TutorialEventHandler hand) {

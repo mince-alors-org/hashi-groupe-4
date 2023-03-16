@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+
 import javafx.scene.layout.Pane;
 
 public class DynamicEventHandler implements Handler{
@@ -13,4 +14,5 @@ public class DynamicEventHandler implements Handler{
     public Pane getParentPane(){
         return parentPane;
     }
+
 }
