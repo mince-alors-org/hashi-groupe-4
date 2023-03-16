@@ -1,6 +1,6 @@
 package com.monappli;
 
-import java.awt.*;
+import javafx.scene.paint.Color;
 
 /**
  * Cette classe sert à enregistrer durant l'exécution du programme les paramètres, de manière à ce que les autres classes puissent lui demander
@@ -11,16 +11,16 @@ public class Parametre {
     /**
      * Cette variable sert à connaitre de quelles couleurs seront les messages écrits de l'aplication
      */
-    Color couleur_texte;
-    Color couleur_ilot;
-    Color couleur_pont;
+    private Color couleur_texte;
+    private Color couleur_ilot;
+    private Color couleur_pont;
     /**
      * Cette variable sert à stocker la couleur des différentes aides qui peuvent être mise sur la grille
      */
-    Color couleur_aide_erreur;
-    Color couleur_fond;
-    int taille_texte;
-    int[] taille_fenetre;
+    private Color couleur_aide_erreur;
+    private Color couleur_fond;
+    private int taille_texte;
+    private int[] taille_fenetre;
     /**
      * Cette variable représente la possibilitée d'afficher automatiquement une aide visuelle quand trop de pont relie une île
      */
@@ -36,6 +36,9 @@ public class Parametre {
 
     Parametre() {
         super();
+        this.setCouleur_texte(Color.BLACK);
+        this.setCouleur_ilot(Color.WHITE);
+        this.setCouleur_pont(Color.BLACK);
     }
 
     public Color getCouleur_texte() {
@@ -108,5 +111,18 @@ public class Parametre {
 
     public void setAffichage_ponts_possible(boolean affichage_ponts_possible) {
         this.affichage_ponts_possible = affichage_ponts_possible;
+    }
+
+    public String toString(){
+        return "Couleur texte : "+this.getCouleur_texte().toString() +
+                "\nCouleur pont  : "+this.getCouleur_pont().toString() +
+                "\nCouleur ilot  : "+this.getCouleur_ilot().toString();
+    }
+
+    public static String toRGBForCSS(Color c){
+        return String.format( "#%02X%02X%02X",
+            (int)( c.getRed() * 255 ),
+            (int)( c.getGreen() * 255 ),
+            (int)( c.getBlue() * 255 ) );
     }
 }

@@ -19,7 +19,7 @@ public class PopUp extends DynamicScene{
 
         Pane newP= loader.load();
 
-        parentPane.getChildren().add(newP);
+        this.getParent().getChildren().add(newP);
     }
 
     public void pasteAndHandle(String name, Handler hand) throws Exception {
@@ -28,7 +28,7 @@ public class PopUp extends DynamicScene{
 
         Pane newP= loader.load();
         newP.setId("pop");
-        parentPane.getChildren().add(newP);
+        this.getParent().getChildren().add(newP);
     }
 
     public Object getContent() {

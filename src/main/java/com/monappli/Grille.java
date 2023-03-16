@@ -217,7 +217,7 @@ public class Grille {
                       @Override public void handle(ActionEvent e) {
                         ilot.setActive(!ilot.getActive());
                       }
-                    }
+                      }
         );
         
 

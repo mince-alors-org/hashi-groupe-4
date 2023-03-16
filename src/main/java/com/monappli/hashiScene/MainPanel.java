@@ -16,7 +16,7 @@ public class MainPanel extends DynamicScene {
 
         Pane newP= loader.load();
 
-        parentPane.getChildren().setAll(newP);
+        this.getParent().getChildren().setAll(newP);
     }
 
     public void  pasteAndHandle(String name, Handler hand) throws Exception  {
@@ -25,7 +25,7 @@ public class MainPanel extends DynamicScene {
 
         Pane newP= loader.load();
 
-        parentPane.getChildren().setAll(newP);
+        this.getParent().getChildren().setAll(newP);
         
     }
 }

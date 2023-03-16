@@ -1,6 +1,8 @@
 package com.monappli.handlers;
 
 import com.monappli.Grille;
+import com.monappli.Main;
+import com.monappli.Parametre;
 import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
@@ -33,9 +35,9 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void playClicked() throws Exception {
-        MainPanel game= new MainPanel(this.parentPane);
-        game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.parentPane));
-        Grille grille = new Grille("../niveaux/1-1.niv", (Pane)game.parentPane.lookup("#gridPlacement"));
+        MainPanel game= new MainPanel(this.getParentPane());
+        game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParentPane()));
+        Grille grille = new Grille("../niveaux/1-1.niv", (Pane)game.getParent().lookup("#gridPlacement"));
         System.out.println("Je suis jeux Libre");
     }
     public void quitClicked() {
@@ -45,8 +47,10 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void tutoClicked() throws Exception {
-        MainPanel tuto= new MainPanel(this.parentPane);
-        tuto.pasteAndHandle("/view/tuto.fxml", new TutorialEventHandler(this.parentPane));
+        MainPanel tuto= new MainPanel(this.getParentPane());
+        
+        
+        tuto.pasteAndHandle("/view/tuto.fxml", new TutorialEventHandler(this.getParentPane()));
         System.out.println("Je suis tuto");
     }
 

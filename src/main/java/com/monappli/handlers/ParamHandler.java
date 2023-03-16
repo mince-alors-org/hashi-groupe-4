@@ -15,7 +15,7 @@ public class ParamHandler extends DynamicEventHandler{
 
     public void backClicked(){
         System.out.println("Je supprime");
-        this.parentPane.getChildren().remove(this.parentPane.lookup("#pop"));
+        this.getParentPane().getChildren().remove(this.getParentPane().lookup("#pop"));
     }
 
 
