@@ -17,14 +17,20 @@ public class GameHandler extends DynamicEventHandler {
     @FXML
     private Button powerButton;
 
+    @FXML
+    private Button undoButton;
+
+    @FXML
+    private Button helpButton;
+
     public GameHandler(Pane parent){
         super(parent);
     }
 
     public void quitClicked(){
-        /*Stage stage = (Stage) powerButton.getScene().getWindow();
+        Stage stage = (Stage) powerButton.getScene().getWindow();
         stage.close();
-        System.out.println("Je quitte");*/
+        System.out.println("Je quitte");
     }
 
     public void paramClicked() throws Exception{
@@ -33,5 +39,13 @@ public class GameHandler extends DynamicEventHandler {
             pop.pasteAndHandle("/view/parameters.fxml", new ParamHandler(this.gameBG));
             System.out.println("Je suis Paramètre");
         }
+    }
+
+    public void undoClicked(){
+        System.out.println("Je suis undo");
+    }
+
+    public void helpClicked(){
+        System.out.println("Je suis Aide");
     }
 }

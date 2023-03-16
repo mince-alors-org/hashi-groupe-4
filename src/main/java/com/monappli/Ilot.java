@@ -5,6 +5,12 @@ package com.monappli;
 import java.util.ArrayList;
 
 import javafx.scene.control.Button;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.paint.Color;
 
 /**
  * Cette classe permet de représenter un Ilot
@@ -25,6 +31,12 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	private int valeur;
 
 	/**
+	 * Pour l'affichage
+	 */
+
+	private boolean active;
+
+	/**
 	 * ponts reliés à this
 	 */
 	private ArrayList<Pont> ponts;
@@ -42,6 +54,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 		this.posX = posX;
 		this.posY = posY;
 		this.valeur = valeur;
+		this.setActive(false);
 		ponts = new ArrayList<Pont>();
 		this.pontsSolution = new ArrayList<Pont>() ;
 	}
@@ -56,6 +69,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	super();
     this.posX = posX;
     this.posY = posY;
+	this.setActive(false);
     ponts = new ArrayList<>();
     pontsSolution = new ArrayList<>();
   }
@@ -83,6 +97,30 @@ public class Ilot extends Button implements Comparable<Ilot>{
 
 	public void setValeur(int valeur) {
 		this.valeur = valeur;
+	}
+
+	public void setActive(boolean active){
+		this.active=active;
+		if(active){
+			this.setBorder(new Border(new BorderStroke(
+										Color.GREEN, 
+										BorderStrokeStyle.SOLID, 
+										new CornerRadii(200), 
+										new BorderWidths(4)
+							)));
+		}
+		else{
+			this.setBorder(new Border(new BorderStroke(
+										Color.BLACK, 
+										BorderStrokeStyle.SOLID, 
+										new CornerRadii(200), 
+										new BorderWidths(4)
+							)));
+		}
+	}
+
+	public boolean getActive(){
+		return active;
 	}
 
 
@@ -222,4 +260,6 @@ public class Ilot extends Button implements Comparable<Ilot>{
       ", ponts=" + ponts +
       ", pontsSolution=" + pontsSolution;
 	}
+
+
 }

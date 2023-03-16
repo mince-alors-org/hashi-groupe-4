@@ -18,6 +18,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 
 /**
  * Cette classe permet de représenter une Grille
@@ -210,6 +212,15 @@ public class Grille {
 
         grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
 
+        ilot.setOnAction(
+                      new EventHandler<ActionEvent>() {
+                      @Override public void handle(ActionEvent e) {
+                        ilot.setActive(!ilot.getActive());
+                      }
+                    }
+        );
+        
+
       }
 
 
@@ -218,7 +229,6 @@ public class Grille {
 
 
     public boolean contientMemeIlot(List<Ilot> ilots, Ilot ilot){
-      boolean result = false;
       for (Ilot i : ilots){
         if (i.equals(ilot)){
           return true;
@@ -242,5 +252,25 @@ public class Grille {
         max = ilot.getPosY() > max ? ilot.getPosY() : max; 
       }
       return max+1;
+    }
+
+    public int getLongeur(){
+      return longueur;
+    }
+
+    public int getLargeur(){
+      return largeur;
+    }
+
+    public List<Ilot> getIlots(){
+      return listeIlot;
+    }
+
+    public GridPane getGrid(){
+      return grid;
+    }
+
+    public Pane getParentPane(){
+      return parent;
     }
 }
