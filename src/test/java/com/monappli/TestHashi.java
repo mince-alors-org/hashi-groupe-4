@@ -4,8 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 
+
 import javafx.application.Application;
-import javafx.scene.layout.Pane;
 
 public class TestHashi {
     
@@ -15,11 +15,7 @@ public class TestHashi {
 	}
     @Test
     public void LancementInterface(){
-        System.out.println("Test interface");
+        System.out.println("Test interface globale");
         Application.launch(Hashi.class);
-    }
-    @Test
-    public void afficheRes(){
-        //new Grille("1-1.niv",new Pane());
     }
 }

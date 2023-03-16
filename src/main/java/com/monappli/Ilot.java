@@ -169,7 +169,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	public int nbPont(){
 		int somme =0;
 		for(Pont p :this.ponts){
-			somme+=p.nombreTraits;
+			somme+=p.getNbTraits();
 		}
 		return somme;
 	}
@@ -213,6 +213,20 @@ public class Ilot extends Button implements Comparable<Ilot>{
 			}
 		}
 		return voisin;
+	}
+	/**
+	 * Indique le pont entre deux ile
+	 * @param Ilot : ile voisine au pont séléctionnner
+	 * @return Pont : retourne le pont entre les deux iles
+	 * @author Morgane
+	 */
+	public Pont liaisonP(Ilot ile){
+		for(Pont p : this.ponts){
+			if(p.voisin(this).equals(ile)){
+				return p;
+			}
+		}
+		return null;
 	}
 
 	/**
