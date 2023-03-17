@@ -24,13 +24,10 @@ public class Hashi extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage) throws Exception { 
 
-        Parametre param= new Parametre();
-
-        MainPanel.setParameter(param);
-        param.setCouleur_texte(Color.PURPLE);
-        param.setCouleur_ilot(Color.BLUE);
+        Parametre.setCouleur_texte(Color.PURPLE);
+        Parametre.setCouleur_ilot(Color.BLUE);
 
 
         StackPane root = new StackPane();
@@ -44,7 +41,7 @@ public class Hashi extends Application {
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);
-
+        System.out.println(root.getChildren());
         stage.show();
     }
 }

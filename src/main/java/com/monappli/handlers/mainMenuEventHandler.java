@@ -38,6 +38,7 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
         MainPanel game= new MainPanel(this.getParentPane());
         game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParentPane()));
         Grille grille = new Grille("../niveaux/1-1.niv", (Pane)game.getParent().lookup("#gridPlacement"));
+        System.out.println(grille.getIlots().get(0).getLayoutX());
         System.out.println("Je suis jeux Libre");
     }
     public void quitClicked() {

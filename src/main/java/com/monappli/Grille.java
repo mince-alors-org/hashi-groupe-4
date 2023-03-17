@@ -210,7 +210,6 @@ public class Grille {
          ilot.setStyleParam(longueur, largeur);
 
         grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
-
         ilot.setOnAction(
                       new EventHandler<ActionEvent>() {
                       @Override public void handle(ActionEvent e) {
