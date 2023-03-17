@@ -1,0 +1,48 @@
+#title{
+    -fx-effect: dropshadow( gaussian , black , 5, 1.0, 1 , 1 );
+}
+
+.optionalButton{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 35px;
+    -fx-pref-height:70.0px;
+    -fx-pref-width:70.0px;
+}
+
+.optionalGameButton{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 200px;
+    -fx-pref-height:50.0px;
+    -fx-pref-width:50.0px;
+}
+
+.gameIsle  {
+}
+
+#levelButton{
+    -fx-background-radius: 20px;
+    -fx-pref-height:50.0px;
+    -fx-pref-width:200.0px;
+}
+
+#powerButton{
+    -fx-background-image: url("./textures/icons/powerButton.png");
+}
+
+#paramButton{
+    -fx-background-image: url("./textures/icons/parameters.png");
+}
+
+#undoButton{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/undo.png");
+}
+#aideButton{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/lamp.png");
+}
+
+
+ 

@@ -1,6 +1,5 @@
-package com.monappli;
 import java.util.ArrayList;
-//import java.math.*;
+import java.math.*;
 
 public class Pont {
 	int nombreTraits;
@@ -18,10 +17,6 @@ public class Pont {
 			this.nombreTraits=0;
 		else
 			this.nombreTraits++;
-	}
-
-	public ArrayList<Ilot> getCoords() {
-		return coords;
 	}
 
 	public int tailleTrait(){
