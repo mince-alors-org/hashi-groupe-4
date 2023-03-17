@@ -33,10 +33,10 @@ public class Aide {
      * Constantes qui correspondent aux codes d'erreurs qui sont reconnus dans le reste du code
      */
 
-    // Code d'erreur qui signifie qu'un ilot a trop de pond (erreur de cardinalité) 
+    // Code d'erreur qui signifie qu'un ilot a trop de ponts (erreur de cardinalité) 
     final String nbCardinaliteIncorrect="ERR101";
 
-    // Code d'erreur qui signifie qu'il n'y a pas le bon nombre de pond
+    // Code d'erreur qui signifie qu'il n'y a pas le bon nombre de ponts
     final String nbPontIncorrectCorrects="ERR102";
 
     // Code d'erreur qui signifie qu'il y a un endroit fermé sur la grille
@@ -47,7 +47,7 @@ public class Aide {
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
      */
     public HashMap<String, String> getTechnique(){
-        for(int i=0;i<grille.listeIlots;i++) {
+        for(int i = 0 ; i < grille.listeIlots.length ; i++) {
             if (ile_debut(grille.listeIlots[i])) {
                 return this.technique.get("Iles avec autant de voisin que la moitié de leur cardinalité");
             }
@@ -60,7 +60,7 @@ public class Aide {
             else if (cas_4_avec_3_voisin_dont_2_1(grille.listeIlots[i])) {
                 return this.technique.get("Iles sur un coté avec 4 de cardinalités");
             }
-            else if (6_milieu(grille.listeIlots[i])) {
+            else if (cas_6_milieu(grille.listeIlots[i])) {
                 return this.technique.get("Iles aux millieux avec 6 de cardinalités");
             }
             else if (isolation_iles(grille.listeIlots[i])) {
@@ -76,8 +76,12 @@ public class Aide {
      * Verifie si le plateau actuel contient des erreurs ou non
      * @return Bool : True si le plateau contient une erreur, false sinon
      */ 
-    public Boolean checkErreur(){
-        
+    public String checkErreur(){
+        for(int i=0;i<grille.listeIlots.length;i++){
+            if(grille.listeIlots[i].listeVoisinRelie() == grille.listeIlots[i].listeVoisin()){
+                
+            }
+        }
     }
 
     /**
@@ -151,7 +155,7 @@ public class Aide {
         }
     }
 
-    public boolean 6_milieu(Ilot ile) {
+    public boolean cas_6_milieu(Ilot ile) {
         if (ile.getValeur() == 6 && ile.listeVoisin().size() == 4) {
             for (Ilot voisin : ile.voisins) {
                 if (voisin.getValeur()==1) {
@@ -224,7 +228,12 @@ public class Aide {
         return true; 
     }
 
-
+    /** 
+    * Fonction qui retourne le voisin en fonction de l'ile et de la direction passées en paramètre
+    * @param ile, l'île dont on veut connaître le voisin
+    * @param positions : direction du voisin que l'on veut connaître
+    * @return retourne le voisin correspondant aux critères
+    */
     public static Ilot getVoisinDirection(Ilot ile,String positions) {
         for(int i=0;i<ile.listeVoisin().size;i++) {
             if (ile.listeVoisin()[i].getPosX()>ile.getPosX() && positions=="gauche") {
