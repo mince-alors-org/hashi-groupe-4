@@ -1,0 +1,1 @@
+Param{couleur_texte=255,100,100, couleur_ilot=255,0,0, couleur_pont=255,0,0, couleur_aide_erreur=255,0,0, couleur_fond=255,0,0, taille_texte=4, taille_fenetre=1920,1080, affichage_depassment_cardinalite=true, affichage_groupe_ferme=true, affichage_ponts_possible=false}
