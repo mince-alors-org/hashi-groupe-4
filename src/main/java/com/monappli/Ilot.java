@@ -121,8 +121,10 @@ public class Ilot extends Button implements Comparable<Ilot>{
 				ile=this;
 			}else{
 				Pont p=this.liaisonP(ile);
-				p.affiche(this.fond);
-				ile=null;
+				if(p!=null && !ile.equals(this)){
+					p.affiche(this.fond);
+					ile=null;
+				}
 			}
 		}
 		else{
@@ -132,6 +134,9 @@ public class Ilot extends Button implements Comparable<Ilot>{
 										new CornerRadii(200), 
 										new BorderWidths(4)
 							)));
+			//if(ile.equals(this)){
+			//	ile=null;
+			//}
 		}
 	}
 
