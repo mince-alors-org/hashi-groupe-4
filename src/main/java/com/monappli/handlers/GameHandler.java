@@ -3,6 +3,7 @@ package com.monappli.handlers;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -22,6 +23,7 @@ public class GameHandler extends DynamicEventHandler {
 
     @FXML
     private Button helpButton;
+
 
     public GameHandler(Pane parent){
         super(parent);

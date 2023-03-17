@@ -7,6 +7,7 @@ import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.*;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -37,8 +38,12 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     public void playClicked() throws Exception {
         MainPanel game= new MainPanel(this.getParentPane());
         game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParentPane()));
+<<<<<<< HEAD
         Grille grille = new Grille("../niveaux/1-1.niv", (Pane)game.getParent().lookup("#gridPlacement"));
         System.out.println(grille.getIlots().get(0).getLayoutX());
+=======
+        Grille grille = new Grille("../niveaux/1-1.niv", (Pane)game.getParent().lookup("#gridPlacement"),(Canvas)game.getParent().lookup("#fond"));
+>>>>>>> 5a7dc0134de5b3e664281755eead30605948cdcd
         System.out.println("Je suis jeux Libre");
     }
     public void quitClicked() {
