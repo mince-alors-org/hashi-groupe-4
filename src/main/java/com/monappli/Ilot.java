@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import com.monappli.hashiScene.MainPanel;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
@@ -44,7 +45,8 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	private ArrayList<Pont> ponts;
 
 	private ArrayList<Pont> pontsSolution;
-
+	private Canvas fond;
+	private static Ilot ile=null;
 	/**
 	 *
 	 * @param posX position de l'ilot courant dans l'axe des abscisses (X)
@@ -62,13 +64,10 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	}
 
 
-	public Ilot(int valeur){
-		this(0,0,valeur);
-	}
 
-
-  public Ilot(int posX, int posY){
+  public Ilot(int posX, int posY,Canvas fond){
 	super();
+	this.fond=fond;
     this.posX = posX;
     this.posY = posY;
 	this.setActive(false);
@@ -118,6 +117,13 @@ public class Ilot extends Button implements Comparable<Ilot>{
 										new CornerRadii(200), 
 										new BorderWidths(4)
 							)));
+			if(ile==null){
+				ile=this;
+			}else{
+				Pont p=this.liaisonP(ile);
+				p.affiche(this.fond);
+				ile=null;
+			}
 		}
 		else{
 			this.setBorder(new Border(new BorderStroke(

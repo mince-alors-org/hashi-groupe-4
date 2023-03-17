@@ -13,6 +13,7 @@ import javax.naming.InitialContext;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -43,7 +44,7 @@ public class Grille {
      * @author nmention
      * @param nomF nom du fichier à lire pour creer la grille
      */
-    public Grille(String nomF, Pane parent) {
+    public Grille(String nomF, Pane parent, Canvas fond) {
         this.parent=parent;
         listeIlot = new ArrayList<>();
         // Le fichier d'entrée
@@ -94,9 +95,9 @@ public class Grille {
 
 
 
-              Ilot a = new Ilot(xa,ya);
+              Ilot a = new Ilot(xa,ya,fond);
 
-              Ilot b = new Ilot(xb,yb);
+              Ilot b = new Ilot(xb,yb,fond);
               if (listeIlot.isEmpty()){
                 listeIlot.add(a);
                 listeIlot.add(b);
