@@ -45,143 +45,81 @@ public class Grille {
      * @param nomF nom du fichier à lire pour creer la grille
      */
     public Grille(String nomF, Pane parent, Canvas fond) {
-        this.parent=parent;
-        listeIlot = new ArrayList<>();
-        // Le fichier d'entrée
-        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
-        // Créer l'objet File Reader
-        FileReader fr = null;
-        try {
-            fr = new FileReader(file);
-            // Créer l'objet BufferedReader
-            BufferedReader br = new BufferedReader(fr);
-            StringBuffer sb = new StringBuffer();
-            String line;
-            line=br.readLine();
-            System.out.println("line = "+line.split(" ")[0]);
-            this.largeur=Integer.parseInt(line.split(" ")[0]);
-            this.longueur=Integer.parseInt(line.split(" ")[1]);
-            while ((line = br.readLine()) != null) {
-                // ajoute la ligne au buffer
-                sb.append(line);
-                sb.append("\n");
-            }
-            fr.close();
-            System.out.println(sb);
+       this.parent=parent;
+       listeIlot = new ArrayList<>();
+       // Le fichier d'entrée
+       File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
+       // Créer l'objet File Reader
+       FileReader fr = null;
+       try {
+           fr = new FileReader(file);
+           // Créer l'objet BufferedReader
+           BufferedReader br = new BufferedReader(fr);
+           StringBuffer sb = new StringBuffer();
+           String line;
+           while ((line = br.readLine()) != null) {
+               // ajoute la ligne au buffer
+               sb.append(line);
+               sb.append("\n");
+           }
+           fr.close();
 
 
 
 
-            Pattern ilotsCoord = Pattern.compile("[0-9] [0-9] [0-9] [0-9] [0-9]");
-            //Pattern tailleP = Pattern.compile("[0-9]+ [0-9]+");
-            Matcher m = ilotsCoord.matcher(sb);
-            //Matcher t = tailleP.matcher(sb);
-            //System.out.println(t.group());
+           Pattern ilotsCoord = Pattern.compile("[0-9] [0-9] [0-9] [0-9] [0-9]");
+           Matcher m = ilotsCoord.matcher(sb);
 
-            while(m.find()){
+           while(m.find()){
 
-              String s = m.group();
+             String s = m.group();
 
-              String[] results = s.split(" ");
-              System.out.println(s);
-              int xa = Integer.parseInt(results[0]);
-              int ya = Integer.parseInt(results[1]);
+             String[] results = s.split(" ");
+             System.out.println(s);
+             int xa = Integer.parseInt(results[0]);
+             int ya = Integer.parseInt(results[1]);
 
 
-              int xb = Integer.parseInt(results[2]);
-              int yb = Integer.parseInt(results[3]);
+             int xb = Integer.parseInt(results[2]);
+             int yb = Integer.parseInt(results[3]);
 
-              int nbTraits = Integer.parseInt(results[4]);
+             int nbTraits = Integer.parseInt(results[4]);
 
 
 
-              Ilot a = new Ilot(xa,ya,fond);
+             Ilot a = new Ilot(xa,ya,fond);
 
-              Ilot b = new Ilot(xb,yb,fond);
-              if (listeIlot.isEmpty()){
-                listeIlot.add(a);
-                listeIlot.add(b);
-              }
+             Ilot b = new Ilot(xb,yb,fond);
+             if (listeIlot.isEmpty()){
+               listeIlot.add(a);
+               listeIlot.add(b);
+             }
 
-              else  {
-                if (!listeIlot.contains(a)){
-                  listeIlot.add(a);
-                }
+             else  {
+               if (!listeIlot.contains(a)){
+                 listeIlot.add(a);
+               }
 
-                if (!listeIlot.contains(b)){
-                  listeIlot.add(b);
-                }
-              }
-              new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
+               if (!listeIlot.contains(b)){
+                 listeIlot.add(b);
+               }
+             }
+             new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
+             if(nbTraits!=0){
               new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits);
+             }
 
-              /*if (!contientMemeIlot(ilots,a)){
-                ilots.add(a);
+           }
+           largeur= calculateHeight();
+           longueur= calculateWidth();
 
-              }
-              if (!contientMemeIlot(ilots,b)){
-                ilots.add(b);
-
-              }*/
-
-
-
-
-
-
-
-            }
-
-          for (Ilot i: listeIlot){
-            System.out.println(i);
-          }
-           /* Map<String,Ilot> ilots = new HashMap<String,Ilot>();
-
-            Pattern ilotsDetection = Pattern.compile("[A-Z],?[1-9](?=\\)\\[)");
-            Matcher m = ilotsDetection.matcher(sb);
-
-
-            Matcher m2 = Grille.pontsDetection.matcher(sb);
-
-            while (m.find()){
-                String s = m.group();
-                String[] values = s.split(",");
-                ilots.put(values[0],new Ilot(values[0],Integer.parseInt(values[1])));
-
-
-
-            }
-
-            m = ilotsDetection.matcher(sb);
-
-
-            while (m2.find() && m.find()){
-                String s = m.group();
-                String s2 = m2.group();
-                String[] values2 = s2.split(",");
-
-
-                String[] values = s.split(",");
-
-                Pont pont = new Pont(ilots.get(values[0]),ilots.get(values2[0]));
-
-            }
-            for (String key : ilots.keySet()){
-                System.out.println(key + " " + ilots.get(key));
-            }*/
-
-            largeur= calculateHeight();
-            longueur= calculateWidth();
-
-            grid = initGrid();
-            parent.getChildren().add(grid);
-            System.out.println( (1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
-            System.out.println( (1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
-
-
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+           grid = initGrid();
+           parent.getChildren().add(grid);
+           System.out.println( (1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
+           System.out.println( (1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
+       } catch (IOException e) {
+           throw new RuntimeException(e);
+       }
 
 
     }

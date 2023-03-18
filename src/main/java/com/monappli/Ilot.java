@@ -134,6 +134,18 @@ public class Ilot extends Button implements Comparable<Ilot>{
 				Pont p=this.liaisonP(ile);
 				if(p!=null && !ile.equals(this)){
 					p.affiche(this.fond);
+					this.setBorder(new Border(new BorderStroke(
+						Color.BLACK, 
+						BorderStrokeStyle.SOLID,
+						new CornerRadii(200),
+						new BorderWidths(4)
+					)));
+					ile.setBorder(new Border(new BorderStroke(
+						Color.BLACK,
+						BorderStrokeStyle.SOLID,
+						new CornerRadii(200),
+						new BorderWidths(4)
+					)));
 					ile=null;
 				}
 				else if(ile.equals(this)){

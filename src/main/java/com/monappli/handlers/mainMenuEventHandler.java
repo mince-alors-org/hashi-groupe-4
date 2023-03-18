@@ -38,7 +38,7 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     public void playClicked() throws Exception {
         MainPanel game= new MainPanel(this.getParentPane());
         game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParentPane()));
-        Grille grille = new Grille("../niveaux/1-1.niv", (Pane)game.getParent().lookup("#gridPlacement"), (Canvas)game.getParent().lookup("#fond"));
+        Grille grille = new Grille("../niveaux/1-6.niv", (Pane)game.getParent().lookup("#gridPlacement"), (Canvas)game.getParent().lookup("#fond"));
         
 
         System.out.println("Je suis jeux Libre");

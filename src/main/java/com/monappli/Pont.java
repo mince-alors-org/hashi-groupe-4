@@ -100,8 +100,9 @@ public class Pont {
 	 * @param fond et le canva qui permet l'affichage
 	*/
 	public void affiche(Canvas fond){
+		this.incrementer();
 		GraphicsContext gc=fond.getGraphicsContext2D();
-		gc.fillRect(this.getIle1().getPosX(),this.getIle1().getPosY(),this.tailleTrait(),6);
+			gc.fillRect(this.getIle1().getPosX(),this.getIle1().getPosY(),this.tailleTrait(),6);
 
 	}
 
