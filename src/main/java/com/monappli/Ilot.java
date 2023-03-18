@@ -162,6 +162,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 				}
 				else if(ile.equals(this)){
 					ile=null;
+					this.active=false;
 				}
 				else{
 					System.out.println(p);
