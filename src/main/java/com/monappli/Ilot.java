@@ -63,17 +63,16 @@ public class Ilot extends Button implements Comparable<Ilot>{
 		this.pontsSolution = new ArrayList<Pont>() ;
 	}
 
-
-
-  public Ilot(int posX, int posY,Canvas fond){
-	super();
-	this.fond=fond;
-    this.posX = posX;
-    this.posY = posY;
-	this.setActive(false);
-    ponts = new ArrayList<>();
-    pontsSolution = new ArrayList<>();
-  }
+	public Ilot(int posX, int posY,Canvas fond){
+		super();
+		this.valeur=0;
+		this.fond=fond;
+		this.posX = posX;
+		this.posY = posY;
+		this.setActive(false);
+		ponts = new ArrayList<>();
+		pontsSolution = new ArrayList<>();
+	}
 
 
 	public int getPosX() {
@@ -99,7 +98,13 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	public void setValeur(int valeur) {
 		this.valeur = valeur;
 	}
-
+	
+	/**
+	 * Permet l'affichage grphique d'une île
+	 * @author Ambre
+	 * @param longueur
+	 * @param largeur
+	 */
 	public void setStyleParam(int longueur, int largeur){
 		this.setStyle(			 "-fx-background-radius: 200px;"+
 								 "\n-fx-background-insets: 0 0 0 0;"+
@@ -108,6 +113,11 @@ public class Ilot extends Button implements Comparable<Ilot>{
 								 );
 	}
 
+	/**
+	 * Permet de gérer l'activiter d'une île
+	 * @author Ambre,Morgane,Noé
+	 * @param active
+	 */
 	public void setActive(boolean active){
 		this.active=active;
 		if(active){
@@ -119,11 +129,18 @@ public class Ilot extends Button implements Comparable<Ilot>{
 							)));
 			if(ile==null){
 				ile=this;
-			}else{
+			}
+			else{
 				Pont p=this.liaisonP(ile);
 				if(p!=null && !ile.equals(this)){
 					p.affiche(this.fond);
 					ile=null;
+				}
+				else if(ile.equals(this)){
+					ile=null;
+				}
+				else{
+					System.out.println(p);
 				}
 			}
 		}
@@ -134,9 +151,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 										new CornerRadii(200), 
 										new BorderWidths(4)
 							)));
-			//if(ile.equals(this)){
-			//	ile=null;
-			//}
+
 		}
 	}
 
@@ -283,7 +298,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 
 
   public void calculValeur(int add){
-    this.setValeur(valeur+add);
+    this.setValeur(this.getValeur()+add);
   }
 
   @Override
