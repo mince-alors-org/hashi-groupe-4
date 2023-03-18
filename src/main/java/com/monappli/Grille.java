@@ -113,13 +113,22 @@ public class Grille {
            largeur= calculateHeight();
            longueur= calculateWidth();
 
-           grid = initGrid();
-           parent.getChildren().add(grid);
-           System.out.println( (1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
-           System.out.println( (1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
+            grid = initGrid();
+            parent.getChildren().add(grid);
+            for (Ilot i :this.getIlots()) {
+                i.setCanvasX((1.0*parent.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
+                i.setCanvasY((1.0*parent.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
+                System.out.println(i.getCanvasX());
+                System.out.println(i.getCanvasY());
+            }
+            System.out.println( (1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
+            System.out.println( (1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
+
+
+
 
 
     }
