@@ -22,20 +22,20 @@
             <Insets left="25.0" top="20.0" />
          </padding>
       </HBox>
-      <Label id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="100.0" prefHeight="90.0" prefWidth="400.0" text="HASHI" textAlignment="CENTER" textFill="WHITE">
+      <Label id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="100.0" prefHeight="90.0" prefWidth="400.0" text="HASHI" textFill="WHITE" textAlignment="CENTER">
          <font>
             <Font size="75.0" />
          </font>
       </Label>
       <VBox alignment="TOP_CENTER" layoutY="220.0" prefHeight="680.0" prefWidth="450.0" spacing="50.0">
          <children>
-            <Button fx:id="playButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#playClicked" prefHeight="80.0" prefWidth="300.0" styleClass="mainButton" text="Jeu Libre" textFill="#cbf9ff">
+            <Button fx:id="playButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#playClicked" prefHeight="80.0" prefWidth="300.0" styleClass="mainButton" text="Jeu Libre" >
                <font>
                   <Font size="35.0" />
                </font>
             </Button>
-            <Button fx:id="tutoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#tutoClicked" prefHeight="88.0" prefWidth="347.0" styleClass="mainButton" text="Tutoriel" textFill="WHITE" />
-            <Button fx:id="challButton" alignment="CENTER" mnemonicParsing="false" onAction="#challClicked" styleClass="mainButton" text="Défis" textFill="WHITE" />
+            <Button fx:id="tutoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#tutoClicked" prefHeight="88.0" prefWidth="347.0" styleClass="mainButton" text="Tutoriel"  />
+            <Button fx:id="challButton" alignment="CENTER" mnemonicParsing="false" onAction="#challClicked" styleClass="mainButton" text="Défis" />
          </children>
          <opaqueInsets>
             <Insets />

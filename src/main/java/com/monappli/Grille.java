@@ -175,6 +175,8 @@ public class Grille {
 
             grid = initGrid();
             parent.getChildren().add(grid);
+            System.out.println( (1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
+            System.out.println( (1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
 
 
         } catch (IOException e) {
@@ -211,7 +213,6 @@ public class Grille {
          ilot.setStyleParam(longueur, largeur);
 
         grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
-
         ilot.setOnAction(
           new EventHandler<ActionEvent>() {
             @Override public void handle(ActionEvent e) {

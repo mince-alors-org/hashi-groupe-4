@@ -108,7 +108,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	public void setStyleParam(int longueur, int largeur){
 		this.setStyle(			 "-fx-background-radius: 200px;"+
 								 "\n-fx-background-insets: 0 0 0 0;"+
-								 "\n-fx-background-color: "+ Parametre.toRGBForCSS(MainPanel.getParameter().getCouleur_ilot())+";"+
+								 "\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_ilot())+";"+
 								 "\n-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;"
 								 );
 	}
@@ -215,14 +215,14 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	 * @return vrai si le nombre de ponts est trop grand faux sinon
 	 */
 	public boolean pontDepasse(){
-		return this.nbPont() > this.valeur;
+		return this.nbPont() > this.getValeur();
 	}
 	/**
 	 * Indique si le nombre de ponts est valide
 	 * @return vrai si le nombre de ponts est égale à la valeur false sinon
 	 */
 	public boolean pontValide(){
-		return this.nbPont() == this.valeur;
+		return this.nbPont() == this.getValeur();
 	}
 	/**
 	 * Indique les voisins de l'ilot
