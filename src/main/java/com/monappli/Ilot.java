@@ -28,6 +28,11 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	 * position de this dans l'axe des ordonnées (Y)
 	 */
 	private int posY;
+
+
+	private double canvasX;
+
+	private double canvasY;
 	/**
 	 * nombre de ponts supportés par this
 	 */
@@ -57,6 +62,8 @@ public class Ilot extends Button implements Comparable<Ilot>{
 		super();
 		this.posX = posX;
 		this.posY = posY;
+		canvasX = 0;
+		canvasY = 0;
 		this.valeur = valeur;
 		this.setActive(false);
 		ponts = new ArrayList<Pont>();
@@ -66,6 +73,8 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	public Ilot(int posX, int posY,Canvas fond){
 		super();
 		this.valeur=0;
+		canvasX = 0;
+		canvasY = 0;
 		this.fond=fond;
 		this.posX = posX;
 		this.posY = posY;
@@ -73,6 +82,9 @@ public class Ilot extends Button implements Comparable<Ilot>{
 		ponts = new ArrayList<>();
 		pontsSolution = new ArrayList<>();
 	}
+
+
+
 
 
 	public int getPosX() {
@@ -98,7 +110,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	public void setValeur(int valeur) {
 		this.valeur = valeur;
 	}
-	
+
 	/**
 	 * Permet l'affichage grphique d'une île
 	 * @author Ambre
@@ -135,7 +147,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 				if(p!=null && !ile.equals(this)){
 					p.affiche(this.fond);
 					this.setBorder(new Border(new BorderStroke(
-						Color.BLACK, 
+						Color.BLACK,
 						BorderStrokeStyle.SOLID,
 						new CornerRadii(200),
 						new BorderWidths(4)
@@ -264,7 +276,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	}
 	/**
 	 * Indique le pont entre deux ile
-	 * @param Ilot : ile voisine au pont séléctionnner
+	 * @param ile : ile voisine au pont séléctionnner
 	 * @return Pont : retourne le pont entre les deux iles
 	 * @author Morgane
 	 */
@@ -308,6 +320,21 @@ public class Ilot extends Button implements Comparable<Ilot>{
     return false;
   }
 
+	public double getCanvasX() {
+		return canvasX;
+	}
+
+	public void setCanvasX(double canvasX) {
+		this.canvasX = canvasX;
+	}
+
+	public double getCanvasY() {
+		return canvasY;
+	}
+
+	public void setCanvasY(double canvasY) {
+		this.canvasY = canvasY;
+	}
 
   public void calculValeur(int add){
     this.setValeur(this.getValeur()+add);
