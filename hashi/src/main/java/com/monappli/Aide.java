@@ -42,6 +42,9 @@ public class Aide {
     // Code d'erreur qui signifie qu'il y a un endroit fermé sur la grille
     final String endroitLock="ERR103";
 
+    // Code qui signifie qu'il y a pas d'erreur
+    final String pasderreur="NOERR";
+
     /**
      * pour cela la méthode parcours le plateau et avec une série de conditions détermine la bonne technique a renvoyer
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
@@ -74,15 +77,70 @@ public class Aide {
     
     /**
      * Verifie si le plateau actuel contient des erreurs ou non
-     * @return Bool : True si le plateau contient une erreur, false sinon
+     * @return String : contenant le code d'erreur correspondant a l'erreur trouver sur la grille
      */ 
-    public String checkErreur(){
-        for(int i=0;i<grille.listeIlots.length;i++){
-            if(grille.listeIlots[i].listeVoisinRelie() == grille.listeIlots[i].listeVoisin()){
-                
-            }
+    public String checkErreur() {
+        if (this.nbCardinalité()) {
+            return nbCardinaliteIncorrect;
+        }
+        else if (this.endroitFerme()) {
+            return endroitLock;
+        }
+        else {
+            return pasderreur;
         }
     }
+
+
+
+    public boolean nbCardinalité() {
+        int tmp;
+        for(int i=0;i<grille.listeIlots.length;i++){
+            tmp=0;
+            ArrayList<Pont> listpont = grille.listeIlots[i].getPonts();
+            for (int j=0;j<listpont.length;j++) {
+                tmp+=listpont[j].getNbTraits();
+            }
+            if (tmp>grille.listeIlots[i].getValeur()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean endroitFerme() {
+        for (Ilot ile : this.grille.getIlots()) {
+            List<Ilot> voisins = ile.listeVoisin();
+            List<Ilot> voisinsRelies = ile.listeVoisinRelie();
+            int numVois = voisinsRelies.size();
+            int numPontsRelies = 0;
+            int tmp = 0;
+            for (Ilot voisin : voisinsRelies) {
+                // Comptez le nombre de ponts reliant chaque voisin
+                if (ile.ilelisteVoisin().contains(voisin)) {
+                    numPontsRelies++;
+                }
+            }
+            for (int i=0;i<ile.getPonts().length;i++) {
+                tmp+=listpont[i].getNbTraits();
+            }
+            if (numVois == 0 || numVois == 2) {
+                // Si l'île a zéro ou deux voisins connectés, elle peut être fermée
+                if (tmp + numPontsRelies < 2) {
+                    return true;
+                }
+            } 
+            else if (numVois == 1) {
+                // Si l'île a un voisin connecté, elle doit avoir un pont ou être fermée
+                if (tmp + numPontsRelies < 1) {
+                    return true;
+                }
+            }
+        }
+        // Si on n'a pas trouvé d'île fermée, la grille est valide
+        return false;
+    }
+
 
     /**
      * Colorie des ilots a changer pour aider le joueur 
@@ -104,7 +162,7 @@ public class Aide {
      * 
      */
      public boolean ile_debut(Ilot ile) {
-        if ((ile.nbVoisinRestant()== ile.getValeur()/2) {
+        if (ile.nbVoisinRestant()== ile.getValeur()/2) {
             return true;
         }
         else {
