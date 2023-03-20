@@ -3,24 +3,18 @@ package com.monappli;
 import java.util.ArrayList;
 import java.io.*;
 import java.io.FileReader;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.naming.InitialContext;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 /**
  * Cette classe permet de représenter une Grille
@@ -145,29 +139,20 @@ public class Grille {
         grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));
 
       for(Ilot ilot : this.listeIlot ){
+        GridPane.setHalignment(ilot.getBtn(), HPos.CENTER);
+        GridPane.setValignment(ilot.getBtn(), VPos.CENTER);
 
-        GridPane.setHalignment(ilot, HPos.CENTER);
-        GridPane.setValignment(ilot, VPos.CENTER);
-
-        ilot.setText(Integer.toString(ilot.getValeur()));
+        ilot.setText();
 
         ilot.setPrefSize(
               (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3, 
               (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 
         );
         
-        ilot.getStyleClass().add("gameIsle");
+        ilot.getStyleClass("gameIsle");
          ilot.setStyleParam(longueur, largeur);
 
-        grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
-        ilot.setOnAction(
-          new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-              ilot.setActive(!ilot.getActive());
-              System.out.println(e);
-            }
-          }
-        );
+        grid.add(ilot.getBtn(), ilot.getPosX(), ilot.getPosY(),1,1);
         
 
       }
