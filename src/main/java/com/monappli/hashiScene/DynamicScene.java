@@ -6,6 +6,7 @@ import  javafx.scene.layout.Pane;
 
 abstract class DynamicScene implements Poster{ 
     private Pane parentPane;
+    private Pane curPane;
 
     public DynamicScene(Pane parent){
         parentPane=parent;
@@ -19,8 +20,16 @@ abstract class DynamicScene implements Poster{
         parentPane=parent;
     }
 
+    public Pane getCurPane(){
+        return curPane;
+    }
+
+    public void setCurPane(Pane pane){
+        curPane=pane;
+    }
+
     public void setStyleParam(){
-        parentPane.setStyle("-fx-text-base-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_texte())+";"+
+        curPane.setStyle("-fx-text-base-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_texte())+";"+
                             "\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_fond())+";");
     }
 }

@@ -30,10 +30,13 @@ public class Hashi extends Application {
         Parametre.setCouleur_ilot(Color.BLUE);
 
 
-        StackPane root = new StackPane();
-        root.setStyle("-fx-background-color: #5995ED");
+
+        FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/mainBG.fxml"));
+        Pane root = (Pane)loader.load();
+
         this.cont = new mainMenuEventHandler(root);
         MainPanel menuLoader= new MainPanel(root);
+
         menuLoader.pasteAndHandle("/view/main_menu.fxml", cont);
 
 

@@ -33,6 +33,7 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     private Button powerButton;
     public mainMenuEventHandler(Pane parentPane){
         super(parentPane);
+        setCurPane(menuPane);
     }
 
     public void playClicked() throws Exception {
@@ -64,7 +65,9 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     public void paramClicked() throws Exception{
         if (menuPane.lookup("#pop") == null){
             PopUp pop = new PopUp(menuPane);
-            pop.pasteAndHandle("/view/parameters.fxml", new ParamHandler(this.menuPane));
+            ParamHandler paramH= new ParamHandler(this.menuPane);
+            pop.pasteAndHandle("/view/parameters.fxml", paramH);
+            paramH.setAll();
             System.out.println("Je suis Paramètre");
         }
     }
