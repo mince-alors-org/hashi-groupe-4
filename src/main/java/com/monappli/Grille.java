@@ -151,6 +151,7 @@ public class Grille {
         
         ilot.getStyleClass("gameIsle");
          ilot.setStyleParam(longueur, largeur);
+         ilot.setOnAction();
 
         grid.add(ilot.getBtn(), ilot.getPosX(), ilot.getPosY(),1,1);
         
