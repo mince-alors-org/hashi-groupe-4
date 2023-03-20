@@ -5,11 +5,9 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.stage.Stage;
 import javafx.fxml.*;
 import javafx.geometry.Insets;
 
-import java.net.URL;
 
 import com.monappli.Parametre;
 import com.monappli.handlers.*;
@@ -38,9 +36,6 @@ public class PopUp extends DynamicScene{
         this.setCurPane(newP);
         hand.setCurPane(newP);
         newP.setUserData(hand);
-        
-        BackgroundFill background_fill = new BackgroundFill(Color.TRANSPARENT, 
-                                          CornerRadii.EMPTY, Insets.EMPTY);
 
 
         newP.setId("pop");

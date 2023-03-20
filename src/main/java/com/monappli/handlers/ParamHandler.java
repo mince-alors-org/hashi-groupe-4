@@ -93,10 +93,6 @@ public class ParamHandler extends DynamicEventHandler{
         MainPanel main= new MainPanel(grandparent);
         main.pasteAndHandle(parent, mainH);
         
-        
-
-        System.out.println(mainH);
-        
 
 
     }

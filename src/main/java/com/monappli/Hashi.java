@@ -8,9 +8,7 @@ import com.monappli.hashiScene.*;
 import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.*;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -45,6 +43,7 @@ public class Hashi extends Application {
         stage.setTitle("Hashi");
         stage.setScene(scene);
         System.out.println(root.getChildren());
+        stage.setResizable(false);
         stage.show();
     }
 }

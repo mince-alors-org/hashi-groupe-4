@@ -1,8 +1,6 @@
 package com.monappli.handlers;
 
 import com.monappli.Grille;
-import com.monappli.Main;
-import com.monappli.Parametre;
 import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
