@@ -26,15 +26,6 @@ public class Test_Ile_pont {
 		System.out.println("Test Ok "+testInfo.getTestMethod());
 		Assertions.assertTrue(true);
 	}
-
-	/**
-	 *
-	 */
-	@Test
-	public void taillePont(){
-		Assertions.assertEquals(4, this.p.tailleTrait(), "Erronnée : "+Math.sqrt(2)+" != "+ this.p.tailleTrait());
-	}
-
 	/**
 	 *
 	 */

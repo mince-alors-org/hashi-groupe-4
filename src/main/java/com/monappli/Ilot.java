@@ -2,6 +2,7 @@ package com.monappli;
 
 
 
+//import java.beans.EventHandler;
 import java.util.ArrayList;
 
 import com.monappli.hashiScene.MainPanel;
@@ -15,11 +16,18 @@ import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.naming.InitialContext;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
+
 /**
  * Cette classe permet de représenter un Ilot
  * @author nmention
  */
-public class Ilot extends Button implements Comparable<Ilot>{
+public class Ilot implements Comparable<Ilot>{
 	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
@@ -38,11 +46,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	 */
 	private int valeur;
 
-	/**
-	 * Pour l'affichage
-	 */
 
-	private boolean active;
 
 	/**
 	 * ponts reliés à this
@@ -51,6 +55,7 @@ public class Ilot extends Button implements Comparable<Ilot>{
 
 	private ArrayList<Pont> pontsSolution;
 	private Canvas fond;
+	private Btn btn;
 	private static Ilot ile=null;
 	/**
 	 *
@@ -59,28 +64,112 @@ public class Ilot extends Button implements Comparable<Ilot>{
 	 * @param valeur nombre de ponts supportés par this
 	*/
 	public Ilot(int posX, int posY, int valeur) {
-		super();
 		this.posX = posX;
 		this.posY = posY;
 		canvasX = 0;
 		canvasY = 0;
 		this.valeur = valeur;
-		this.setActive(false);
 		ponts = new ArrayList<Pont>();
 		this.pontsSolution = new ArrayList<Pont>() ;
 	}
 
 	public Ilot(int posX, int posY,Canvas fond){
-		super();
 		this.valeur=0;
 		canvasX = 0;
 		canvasY = 0;
+		this.btn=new Btn(this);
 		this.fond=fond;
 		this.posX = posX;
 		this.posY = posY;
-		this.setActive(false);
 		ponts = new ArrayList<>();
 		pontsSolution = new ArrayList<>();
+	}
+	public void creaBtn(){
+		this.btn=new Btn(this);
+	}
+
+	private class Btn extends Button{
+		private Ilot bout;
+		/**
+		* Pour l'affichage
+		*/
+		private boolean active;
+		Btn(Ilot bout){
+			super();
+			this.bout=bout;
+			this.setActive(false);
+		}
+		/**
+		* Permet l'affichage grphique d'une île
+	 	* @author Ambre
+		* @param longueur
+		* @param largeur
+		*/
+		public void setStyleParam(int longueur, int largeur){
+			this.setStyle(			 "-fx-background-radius: 200px;"+
+									 "\n-fx-background-insets: 0 0 0 0;"+
+									 "\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_ilot())+";"+
+									 "\n-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;"
+									 );
+		}
+
+		/**
+		* Permet de gérer l'activiter d'une île
+		* @author Ambre,Morgane,Noé
+		* @param active
+		*/
+		public void setActive(boolean act){
+			this.active=act;
+			if(act){
+					this.setBorder(new Border(new BorderStroke(
+											Color.GREEN, 
+											BorderStrokeStyle.SOLID, 
+											new CornerRadii(200), 
+											new BorderWidths(4)
+								)));
+				if(ile==null){
+					ile=this.bout;
+				}
+				else{
+					Pont p=liaisonP(ile);
+					if(p!=null && !ile.equals(this.bout)){
+						p.affiche(fond);
+						this.setBorder(new Border(new BorderStroke(
+							Color.BLACK,
+							BorderStrokeStyle.SOLID,
+							new CornerRadii(200),
+							new BorderWidths(4)
+						)));
+						ile.getBtn().setBorder(new Border(new BorderStroke(
+							Color.BLACK,
+							BorderStrokeStyle.SOLID,
+							new CornerRadii(200),
+							new BorderWidths(4)
+						)));
+						ile=null;
+					}
+					else if(ile.equals(this.bout)){
+						ile=null;
+						this.active=false;
+					}
+					else{
+						System.out.println(p);
+					}
+				}
+			}
+			else{
+				this.setBorder(new Border(new BorderStroke(
+											Color.BLACK, 
+											BorderStrokeStyle.SOLID, 
+											new CornerRadii(200), 
+											new BorderWidths(4)
+								)));
+
+			}
+		}
+		public boolean getActive(){
+			return active;
+		}
 	}
 
 
@@ -89,6 +178,9 @@ public class Ilot extends Button implements Comparable<Ilot>{
 
 	public int getPosX() {
 		return posX;
+	}
+	public Btn getBtn(){
+		return this.btn;
 	}
 
 	public void setPosX(int posX) {
@@ -111,77 +203,8 @@ public class Ilot extends Button implements Comparable<Ilot>{
 		this.valeur = valeur;
 	}
 
-	/**
-	 * Permet l'affichage grphique d'une île
-	 * @author Ambre
-	 * @param longueur
-	 * @param largeur
-	 */
-	public void setStyleParam(int longueur, int largeur){
-		this.setStyle(			 "-fx-background-radius: 200px;"+
-								 "\n-fx-background-insets: 0 0 0 0;"+
-								 "\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_ilot())+";"+
-								 "\n-fx-font:"+ (int)(1.0*24/Math.pow((largeur>longueur ? largeur : longueur) / (largeur>longueur ? longueur : largeur  ),1.0/4)) +" px;"
-								 );
-	}
 
-	/**
-	 * Permet de gérer l'activiter d'une île
-	 * @author Ambre,Morgane,Noé
-	 * @param active
-	 */
-	public void setActive(boolean active){
-		this.active=active;
-		if(active){
-			this.setBorder(new Border(new BorderStroke(
-										Color.GREEN, 
-										BorderStrokeStyle.SOLID, 
-										new CornerRadii(200), 
-										new BorderWidths(4)
-							)));
-			if(ile==null){
-				ile=this;
-			}
-			else{
-				Pont p=this.liaisonP(ile);
-				if(p!=null && !ile.equals(this)){
-					p.affiche(this.fond);
-					this.setBorder(new Border(new BorderStroke(
-						Color.BLACK,
-						BorderStrokeStyle.SOLID,
-						new CornerRadii(200),
-						new BorderWidths(4)
-					)));
-					ile.setBorder(new Border(new BorderStroke(
-						Color.BLACK,
-						BorderStrokeStyle.SOLID,
-						new CornerRadii(200),
-						new BorderWidths(4)
-					)));
-					ile=null;
-				}
-				else if(ile.equals(this)){
-					ile=null;
-				}
-				else{
-					System.out.println(p);
-				}
-			}
-		}
-		else{
-			this.setBorder(new Border(new BorderStroke(
-										Color.BLACK, 
-										BorderStrokeStyle.SOLID, 
-										new CornerRadii(200), 
-										new BorderWidths(4)
-							)));
 
-		}
-	}
-
-	public boolean getActive(){
-		return active;
-	}
 
 
 	public ArrayList<Pont> getPonts() {
@@ -190,6 +213,29 @@ public class Ilot extends Button implements Comparable<Ilot>{
 
 	public void setPonts(ArrayList<Pont> ponts) {
 		this.ponts = ponts;
+	}
+	public void setActive(boolean act){
+		this.getBtn().setActive(act);
+	}
+	public void setStyleParam(int longueur, int largeur){
+		this.getBtn().setStyleParam(longueur, largeur);
+	}
+	public void setText(){
+		this.getBtn().setText(Integer.toString(this.getValeur()));
+	}
+	public void setPrefSize(Double a, Double b){
+		this.getBtn().setPrefSize(a, b);
+	}
+	public void setOnAction(){
+		Btn b = this.getBtn();
+		this.getBtn().setOnAction(new EventHandler<ActionEvent>() {
+			@Override public void handle(ActionEvent e) {
+			  b.setActive(!(b.getActive()));
+			}
+		});
+	}
+	public void getStyleClass(String s){
+		this.getBtn().getStyleClass().add(s);
 	}
 
 	/**
