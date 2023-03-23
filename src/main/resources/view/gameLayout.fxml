@@ -66,10 +66,10 @@
                   </VBox>
                </children>
             </Pane>
-            <ToolBar prefHeight="40.0" prefWidth="200.0">
+            <ToolBar prefHeight="194.0" prefWidth="450.0">
               <items>
-                  <Button fx:id="undo" mnemonicParsing="false" text="Button" translateX="140.0" />
-                <Button fx:id="redo" mnemonicParsing="false" text="Button" translateX="170.0" />
+                  <Button id="undo" fx:id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" translateX="140.0" />
+                <Button id="redo" fx:id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" translateX="170.0" />
               </items>
             </ToolBar>
          </children>

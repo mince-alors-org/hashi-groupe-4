@@ -51,4 +51,10 @@ public class GameHandler extends DynamicEventHandler {
     public void helpClicked(){
         System.out.println("Je suis Aide");
     }
+    public void redoClicked(){
+        System.out.println("Je suis redo");
+    }
+    public void undoClicked(){
+        System.out.println("Je suis undo");
+    }
 }

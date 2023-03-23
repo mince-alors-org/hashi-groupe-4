@@ -39,6 +39,14 @@
     -fx-background-color: white;
     -fx-background-image: url("./textures/icons/undo.png");
 }
+#undo{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/curve_arrow_L.png");
+}
+#redo{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/curve_arrow_R.png");
+}
 #aideButton{
     -fx-background-color: white;
     -fx-background-image: url("./textures/icons/lamp.png");
