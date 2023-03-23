@@ -2,6 +2,8 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 
@@ -161,24 +163,87 @@ public class Pont {
 	}
 
 	/**
-	 * Permet d'afficher le pont entre deux ile
-	 * @param fond et le canva qui permet l'affichage
+	 * Permet d'afficher le pont entre deux iles
+	 * @param doublon true si il existe déjà un trait entre ces deux îles
+	 * @param fond est le canvas qui permet l'affichage
 	*/
-	public void affiche(Canvas fond){
+	public void affiche(Canvas fond,boolean doublon){
 		this.incrementer();
 		GraphicsContext gc=fond.getGraphicsContext2D();
+		gc.setStroke(Parametre.getCouleur_pont());
 		System.out.println("Ilot 1 :");
-		System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle1().getCanvasY());
+		/*System.out.println(this.getIle1().getCanvasX());
+		System.out.println(this.getIle1().getCanvasY());*/
 
 		System.out.println("Ilot 2 :");
-		System.out.println(this.getIle2().getCanvasX());
-		System.out.println(this.getIle2().getCanvasY());
-		gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
+		/*System.out.println(this.getIle2().getCanvasX());
+		System.out.println(this.getIle2().getCanvasY());*/
+
+
+		if (doublon){
+			if (this.estHorizontale()){
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-10);
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+10);
+			}
+			else {
+				gc.strokeLine(this.getIle1().getCanvasX() -10,this.getIle1().getCanvasY(),this.getIle2().getCanvasX()-10,this.getIle2().getCanvasY());
+				gc.strokeLine(this.getIle1().getCanvasX()+10,this.getIle1().getCanvasY(),this.getIle2().getCanvasX()+10,this.getIle2().getCanvasY());
+			}
+
+		}
+		else {
+
+			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
+		}
+
+		int nbTraits = this.getNbTraits();
+		System.out.println(nombreTraits);
+
 
 	}
 
-  @Override
+
+	/**
+	 * Permet d'effacer les traits entre les Ilots sur le Canvas
+	 * @param fond le canvas à manipuler
+	 */
+	public void erase(Canvas fond){
+		GraphicsContext gc = fond.getGraphicsContext2D();
+
+		double x1 = Math.min(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
+
+		double y1 = Math.min(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+
+		double x2 = Math.max(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
+
+		double y2 = Math.max(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+		System.out.println(y1);
+		System.out.println(y2);
+
+
+		System.out.println();
+
+
+		System.out.println(this.getIle1().getCanvasX());
+		System.out.println(this.getIle2().getCanvasX());
+
+
+		if (this.estVerticale()){
+			gc.clearRect(x1-20,y1,x2+20,y2-y1);
+		}
+		else {
+			gc.clearRect(x1,y1-20,x2-x1,y2+20);
+		}
+
+
+
+	}
+
+	public void setNombreTraits(int nombreTraits) {
+		this.nombreTraits = nombreTraits;
+	}
+
+	@Override
   public String toString() {
     return "Pont{" +
       "nombreTraits=" + nombreTraits;
