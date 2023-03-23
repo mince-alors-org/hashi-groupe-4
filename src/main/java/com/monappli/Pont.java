@@ -3,6 +3,7 @@ package com.monappli;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -10,7 +11,7 @@ import java.util.ArrayList;
  * Cette classe permet de représenter un Pont
  * @author Morgane Pechon
  */
-public class Pont {
+public class Pont implements Serializable{
 	/**
 	 * Nombre de trait entre les deux îles
 	 */
