@@ -8,8 +8,7 @@ import java.util.HashMap;
  * - Des aides visuelles pour lui indiquer directement où il faut qu'il joue
  * - Des détecteurs et correcteurs d'erreurs 
  * @author Fonte Clément
- * @author Rollet Gabrielle 
- * @author Nail Léo 
+ * @author Rollet Gabrielle
  * @version 1.0
  */
 public class Aide {
@@ -51,28 +50,28 @@ public class Aide {
      * pour cela la méthode parcours le plateau et avec une série de conditions détermine la bonne technique a renvoyer
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
      */
-    public HashMap<String, String> getTechnique(){
+    public String getTechnique(){
         for(int i = 0 ; i < grille.listeIlots.length ; i++) {
             if (ile_debut(grille.listeIlots[i])) {
-                return this.technique.get("Iles avec autant de voisin que la moitié de leur cardinalité");
+                return technique.get("Iles avec autant de voisin que la moitié de leur cardinalité");
             }
             else if (ile_1_voisin(grille.listeIlots[i])) {
-                return this.technique.get("Iles avec un seul voisin");
+                return technique.get("Iles avec un seul voisin");
             }
             else if (cas_3_coin_5_cote_7_milieu(grille.listeIlots[i])) {
-                return this.technique.get("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu");
+                return technique.get("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu");
             }
             else if (cas_4_avec_3_voisin_dont_2_1(grille.listeIlots[i])) {
-                return this.technique.get("Iles sur un coté avec 4 de cardinalités");
+                return technique.get("Iles sur un coté avec 4 de cardinalités");
             }
             else if (cas_6_milieu(grille.listeIlots[i])) {
-                return this.technique.get("Iles aux millieux avec 6 de cardinalités");
+                return technique.get("Iles aux millieux avec 6 de cardinalités");
             }
             else if (isolation_iles(grille.listeIlots[i])) {
-                return this.technique.get("Isolation des segments");
+                return technique.get("Isolation des segments");
             }
             else if (isolation_iles_3(grille.listeIlots[i])) {
-                return this.technique.get("");
+                return technique.get("");
             }
         }
     }
