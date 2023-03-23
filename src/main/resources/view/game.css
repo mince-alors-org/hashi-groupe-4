@@ -35,7 +35,7 @@
     -fx-background-image: url("./textures/icons/parameters.png");
 }
 
-#undoButton{
+#restButton{
     -fx-background-color: white;
     -fx-background-image: url("./textures/icons/undo.png");
 }

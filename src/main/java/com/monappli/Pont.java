@@ -142,13 +142,6 @@ public class Pont {
 			this.nombreTraits++;
 	}
 	/**
-	 * Renvoit la taille du trait entre les deux île
-	 * @return int taille du trai parapore au coordonée des l'îles
-	 */
-	public double tailleTrait(){
-		return Math.sqrt(Math.pow((this.getIle1().getCanvasX())-(this.getIle2().getCanvasX()),2)+Math.pow((getIle1().getCanvasY())-(getIle2().getCanvasY()),2));
-	}
-	/**
 	 * permet de trouver le voisin de l'ile entrée en paramètre
 	 * @param a Ilot qui recherche sont voisin
 	 * @return Ilot opposer à l'ile entrée en paramètre
