@@ -30,6 +30,7 @@ public class Grille {
     public static List<Ilot> listeIlot;
     private Pane parent;
     private GridPane grid;
+    private Canvas fond;
 
     private static Pattern pontsDetection = Pattern.compile("[A-Z],?[0-9](?=(\\)])|(\\),))");
 
@@ -40,6 +41,7 @@ public class Grille {
      */
     public Grille(String nomF, Pane parent, Canvas fond) {
        this.parent=parent;
+       this.fond=fond;
        listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
@@ -148,12 +150,56 @@ public class Grille {
               (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 
         );
         
-        //ilot.setStyleClass("gameIsle");
         ilot.getStyleClass().add("gameIsle");
 
         ilot.setStyleParam();
+        System.out.println(ilot.getPonts());
         ilot.setOnAction(e -> {
-            ilot.setActive(!(ilot.getActive()));
+            System.out.println(ilot.getPonts());
+            Ilot ileAct = this.getIlotActif() ;
+
+            if (ileAct == ilot){
+              ilot.setActive(false);
+            }
+
+            else if (ileAct != null){
+              if (Grille.sontVoisin(ileAct, ilot) ){
+                System.out.println("oui");
+                System.out.println(ilot.getPonts());
+
+                Pont pont = ileAct.liaisonP(ilot);
+                if (!this.croisePont(pont)){
+
+                  if (pont.getNbTraits() == 1){
+                    pont.affiche(fond,true);
+                  }
+                  else {
+                    pont.affiche(fond,false);
+                  }
+                  changeActive(ilot);
+                }
+                else {
+                  ileAct.setActive(false);
+                  ilot.setActive(false);
+                }
+              }
+              else {
+                changeActive(ilot);
+              }
+            }
+
+          /*for( Pont p : this.listePontExistant())
+            {
+              if(this.croise(p)){
+                return ;
+              }
+            }
+            if(this.nombreTraits == 2)
+              this.nombreTraits=0;
+            else
+              this.nombreTraits++;*/
+            else 
+              ilot.setActive(!(ilot.getActive()));
           }
         );
 
@@ -241,5 +287,58 @@ public class Grille {
   public void setIlots(List<Ilot> list )
     {
       listeIlot = list ;
+    }
+
+    public Ilot getIlotActif(){
+      for (Ilot i : listeIlot){
+        if (i.getActive())
+          return i;
+      }
+      return null;
+    }
+
+    public static boolean sontVoisin(Ilot il1, Ilot il2){
+      if (il1 == il2){
+        return false;
+      }
+      if (il1.estAligneVerticalement(il2)){
+        for(Ilot i : listeIlot){
+          if (
+              i.getPosX() == il1.getPosX() && 
+              i.getPosY() > (il1.getPosY() < il2.getPosY() ? il1 : il2).getPosY() && 
+              i.getPosY() < (il1.getPosY() > il2.getPosY() ? il1 : il2).getPosY()){
+            System.out.println(i.getPosY() + " "+ il1.getPosY() + " "+ il2.getPosY());
+            return false;
+          }
+        }
+        return true;
+      }
+      else if (il1.estAligneHorizontalement(il2)){
+        for (Ilot i : listeIlot){
+          if (
+              i.getPosY() == il1.getPosY() && 
+              i.getPosX() > (il1.getPosX() < il2.getPosX() ? il1 : il2).getPosX() && 
+              i.getPosX() < (il1.getPosX() > il2.getPosX() ? il1 : il2).getPosX()){
+                return false;
+          }
+        }
+        return true;
+      }
+      return false;
+    }
+
+    public boolean croisePont(Pont pont){
+      for (Ilot i : listeIlot){
+        for (Pont p : i.getPonts()){
+          if (pont.croise(p))
+            return true;
+        }
+      }
+      return false;
+    }
+
+    public void changeActive(Ilot i){
+      this.getIlotActif().setActive(false);
+      i.setActive(true);
     }
 }

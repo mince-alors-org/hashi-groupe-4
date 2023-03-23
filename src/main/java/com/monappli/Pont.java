@@ -112,8 +112,14 @@ public class Pont {
 	 * @param p l'autre pont
 	 * @return true si les deux ponts se croisent, false sinon
 	 */
-	public boolean Croise(Pont p)
+	public boolean croise(Pont p)
 	{
+		if (this==p)
+			return false;
+		
+		if (p.getNbTraits() == 0)
+			return false;
+
 		if(p.estVerticale() == this.estVerticale())
 		{
 			return false;
@@ -166,7 +172,7 @@ public class Pont {
 	public void incrementer(){
 		for( Pont p : this.grille.listePontExistant())
 		{
-			if(this.Croise(p)){
+			if(this.croise(p)){
 				return ;
 			}
 		}
@@ -177,7 +183,7 @@ public class Pont {
 	}
 	/**
 	 * permet de trouver le voisin de l'ile entrée en paramètre
-	 * @param a Ilot qui recherche sont voisin
+	 * @param a Ilot qui recherche son voisin
 	 * @return Ilot opposer à l'ile entrée en paramètre
 	 */
 	public Ilot voisin(Ilot a){

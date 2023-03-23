@@ -112,76 +112,8 @@ public class Ilot extends Button implements Comparable<Ilot>{
 										new CornerRadii(200), 
 										new BorderWidths(4)
 							)));
-			if(ile==null){
-				ile=this.bout;
-			}
-			else{
-				Pont p=liaisonP(ile);
-				if(p!=null && !ile.equals(this.bout)){
-					if (p.getNbTraits() == 1){
-						p.affiche(fond,true);
-
-					}
-					else {
-						p.affiche(fond,false);
-					}
-					this.setBorder(new Border(new BorderStroke(
-						Color.BLACK,
-						BorderStrokeStyle.SOLID,
-						new CornerRadii(200),
-						new BorderWidths(4)
-					)));
-					ile.setBorder(new Border(new BorderStroke(
-						Color.BLACK,
-						BorderStrokeStyle.SOLID,
-						new CornerRadii(200),
-						new BorderWidths(4)
-					)));
-					ile=null;
-				}
-				else if(ile.equals(this.bout)){
-					ile=null;
-					this.active=false;
-				}
-				else{
-					if(p!=null && !ile.equals(this.bout)){
-						if (p.getNbTraits() == 1){
-							p.affiche(fond,true);
-
-						}
-						else {
-							p.affiche(fond,false);
-						}
-						this.setBorder(new Border(new BorderStroke(
-							Color.BLACK,
-							BorderStrokeStyle.SOLID,
-							new CornerRadii(200),
-							new BorderWidths(4)
-						)));
-						ile.setBorder(new Border(new BorderStroke(
-							Color.BLACK,
-							BorderStrokeStyle.SOLID,
-							new CornerRadii(200),
-							new BorderWidths(4)
-						)));
-						ile=null;
-					}
-					else if(ile.equals(this.bout)){
-						ile=null;
-						this.active=false;
-					}
-					else{
-						System.out.println(p);
-						this.setBorder(new Border(new BorderStroke(
-								Color.BLACK,
-								BorderStrokeStyle.SOLID,
-								new CornerRadii(200),
-								new BorderWidths(4)
-						)));
-					}
-				}
-			}
 		}
+			
 		else{
 			this.setBorder(new Border(new BorderStroke(
 										Color.BLACK, 
