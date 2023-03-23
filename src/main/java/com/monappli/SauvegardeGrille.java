@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.awt.*;
+import javafx.scene.paint.Color;
 
 public class SauvegardeGrille{  
 
@@ -189,7 +190,7 @@ public class SauvegardeGrille{
         red = Integer.parseInt(couleur_texteStr[0].trim());
         green = Integer.parseInt(couleur_texteStr[1].trim());
         blue = Integer.parseInt(couleur_texteStr[2].trim());
-        Color couleur_texte = new Color(red, green, blue);
+        Color couleur_texte = Color.rgb(red, green, blue);
         param.setCouleur_texte(couleur_texte);
 
         //Extrait couleur_ilot
@@ -197,7 +198,7 @@ public class SauvegardeGrille{
         red = Integer.parseInt(couleur_ilotStr[0].trim());
         green = Integer.parseInt(couleur_ilotStr[1].trim());
         blue = Integer.parseInt(couleur_ilotStr[2].trim());
-        Color couleur_ilot = new Color(red, green, blue);
+        Color couleur_ilot = Color.rgb(red, green, blue);
         param.setCouleur_ilot(couleur_ilot);
 
         //Extrait couleur_pont
@@ -205,7 +206,7 @@ public class SauvegardeGrille{
         red = Integer.parseInt(couleur_pontStr[0].trim());
         green = Integer.parseInt(couleur_pontStr[1].trim());
         blue = Integer.parseInt(couleur_pontStr[2].trim());
-        Color couleur_pont = new Color(red, green, blue);
+        Color couleur_pont = Color.rgb(red, green, blue);
         param.setCouleur_pont(couleur_pont);
 
 
@@ -214,7 +215,7 @@ public class SauvegardeGrille{
         red = Integer.parseInt(couleur_aide_erreurStr[0].trim());
         green = Integer.parseInt(couleur_aide_erreurStr[1].trim());
         blue = Integer.parseInt(couleur_aide_erreurStr[2].trim());
-        Color couleur_aide_erreur = new Color(red, green, blue);
+        Color couleur_aide_erreur = Color.rgb(red, green, blue);
         param.setCouleur_aide_erreur(couleur_aide_erreur);
 
         //Extrait couleur_fond
@@ -222,7 +223,7 @@ public class SauvegardeGrille{
         red = Integer.parseInt(couleur_fondStr[0].trim());
         green = Integer.parseInt(couleur_fondStr[1].trim());
         blue = Integer.parseInt(couleur_fondStr[2].trim());
-        Color couleur_fond = new Color(red, green, blue);
+        Color couleur_fond = Color.rgb(red, green, blue);
         param.setCouleur_fond(couleur_fond);
 
         //Extrait taille_texte
