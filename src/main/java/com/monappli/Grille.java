@@ -97,9 +97,9 @@ public class Grille {
                  listeIlot.add(b);
                }
              }
-             new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
+             new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),this);
              if(nbTraits!=0){
-              new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits);
+              new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits,this);
              }
 
            }
@@ -125,7 +125,6 @@ public class Grille {
 
 
     }
-
 
 
     public GridPane initGrid(){
@@ -194,6 +193,25 @@ public class Grille {
       return max+1;
     }
 
+    /**
+     * Permet d'obtenir une liste de tous les ponts ayant au moins 1 en nb de ponts.
+     *
+     * @return Un ArrayList de Pont
+     */
+    public List<Pont> listePontExistant()
+    {
+      List<Pont> ret = new ArrayList<>();
+      for(Ilot i : listeIlot)
+      {
+        for(Pont p : i.getPonts())
+        {
+          if(p.getNbTraits() > 0 && !ret.contains(p))
+            ret.add(p);
+        }
+      }
+      return ret;
+    }
+
     public int getLongeur(){
       return longueur;
     }
@@ -214,9 +232,23 @@ public class Grille {
       return parent;
     }
 
+<<<<<<< HEAD
     public static void setAllIsleStyle(){
       for (Ilot i : listeIlot){
         i.setStyleParam();
       }
+=======
+    public void setIlots(List<Ilot> list )
+    {
+      listeIlot = list ;
+>>>>>>> 2e6b83f6fac92b780feddace07bbffdd2b52aed8
+  public static void setAllIsleStyle(){
+  for (Ilot i : listeIlot){
+    i.setStyleParam();
+  }
+
+  public void setIlots(List<Ilot> list )
+    {
+      listeIlot = list ;
     }
 }
