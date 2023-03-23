@@ -1,5 +1,7 @@
 package com.monappli;
 
+import java.io.Serializable;
+
 import javafx.scene.paint.Color;
 
 /**
@@ -7,11 +9,11 @@ import javafx.scene.paint.Color;
  * @author NAIL Leo
  * @version 1.0
  */
-public  class Parametre {
+public  class Parametre implements Serializable{
     /**
      * Cette variable sert à connaitre de quelles couleurs seront les messages écrits de l'aplication
      */
-    private static Color couleur_texte=Color.BLACK;
+    private static Color couleur_texte=Color.WHITE;
     private static Color couleur_ilot= Color.WHITE;
     private static Color couleur_pont= Color.BLACK;
     /**
@@ -20,7 +22,7 @@ public  class Parametre {
     private static Color couleur_aide_erreur=Color.BLACK;
     private static Color couleur_fond=new Color(1.0*69/255,1.0*123/255,1.0*248/255,1);
     private static int taille_texte;
-    private static int[] taille_fenetre;
+    private static int[] taille_fenetre = {800,600};
     /**
      * Cette variable représente la possibilitée d'afficher automatiquement une aide visuelle quand trop de pont relie une île
      */
@@ -137,5 +139,8 @@ public  class Parametre {
             (int)( c.getRed() * 255 ),
             (int)( c.getGreen() * 255 ),
             (int)( c.getBlue() * 255 ) );
+    }
+
+    public void chargerFichierParametre(String fichier_parametre) {
     }
 }

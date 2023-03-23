@@ -2,6 +2,7 @@ package com.monappli;
 
 
 
+import java.io.Serializable;
 //import java.beans.EventHandler;
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ import javafx.scene.paint.Color;
  * Cette classe permet de représenter un Ilot
  * @author nmention
  */
-public class Ilot extends Button implements Comparable<Ilot>{
+public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
