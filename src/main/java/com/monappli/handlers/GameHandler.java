@@ -18,7 +18,7 @@ public class GameHandler extends DynamicEventHandler {
     private Button powerButton;
 
     @FXML
-    private Button undoButton;
+    private Button restButton;
 
     @FXML
     private Button helpButton;
@@ -42,8 +42,8 @@ public class GameHandler extends DynamicEventHandler {
         }
     }
 
-    public void undoClicked(){
-        System.out.println("Je suis undo");
+    public void restClicked(){
+        System.out.println("Je suis rest");
     }
 
     public void helpClicked(){
