@@ -168,9 +168,12 @@ public class Pont {
 	 * @param fond est le canvas qui permet l'affichage
 	*/
 	public void affiche(Canvas fond,boolean doublon){
-		this.incrementer();
+
+
 		GraphicsContext gc=fond.getGraphicsContext2D();
 		gc.setStroke(Parametre.getCouleur_pont());
+
+		this.erase(fond);
 		System.out.println("Ilot 1 :");
 		/*System.out.println(this.getIle1().getCanvasX());
 		System.out.println(this.getIle1().getCanvasY());*/
@@ -191,10 +194,11 @@ public class Pont {
 			}
 
 		}
-		else {
+		else if (this.getNbTraits()!=2) {
 
 			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
 		}
+		this.incrementer();
 
 		int nbTraits = this.getNbTraits();
 		System.out.println(nombreTraits);
