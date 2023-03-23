@@ -14,7 +14,7 @@
    <children>
       <VBox prefHeight="800.0" prefWidth="450.0">
          <children>
-            <HBox prefHeight="150.0" prefWidth="450.0" spacing="52.0">
+            <HBox prefHeight="150.0" prefWidth="450.0" spacing="54.0">
                <children>
                   <Button id="paramButton" fx:id="paramButton" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
                   <Label id="title" alignment="CENTER" text="Hashi" textFill="WHITE" HBox.hgrow="ALWAYS">

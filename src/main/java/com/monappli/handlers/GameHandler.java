@@ -36,8 +36,10 @@ public class GameHandler extends DynamicEventHandler {
 
     public void paramClicked() throws Exception{
         if (gameBG.lookup("#pop") == null){
-            PopUp pop = new PopUp(gameBG);
-            pop.pasteAndHandle("/view/parameters.fxml", new ParamHandler(this.gameBG));
+            PopUp pop = new PopUp(this.getCurPane());
+            ParamHandler paramH= new ParamHandler(this.gameBG);
+            pop.pasteAndHandle("/view/parameters.fxml", paramH);
+            paramH.setAll();
             System.out.println("Je suis Paramètre");
         }
     }

@@ -16,7 +16,9 @@ public class MainPanel extends DynamicScene {
 
         Pane newP= loader.load();
 
+        this.setCurPane(newP);
         this.getParent().getChildren().setAll(newP);
+        this.setStyleParam();
     }
 
     public void  pasteAndHandle(String name, Handler hand) throws Exception  {
@@ -25,7 +27,21 @@ public class MainPanel extends DynamicScene {
 
         Pane newP= loader.load();
 
+        this.setCurPane(newP);
+        hand.setCurPane(newP);
+        newP.setUserData(hand);
+
         this.getParent().getChildren().setAll(newP);
+        this.setStyleParam();
+        
+    }
+
+    public void  pasteAndHandle(Pane pane, Handler hand) throws Exception  {
+        this.setCurPane(pane);
+        hand.setCurPane(pane);
+        pane.setUserData(hand);
+
+        this.getParent().getChildren().setAll(pane);
         this.setStyleParam();
         
     }

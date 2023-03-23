@@ -172,8 +172,17 @@ public class Ilot implements Comparable<Ilot>{
 		}
 	}
 
+	public boolean estAligne(Ilot i){
+		return estAligneHorizontalement(i) || estAligneVerticalement(i);
+	}
 
+	public boolean estAligneVerticalement(Ilot i){
+		return this.getPosX() == i.getPosX();
+	}
 
+	public boolean estAligneHorizontalement(Ilot i){
+		return this.getPosY() == i.getPosY();
+	}
 
 
 	public int getPosX() {

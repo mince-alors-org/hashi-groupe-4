@@ -60,6 +60,78 @@ public class Pont {
 	public Ilot getIle2(){
 		return this.coords.get(1);
 	}
+
+	/**
+	 * Permet de savoir si un pont est verticale
+	 * 
+	 * @param i1 le premier îlot su pont
+	 * @param i2 le sexond îlot du pont
+	 * @return true si le pont est verticale (si ils ont le même x)
+	 */
+	public boolean estVerticale()
+	{
+		return this.getIle1().estAligneVerticalement(getIle2());
+	}
+
+	public boolean estHorizontale()
+	{
+		return this.getIle1().estAligneHorizontalement(getIle2());
+	}
+
+	/**
+	 * Permet de savoir si un pont en croise un autre.
+	 *
+	 * @param p l'autre pont
+	 * @return true si les deux ponts se croisent, false sinon
+	 */
+	public boolean Croise(Pont p)
+	{
+		if(p.estVerticale() == this.estVerticale())
+		{
+			return false;
+		}
+		else
+		{
+			if(estHorizontale())
+			{
+				if(
+					(
+						//on vérifie si le x de p est entre nos deux x
+						(getIle1().getPosX() > p.getIle1().getPosX() && getIle2().getPosX() < p.getIle1().getPosX() ) ||
+				   		(getIle1().getPosX() < p.getIle1().getPosX() && getIle2().getPosX() > p.getIle1().getPosX())
+					) &&
+					(
+						//on vérifie si notre y est entre deux y de p
+						(getIle1().getPosY() > p.getIle1().getPosY() && getIle1().getPosY() < p.getIle2().getPosY()) ||
+						(getIle1().getPosY() < p.getIle1().getPosY() && getIle1().getPosY() > p.getIle2().getPosY())
+					)
+				   )
+				{
+					return true ;
+				}
+			}
+			else 
+			{
+				if(
+					(
+						//on vérifie si notre x est entre deux x de p
+						(getIle1().getPosX() > p.getIle1().getPosX() && getIle1().getPosX() < p.getIle2().getPosX() ) ||
+				   		(getIle1().getPosX() < p.getIle1().getPosX() && getIle1().getPosX() > p.getIle2().getPosX())
+					) &&
+					(
+						//on vérifie si le y de p est entre nos deux y 
+						(getIle1().getPosY() > p.getIle1().getPosY() && getIle2().getPosY() < p.getIle1().getPosY()) ||
+						(getIle1().getPosY() < p.getIle1().getPosY() && getIle2().getPosY() > p.getIle1().getPosY())
+					)
+				   )
+				{
+					return true ;
+				}
+			}
+			return false;
+		}
+	}
+
 	/**
 	 * Incrémente le nombre de pont entre les deux îles
 	 */
