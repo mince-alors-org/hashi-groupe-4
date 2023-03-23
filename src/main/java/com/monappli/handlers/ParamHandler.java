@@ -2,6 +2,7 @@ package com.monappli.handlers;
 
 import java.net.NetworkInterface;
 
+import com.monappli.Grille;
 import com.monappli.Parametre;
 import com.monappli.hashiScene.MainPanel;
 
@@ -92,9 +93,11 @@ public class ParamHandler extends DynamicEventHandler{
 
         MainPanel main= new MainPanel(grandparent);
         main.pasteAndHandle(parent, mainH);
-        
 
+    }
 
+    public Pane getParamPane(){
+        return paramPane;
     }
 
 

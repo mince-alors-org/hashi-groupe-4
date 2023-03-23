@@ -25,9 +25,9 @@ public class Grille {
     /**
      * Taille de la grille
      */
-    private int longueur;
-    private int largeur;
-    private List<Ilot> listeIlot;
+    public static int longueur;
+    public static int largeur;
+    public static List<Ilot> listeIlot;
     private Pane parent;
     private GridPane grid;
 
@@ -139,22 +139,27 @@ public class Grille {
         grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));
 
       for(Ilot ilot : this.listeIlot ){
-        GridPane.setHalignment(ilot.getBtn(), HPos.CENTER);
-        GridPane.setValignment(ilot.getBtn(), VPos.CENTER);
+        GridPane.setHalignment(ilot, HPos.CENTER);
+        GridPane.setValignment(ilot, VPos.CENTER);
 
-        ilot.setText();
+        ilot.setText(Integer.toString(ilot.getValeur()));
 
         ilot.setPrefSize(
               (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3, 
               (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 
         );
         
-        ilot.getStyleClass("gameIsle");
-         ilot.setStyleParam(longueur, largeur);
-         ilot.setOnAction();
+        //ilot.setStyleClass("gameIsle");
+        ilot.getStyleClass().add("gameIsle");
 
-        grid.add(ilot.getBtn(), ilot.getPosX(), ilot.getPosY(),1,1);
-        
+        ilot.setStyleParam();
+        ilot.setOnAction(e -> {
+            ilot.setActive(!(ilot.getActive()));
+          }
+        );
+
+        grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
+        ilot.setActive(false);
 
       }
 
@@ -193,7 +198,7 @@ public class Grille {
       return longueur;
     }
 
-    public int getLargeur(){
+    public static int getLargeur(){
       return largeur;
     }
 
@@ -207,5 +212,11 @@ public class Grille {
 
     public Pane getParentPane(){
       return parent;
+    }
+
+    public static void setAllIsleStyle(){
+      for (Ilot i : listeIlot){
+        i.setStyleParam();
+      }
     }
 }
