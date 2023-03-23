@@ -134,7 +134,6 @@ public class Ilot implements Comparable<Ilot>{
 					Pont p=liaisonP(ile);
 					if(p!=null && !ile.equals(this.bout)){
 						if (p.getNbTraits() == 1){
-							p.erase(fond);
 							p.affiche(fond,true);
 
 						}
