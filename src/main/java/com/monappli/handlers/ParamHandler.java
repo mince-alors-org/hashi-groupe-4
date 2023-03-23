@@ -1,15 +1,9 @@
 package com.monappli.handlers;
 
-import java.net.NetworkInterface;
-
-import com.monappli.Grille;
 import com.monappli.Parametre;
 import com.monappli.hashiScene.MainPanel;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;

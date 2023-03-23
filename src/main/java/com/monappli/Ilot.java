@@ -5,7 +5,6 @@ package com.monappli;
 //import java.beans.EventHandler;
 import java.util.ArrayList;
 
-import com.monappli.hashiScene.MainPanel;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
@@ -15,12 +14,6 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Color;
-
-import java.util.HashMap;
-import java.util.Map;
-import javax.naming.InitialContext;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 
 
 /**
