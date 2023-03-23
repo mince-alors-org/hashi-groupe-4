@@ -13,7 +13,7 @@ public  class Parametre implements Serializable{
     /**
      * Cette variable sert à connaitre de quelles couleurs seront les messages écrits de l'aplication
      */
-    private static Color couleur_texte=Color.WHITE;
+    private static Color couleur_texte=Color.BLACK;
     private static Color couleur_ilot= Color.WHITE;
     private static Color couleur_pont= Color.BLACK;
     /**
