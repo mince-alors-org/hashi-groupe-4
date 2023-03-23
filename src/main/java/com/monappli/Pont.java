@@ -74,7 +74,7 @@ public class Pont {
 	 * @return int taille du trai parapore au coordonée des l'îles
 	 */
 	public double tailleTrait(){
-		return Math.sqrt(Math.pow((this.getIle1().getPosX())-(this.getIle2().getPosX()),2)+Math.pow((getIle1().getPosY())-(getIle2().getPosY()),2));
+		return Math.sqrt(Math.pow((this.getIle1().getCanvasX())-(this.getIle2().getCanvasX()),2)+Math.pow((getIle1().getCanvasY())-(getIle2().getCanvasY()),2));
 	}
 	/**
 	 * permet de trouver le voisin de l'ile entrée en paramètre
@@ -100,8 +100,16 @@ public class Pont {
 	 * @param fond et le canva qui permet l'affichage
 	*/
 	public void affiche(Canvas fond){
+		this.incrementer();
 		GraphicsContext gc=fond.getGraphicsContext2D();
-		gc.fillRect(this.getIle1().getPosX(),this.getIle1().getPosY(),this.tailleTrait(),6);
+		System.out.println("Ilot 1 :");
+		System.out.println(this.getIle1().getCanvasX());
+		System.out.println(this.getIle1().getCanvasY());
+
+		System.out.println("Ilot 2 :");
+		System.out.println(this.getIle2().getCanvasX());
+		System.out.println(this.getIle2().getCanvasY());
+		gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
 
 	}
 

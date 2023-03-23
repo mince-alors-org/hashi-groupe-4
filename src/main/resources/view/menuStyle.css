@@ -5,7 +5,6 @@
 .mainButton{
     -fx-background-color: #0e34a0;
     -fx-background-radius: 30px;
-    -fx-text-fill: #ffffff; 
     -fx-pref-height:100.0px;
     -fx-pref-width:350.0px;
     -fx-font-size: 35pt;

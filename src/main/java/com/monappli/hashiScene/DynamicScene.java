@@ -6,15 +6,10 @@ import  javafx.scene.layout.Pane;
 
 abstract class DynamicScene implements Poster{ 
     private Pane parentPane;
-    private static Parametre param;
+    private Pane curPane;
 
     public DynamicScene(Pane parent){
         parentPane=parent;
-    }
-
-    public DynamicScene(Pane parent, Parametre new_param){
-        parentPane=parent;
-        param= new_param;
     }
 
     public Pane getParent(){
@@ -25,17 +20,16 @@ abstract class DynamicScene implements Poster{
         parentPane=parent;
     }
 
-
-    public static void setParameter(Parametre new_param){
-        param=new_param;
+    public Pane getCurPane(){
+        return curPane;
     }
 
-    public static Parametre getParameter(){
-        return param;
+    public void setCurPane(Pane pane){
+        curPane=pane;
     }
 
     public void setStyleParam(){
-        parentPane.setStyle("-fx-text-fill: "+ Parametre.toRGBForCSS(MainPanel.getParameter().getCouleur_texte())+";"+
-                            "\n-fx-background-color: "+ Parametre.toRGBForCSS(MainPanel.getParameter().getCouleur_fond())+";");
+        curPane.setStyle("-fx-text-base-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_texte())+";"+
+                            "\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_fond())+";");
     }
 }

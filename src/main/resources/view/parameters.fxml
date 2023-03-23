@@ -11,9 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane layoutX="30.0" layoutY="25.0" prefHeight="800.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="paramPane" layoutX="30.0" layoutY="25.0" prefHeight="800.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0">
          <children>
@@ -34,7 +35,7 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="69.0" prefWidth="435.0">
                      <children>
-                        <ColorPicker layoutX="42.0" layoutY="27.0" prefHeight="24.0" />
+                        <ColorPicker fx:id="textPicker" layoutX="42.0" layoutY="27.0" onAction="#textPickerClicked" prefHeight="24.0" />
                      </children>
                   </AnchorPane>
               </items>
@@ -48,7 +49,7 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ColorPicker layoutX="42.0" layoutY="27.0" prefHeight="24.0" />
+                        <ColorPicker fx:id="islePicker" layoutX="42.0" layoutY="27.0" onAction="#ilsePickerClicked" prefHeight="24.0" />
                      </children>
                   </AnchorPane>
                </items>
@@ -62,7 +63,7 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ColorPicker layoutX="42.0" layoutY="27.0" prefHeight="24.0" />
+                        <ColorPicker fx:id="bridgePicker" layoutX="42.0" layoutY="27.0" onAction="#bridgePickerClicked" prefHeight="24.0" />
                      </children>
                   </AnchorPane>
                </items>
@@ -90,7 +91,7 @@
                   </AnchorPane>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <ColorPicker layoutX="42.0" layoutY="27.0" prefHeight="24.0" />
+                        <ColorPicker fx:id="bgPicker" layoutX="42.0" layoutY="27.0" onAction="#bgPickerClicked" prefHeight="24.0" />
                      </children>
                   </AnchorPane>
                </items>
@@ -174,5 +175,10 @@
             </SplitPane>
          </children>
       </VBox>
+      <Button fx:id="applyButton" layoutX="310.0" layoutY="707.0" mnemonicParsing="false" onAction="#changeAll" prefHeight="60.0" prefWidth="100.0" text="Appliquer">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </Pane>
