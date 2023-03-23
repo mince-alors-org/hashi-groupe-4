@@ -16,15 +16,42 @@ public class Pont {
 	 * Nombre de trait entre les deux îles
 	 */
 	private int nombreTraits;
+
 	/**
 	 * Table contenant les deux îles relier par le pont
 	 */
 	private ArrayList <Ilot> coords;
+
+	/**
+	 * grille principale du niveau en cours
+	 */
+	private Grille grille ;
+
 	/**
 	 *
 	 * @param ile1 Depart du pont
 	 * @param ile2 Arriver du pont
 	*/
+	Pont(Ilot ile1, Ilot ile2, Grille grille){
+		this.nombreTraits=0;
+		coords =new ArrayList <Ilot>();
+		coords.add(ile1);
+		coords.add(ile2);
+		ile1.addPont(this);
+		ile2.addPont(this);
+		this.grille = grille ;
+	}
+	Pont(Ilot ile1, Ilot ile2,int nbTraits, Grille grille){
+		this.nombreTraits=nbTraits;
+		coords =new ArrayList <Ilot>();
+		coords.add(ile1);
+		coords.add(ile2);
+		ile1.addPontSolution(this);
+		ile2.addPontSolution(this);
+		ile1.calculValeur(nbTraits);
+		ile2.calculValeur(nbTraits);
+		this.grille = grille ;
+	}
 	Pont(Ilot ile1, Ilot ile2){
 		this.nombreTraits=0;
 		coords =new ArrayList <Ilot>();
@@ -138,6 +165,12 @@ public class Pont {
 	 * Incrémente le nombre de pont entre les deux îles
 	 */
 	public void incrementer(){
+		for( Pont p : this.grille.listePontExistant())
+		{
+			if(this.Croise(p)){
+				return ;
+			}
+		}
 		if(this.nombreTraits == 2)
 			this.nombreTraits=0;
 		else
