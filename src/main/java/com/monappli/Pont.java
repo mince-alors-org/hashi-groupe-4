@@ -218,7 +218,15 @@ public class Pont {
 		System.out.println(this.getIle2().getCanvasX());
 
 
-		gc.clearRect(x1,y1-20,x2-x1,y2+20);
+		if (this.estVerticale()){
+			gc.clearRect(x1-20,y1,x2+20,y2-y1);
+		}
+		else {
+			gc.clearRect(x1,y1-20,x2-x1,y2+20);
+		}
+
+
+
 	}
 
 	public void setNombreTraits(int nombreTraits) {
