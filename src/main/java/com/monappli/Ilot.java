@@ -27,7 +27,7 @@ import javafx.event.EventHandler;
  * Cette classe permet de représenter un Ilot
  * @author nmention
  */
-public class Ilot implements Comparable<Ilot>{
+public class Ilot extends Button implements Comparable<Ilot>{
 	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
@@ -116,7 +116,7 @@ public class Ilot implements Comparable<Ilot>{
 		/**
 		* Permet de gérer l'activiter d'une île
 		* @author Ambre,Morgane,Noé
-		* @param active
+		* @param act
 		*/
 		public void setActive(boolean act){
 			this.active=act;
@@ -133,7 +133,13 @@ public class Ilot implements Comparable<Ilot>{
 				else{
 					Pont p=liaisonP(ile);
 					if(p!=null && !ile.equals(this.bout)){
-						p.affiche(fond);
+						if (p.getNbTraits() == 1){
+							p.affiche(fond,true);
+
+						}
+						else {
+							p.affiche(fond,false);
+						}
 						this.setBorder(new Border(new BorderStroke(
 							Color.BLACK,
 							BorderStrokeStyle.SOLID,

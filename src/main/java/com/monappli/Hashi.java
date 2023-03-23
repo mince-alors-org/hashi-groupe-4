@@ -24,9 +24,6 @@ public class Hashi extends Application {
     @Override
     public void start(Stage stage) throws Exception { 
 
-        Parametre.setCouleur_texte(Color.PURPLE);
-        Parametre.setCouleur_ilot(Color.BLUE);
-
 
 
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/mainBG.fxml"));
