@@ -133,7 +133,14 @@ public class Ilot implements Comparable<Ilot>{
 				else{
 					Pont p=liaisonP(ile);
 					if(p!=null && !ile.equals(this.bout)){
-						p.affiche(fond);
+						if (p.getNbTraits() == 1){
+							p.erase(fond);
+							p.affiche(fond,true);
+
+						}
+						else {
+							p.affiche(fond,false);
+						}
 						this.setBorder(new Border(new BorderStroke(
 							Color.BLACK,
 							BorderStrokeStyle.SOLID,

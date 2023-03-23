@@ -99,21 +99,61 @@ public class Pont {
 	 * Permet d'afficher le pont entre deux ile
 	 * @param fond et le canva qui permet l'affichage
 	*/
-	public void affiche(Canvas fond){
+	public void affiche(Canvas fond,boolean doublon){
 		this.incrementer();
 		GraphicsContext gc=fond.getGraphicsContext2D();
 		System.out.println("Ilot 1 :");
-		System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle1().getCanvasY());
+		/*System.out.println(this.getIle1().getCanvasX());
+		System.out.println(this.getIle1().getCanvasY());*/
 
 		System.out.println("Ilot 2 :");
-		System.out.println(this.getIle2().getCanvasX());
-		System.out.println(this.getIle2().getCanvasY());
-		gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
+		/*System.out.println(this.getIle2().getCanvasX());
+		System.out.println(this.getIle2().getCanvasY());*/
+
+
+		if (doublon){
+			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-10);
+			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+10);
+		}
+		else {
+			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
+		}
+
+		int nbTraits = this.getNbTraits();
+		System.out.println(nombreTraits);
+
 
 	}
 
-  @Override
+	public void erase(Canvas fond){
+		GraphicsContext gc = fond.getGraphicsContext2D();
+
+		double x1 = Math.min(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
+
+		double y1 = Math.min(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+
+		double x2 = Math.max(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
+
+		double y2 = Math.max(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+		System.out.println(y1);
+		System.out.println(y2);
+
+
+		System.out.println();
+
+
+		System.out.println(this.getIle1().getCanvasX());
+		System.out.println(this.getIle2().getCanvasX());
+
+
+		gc.clearRect(x1,y1-20,x2-x1,y2+20);
+	}
+
+	public void setNombreTraits(int nombreTraits) {
+		this.nombreTraits = nombreTraits;
+	}
+
+	@Override
   public String toString() {
     return "Pont{" +
       "nombreTraits=" + nombreTraits;
