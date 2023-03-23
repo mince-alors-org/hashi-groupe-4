@@ -2,7 +2,6 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 

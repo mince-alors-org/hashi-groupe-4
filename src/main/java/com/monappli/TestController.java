@@ -4,7 +4,6 @@ package com.monappli;
 
 import com.monappli.handlers.DynamicEventHandler;
 
-import javafx.fxml.FXML;
 import javafx.scene.layout.Pane;
 
 public class TestController extends DynamicEventHandler{

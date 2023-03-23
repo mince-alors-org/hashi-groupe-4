@@ -4,9 +4,7 @@ import java.io.FileWriter;
 import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.awt.*;
 import javafx.scene.paint.Color;
 
 public class SauvegardeGrille{  
@@ -38,7 +36,7 @@ public class SauvegardeGrille{
      */
     public void ajoutCoup(Pont p1){ 
         if(p1 != null){
-            this.pileCoups.add(p1);
+            pileCoups.add(p1);
         }
     }
 
@@ -191,7 +189,7 @@ public class SauvegardeGrille{
         green = Integer.parseInt(couleur_texteStr[1].trim());
         blue = Integer.parseInt(couleur_texteStr[2].trim());
         Color couleur_texte = Color.rgb(red, green, blue);
-        param.setCouleur_texte(couleur_texte);
+        Parametre.setCouleur_texte(couleur_texte);
 
         //Extrait couleur_ilot
         String[] couleur_ilotStr = paramString.split("couleur_ilot=")[1].split(",");
@@ -199,7 +197,7 @@ public class SauvegardeGrille{
         green = Integer.parseInt(couleur_ilotStr[1].trim());
         blue = Integer.parseInt(couleur_ilotStr[2].trim());
         Color couleur_ilot = Color.rgb(red, green, blue);
-        param.setCouleur_ilot(couleur_ilot);
+        Parametre.setCouleur_ilot(couleur_ilot);
 
         //Extrait couleur_pont
         String[] couleur_pontStr = paramString.split("couleur_pont=")[1].split(",");
@@ -207,7 +205,7 @@ public class SauvegardeGrille{
         green = Integer.parseInt(couleur_pontStr[1].trim());
         blue = Integer.parseInt(couleur_pontStr[2].trim());
         Color couleur_pont = Color.rgb(red, green, blue);
-        param.setCouleur_pont(couleur_pont);
+        Parametre.setCouleur_pont(couleur_pont);
 
 
         //Extrait couleur_aide_erreur
@@ -216,7 +214,7 @@ public class SauvegardeGrille{
         green = Integer.parseInt(couleur_aide_erreurStr[1].trim());
         blue = Integer.parseInt(couleur_aide_erreurStr[2].trim());
         Color couleur_aide_erreur = Color.rgb(red, green, blue);
-        param.setCouleur_aide_erreur(couleur_aide_erreur);
+        Parametre.setCouleur_aide_erreur(couleur_aide_erreur);
 
         //Extrait couleur_fond
         String[] couleur_fondStr = paramString.split("couleur_fond=")[1].split(",");
@@ -224,34 +222,34 @@ public class SauvegardeGrille{
         green = Integer.parseInt(couleur_fondStr[1].trim());
         blue = Integer.parseInt(couleur_fondStr[2].trim());
         Color couleur_fond = Color.rgb(red, green, blue);
-        param.setCouleur_fond(couleur_fond);
+        Parametre.setCouleur_fond(couleur_fond);
 
         //Extrait taille_texte
         String taille_texteStr = paramString.split("taille_texte=")[1].split(",")[0];
         int taille_texte = Integer.parseInt(taille_texteStr);
-        param.setTaille_texte(taille_texte);
+        Parametre.setTaille_texte(taille_texte);
 
         //Extrait taille_fenetre
         String[] taille_fenetreStr = paramString.split("taille_fenetre=")[1].split(",");
         int width = Integer.parseInt(taille_fenetreStr[0].trim());
         int height = Integer.parseInt(taille_fenetreStr[1].trim());
         int[] taille_fenetre = {width, height};
-        param.setTaille_fenetre(taille_fenetre);
+        Parametre.setTaille_fenetre(taille_fenetre);
 
         //Extrait affichage_depassment_cardinalite
         String affichage_depassment_cardinaliteStr = paramString.split("affichage_depassment_cardinalite=")[1].split(",")[0];
         Boolean affichage_depassment_cardinalite = Boolean.parseBoolean(affichage_depassment_cardinaliteStr);
-        param.setAffichage_depassment_cardinalite(affichage_depassment_cardinalite);
+        Parametre.setAffichage_depassment_cardinalite(affichage_depassment_cardinalite);
 
         //Extrait affichage_groupe_ferme
         String affichage_groupe_fermeStr = paramString.split("affichage_groupe_ferme=")[1].split(",")[0];
         Boolean affichage_groupe_ferme = Boolean.parseBoolean(affichage_groupe_fermeStr);
-        param.setAffichage_groupe_ferme(affichage_groupe_ferme);
+        Parametre.setAffichage_groupe_ferme(affichage_groupe_ferme);
 
         //Extrait affichage_ponts_possible
         String affichage_ponts_possibleStr = paramString.split("affichage_ponts_possible=")[1].split(",")[0];
         Boolean affichage_ponts_possible = Boolean.parseBoolean(affichage_ponts_possibleStr);
-        param.setAffichage_ponts_possible(affichage_ponts_possible);
+        Parametre.setAffichage_ponts_possible(affichage_ponts_possible);
         return param;
     }
 

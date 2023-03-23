@@ -137,7 +137,7 @@ public class Grille {
       for(int i=0; i<longueur;i++)
         grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));
 
-      for(Ilot ilot : this.listeIlot ){
+      for(Ilot ilot : listeIlot ){
         GridPane.setHalignment(ilot, HPos.CENTER);
         GridPane.setValignment(ilot, VPos.CENTER);
 
