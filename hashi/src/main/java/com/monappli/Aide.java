@@ -92,7 +92,10 @@ public class Aide {
     }
 
 
-
+    /**
+    * Fonction qui vérifie si un ilôt a son bon nombre de ponts 
+    * @return Bool : Vrai ou faux en fonction de si l'ilôt a le nombre de ponts correspondant à celui qu'il devrait avoir 
+    */
     public boolean nbCardinalité() {
         int tmp;
         for(int i=0;i<grille.listeIlots.length;i++){
@@ -108,6 +111,10 @@ public class Aide {
         return false;
     }
 
+    /**
+    * Fonction qui détecte quand le jeu forme un endroit fermé qui ne peut plus être lié au reste du plateau sur le plateau
+    * @return : true ou false si le plateau présente au moment T au moins un endroit fermé
+    */
     public boolean endroitFerme() {
         for (Ilot ile : this.grille.getIlots()) {
             List<Ilot> voisins = ile.listeVoisin();
@@ -151,15 +158,17 @@ public class Aide {
         
     }
     /** 
-    * Corrige les erreurs trouvees dans le plateau de jeu
-    * @return void
-    */
+     * Corrige les erreurs trouvees dans le plateau de jeu
+     * @return void
+     */
     public void fixErreurs(){
         
     }  
 
     /**
-     * 
+     * Fonction qui peut indiquer lorsque le plateau présente des cas où les voisins de l'ilot concernés sont au nombre de la cardinalité de l'ilot divisée par 2
+     * @param : Ilot : Tous les ilôts de la grilles 
+     * @return : Bool : True si un des ilots de la grille de jeu présente le cas énoncé ci-dessus. FAlse sinon.
      */
      public boolean ile_debut(Ilot ile) {
         if (ile.nbVoisinRestant()== ile.getValeur()/2) {
@@ -170,7 +179,11 @@ public class Aide {
         }
      }
 
-
+    /**
+     * Fonction indiquant lorsque le plateau présente une île qui n'a qu'un seul voisin, et qui est donc facilement reliable sans possiblité d'erreur
+     * @param : Ilot : TChaque ilot de la grille sera traité par la fonction
+     * @return : Bool :True si un des îlots de la grille de jeu présente le cas. False sinon.
+     */
      public boolean ile_1_voisin(Ilot ile) {
         if (ile.listeVoisin().size()==1 && ile.listeVoisinRelie().isEmpty()) {
             return true;
@@ -179,7 +192,11 @@ public class Aide {
             return false;
         }
      }
-
+    /**
+     * Fonction qui vérifie le cas 3_coin_5_cote_7_milieu.
+     * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
+     * @return : Bool : True si au moins un des ilots de la grille confirme le cas. False sinon 
+     */
     public boolean cas_3_coin_5_cote_7_milieu(Ilot ile) {
         if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
             for (Ilot neighbor : ile.listeVoisin()) {
@@ -191,6 +208,11 @@ public class Aide {
         }
     }
 
+    /**
+     * Fonction qui vérifie le cas 4_avec_3_voisin_dont_2_1
+     * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
+     * @ @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
+     */
     public boolean cas_4_avec_3_voisin_dont_2_1(Ilot ile) {
         int compteur;
         // si l'ilot a un voisin qui a une cardinalité de 4 et 3 voisins
@@ -213,6 +235,11 @@ public class Aide {
         }
     }
 
+    /**
+     * Fonction qui vérifie le cas 6_milieu
+     * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
+     * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
+     */
     public boolean cas_6_milieu(Ilot ile) {
         if (ile.getValeur() == 6 && ile.listeVoisin().size() == 4) {
             for (Ilot voisin : ile.voisins) {
@@ -226,7 +253,11 @@ public class Aide {
             return false;
         }
     }
-
+    /**
+     * Fonction qui vérifie le cas isolation_iles
+     * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
+     * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
+     */
     public boolean isolation_iles(Ilot ile) {
         boolean condition = false;
         if (ile.getPosX == grille.taille-1 && ile.getValeur() == 2) {
@@ -257,6 +288,11 @@ public class Aide {
         return condition;
     }
 
+    /**
+     * Fonction qui vérifie le cas isolation_iles
+     * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
+     * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
+     */
     public boolean isolation_iles_3(Ilot ile) {
         if (ile.getValeur()-ile.nbVoisinRestant() > 0) {
             for (Ilot voisin : ile.listeVoisin()) {
