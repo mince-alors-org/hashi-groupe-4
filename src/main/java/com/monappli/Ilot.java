@@ -160,6 +160,12 @@ public class Ilot extends Button implements Comparable<Ilot>{
 					}
 					else{
 						System.out.println(p);
+						this.setBorder(new Border(new BorderStroke(
+								Color.BLACK,
+								BorderStrokeStyle.SOLID,
+								new CornerRadii(200),
+								new BorderWidths(4)
+						)));
 					}
 				}
 			}
