@@ -231,21 +231,12 @@ public class Grille {
     public Pane getParentPane(){
       return parent;
     }
-
-<<<<<<< HEAD
+    
     public static void setAllIsleStyle(){
       for (Ilot i : listeIlot){
         i.setStyleParam();
       }
-=======
-    public void setIlots(List<Ilot> list )
-    {
-      listeIlot = list ;
->>>>>>> 2e6b83f6fac92b780feddace07bbffdd2b52aed8
-  public static void setAllIsleStyle(){
-  for (Ilot i : listeIlot){
-    i.setStyleParam();
-  }
+    }
 
   public void setIlots(List<Ilot> list )
     {
