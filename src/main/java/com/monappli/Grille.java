@@ -69,7 +69,6 @@ public class Grille {
              String s = m.group();
 
              String[] results = s.split(" ");
-             System.out.println(s);
              int xa = Integer.parseInt(results[0]);
              int ya = Integer.parseInt(results[1]);
 
@@ -115,11 +114,11 @@ public class Grille {
             for (Ilot i :this.getIlots()) {
                 i.setCanvasX((1.0*parent.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
                 i.setCanvasY((1.0*parent.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
-                System.out.println(i.getCanvasX());
-                System.out.println(i.getCanvasY());
             }
-            System.out.println( (1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
-            System.out.println( (1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
+            System.out.println( "MilieuX :" +(1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
+            System.out.println( "MilieuY: " +(1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
+            System.out.println("MilieuXC :"+ (this.getIlots().get(1).getCanvasX()));
+            System.out.println("MilieuYC :"+(this.getIlots().get(1).getCanvasY()));
 
 
 
@@ -132,8 +131,9 @@ public class Grille {
     public GridPane initGrid(){
       GridPane grid= new GridPane();
 
-      for(int i=0; i<largeur; i++)
+      for(int i=0; i<largeur; i++){
         grid.getColumnConstraints().add(new ColumnConstraints(1.0*parent.getPrefWidth() / (largeur)));
+      }
       
       for(int i=0; i<longueur;i++)
         grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));

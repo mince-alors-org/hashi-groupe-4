@@ -27,7 +27,7 @@ import javafx.event.EventHandler;
  * Cette classe permet de représenter un Ilot
  * @author nmention
  */
-public class Ilot implements Comparable<Ilot>{
+public class Ilot extends Button implements Comparable<Ilot>{
 	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
