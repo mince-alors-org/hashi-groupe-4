@@ -2,6 +2,8 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
+
 import java.util.ArrayList;
 
 
@@ -168,12 +170,14 @@ public class Pont {
 	}
 
 	/**
-	 * Permet d'afficher le pont entre deux ile
-	 * @param fond et le canva qui permet l'affichage
+	 * Permet d'afficher le pont entre deux iles
+	 * @param doublon true si il existe déjà un trait entre ces deux îles
+	 * @param fond est le canvas qui permet l'affichage
 	*/
 	public void affiche(Canvas fond,boolean doublon){
 		this.incrementer();
 		GraphicsContext gc=fond.getGraphicsContext2D();
+		gc.setStroke(Parametre.getCouleur_pont());
 		System.out.println("Ilot 1 :");
 		/*System.out.println(this.getIle1().getCanvasX());
 		System.out.println(this.getIle1().getCanvasY());*/
@@ -184,10 +188,18 @@ public class Pont {
 
 
 		if (doublon){
-			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-10);
-			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+10);
+			if (this.estHorizontale()){
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-10);
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+10);
+			}
+			else {
+				gc.strokeLine(this.getIle1().getCanvasX() -10,this.getIle1().getCanvasY(),this.getIle2().getCanvasX()-10,this.getIle2().getCanvasY());
+				gc.strokeLine(this.getIle1().getCanvasX()+10,this.getIle1().getCanvasY(),this.getIle2().getCanvasX()+10,this.getIle2().getCanvasY());
+			}
+
 		}
 		else {
+
 			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
 		}
 
@@ -197,6 +209,11 @@ public class Pont {
 
 	}
 
+
+	/**
+	 * Permet d'effacer les traits entre les Ilots sur le Canvas
+	 * @param fond le canvas à manipuler
+	 */
 	public void erase(Canvas fond){
 		GraphicsContext gc = fond.getGraphicsContext2D();
 

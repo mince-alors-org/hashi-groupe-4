@@ -116,7 +116,7 @@ public class Ilot implements Comparable<Ilot>{
 		/**
 		* Permet de gérer l'activiter d'une île
 		* @author Ambre,Morgane,Noé
-		* @param active
+		* @param act
 		*/
 		public void setActive(boolean act){
 			this.active=act;
