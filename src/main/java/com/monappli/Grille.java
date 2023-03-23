@@ -226,4 +226,9 @@ public class Grille {
     public Pane getParentPane(){
       return parent;
     }
+
+    public void setIlots(List<Ilot> list )
+    {
+      listeIlot = list ;
+    }
 }
