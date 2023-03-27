@@ -1,4 +1,5 @@
 com/monappli/hashiScene/LevelScene.class
+com/monappli/handlers/LevelSelectHandler.class
 com/monappli/handlers/ParamHandler.class
 com/monappli/hashiScene/Poster.class
 com/monappli/handlers/GameHandler.class
@@ -15,8 +16,8 @@ com/monappli/hashiScene/DynamicScene.class
 com/monappli/Pont.class
 com/monappli/handlers/TutorialEventHandler.class
 com/monappli/Hashi.class
-com/monappli/SauvegardeGrille.class
 com/monappli/hashiScene/PopUp.class
+com/monappli/SauvegardeGrille.class
 com/monappli/handlers/Handler.class
 com/monappli/App.class
 com/monappli/Aide.class

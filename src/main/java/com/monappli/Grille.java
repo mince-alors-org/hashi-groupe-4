@@ -19,7 +19,7 @@ import javafx.scene.layout.RowConstraints;
 /**
  * Cette classe permet de représenter une Grille
  *
- * @author Morgane Pechon
+ * @author Morgane Pechon et Matthis Collard
  */
 public class Grille {
     /**
@@ -39,12 +39,14 @@ public class Grille {
      * @author nmention
      * @param nomF nom du fichier à lire pour creer la grille
      */
-    public Grille(String nomF, Pane parent, Canvas fond) {
+    public Grille(String nomF, Pane parent, Canvas canvas) {
        this.parent=parent;
-       this.fond=fond;
+       this.fond=canvas;
        listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
+
+
        // Créer l'objet File Reader
        FileReader fr = null;
        try {
@@ -82,9 +84,9 @@ public class Grille {
 
 
 
-             Ilot a = new Ilot(xa,ya,fond);
+             Ilot a = new Ilot(xa,ya,canvas);
 
-             Ilot b = new Ilot(xb,yb,fond);
+             Ilot b = new Ilot(xb,yb,canvas);
              if (listeIlot.isEmpty()){
                listeIlot.add(a);
                listeIlot.add(b);
@@ -164,7 +166,6 @@ public class Grille {
 
             else if (ileAct != null){
               if (Grille.sontVoisin(ileAct, ilot) ){
-                System.out.println("oui");
                 System.out.println(ilot.getPonts());
 
                 Pont pont = ileAct.liaisonP(ilot);
@@ -178,10 +179,8 @@ public class Grille {
                   }
                   changeActive(ilot);
                 }
-                else {
-                  ileAct.setActive(false);
-                  ilot.setActive(false);
-                }
+                ileAct.setActive(false);
+                ilot.setActive(false);
               }
               else {
                 changeActive(ilot);

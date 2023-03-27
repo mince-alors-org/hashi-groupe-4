@@ -1,5 +1,6 @@
 package com.monappli.hashiScene;
 
+import javafx.scene.Parent;
 import  javafx.scene.layout.Pane;
 import javafx.fxml.*;
 
@@ -21,15 +22,15 @@ public class MainPanel extends DynamicScene {
         this.setStyleParam();
     }
 
-    public void  pasteAndHandle(String name, Handler hand) throws Exception  {
+    public void  pasteAndHandle(String name, Handler handler) throws Exception  {
         FXMLLoader loader= new FXMLLoader(getClass().getResource(name));
-        loader.setController(hand);
+        loader.setController(handler);
 
         Pane newP= loader.load();
 
         this.setCurPane(newP);
-        hand.setCurPane(newP);
-        newP.setUserData(hand);
+        handler.setCurPane(newP);
+        newP.setUserData(handler);
 
         this.getParent().getChildren().setAll(newP);
         this.setStyleParam();

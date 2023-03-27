@@ -95,7 +95,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		this.setStyle(			 "-fx-background-radius: 200px;"+
 									"\n-fx-background-insets: 0 0 0 0;"+
 									"\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_ilot())+";"+
-									"\n-fx-font:"+ (int)(1.0*24/Math.pow((Grille.largeur>Grille.longueur ? Grille.largeur : Grille.longueur) / (Grille.largeur>Grille.longueur ? Grille.longueur : Grille.largeur  ),1.0/4)) +" px;"
+									"\n-fx-font:"+ (int)(1.0*24/(1.0*Grille.longueur/6)) +" px;"
 									);
 	}
 

@@ -45,7 +45,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Button id="levelButton" mnemonicParsing="false" text="levelButton" />
+                              <Button id="levelButton" fx:id="lvlTitle" mnemonicParsing="false" text="levelButton" />
                               <Button id="restButton" fx:id="restButton" mnemonicParsing="false" onAction="#restClicked" styleClass="optionalGameButton" />
                            </children>
                            <VBox.margin>
@@ -62,16 +62,16 @@
                            <children>
                               <Canvas fx:id="fond" height="420.0" width="435.0" />
                            </children></Pane>
+                        <ToolBar prefHeight="194.0" prefWidth="450.0" style="-fx-background-color: transparent;">
+                          <items>
+                              <Button id="undo" fx:id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" translateX="140.0" />
+                            <Button id="redo" fx:id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" translateX="170.0" />
+                          </items>
+                        </ToolBar>
                      </children>
                   </VBox>
                </children>
             </Pane>
-            <ToolBar prefHeight="194.0" prefWidth="450.0">
-              <items>
-                  <Button id="undo" fx:id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" translateX="140.0" />
-                <Button id="redo" fx:id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" translateX="170.0" />
-              </items>
-            </ToolBar>
          </children>
       </VBox>
    </children>

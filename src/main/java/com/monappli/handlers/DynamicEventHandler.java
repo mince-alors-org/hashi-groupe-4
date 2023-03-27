@@ -23,5 +23,5 @@ public class DynamicEventHandler implements Handler{
     public void setCurPane(Pane curPane){
         this.curPane=curPane;
     }
-
+    
 }

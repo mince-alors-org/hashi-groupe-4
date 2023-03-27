@@ -1,12 +1,12 @@
 package com.monappli.handlers;
 
-import com.monappli.Grille;
+import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.*;
-import javafx.scene.canvas.Canvas;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -35,9 +35,12 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
     }
 
     public void playClicked() throws Exception {
-        MainPanel game= new MainPanel(this.getParentPane());
-        game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParentPane()));
-        new Grille("../niveaux/1-9.niv", (Pane)game.getParent().lookup("#gridPlacement"), (Canvas)game.getParent().lookup("#fond"));
+        LevelScene game= new LevelScene(this.getParentPane());
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(menuPane));
+        Pane select= (Pane)game.getCurPane().lookup("#selectPane");
+        GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        select.getChildren().add(selGrid);
+
         
 
         System.out.println("Je suis jeux Libre");
