@@ -36,7 +36,7 @@ public class Grille {
 
     /**
      * Initialisation de la grille
-     * @author nmention
+     * @author Collard Matthis et Morgane Penchon
      * @param nomF nom du fichier à lire pour creer la grille
      */
     public Grille(String nomF, Pane parent, Canvas canvas) {

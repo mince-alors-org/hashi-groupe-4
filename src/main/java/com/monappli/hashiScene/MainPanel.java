@@ -1,17 +1,34 @@
 package com.monappli.hashiScene;
 
-import javafx.scene.Parent;
 import  javafx.scene.layout.Pane;
 import javafx.fxml.*;
 
 import com.monappli.handlers.*;
 
+
+/**
+ * This class allows to change the current graphic interface
+ * @see DynamicScene
+ * @author Matthis Collard
+ */
 public class MainPanel extends DynamicScene {
 
+    /**
+     * Initialization of MainPanel
+     * @author Collard Matthis 
+     * @param parent 
+     */
     public MainPanel(Pane parent){
         super(parent);
     }
     
+    /**
+     * Change all the parent's children to a new Pane loaded thanks to the name of the FXML file. Resulting in changing the whole interface
+     * @author Collard Matthis 
+     * @param name Name of the FXML file
+     * @throws Exception if the FXMLLoader can't load the resource
+     * @see FXMLLoader
+     */
     public void paste(String name) throws Exception{
         FXMLLoader loader= new FXMLLoader(getClass().getResource(name));
 
@@ -22,6 +39,15 @@ public class MainPanel extends DynamicScene {
         this.setStyleParam();
     }
 
+    /**
+     * Change all the parent's children to a new Pane loaded thanks to the name of the FXML file. Resulting in changing the whole interface.
+     * And sets a new controller to this new Pane.
+     * @author Collard Matthis 
+     * @param name Name of the FXML file
+     * @param handler Handler specified to manage events occuring on this pane
+     * @throws Exception if the FXMLLoader can't load the resource
+     * @see FXMLLoader
+     */
     public void  pasteAndHandle(String name, Handler handler) throws Exception  {
         FXMLLoader loader= new FXMLLoader(getClass().getResource(name));
         loader.setController(handler);
@@ -37,6 +63,15 @@ public class MainPanel extends DynamicScene {
         
     }
 
+    /**
+     * Change all the parent's children to the new Pane in the parameters. Resulting in changing the whole interface.
+     * And sets a new controller to this new Pane.
+     * @author Collard Matthis 
+     * @param pane Pane to be set on
+     * @param handler Handler specified to manage events occuring on this pane
+     * @throws Exception if the FXMLLoader can't load the resource
+     * @see FXMLLoader
+     */
     public void  pasteAndHandle(Pane pane, Handler hand) throws Exception  {
         this.setCurPane(pane);
         hand.setCurPane(pane);

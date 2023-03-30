@@ -1,9 +1,7 @@
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/ParamHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
-/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/Poster.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/MainPanel.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/GameHandler.java
-/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/TestController.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/LevelScene.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/PopUp.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/LevelSelectHandler.java
@@ -24,5 +22,4 @@
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Main.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Ilot.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Classement.java
-/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/TestButton.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Aide.java
