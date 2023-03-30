@@ -48,8 +48,6 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	private ArrayList<Pont> ponts;
 
 	private ArrayList<Pont> pontsSolution;
-	private Canvas fond;
-	private static Ilot ile=null;
 	/**
 	 *
 	 * @param posX position de l'ilot courant dans l'axe des abscisses (X)
@@ -72,14 +70,12 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		this.valeur=0;
 		canvasX = 0;
 		canvasY = 0;
-		this.fond=fond;
 		this.posX = posX;
 		this.posY = posY;
 		ponts = new ArrayList<>();
 		pontsSolution = new ArrayList<>();
 	}
 
-	private Ilot bout;
 	/**
 	* Pour l'affichage
 	*/
