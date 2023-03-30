@@ -25,33 +25,12 @@ public class Pont implements Serializable{
 	/**
 	 * grille principale du niveau en cours
 	 */
-	private Grille grille ;
 
 	/**
 	 *
 	 * @param ile1 Depart du pont
 	 * @param ile2 Arriver du pont
 	*/
-	Pont(Ilot ile1, Ilot ile2, Grille grille){
-		this.nombreTraits=0;
-		coords =new ArrayList <Ilot>();
-		coords.add(ile1);
-		coords.add(ile2);
-		ile1.addPont(this);
-		ile2.addPont(this);
-		this.grille = grille ;
-	}
-	Pont(Ilot ile1, Ilot ile2,int nbTraits, Grille grille){
-		this.nombreTraits=nbTraits;
-		coords =new ArrayList <Ilot>();
-		coords.add(ile1);
-		coords.add(ile2);
-		ile1.addPontSolution(this);
-		ile2.addPontSolution(this);
-		ile1.calculValeur(nbTraits);
-		ile2.calculValeur(nbTraits);
-		this.grille = grille ;
-	}
 	Pont(Ilot ile1, Ilot ile2){
 		this.nombreTraits=0;
 		coords =new ArrayList <Ilot>();
@@ -171,12 +150,6 @@ public class Pont implements Serializable{
 	 * Incrémente le nombre de pont entre les deux îles
 	 */
 	public void incrementer(){
-		for( Pont p : this.grille.listePontExistant())
-		{
-			if(this.croise(p)){
-				return ;
-			}
-		}
 		if(this.nombreTraits == 2)
 			this.nombreTraits=0;
 		else
@@ -206,7 +179,7 @@ public class Pont implements Serializable{
 	 * @param doublon true si il existe déjà un trait entre ces deux îles
 	 * @param fond est le canvas qui permet l'affichage
 	*/
-	public void affiche(Canvas fond,boolean doublon){
+	public void affiche(Canvas fond){
 
 
 		GraphicsContext gc=fond.getGraphicsContext2D();
@@ -222,7 +195,7 @@ public class Pont implements Serializable{
 		System.out.println(this.getIle2().getCanvasY());*/
 
 
-		if (doublon){
+		if (this.getNbTraits()==2){
 			if (this.estHorizontale()){
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-10);
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+10);
@@ -233,14 +206,11 @@ public class Pont implements Serializable{
 			}
 
 		}
-		else if (this.getNbTraits()!=2) {
+		else if (this.getNbTraits()==1) {
 
 			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
 		}
-		this.incrementer();
-
-		int nbTraits = this.getNbTraits();
-		System.out.println(nombreTraits);
+		System.out.println(this.getNbTraits());
 
 
 	}

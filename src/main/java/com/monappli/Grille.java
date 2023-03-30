@@ -36,7 +36,7 @@ public class Grille {
 
     /**
      * Initialisation de la grille
-     * @author Collard Matthis et Morgane Penchon
+     * @author Morgane Penchon
      * @param nomF nom du fichier à lire pour creer la grille
      */
     public Grille(String nomF, Pane parent, Canvas canvas) {
@@ -101,9 +101,9 @@ public class Grille {
                  listeIlot.add(b);
                }
              }
-             new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),this);
+             new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)));
              if(nbTraits!=0){
-              new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits,this);
+              new Pont(listeIlot.get(listeIlot.indexOf(a)),listeIlot.get(listeIlot.indexOf(b)),nbTraits);
              }
 
            }
@@ -131,33 +131,42 @@ public class Grille {
     }
 
 
+    /**
+     * Creates a grid from a list of isle and set their onAction behaviors
+     * @see Grille#listeIlot
+     * @return The playing grid, with isle at their places
+     * @author Matthis Collard
+     */
     public GridPane initGrid(){
       GridPane grid= new GridPane();
 
+      //Sets sizes of columns from size of pane to be added on
       for(int i=0; i<largeur; i++){
         grid.getColumnConstraints().add(new ColumnConstraints(1.0*parent.getPrefWidth() / (largeur)));
       }
       
+      //Sets sizes of rows from size of pane to be added on
       for(int i=0; i<longueur;i++)
         grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));
 
+      
       for(Ilot ilot : listeIlot ){
+        //Set the isle at the center
         GridPane.setHalignment(ilot, HPos.CENTER);
         GridPane.setValignment(ilot, VPos.CENTER);
 
         ilot.setText(Integer.toString(ilot.getValeur()));
-
+        //Set the size of the isle to ~0.77 the size of the cell (too big if not)
         ilot.setPrefSize(
               (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3, 
               (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 
         );
-        
-        ilot.getStyleClass().add("gameIsle");
 
+        //Set style of the ilse from Parametre
         ilot.setStyleParam();
-        System.out.println(ilot.getPonts());
+
+        //Set Action
         ilot.setOnAction(e -> {
-            System.out.println(ilot.getPonts());
             Ilot ileAct = this.getIlotActif() ;
 
             if (ileAct == ilot){
@@ -165,18 +174,17 @@ public class Grille {
             }
 
             else if (ileAct != null){
+              //If the active and clicked isle are neighbours
               if (Grille.sontVoisin(ileAct, ilot) ){
-                System.out.println(ilot.getPonts());
 
+                //Get what could be the bridge
                 Pont pont = ileAct.liaisonP(ilot);
+                System.out.println(pont);
+                //If it doesn't cross another bridge
                 if (!this.croisePont(pont)){
 
-                  if (pont.getNbTraits() == 1){
-                    pont.affiche(fond,true);
-                  }
-                  else {
-                    pont.affiche(fond,false);
-                  }
+		              pont.incrementer();
+                  pont.affiche(fond);
                   changeActive(ilot);
                 }
                 ileAct.setActive(false);
@@ -186,17 +194,6 @@ public class Grille {
                 changeActive(ilot);
               }
             }
-
-          /*for( Pont p : this.listePontExistant())
-            {
-              if(this.croise(p)){
-                return ;
-              }
-            }
-            if(this.nombreTraits == 2)
-              this.nombreTraits=0;
-            else
-              this.nombreTraits++;*/
             else 
               ilot.setActive(!(ilot.getActive()));
           }
