@@ -5,7 +5,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * Interface that helps gathering all the event handlers
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public interface Handler { 
     public Pane getCurPane();

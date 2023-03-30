@@ -28,7 +28,7 @@
       </HBox>
       <HBox alignment="CENTER" layoutY="107.0" prefHeight="57.0" prefWidth="200.0">
          <children>
-            <Button id="backButton" fx:id="backButton" alignment="CENTER" mnemonicParsing="false" styleClass="optionalGameButton" text="BackButton" />
+            <Button id="backButton" fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#backClicked" styleClass="optionalGameButton" text="BackButton" />
          </children>
       </HBox>
       <HBox alignment="CENTER" layoutY="150.0" prefHeight="100.0" prefWidth="450.0" spacing="20.0">

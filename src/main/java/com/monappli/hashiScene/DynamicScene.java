@@ -8,7 +8,7 @@ import  javafx.scene.layout.Pane;
 /**
  * This class allows the creation of a graphic interface
  * 
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 abstract class DynamicScene { 
     
@@ -34,7 +34,7 @@ abstract class DynamicScene {
 
     /**
      * Returns the parent Pane of the currentPane
-     * @return parentPane
+     * @return <code>Pane</code> parentPane
      * 
      */
     public Pane getParent(){
@@ -52,7 +52,7 @@ abstract class DynamicScene {
 
     /**
      * Returns the current Pane (usually on scene)
-     * @return curPane
+     * @return <code>Pane</code> curPane
      * 
      */
     public Pane getCurPane(){

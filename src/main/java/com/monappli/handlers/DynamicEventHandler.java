@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 /**
  * This class is the core of our different event handlers
  * @see Handler
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 
 public class DynamicEventHandler implements Handler{
@@ -85,7 +85,6 @@ public class DynamicEventHandler implements Handler{
     public void quitClicked(){
         Stage stage = (Stage) powerButton.getScene().getWindow();
         stage.close();
-        System.out.println("Je quitte");
     }
  
     /**
@@ -94,7 +93,7 @@ public class DynamicEventHandler implements Handler{
      * @see PopUp
      * @see ParamHandler
      * @throws Exception if the PopUp can't load
-     * @author Matthis Collard
+     * @author Ambre Collard
      */
     public void paramClicked() throws Exception{
         if (backGround.lookup("#pop") == null){
@@ -102,7 +101,6 @@ public class DynamicEventHandler implements Handler{
             ParamHandler paramH= new GameParamHandler(this.backGround);
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
-            System.out.println("Je suis Paramètre");
         }
     }
 }

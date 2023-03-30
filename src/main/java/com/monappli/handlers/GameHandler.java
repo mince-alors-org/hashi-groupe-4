@@ -1,20 +1,17 @@
 package com.monappli.handlers;
 
+import com.monappli.hashiScene.LevelScene;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 /**
  * In game handler 
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public class GameHandler extends DynamicEventHandler {
-
-    /**
-     * Current game background pane
-     */
-    @FXML
-    private Pane backGround;
 
     /**
      * Parameters button
@@ -40,6 +37,9 @@ public class GameHandler extends DynamicEventHandler {
     @FXML
     private Button helpButton;
 
+    @FXML
+    private Button lvlTitle;
+
     /**
      * Initialization of GameHandler
      * @param parent parent pane of the currently handled pane
@@ -60,5 +60,13 @@ public class GameHandler extends DynamicEventHandler {
     }
     public void undoClicked(){
         System.out.println("Je suis undo");
+    }
+
+    public void lvlTitleClicked() throws Exception{
+        LevelScene game= new LevelScene(this.getParentPane());
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane()));
+        Pane select= (Pane)game.getCurPane().lookup("#selectPane");
+        GridPane selGrid= LevelScene.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        select.getChildren().add(selGrid);
     }
 }

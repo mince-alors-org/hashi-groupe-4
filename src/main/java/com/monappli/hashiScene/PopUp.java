@@ -16,14 +16,14 @@ import com.monappli.handlers.*;
 /**
  * This class allows to make a Pop-Up in front of the current on screen Pane
  * @see DynamicScene
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public class PopUp extends DynamicScene{
 
     /**
      * Initialization of PopUp
      * @param parent 
-     * @author Collard Matthis 
+     * @author Collard Ambre 
      */
     public PopUp(Pane parent){
         super(parent);
@@ -31,7 +31,7 @@ public class PopUp extends DynamicScene{
 
     /**
      * Adds to the parent's children a new Pane loaded thanks to the name of the FXML file. Resulting Popping-up this pane
-     * @author Collard Matthis 
+     * @author Collard Ambre 
      * @param name Name of the FXML file
      * @throws Exception if the FXMLLoader can't load the resource
      * @see FXMLLoader
@@ -49,7 +49,7 @@ public class PopUp extends DynamicScene{
     /**
      * Adds to the parent's children a new Pane loaded thanks to the name of the FXML file. Resulting Popping-up this pane
      * And sets a new controller to this new Pane.
-     * @author Collard Matthis 
+     * @author Collard Ambre 
      * @param name Name of the FXML file
      * @param handler Handler specified to manage events occuring on this pane
      * @throws Exception if the FXMLLoader can't load the resource
@@ -76,7 +76,7 @@ public class PopUp extends DynamicScene{
      * Slightly different from setStyleParam from DynamicScene because of the transparent background
      * @see DynamicScene#setStyleParam()
      * @see Parametre
-     * @author Collard Matthis 
+     * @author Collard Ambre 
      */
     public void setStyleParam(){
 

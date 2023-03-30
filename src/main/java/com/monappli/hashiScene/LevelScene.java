@@ -27,7 +27,7 @@ import javafx.scene.canvas.Canvas;
 /**
  * This class allows to create a special pane and grid for selecting a level
  * @see MainPanel
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public class LevelScene extends MainPanel {
     /**
@@ -57,9 +57,9 @@ public class LevelScene extends MainPanel {
      * @param w Width of the pane where the grid will be added 
      * @param h Height of the pane where the grid will be added
      * @param backPane Background pane, used to change the whole interface when clicking on a level Button
-     * @return The GridPane created from the parameters
+     * @return <code>GridPane</code> the GridPane created from the parameters
      * @throws Exception
-     * @author Matthis Collard
+     * @author Ambre Collard
      */
     public static GridPane  initGrid(int nbLvl, int w, int h, Pane backPane) throws Exception{
         GridPane grid= new GridPane();
@@ -77,9 +77,9 @@ public class LevelScene extends MainPanel {
         for(int i=0; i<size;i++)
             grid.getRowConstraints().add(new RowConstraints(1.0*h / (size)));
         
-        
-        for (int i=size*size*(LevelSelectHandler.curDiff-1); i< nbLvl && i < size*size*LevelSelectHandler.curDiff; i++){
+        for (int i=size*size*(LevelSelectHandler.curPage-1); i< nbLvl && i < size*size*LevelSelectHandler.curPage; i++){
             Button btn = new Button(Integer.toString(i+1));
+
 
             /*
              * sets the button to the center of the cell
@@ -138,8 +138,8 @@ public class LevelScene extends MainPanel {
      * For example:
      *    Level 3 of difficulty 2 would be named : 2-3
      * @param diff Difficulty the program wants to search
-     * @return the number of levels in this difficulty
-     * @author Matthis Collard
+     * @return <code>int</code> the number of levels in this difficulty
+     * @author Ambre Collard
      */
     public static int countLvl(int diff){
         File directory=new File("src/main/java/com/monappli/niveaux");

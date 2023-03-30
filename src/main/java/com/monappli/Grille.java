@@ -19,7 +19,7 @@ import javafx.scene.layout.RowConstraints;
 /**
  * Cette classe permet de représenter une Grille
  *
- * @author Morgane Pechon et Matthis Collard
+ * @author Morgane Pechon et Ambre Collard
  */
 public class Grille {
     /**
@@ -119,10 +119,6 @@ public class Grille {
                 i.setCanvasX((1.0*parent.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
                 i.setCanvasY((1.0*parent.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
             }
-            System.out.println( "MilieuX :" +(1.0*parent.getPrefWidth() / (largeur)) * (this.getIlots().get(1).getPosX()+0.5)  );
-            System.out.println( "MilieuY: " +(1.0*parent.getPrefHeight() / (longueur)) * (this.getIlots().get(1).getPosY()+0.5)  );
-            System.out.println("MilieuXC :"+ (this.getIlots().get(1).getCanvasX()));
-            System.out.println("MilieuYC :"+(this.getIlots().get(1).getCanvasY()));
 
 
 
@@ -134,8 +130,9 @@ public class Grille {
     /**
      * Creates a grid from a list of isle and set their onAction behaviors
      * @see Grille#listeIlot
-     * @return The playing grid, with isle at their places
-     * @author Matthis Collard
+     * @see Ilot
+     * @return <code>GridPane</code> the playing grid, with isle at their places
+     * @author Ambre Collard
      */
     public GridPane initGrid(){
       GridPane grid= new GridPane();
@@ -166,6 +163,8 @@ public class Grille {
         ilot.setStyleParam();
 
         //Set Action
+        //During this part, setActive and change active are manly for graphic purposes
+        //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
         ilot.setOnAction(e -> {
             Ilot ileAct = this.getIlotActif() ;
 
@@ -179,10 +178,8 @@ public class Grille {
 
                 //Get what could be the bridge
                 Pont pont = ileAct.liaisonP(ilot);
-                System.out.println(pont);
                 //If it doesn't cross another bridge
                 if (!this.croisePont(pont)){
-
 		              pont.incrementer();
                   pont.affiche(fond);
                   changeActive(ilot);
@@ -198,7 +195,7 @@ public class Grille {
               ilot.setActive(!(ilot.getActive()));
           }
         );
-
+        //Add the isle to the grid
         grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
         ilot.setActive(false);
 
@@ -219,6 +216,11 @@ public class Grille {
       return false;
     }
 
+    /**
+     * Calculate width of the isle grid
+     * @return <code>int</code> width of the grid
+     * @author Ambre Collard
+     */
     public int calculateWidth(){
       int max=-1;
       for (Ilot ilot : listeIlot){
@@ -227,6 +229,11 @@ public class Grille {
       return max+1;
     }
 
+    /**
+     * Calculate width of the isle grid
+     * @return height of the grid 
+     * @author Ambre Collard
+     */
     public int calculateHeight(){
       int max=-1;
       for (Ilot ilot : listeIlot){
@@ -238,7 +245,7 @@ public class Grille {
     /**
      * Permet d'obtenir une liste de tous les ponts ayant au moins 1 en nb de ponts.
      *
-     * @return Un ArrayList de Pont
+     * @return Un <code>ArrayList</code> de Pont
      */
     public List<Pont> listePontExistant()
     {
@@ -254,14 +261,6 @@ public class Grille {
       return ret;
     }
 
-    public int getLongeur(){
-      return longueur;
-    }
-
-    public static int getLargeur(){
-      return largeur;
-    }
-
     public List<Ilot> getIlots(){
       return listeIlot;
     }
@@ -274,6 +273,11 @@ public class Grille {
       return parent;
     }
     
+    /**
+     * Sets the style of the isle thanks to Parametre
+     * @see Parametre
+     * @author Ambre Collard
+     */
     public static void setAllIsleStyle(){
       for (Ilot i : listeIlot){
         i.setStyleParam();
@@ -285,6 +289,11 @@ public class Grille {
       listeIlot = list ;
     }
 
+    /**
+     * Returns the the currently in game active isle 
+     * @return <code>Ilot</code> the currently in game active isle 
+     * @author Ambre Collard
+     */
     public Ilot getIlotActif(){
       for (Ilot i : listeIlot){
         if (i.getActive())
@@ -293,6 +302,13 @@ public class Grille {
       return null;
     }
 
+    /**
+     * Verifies if two isle are neighbours
+     * @param il1
+     * @param il2
+     * @return <code>true</code> if the two isle are neighbours, <code>false</code> if not
+     * @author Ambre Collard
+     */
     public static boolean sontVoisin(Ilot il1, Ilot il2){
       if (il1 == il2){
         return false;
@@ -303,7 +319,6 @@ public class Grille {
               i.getPosX() == il1.getPosX() && 
               i.getPosY() > (il1.getPosY() < il2.getPosY() ? il1 : il2).getPosY() && 
               i.getPosY() < (il1.getPosY() > il2.getPosY() ? il1 : il2).getPosY()){
-            System.out.println(i.getPosY() + " "+ il1.getPosY() + " "+ il2.getPosY());
             return false;
           }
         }
@@ -323,6 +338,12 @@ public class Grille {
       return false;
     }
 
+    /**
+     * For all bridges, verify if the bridge in parameters doesn't cross any of the already existing bridges
+     * @param pont Bridge to verify
+     * @return <code>true</code> if the bridge crosses another one, <code>false</code> if not
+     * @author Ambre Collard
+     */
     public boolean croisePont(Pont pont){
       for (Ilot i : listeIlot){
         for (Pont p : i.getPonts()){
@@ -333,8 +354,14 @@ public class Grille {
       return false;
     }
 
+    /**
+     * Sets a new active isle while deactivate the currently active one
+     * @param i <code>Ilot</code> to change to active
+     * @author Collard Ambre
+     */
     public void changeActive(Ilot i){
-      this.getIlotActif().setActive(false);
+      if (this.getIlotActif() != null)
+        this.getIlotActif().setActive(false);
       i.setActive(true);
     }
 }

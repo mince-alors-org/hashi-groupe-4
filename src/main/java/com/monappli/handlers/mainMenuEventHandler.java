@@ -11,7 +11,7 @@ import javafx.scene.layout.Pane;
 /**
  * Handler of the main menu
  * @see DynamicEventHandler 
- * @author Collard Matthis
+ * @author Collard Ambre
  */
 public class mainMenuEventHandler extends  DynamicEventHandler{
 
@@ -20,12 +20,6 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
      */
     @FXML
     private Button playButton;
-
-    /**
-     * Current Pane of the menu
-     */
-    @FXML
-    private Pane backGround;
 
     /**
      * Tutorial Button
@@ -53,11 +47,11 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
      * @throws Exception if the levelScene can't load
      * @see LevelScene
      * @see LevelSelectHandler
-     * @author Matthis Collard
+     * @author Ambre Collard
      */
     public void playClicked() throws Exception {
         LevelScene game= new LevelScene(this.getParentPane());
-        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(backGround));
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane()));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= LevelScene.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
@@ -71,14 +65,12 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
         
         
         tuto.pasteAndHandle("/view/tuto.fxml", new TutorialEventHandler(this.getParentPane()));
-        System.out.println("Je suis tuto");
     }
 
     /**
      * 
      */
     public void challClicked() {
-        System.out.println("Je suis defi");
     }
 
 }

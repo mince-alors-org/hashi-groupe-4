@@ -38,7 +38,6 @@ public class Hashi extends Application {
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);
-        System.out.println(root.getChildren());
         stage.setResizable(false);
         stage.show();
     }

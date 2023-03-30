@@ -45,7 +45,7 @@
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Button id="levelButton" fx:id="lvlTitle" mnemonicParsing="false" text="levelButton" />
+                              <Button id="levelButton" fx:id="lvlTitle" mnemonicParsing="false" onAction="#lvlTitleClicked" text="levelButton" />
                               <Button id="restButton" fx:id="restButton" mnemonicParsing="false" onAction="#restClicked" styleClass="optionalGameButton" />
                            </children>
                            <VBox.margin>

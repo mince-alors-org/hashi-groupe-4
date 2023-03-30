@@ -82,7 +82,8 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	private boolean active;
 
 	/**
-	* Permet l'affichage grphique d'une île
+	* Set the style of an isle thanks to Parametre
+	* @see Parametre
 	* @author Ambre
 	* @param longueur
 	* @param largeur
@@ -96,9 +97,9 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	}
 
 	/**
-	* Permet de gérer l'activiter d'une île
-	* @author Ambre,Morgane,Noé
-	* @param act
+	* Activate or deactivate an isle
+	* @author Ambre
+	* @param act <code>true</code> to activate this isle, <code>false</code> to deactivate it 
 	*/
 	public void setActive(boolean act){
 		this.active=act;
@@ -121,6 +122,11 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 
 		}
 	}
+
+	/**
+	 * Get if an isle is active or not
+	 * @return <code>true</code> if the isle is active, <code>false</code> else
+	 */
 	public boolean getActive(){
 		return active;
 	}
@@ -172,15 +178,6 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	public void setPonts(ArrayList<Pont> ponts) {
 		this.ponts = ponts;
 	}
-
-	/*public void setOnAction(){
-		Btn b = this.getBtn();
-		this.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent e) {
-			  b.setActive(!(b.getActive()));
-			}
-		});
-	}*/
 
 	/**
 	 * Ajout d'un pont connecté au nœud courant
