@@ -1,0 +1,61 @@
+package com.monappli;
+
+import java.util.Objects;
+
+/**
+ * Représente un joueur
+ */
+public class Joueur {
+    private String nom;
+    private String motdepasse;
+
+    /**
+     * Constructeur d'un joueur
+     * @param nom nom du joueur
+     * @param motdepasse mot de passe du joueur
+     */
+    public Joueur(String nom, String motdepasse) {
+        this.nom = nom;
+        this.motdepasse = motdepasse;
+    }
+
+    public String getnom() {
+        return nom;
+    }
+
+    public String getmotdepasse() {
+        return motdepasse;
+    }
+
+    public void setnom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setmotdepasse(String motdepasse) {
+        this.motdepasse = motdepasse;
+    }
+    
+    @Override
+    public String toString(){
+        return "Nom= "+nom+" MDP = "+motdepasse;
+    }
+
+    /**
+     * Redéfinition de equals
+     * @param obj objet à comparer
+     * @return true si les objets sont égaux, faux autrement
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof Joueur)) {
+            return false;
+        }
+        Joueur other = (Joueur) obj;
+        return Objects.equals(nom, other.nom) && Objects.equals(motdepasse, other.motdepasse);
+    }
+
+}
+
