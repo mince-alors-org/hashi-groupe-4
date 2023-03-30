@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 /**
  * Handler to set new Parameters
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public class ParamHandler extends DynamicEventHandler{
 

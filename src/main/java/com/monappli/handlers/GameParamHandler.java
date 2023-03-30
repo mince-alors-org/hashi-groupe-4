@@ -6,7 +6,7 @@ import javafx.scene.layout.Pane;
 
 /**
  * Parameter event handler espacially made for in game changes
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public class GameParamHandler extends ParamHandler {
     
