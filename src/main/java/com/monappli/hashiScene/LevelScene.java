@@ -41,11 +41,6 @@ public class LevelScene extends MainPanel {
     public static int nbDiff=3;
 
     /**
-     * Static integer to know on wich page the user is currently on
-     */
-    public static int curPage=1;
-
-    /**
      * Initialization of LevelScene
      * @param parent parent pane 
      */
@@ -83,7 +78,7 @@ public class LevelScene extends MainPanel {
             grid.getRowConstraints().add(new RowConstraints(1.0*h / (size)));
         
         
-        for (int i=size*size*(curPage-1); i< nbLvl && i < size*size*curPage; i++){
+        for (int i=size*size*(LevelSelectHandler.curDiff-1); i< nbLvl && i < size*size*LevelSelectHandler.curDiff; i++){
             Button btn = new Button(Integer.toString(i+1));
 
             /*

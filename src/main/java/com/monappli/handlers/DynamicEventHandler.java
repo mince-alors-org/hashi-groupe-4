@@ -1,7 +1,12 @@
 package com.monappli.handlers;
 
 
+import com.monappli.hashiScene.PopUp;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 /**
  * This class is the core of our different event handlers
@@ -10,6 +15,25 @@ import javafx.scene.layout.Pane;
  */
 
 public class DynamicEventHandler implements Handler{
+
+    /**
+     * Parameter Button
+     */
+    @FXML
+    public Button paramButton;
+
+    /**
+     * Power Button (to quit the game)
+     */
+    @FXML
+    public Button powerButton;
+
+    /**
+     * backGround Pane
+     */
+    @FXML
+    public Pane backGround;
+
     /**
      * Parent pane of the current handled Pane
      */
@@ -54,5 +78,31 @@ public class DynamicEventHandler implements Handler{
     public void setCurPane(Pane curPane){
         this.curPane=curPane;
     }
-    
+
+    /**
+     * Action when powerButton is clicked. Quits the application
+     */
+    public void quitClicked(){
+        Stage stage = (Stage) powerButton.getScene().getWindow();
+        stage.close();
+        System.out.println("Je quitte");
+    }
+ 
+    /**
+     * Action when paramButton is clicked. Creates a PopUp to change the parameters and sets a new ParamHandler on this PopUp
+     * Clicking on the parameters button deactivates can not make another PopUp
+     * @see PopUp
+     * @see ParamHandler
+     * @throws Exception if the PopUp can't load
+     * @author Matthis Collard
+     */
+    public void paramClicked() throws Exception{
+        if (backGround.lookup("#pop") == null){
+            PopUp pop = new PopUp(this.getCurPane());
+            ParamHandler paramH= new GameParamHandler(this.backGround);
+            pop.pasteAndHandle("/view/parameters.fxml", paramH);
+            paramH.setAll();
+            System.out.println("Je suis Paramètre");
+        }
+    }
 }

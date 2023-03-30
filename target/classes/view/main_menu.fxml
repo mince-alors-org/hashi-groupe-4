@@ -8,12 +8,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="menuPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="450.0" style="-fx-background-color: transparent;" stylesheets="@menuStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="backGround" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="450.0" style="-fx-background-color: transparent;" stylesheets="@menuStyle.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <HBox prefHeight="300.0" prefWidth="450.0" spacing="260.0">
          <children>
             <Button id="paramButton" fx:id="paramButton" alignment="CENTER" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
-            <Button id="powerButton" fx:id="powerButton" alignment="CENTER" contentDisplay="CENTER" onAction="#quitClicked"  mnemonicParsing="false" styleClass="optionalButton" />
+            <Button id="powerButton" fx:id="powerButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#quitClicked" styleClass="optionalButton" />
          </children>
          <opaqueInsets>
             <Insets />
@@ -22,19 +22,19 @@
             <Insets left="25.0" top="20.0" />
          </padding>
       </HBox>
-      <Label id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="100.0" prefHeight="90.0" prefWidth="400.0" text="HASHI" textFill="WHITE" textAlignment="CENTER">
+      <Label id="title" alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="100.0" prefHeight="90.0" prefWidth="400.0" text="HASHI" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="75.0" />
          </font>
       </Label>
       <VBox alignment="TOP_CENTER" layoutY="220.0" prefHeight="680.0" prefWidth="450.0" spacing="50.0">
          <children>
-            <Button fx:id="playButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#playClicked" prefHeight="80.0" prefWidth="300.0" styleClass="mainButton" text="Jeu Libre" >
+            <Button fx:id="playButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#playClicked" prefHeight="80.0" prefWidth="300.0" styleClass="mainButton" text="Jeu Libre">
                <font>
                   <Font size="35.0" />
                </font>
             </Button>
-            <Button fx:id="tutoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#tutoClicked" prefHeight="88.0" prefWidth="347.0" styleClass="mainButton" text="Tutoriel"  />
+            <Button fx:id="tutoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#tutoClicked" prefHeight="88.0" prefWidth="347.0" styleClass="mainButton" text="Tutoriel" />
             <Button fx:id="challButton" alignment="CENTER" mnemonicParsing="false" onAction="#challClicked" styleClass="mainButton" text="Défis" />
          </children>
          <opaqueInsets>
