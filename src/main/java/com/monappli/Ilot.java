@@ -123,6 +123,19 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		}
 	}
 
+	public void setRed(boolean act){
+		if(act){
+			this.setBorder(new Border(new BorderStroke(
+											Color.RED, 
+											BorderStrokeStyle.SOLID, 
+											new CornerRadii(200), 
+											new BorderWidths(4)
+								)));
+		}
+		else 
+			this.setActive(getActive());
+	}
+
 	/**
 	 * Get if an isle is active or not
 	 * @return <code>true</code> if the isle is active, <code>false</code> else
@@ -216,6 +229,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	public int nbPont(){
 		int somme =0;
 		for(Pont p :this.ponts){
+			System.out.println();
 			somme+=p.getNbTraits();
 		}
 		return somme;

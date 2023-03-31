@@ -193,8 +193,12 @@ public class Grille {
             }
             else 
               ilot.setActive(!(ilot.getActive()));
-          }
-        );
+          
+            if (ilot.nbPont() > ilot.getValeur()){
+              ilot.setRed(true);
+            }
+        });
+
         //Add the isle to the grid
         grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
         ilot.setActive(false);
