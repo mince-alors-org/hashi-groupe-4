@@ -190,9 +190,9 @@ public class Pont implements Serializable{
 		this.erase(fond);
 
 
-    double width = this.getIle1().getPrefWidth();
+    double width = this.getIle1().getBtn().getPrefWidth();
 
-    double height = this.getIle1().getPrefHeight();
+    double height = this.getIle1().getBtn().getPrefHeight();
 
 
 		if (this.getNbTraits()==2){
@@ -229,14 +229,12 @@ public class Pont implements Serializable{
 		double x2 = Math.max(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
 
 		double y2 = Math.max(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
-<<<<<<< HEAD
-=======
 
 
 
-    double width = this.getIle1().getPrefWidth();
+    double width = this.getIle1().getBtn().getPrefWidth();
 
-    double height = this.getIle1().getPrefHeight();
+    double height = this.getIle1().getBtn().getPrefHeight();
 		System.out.println(y1);
 		System.out.println(y2);
 
@@ -246,7 +244,6 @@ public class Pont implements Serializable{
 
 		System.out.println(this.getIle1().getCanvasX());
 		System.out.println(this.getIle2().getCanvasX());
->>>>>>> 6876c677fc803c298df7b93ad0a85dad4afd95c6
 
 
 		if (this.estVerticale()){
@@ -261,7 +258,7 @@ public class Pont implements Serializable{
       //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
 			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
       System.out.println("horizontale");
-      System.out.println("OGHHHHHHH" +this.getIle1().getPrefWidth());
+      System.out.println("OGHHHHHHH" +this.getIle1().getBtn().getPrefWidth());
 		}
 
 
