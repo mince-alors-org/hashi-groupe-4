@@ -2,6 +2,9 @@ package com.monappli;
 
 import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.IOException;
+
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
@@ -37,5 +40,13 @@ public class BaseDonneeJoueurTest {
         Joueur recupJoueur = database.getJoueurNom("Bonathan");
         recupJoueur = database.getJoueurNom("Karl");
         assertEquals(j2, recupJoueur);
+    }
+
+    @Test
+    public void testCréerFichierSauvegarde() throws IOException{
+        Joueur joueur = new Joueur("Baptiste","mdp");
+
+        joueur.initSave(joueur.getnom(), "1-1.niv");
+        
     }
 }

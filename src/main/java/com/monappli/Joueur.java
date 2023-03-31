@@ -1,5 +1,7 @@
 package com.monappli;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -18,6 +20,14 @@ public class Joueur implements Serializable{
     public Joueur(String nom, String motdepasse) {
         this.nom = nom;
         this.motdepasse = motdepasse;
+
+        File fichier = new File("src/main/java/com/monappli/Profiles/" + nom);
+        fichier.mkdir();
+    }
+
+    public void initSave(String nomJoueur, String nomNiveaux) throws IOException{
+        File fichier = new File("src/main/java/com/monappli/Profiles/"+nomJoueur+"/"+nomNiveaux);
+        fichier.createNewFile();
     }
 
     public String getnom() {
