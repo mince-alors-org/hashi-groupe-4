@@ -23,3 +23,8 @@
     -fx-pref-height:50.0px;
     -fx-pref-width:200.0px;
 }
+
+.pageButton{
+    -fx-pref-height:30.0px;
+    -fx-pref-width:40.0px;
+}

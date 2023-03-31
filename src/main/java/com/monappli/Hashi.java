@@ -9,7 +9,6 @@ import javafx.application.Application;
 import javafx.fxml.*;
 import javafx.scene.*;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 
@@ -23,9 +22,6 @@ public class Hashi extends Application {
 
     @Override
     public void start(Stage stage) throws Exception { 
-
-        Parametre.setCouleur_texte(Color.PURPLE);
-        Parametre.setCouleur_ilot(Color.BLUE);
 
 
 
@@ -42,7 +38,6 @@ public class Hashi extends Application {
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);
-        System.out.println(root.getChildren());
         stage.setResizable(false);
         stage.show();
     }

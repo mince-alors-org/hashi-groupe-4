@@ -2,8 +2,8 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.paint.Color;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -11,15 +11,21 @@ import java.util.ArrayList;
  * Cette classe permet de représenter un Pont
  * @author Morgane Pechon
  */
-public class Pont {
+public class Pont implements Serializable{
 	/**
 	 * Nombre de trait entre les deux îles
 	 */
 	private int nombreTraits;
+
 	/**
 	 * Table contenant les deux îles relier par le pont
 	 */
 	private ArrayList <Ilot> coords;
+
+	/**
+	 * grille principale du niveau en cours
+	 */
+
 	/**
 	 *
 	 * @param ile1 Depart du pont
@@ -86,8 +92,14 @@ public class Pont {
 	 * @param p l'autre pont
 	 * @return true si les deux ponts se croisent, false sinon
 	 */
-	public boolean Croise(Pont p)
+	public boolean croise(Pont p)
 	{
+		if (this==p)
+			return false;
+		
+		if (p.getNbTraits() == 0)
+			return false;
+
 		if(p.estVerticale() == this.estVerticale())
 		{
 			return false;
@@ -144,15 +156,8 @@ public class Pont {
 			this.nombreTraits++;
 	}
 	/**
-	 * Renvoit la taille du trait entre les deux île
-	 * @return int taille du trai parapore au coordonée des l'îles
-	 */
-	public double tailleTrait(){
-		return Math.sqrt(Math.pow((this.getIle1().getCanvasX())-(this.getIle2().getCanvasX()),2)+Math.pow((getIle1().getCanvasY())-(getIle2().getCanvasY()),2));
-	}
-	/**
 	 * permet de trouver le voisin de l'ile entrée en paramètre
-	 * @param a Ilot qui recherche sont voisin
+	 * @param a Ilot qui recherche son voisin
 	 * @return Ilot opposer à l'ile entrée en paramètre
 	 */
 	public Ilot voisin(Ilot a){
@@ -174,7 +179,7 @@ public class Pont {
 	 * @param doublon true si il existe déjà un trait entre ces deux îles
 	 * @param fond est le canvas qui permet l'affichage
 	*/
-	public void affiche(Canvas fond,boolean doublon){
+	public void affiche(Canvas fond){
 
 
 		GraphicsContext gc=fond.getGraphicsContext2D();
@@ -190,7 +195,7 @@ public class Pont {
 		System.out.println(this.getIle2().getCanvasY());*/
 
 
-		if (doublon){
+		if (this.getNbTraits()==2){
 			if (this.estHorizontale()){
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-10);
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+10);
@@ -201,14 +206,11 @@ public class Pont {
 			}
 
 		}
-		else if (this.getNbTraits()!=2) {
+		else if (this.getNbTraits()==1) {
 
 			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
 		}
-		this.incrementer();
-
-		int nbTraits = this.getNbTraits();
-		System.out.println(nombreTraits);
+		System.out.println(this.getNbTraits());
 
 
 	}

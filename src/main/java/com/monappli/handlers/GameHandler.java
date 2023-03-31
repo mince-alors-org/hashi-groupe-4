@@ -1,56 +1,72 @@
 package com.monappli.handlers;
 
-import com.monappli.Aide;
-import com.monappli.hashiScene.PopUp;
+import com.monappli.hashiScene.LevelScene;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
+/**
+ * In game handler 
+ * @author Ambre Collard
+ */
 public class GameHandler extends DynamicEventHandler {
-    @FXML
-    private Pane gameBG;
 
+    /**
+     * Parameters button
+     */
     @FXML
     private Button paramButton; 
 
+    /**
+     * Power Button. To quit
+     */
     @FXML
     private Button powerButton;
 
+    /**
+     * Reset button. To reset the whole grid
+     */
     @FXML
-    private Button undoButton;
+    private Button restButton;
 
+    /**
+     * Help Button
+     */
     @FXML
     private Button helpButton;
 
+    @FXML
+    private Button lvlTitle;
 
+    /**
+     * Initialization of GameHandler
+     * @param parent parent pane of the currently handled pane
+     */
     public GameHandler(Pane parent){
         super(parent);
     }
 
-    public void quitClicked(){
-        Stage stage = (Stage) powerButton.getScene().getWindow();
-        stage.close();
-        System.out.println("Je quitte");
-    }
-
-    public void paramClicked() throws Exception{
-        if (gameBG.lookup("#pop") == null){
-            PopUp pop = new PopUp(this.getCurPane());
-            ParamHandler paramH= new ParamHandler(this.gameBG);
-            pop.pasteAndHandle("/view/parameters.fxml", paramH);
-            paramH.setAll();
-            System.out.println("Je suis Paramètre");
-        }
-    }
-
-    public void undoClicked(){
-        System.out.println("Je suis undo");
+    public void restClicked(){
+        System.out.println("Je suis rest");
     }
 
     public void helpClicked(){
         System.out.println("Je suis Aide");
-        System.out.println(Aide.getTechnique());
+    }
+    public void redoClicked(){
+        System.out.println("Je suis redo");
+    }
+    public void undoClicked(){
+        System.out.println("Je suis undo");
+    }
+
+    public void lvlTitleClicked() throws Exception{
+        LevelScene game= new LevelScene(this.getParentPane());
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane()));
+        Pane select= (Pane)game.getCurPane().lookup("#selectPane");
+        GridPane selGrid= LevelScene.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        select.getChildren().add(selGrid);
     }
 }
