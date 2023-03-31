@@ -21,7 +21,7 @@ import javafx.scene.paint.Color;
  * Cette classe permet de représenter un Ilot
  * @author nmention
  */
-public class Ilot extends Button implements Comparable<Ilot>, Serializable{
+public class Ilot  implements Comparable<Ilot>, Serializable{
 	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
@@ -48,6 +48,9 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	private ArrayList<Pont> ponts;
 
 	private ArrayList<Pont> pontsSolution;
+
+	private IlotBtn bouton;
+
 	/**
 	 *
 	 * @param posX position de l'ilot courant dans l'axe des abscisses (X)
@@ -63,6 +66,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		this.valeur = valeur;
 		ponts = new ArrayList<Pont>();
 		this.pontsSolution = new ArrayList<Pont>() ;
+		bouton= new IlotBtn(Integer.toString(valeur), posX, posY);
 	}
 
 	public Ilot(int posX, int posY,Canvas fond){
@@ -74,6 +78,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		this.posY = posY;
 		ponts = new ArrayList<>();
 		pontsSolution = new ArrayList<>();
+		bouton= new IlotBtn("0", posX, posY);
 	}
 
 	/**
@@ -89,7 +94,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	* @param largeur
 	*/
 	public void setStyleParam(){
-		this.setStyle(			 "-fx-background-radius: 200px;"+
+		this.getBtn().setStyle(			 "-fx-background-radius: 200px;"+
 									"\n-fx-background-insets: 0 0 0 0;"+
 									"\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_ilot())+";"+
 									"\n-fx-font:"+ (int)(1.0*24/(1.0*Grille.longueur/6)) +" px;"
@@ -104,7 +109,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	public void setActive(boolean act){
 		this.active=act;
 		if(act){
-				this.setBorder(new Border(new BorderStroke(
+				this.getBtn().setBorder(new Border(new BorderStroke(
 										Color.GREEN, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
@@ -113,7 +118,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		}
 			
 		else{
-			this.setBorder(new Border(new BorderStroke(
+			this.getBtn().setBorder(new Border(new BorderStroke(
 										Color.BLACK, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
@@ -125,7 +130,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 
 	public void setRed(boolean act){
 		if(act){
-			this.setBorder(new Border(new BorderStroke(
+			this.getBtn().setBorder(new Border(new BorderStroke(
 											Color.RED, 
 											BorderStrokeStyle.SOLID, 
 											new CornerRadii(200), 
@@ -134,6 +139,10 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		}
 		else 
 			this.setActive(getActive());
+	}
+
+	public IlotBtn getBtn(){
+		return this.bouton;
 	}
 
 	/**
@@ -353,12 +362,17 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
   }
 
   public boolean equalsSol(){
+	int tot=0;
 	for(Pont p : this.getPonts()){
-		if (!this.pontInSol(p)){
+		if (!this.pontInSol(p) && p.getNbTraits() != 0){
 			return false;
 		}
+		if(p.getNbTraits() != 0)
+			tot++;
 	}
-	return true;
+	if (tot == this.getSolPonts().size())
+		return true;
+	return false;
   }
 
   @Override
