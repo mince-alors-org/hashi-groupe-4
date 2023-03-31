@@ -1,12 +1,13 @@
 package com.monappli;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Représente une base de données comprenant une liste de joueurs
  */
-public class BaseDonneeJoueur {
+public class BaseDonneeJoueur implements Serializable{
     private List<Joueur> joueurs;
 
     /**

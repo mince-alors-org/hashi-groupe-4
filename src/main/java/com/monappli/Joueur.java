@@ -1,11 +1,12 @@
 package com.monappli;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Représente un joueur
  */
-public class Joueur {
+public class Joueur implements Serializable{
     private String nom;
     private String motdepasse;
 
