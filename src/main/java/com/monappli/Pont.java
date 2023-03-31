@@ -255,13 +255,13 @@ public class Pont implements Serializable{
 
 
 		if (this.estVerticale()){
-      gc.setStroke(Color.GREEN);
+
       //gc.strokeArc(x1-(width/2),y1,width,y2-y1,120,360, ArcType.CHORD);
 			gc.clearRect(x1-(width/2)+10,y1,width-20,y2-y1);
       System.out.println("verticale");
 		}
 		else {
-      gc.setStroke(Color.RED);
+
 
       //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
 			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
