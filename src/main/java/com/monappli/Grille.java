@@ -183,9 +183,15 @@ public class Grille {
 		              pont.incrementer();
                   pont.affiche(fond);
                   changeActive(ilot);
+                  
+                  ileAct.setActive(false);
+                  ilot.setActive(false);
                 }
-                ileAct.setActive(false);
-                ilot.setActive(false);
+
+                else {
+                  ilot.setRed(true);
+                  ileAct.setRed(true);
+                }
               }
               else {
                 changeActive(ilot);
@@ -196,6 +202,10 @@ public class Grille {
           
             if (ilot.nbPont() > ilot.getValeur()){
               ilot.setRed(true);
+            }
+
+            if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
+              ileAct.setRed(true);
             }
         });
 

@@ -229,7 +229,6 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	public int nbPont(){
 		int somme =0;
 		for(Pont p :this.ponts){
-			System.out.println();
 			somme+=p.getNbTraits();
 		}
 		return somme;
