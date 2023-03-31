@@ -207,6 +207,7 @@ public class Grille {
             if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
               ileAct.setRed(true);
             }
+            System.out.println(ilot.equalsSol());
         });
 
         //Add the isle to the grid
@@ -378,4 +379,13 @@ public class Grille {
         this.getIlotActif().setActive(false);
       i.setActive(true);
     }
+
+    public boolean isWin(){
+      for(Ilot ilot : listeIlot){
+        if(!ilot.equalsSol())
+          return false;
+      }
+      return true;
+    }
+    
 }

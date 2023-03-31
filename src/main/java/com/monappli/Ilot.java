@@ -6,7 +6,7 @@ import java.io.Serializable;
 //import java.beans.EventHandler;
 import java.util.ArrayList;
 
-
+import javafx.beans.binding.BooleanExpression;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
@@ -340,6 +340,27 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
     this.setValeur(this.getValeur()+add);
   }
 
+  public ArrayList<Pont> getSolPonts(){
+	return this.pontsSolution;
+  }
+
+  public boolean pontInSol(Pont p){
+	for (Pont Spont : this.getSolPonts()){
+		if(Spont.equals(p))
+			return true;
+	}
+	return false;
+  }
+
+  public boolean equalsSol(){
+	for(Pont p : this.getPonts()){
+		if (!this.pontInSol(p)){
+			return false;
+		}
+	}
+	return true;
+  }
+
   @Override
 	public String toString() {
 		return "Ilot{" +
@@ -349,6 +370,4 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
       ", ponts=" + ponts +
       ", pontsSolution=" + pontsSolution;
 	}
-
-
 }
