@@ -121,7 +121,6 @@ public class LevelScene extends MainPanel {
 
                 //Creates a new game grid
                 new Grille(nomF, (Pane)game.getParent().lookup("#gridPlacement"), (Canvas)game.getParent().lookup("#fond"));
-
                 //Get the level button above the game grid
                 Button lvlButton = (Button)game.getCurPane().lookup("#levelButton");
                 //Change the label to the level assigned name

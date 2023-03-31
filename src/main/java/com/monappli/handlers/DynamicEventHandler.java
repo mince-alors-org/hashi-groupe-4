@@ -1,6 +1,7 @@
 package com.monappli.handlers;
 
 
+import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
@@ -16,6 +17,9 @@ import javafx.stage.Stage;
 
 public class DynamicEventHandler implements Handler{
 
+
+    @FXML
+    public Button hashiButton;
     /**
      * Parameter Button
      */
@@ -83,8 +87,10 @@ public class DynamicEventHandler implements Handler{
      * Action when powerButton is clicked. Quits the application
      */
     public void quitClicked(){
-        Stage stage = (Stage) powerButton.getScene().getWindow();
-        stage.close();
+        if (backGround.lookup("#pop") == null){
+            Stage stage = (Stage) powerButton.getScene().getWindow();
+            stage.close();
+        }
     }
  
     /**
@@ -102,5 +108,10 @@ public class DynamicEventHandler implements Handler{
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
         }
+    }
+
+    public void hashiClicked() throws Exception{
+        MainPanel main= new MainPanel(this.getParentPane());
+        main.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler(this.getParentPane()));
     }
 }

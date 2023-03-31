@@ -183,9 +183,15 @@ public class Grille {
 		              pont.incrementer();
                   pont.affiche(fond);
                   changeActive(ilot);
+                  
+                  ileAct.setActive(false);
+                  ilot.setActive(false);
                 }
-                ileAct.setActive(false);
-                ilot.setActive(false);
+
+                else {
+                  ilot.setRed(true);
+                  ileAct.setRed(true);
+                }
               }
               else {
                 changeActive(ilot);
@@ -193,8 +199,17 @@ public class Grille {
             }
             else 
               ilot.setActive(!(ilot.getActive()));
-          }
-        );
+          
+            if (ilot.nbPont() > ilot.getValeur()){
+              ilot.setRed(true);
+            }
+
+            if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
+              ileAct.setRed(true);
+            }
+            System.out.println(ilot.equalsSol());
+        });
+
         //Add the isle to the grid
         grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
         ilot.setActive(false);
@@ -364,4 +379,13 @@ public class Grille {
         this.getIlotActif().setActive(false);
       i.setActive(true);
     }
+
+    public boolean isWin(){
+      for(Ilot ilot : listeIlot){
+        if(!ilot.equalsSol())
+          return false;
+      }
+      return true;
+    }
+    
 }

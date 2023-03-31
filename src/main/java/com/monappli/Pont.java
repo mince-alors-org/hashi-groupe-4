@@ -272,6 +272,11 @@ public class Pont implements Serializable{
 		this.nombreTraits = nombreTraits;
 	}
 
+	public boolean equals(Pont p){
+		return ((this.getIle1()==p.getIle1() && this.getIle2()==p.getIle2()) || (this.getIle1()== p.getIle2() && this.getIle2()==p.getIle1())) 
+				&& (this.getNbTraits() == p.getNbTraits());
+	}
+
 	@Override
   public String toString() {
     return "Pont{" +
