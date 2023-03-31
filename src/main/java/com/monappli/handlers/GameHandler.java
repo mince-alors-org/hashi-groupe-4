@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+import com.monappli.Grille;
 import com.monappli.hashiScene.LevelScene;
 
 import javafx.fxml.FXML;
