@@ -186,13 +186,6 @@ public class Pont implements Serializable{
 		gc.setStroke(Parametre.getCouleur_pont());
 
 		this.erase(fond);
-		System.out.println("Ilot 1 :");
-		/*System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle1().getCanvasY());*/
-
-		System.out.println("Ilot 2 :");
-		/*System.out.println(this.getIle2().getCanvasX());
-		System.out.println(this.getIle2().getCanvasY());*/
 
 
 		if (this.getNbTraits()==2){
@@ -210,7 +203,6 @@ public class Pont implements Serializable{
 
 			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
 		}
-		System.out.println(this.getNbTraits());
 
 
 	}
@@ -230,15 +222,6 @@ public class Pont implements Serializable{
 		double x2 = Math.max(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
 
 		double y2 = Math.max(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
-		System.out.println(y1);
-		System.out.println(y2);
-
-
-		System.out.println();
-
-
-		System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle2().getCanvasX());
 
 
 		if (this.estVerticale()){
@@ -264,7 +247,7 @@ public class Pont implements Serializable{
 	@Override
   public String toString() {
     return "Pont{" +
-      "nombreTraits=" + nombreTraits;
+      "nombreTraits=" + nombreTraits +"}";
 
   }
 }

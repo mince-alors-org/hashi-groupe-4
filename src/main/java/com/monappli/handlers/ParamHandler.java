@@ -77,7 +77,6 @@ public class ParamHandler extends DynamicEventHandler{
      */
     public ParamHandler(Pane parent){
         super(parent);
-        this.setCurPane(paramPane);
     }
 
     /**

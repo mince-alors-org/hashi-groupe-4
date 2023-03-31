@@ -39,7 +39,6 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
      */
     public mainMenuEventHandler(Pane parentPane){
         super(parentPane);
-        setCurPane(backGround);
     }
 
     /**
@@ -55,6 +54,7 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= LevelScene.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
+        
     }
 
     /**

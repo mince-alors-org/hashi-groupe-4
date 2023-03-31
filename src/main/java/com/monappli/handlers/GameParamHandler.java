@@ -16,7 +16,6 @@ public class GameParamHandler extends ParamHandler {
      */
     public GameParamHandler(Pane parent){
         super(parent);
-        this.setCurPane(this.getParamPane());
     }
 
     /**

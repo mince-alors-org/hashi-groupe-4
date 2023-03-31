@@ -54,6 +54,7 @@ public class DynamicEventHandler implements Handler{
      */
     public DynamicEventHandler(Pane parentPane){
         this.parentPane=parentPane;
+        setCurPane(backGround);
     }
 
     /**

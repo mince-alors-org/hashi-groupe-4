@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.monappli.handlers.WinHandler;
+import com.monappli.hashiScene.PopUp;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
@@ -114,15 +116,11 @@ public class Grille {
            throw new RuntimeException(e);
        }
             grid = initGrid();
-            parent.getChildren().add(grid);
+            parent.getChildren().add(grid); 
             for (Ilot i :this.getIlots()) {
                 i.setCanvasX((1.0*parent.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
                 i.setCanvasY((1.0*parent.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
             }
-
-
-
-
 
     }
 
@@ -149,12 +147,12 @@ public class Grille {
       
       for(Ilot ilot : listeIlot ){
         //Set the isle at the center
-        GridPane.setHalignment(ilot, HPos.CENTER);
-        GridPane.setValignment(ilot, VPos.CENTER);
+        GridPane.setHalignment(ilot.getBtn(), HPos.CENTER);
+        GridPane.setValignment(ilot.getBtn(), VPos.CENTER);
 
-        ilot.setText(Integer.toString(ilot.getValeur()));
+        ilot.getBtn().setText(Integer.toString(ilot.getValeur()));
         //Set the size of the isle to ~0.77 the size of the cell (too big if not)
-        ilot.setPrefSize(
+        ilot.getBtn().setPrefSize(
               (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3, 
               (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 
         );
@@ -165,7 +163,8 @@ public class Grille {
         //Set Action
         //During this part, setActive and change active are manly for graphic purposes
         //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
-        ilot.setOnAction(e -> {
+        ilot.getBtn().setOnAction(e -> {
+          if (this.getParentPane().lookup("#pop") == null){
             Ilot ileAct = this.getIlotActif() ;
 
             if (ileAct == ilot){
@@ -207,11 +206,20 @@ public class Grille {
             if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
               ileAct.setRed(true);
             }
-            System.out.println(ilot.equalsSol());
+            if (this.isWin()){
+              PopUp win = new PopUp((Pane)((Pane)this.parent.getScene().getRoot()).getChildren().get(0));
+              try{
+                win.pasteAndHandle("/view/winLayout.fxml", new WinHandler((Pane)((Pane)this.parent.getScene().getRoot()).getChildren().get(0)));
+              }
+              catch (Exception ex){
+                System.out.println("err");
+              }
+            }
+          }
         });
 
         //Add the isle to the grid
-        grid.add(ilot, ilot.getPosX(), ilot.getPosY(),1,1);
+        grid.add(ilot.getBtn(), ilot.getPosX(), ilot.getPosY(),1,1);
         ilot.setActive(false);
 
       }
@@ -382,6 +390,7 @@ public class Grille {
 
     public boolean isWin(){
       for(Ilot ilot : listeIlot){
+        System.out.println(ilot.equalsSol());
         if(!ilot.equalsSol())
           return false;
       }
