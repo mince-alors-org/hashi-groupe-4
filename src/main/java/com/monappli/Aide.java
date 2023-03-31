@@ -12,7 +12,10 @@ import java.util.HashMap;
  * @author Rollet Gabrielle
  * @version 1.0
  */
-public class Aide {   
+    public class Aide {
+
+    private static Grille grille;
+
     private static final HashMap<String, String> technique = new HashMap<String, String>();
     static {
         technique.put("Iles avec autant de voisin que la moitié de leur cardinalité","Une ile qui a une cardinalité égale à 2 fois son nombre de voisins est forcément connecté avec ces derniers");
@@ -28,6 +31,14 @@ public class Aide {
         "Si un Ilot a 6 cardinalité a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités: \n - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pond avec tout ces autres voisins \n - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponds avec tout ces voisins");
         technique.put("Isolation des segments","Il est interdit qu'un bloc d'île soit isolé du reste des autres, lorsqu'il y a 2 îles de cardinalité 1 ou deux îles de cardinalités 2, il est interdit de les connecter entre eux s'ils peuvent être connectés à d'autres." );
         technique.put("Isolation lorsqu'un pont joint une île","Veillez à ce que lorsque vous connectez les îles entre elles, elles forment toujours un seul et même chemin, il ne doit pas y avoir plusieurs blocs d'îles");
+        technique.put("Pas de technique", "Aucune techniqur trouvée");
+    }
+
+    /**
+     * Constructeur de la classe Aide qui permet d'associer l'aide à la grille
+     */
+    public static void setGrille(Grille grille){
+        Aide.grille = grille;
     }
 
     /**
@@ -50,30 +61,32 @@ public class Aide {
      * pour cela la méthode parcours le plateau et avec une série de conditions détermine la bonne technique a renvoyer
      * @return le nom de la methode a appliquer ainsi qu'une rapide description
      */
-    public String getTechnique(){
-        for(int i = 0 ; i < grille.listeIlots.length ; i++) {
-            if (ile_debut(grille.listeIlots[i])) {
+    public static String getTechnique(){
+        for(int i = 0 ; i < grille.getIlots().size() ; i++) {
+            if (ile_debut(grille.getIlots().get(i))) {
                 return technique.get("Iles avec autant de voisin que la moitié de leur cardinalité");
             }
-            else if (ile_1_voisin(grille.listeIlots[i])) {
+            else if (ile_1_voisin(grille.getIlots().get(i))) {
                 return technique.get("Iles avec un seul voisin");
             }
-            else if (cas_3_coin_5_cote_7_milieu(grille.listeIlots[i])) {
+            else if (cas_3_coin_5_cote_7_milieu(grille.getIlots().get(i))) {
                 return technique.get("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu");
             }
-            else if (cas_4_avec_3_voisin_dont_2_1(grille.listeIlots[i])) {
+            else if (cas_4_avec_3_voisin_dont_2_1(grille.getIlots().get(i))) {
                 return technique.get("Iles sur un coté avec 4 de cardinalités");
             }
-            else if (cas_6_milieu(grille.listeIlots[i])) {
+            else if (cas_6_milieu(grille.getIlots().get(i))) {
                 return technique.get("Iles aux millieux avec 6 de cardinalités");
-            }
-            else if (isolation_iles(grille.listeIlots[i])) {
+            } /* 
+            else if (isolation_iles(grille.getIlots().get(i))) {
                 return technique.get("Isolation des segments");
             }
-            else if (isolation_iles_3(grille.listeIlots[i])) {
+            */
+            else if (isolation_iles_3(grille.getIlots().get(i))) {
                 return technique.get("");
             }
         }
+        return technique.get("Pas de technique");
     }
     
     /**
@@ -97,15 +110,15 @@ public class Aide {
     * Fonction qui vérifie si un ilôt a son bon nombre de ponts 
     * @return Bool : Vrai ou faux en fonction de si l'ilôt a le nombre de ponts correspondant à celui qu'il devrait avoir 
     */
-    public boolean nbCardinalité() {
+    public static boolean nbCardinalité() {
         int tmp;
-        for(int i=0;i<grille.listeIlots.length;i++){
+        for(int i=0;i<grille.getIlots().size();i++){
             tmp=0;
-            ArrayList<Pont> listpont = grille.listeIlots[i].getPonts();
+            ArrayList<Pont> listpont = grille.getIlots().get(i).getPonts();
             for (int j=0;j<listpont.size();j++) {
                 tmp+=listpont.get(j).getNbTraits();
             }
-            if (tmp>grille.listeIlots[i].getValeur()) {
+            if (tmp>grille.getIlots().get(i).getValeur()) {
                 return true;
             }
         }
@@ -116,8 +129,8 @@ public class Aide {
     * Fonction qui détecte quand le jeu forme un endroit fermé qui ne peut plus être lié au reste du plateau sur le plateau
     * @return : true ou false si le plateau présente au moment T au moins un endroit fermé
     */
-    public boolean endroitFerme() {
-        for (Ilot ile : this.grille.getIlots()) {
+    public static boolean endroitFerme() {
+        for (Ilot ile : Aide.grille.getIlots()) {
             ArrayList<Ilot> voisins = ile.listeVoisin();
             ArrayList<Ilot> voisinsRelies = ile.listeVoisinRelier();
             int numVois = voisinsRelies.size();
@@ -171,7 +184,7 @@ public class Aide {
      * @param : Ilot : Tous les ilôts de la grilles 
      * @return : Bool : True si un des ilots de la grille de jeu présente le cas énoncé ci-dessus. FAlse sinon.
      */
-     public boolean ile_debut(Ilot ile) {
+     public static boolean ile_debut(Ilot ile) {
         int nbVoisinRestant = ile.listeVoisin().size() - ile.listeVoisinRelier().size();
         if (nbVoisinRestant== ile.getValeur()/2) {
             return true;
@@ -186,7 +199,7 @@ public class Aide {
      * @param : Ilot : TChaque ilot de la grille sera traité par la fonction
      * @return : Bool :True si un des îlots de la grille de jeu présente le cas. False sinon.
      */
-     public boolean ile_1_voisin(Ilot ile) {
+     public static boolean ile_1_voisin(Ilot ile) {
         if (ile.listeVoisin().size()==1 && ile.listeVoisinRelier().isEmpty()) {
             return true;
         }
@@ -199,7 +212,7 @@ public class Aide {
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @return : Bool : True si au moins un des ilots de la grille confirme le cas. False sinon 
      */
-    public boolean cas_3_coin_5_cote_7_milieu(Ilot ile) {
+    public static boolean cas_3_coin_5_cote_7_milieu(Ilot ile) {
         if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
             for (Ilot neighbor : ile.listeVoisin()) {
                 if (neighbor.getValeur() == 1) {
@@ -208,6 +221,7 @@ public class Aide {
                 return false;
             }
         }
+        return false;
     }
 
     /**
@@ -215,8 +229,8 @@ public class Aide {
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @ @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
      */
-    public boolean cas_4_avec_3_voisin_dont_2_1(Ilot ile) {
-        int compteur;
+    public static boolean cas_4_avec_3_voisin_dont_2_1(Ilot ile) {
+        int compteur = 0;
         // si l'ilot a un voisin qui a une cardinalité de 4 et 3 voisins
         if (ile.getValeur() == 4 && ile.listeVoisin().size() == 3) {
             // compte le nombre de voisin avec une cardinalité de 1
@@ -225,7 +239,7 @@ public class Aide {
                     compteur+=1;
                 }
             }    
-            if (compteur==2) {
+            if (compteur == 2) {
                 return true;
             }
             else {
@@ -242,7 +256,7 @@ public class Aide {
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
      */
-    public boolean cas_6_milieu(Ilot ile) {
+    public static boolean cas_6_milieu(Ilot ile) {
         if (ile.getValeur() == 6 && ile.listeVoisin().size() == 4) {
             for (Ilot voisin : ile.listeVoisin()) {
                 if (voisin.getValeur()==1) {
@@ -260,15 +274,16 @@ public class Aide {
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
      */
-    public boolean isolation_iles(Ilot ile) {
+    /* 
+    public static boolean isolation_iles(Ilot ile) {
         boolean condition = false;
-        if (ile.getPosX() == grille.taille-1 && ile.getValeur() == 2) {
+        if (ile.getPosX() == grille.getLongeur()-1 && ile.getValeur() == 2) {
             if (ile.listeVoisin().size() == 2) {
                 Ilot voisinGauche = getVoisinDirection(ile,"gauche");
                 condition = (ile.getValeur() == 1 && voisinGauche.listeVoisin().size() == 1);
             } else {
                 int requiredCol = ile.getPosY() + 2; // a revoir
-                Ilot voisin = getIle(ile.getPosX(), requiredCol);
+                Ilot voisin = grille.getIle(ile.getPosX(), requiredCol);
                 if (ile.listeVoisin().contains(voisin)) {
                     condition = true;
                 }
@@ -289,13 +304,14 @@ public class Aide {
         }
         return condition;
     }
+    */
 
     /**
      * Fonction qui vérifie le cas isolation_iles
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
      */
-    public boolean isolation_iles_3(Ilot ile) {
+    public static boolean isolation_iles_3(Ilot ile) {
         int nbVoisinRestant = ile.listeVoisin().size() - ile.listeVoisinRelier().size();
         if (ile.getValeur()- nbVoisinRestant > 0) {
             for (Ilot voisin : ile.listeVoisin()) {

@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+import com.monappli.Aide;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
@@ -50,5 +51,6 @@ public class GameHandler extends DynamicEventHandler {
 
     public void helpClicked(){
         System.out.println("Je suis Aide");
+        System.out.println(Aide.getTechnique());
     }
 }
