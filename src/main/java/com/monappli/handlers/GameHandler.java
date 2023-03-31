@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+import com.monappli.Aide;
 import com.monappli.hashiScene.LevelScene;
 
 import javafx.fxml.FXML;
@@ -54,6 +55,7 @@ public class GameHandler extends DynamicEventHandler {
 
     public void helpClicked(){
         System.out.println("Je suis Aide");
+        System.out.println(Aide.getTechnique());
     }
     public void redoClicked(){
         System.out.println("Je suis redo");

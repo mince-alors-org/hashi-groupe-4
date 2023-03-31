@@ -64,18 +64,23 @@ import java.util.HashMap;
     public static String getTechnique(){
         for(int i = 0 ; i < grille.getIlots().size() ; i++) {
             if (ile_debut(grille.getIlots().get(i))) {
+                System.out.print("1");
                 return technique.get("Iles avec autant de voisin que la moitié de leur cardinalité");
             }
             else if (ile_1_voisin(grille.getIlots().get(i))) {
+                System.out.print("2");
                 return technique.get("Iles avec un seul voisin");
             }
             else if (cas_3_coin_5_cote_7_milieu(grille.getIlots().get(i))) {
+                System.out.print("3");
                 return technique.get("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu");
             }
             else if (cas_4_avec_3_voisin_dont_2_1(grille.getIlots().get(i))) {
+                System.out.print("4");
                 return technique.get("Iles sur un coté avec 4 de cardinalités");
             }
             else if (cas_6_milieu(grille.getIlots().get(i))) {
+                System.out.print("5");
                 return technique.get("Iles aux millieux avec 6 de cardinalités");
             } /* 
             else if (isolation_iles(grille.getIlots().get(i))) {
@@ -83,9 +88,11 @@ import java.util.HashMap;
             }
             */
             else if (isolation_iles_3(grille.getIlots().get(i))) {
+                System.out.print("6");
                 return technique.get("");
             }
         }
+        System.out.print(technique.get("Pas de technique"));
         return technique.get("Pas de technique");
     }
     
@@ -94,10 +101,10 @@ import java.util.HashMap;
      * @return String : contenant le code d'erreur correspondant a l'erreur trouver sur la grille
      */ 
     public String checkErreur() {
-        if (this.nbCardinalité()) {
+        if (Aide.nbCardinalité()) {
             return nbCardinaliteIncorrect;
         }
-        else if (this.endroitFerme()) {
+        else if (Aide.endroitFerme()) {
             return endroitLock;
         }
         else {
@@ -131,7 +138,7 @@ import java.util.HashMap;
     */
     public static boolean endroitFerme() {
         for (Ilot ile : Aide.grille.getIlots()) {
-            ArrayList<Ilot> voisins = ile.listeVoisin();
+            //ArrayList<Ilot> voisins = ile.listeVoisin();
             ArrayList<Ilot> voisinsRelies = ile.listeVoisinRelier();
             int numVois = voisinsRelies.size();
             int numPontsRelies = 0;
@@ -319,6 +326,7 @@ import java.util.HashMap;
                 int pontConnecteVoisin = voisin.listeVoisinRelier().size();
                 int pontManquantVoisin = voisinValeur - pontConnecteVoisin;
                 if (pontManquantVoisin >= ile.getValeur()- nbVoisinRestant) {
+                    System.out.print(ile);
                     return true;
                 }
             }
