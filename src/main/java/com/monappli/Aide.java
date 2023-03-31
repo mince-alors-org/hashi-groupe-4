@@ -1,5 +1,6 @@
 package com.monappli;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -11,11 +12,10 @@ import java.util.HashMap;
  * @author Rollet Gabrielle
  * @version 1.0
  */
-public class Aide {
-    private String type;    
+public class Aide {   
     private static final HashMap<String, String> technique = new HashMap<String, String>();
     static {
-        technique.put("Iles avec autant de voisin que la moitié de leur cardinalité","Une ile qui a une cardinalité égale à 2 fois son nombre de voisins est forcément connecté avec ces derniers")
+        technique.put("Iles avec autant de voisin que la moitié de leur cardinalité","Une ile qui a une cardinalité égale à 2 fois son nombre de voisins est forcément connecté avec ces derniers");
         technique.put("Iles avec un seul voisin", 
         "Les îles qui ont 1 ou 2 cardinalités et qui n'ont qu'un voisin sont forcement liée a celui-ci");
         technique.put("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu",
@@ -102,8 +102,8 @@ public class Aide {
         for(int i=0;i<grille.listeIlots.length;i++){
             tmp=0;
             ArrayList<Pont> listpont = grille.listeIlots[i].getPonts();
-            for (int j=0;j<listpont.length;j++) {
-                tmp+=listpont[j].getNbTraits();
+            for (int j=0;j<listpont.size();j++) {
+                tmp+=listpont.get(j).getNbTraits();
             }
             if (tmp>grille.listeIlots[i].getValeur()) {
                 return true;
@@ -118,19 +118,19 @@ public class Aide {
     */
     public boolean endroitFerme() {
         for (Ilot ile : this.grille.getIlots()) {
-            List<Ilot> voisins = ile.listeVoisin();
-            List<Ilot> voisinsRelies = ile.listeVoisinRelie();
+            ArrayList<Ilot> voisins = ile.listeVoisin();
+            ArrayList<Ilot> voisinsRelies = ile.listeVoisinRelier();
             int numVois = voisinsRelies.size();
             int numPontsRelies = 0;
             int tmp = 0;
             for (Ilot voisin : voisinsRelies) {
                 // Comptez le nombre de ponts reliant chaque voisin
-                if (ile.ilelisteVoisin().contains(voisin)) {
+                if (ile.listeVoisin().contains(voisin)) {
                     numPontsRelies++;
                 }
             }
-            for (int i=0;i<ile.getPonts().length;i++) {
-                tmp+=listpont[i].getNbTraits();
+            for (int i=0;i<ile.getPonts().size();i++) {
+                tmp+=ile.getPonts().get(i).getNbTraits();
             }
             if (numVois == 0 || numVois == 2) {
                 // Si l'île a zéro ou deux voisins connectés, elle peut être fermée
@@ -172,7 +172,8 @@ public class Aide {
      * @return : Bool : True si un des ilots de la grille de jeu présente le cas énoncé ci-dessus. FAlse sinon.
      */
      public boolean ile_debut(Ilot ile) {
-        if (ile.nbVoisinRestant()== ile.getValeur()/2) {
+        int nbVoisinRestant = ile.listeVoisin().size() - ile.listeVoisinRelier().size();
+        if (nbVoisinRestant== ile.getValeur()/2) {
             return true;
         }
         else {
@@ -186,7 +187,7 @@ public class Aide {
      * @return : Bool :True si un des îlots de la grille de jeu présente le cas. False sinon.
      */
      public boolean ile_1_voisin(Ilot ile) {
-        if (ile.listeVoisin().size()==1 && ile.listeVoisinRelie().isEmpty()) {
+        if (ile.listeVoisin().size()==1 && ile.listeVoisinRelier().isEmpty()) {
             return true;
         }
         else {
@@ -243,7 +244,7 @@ public class Aide {
      */
     public boolean cas_6_milieu(Ilot ile) {
         if (ile.getValeur() == 6 && ile.listeVoisin().size() == 4) {
-            for (Ilot voisin : ile.voisins) {
+            for (Ilot voisin : ile.listeVoisin()) {
                 if (voisin.getValeur()==1) {
                     return true;
                 }
@@ -261,10 +262,10 @@ public class Aide {
      */
     public boolean isolation_iles(Ilot ile) {
         boolean condition = false;
-        if (ile.getPosX == grille.taille-1 && ile.getValeur() == 2) {
+        if (ile.getPosX() == grille.taille-1 && ile.getValeur() == 2) {
             if (ile.listeVoisin().size() == 2) {
                 Ilot voisinGauche = getVoisinDirection(ile,"gauche");
-                condition = (voisin.getValeur() == 1 && voisinGauche.listeVoisin().size() == 1);
+                condition = (ile.getValeur() == 1 && voisinGauche.listeVoisin().size() == 1);
             } else {
                 int requiredCol = ile.getPosY() + 2; // a revoir
                 Ilot voisin = getIle(ile.getPosX(), requiredCol);
@@ -295,12 +296,13 @@ public class Aide {
      * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
      */
     public boolean isolation_iles_3(Ilot ile) {
-        if (ile.getValeur()-ile.nbVoisinRestant() > 0) {
+        int nbVoisinRestant = ile.listeVoisin().size() - ile.listeVoisinRelier().size();
+        if (ile.getValeur()- nbVoisinRestant > 0) {
             for (Ilot voisin : ile.listeVoisin()) {
                 int voisinValeur = voisin.getValeur();
-                int pontConnecteVoisin = voisin.listeVoisinRelie().size();
+                int pontConnecteVoisin = voisin.listeVoisinRelier().size();
                 int pontManquantVoisin = voisinValeur - pontConnecteVoisin;
-                if (pontManquantVoisin >= ile.getValeur()-ile.nbVoisinRestant()) {
+                if (pontManquantVoisin >= ile.getValeur()- nbVoisinRestant) {
                     return true;
                 }
             }
@@ -311,7 +313,7 @@ public class Aide {
                 int valeurIsole = voisin.getValeur() - ile.getValeur() + 1;
                 int pontIsole = 0;
                 for (Ilot voisinIsole : voisin.listeVoisin()) {
-                    if (voisinIsole != ile && voisinIsole.listeVoisinRelie.contains(voisin)) {
+                    if (voisinIsole != ile && voisinIsole.listeVoisinRelier().contains(voisin)) {
                         pontIsole++;
                     }
                 }
@@ -327,23 +329,24 @@ public class Aide {
     * Fonction qui retourne le voisin en fonction de l'ile et de la direction passées en paramètre
     * @param ile, l'île dont on veut connaître le voisin
     * @param positions : direction du voisin que l'on veut connaître
-    * @return retourne le voisin correspondant aux critères
+    * @return retourne le voisin correspondant aux critère, si une ile n'a aucun voisin (impossible) la méthode retourne l'ile passer en parametres
     */
     public static Ilot getVoisinDirection(Ilot ile,String positions) {
-        for(int i=0;i<ile.listeVoisin().size;i++) {
-            if (ile.listeVoisin()[i].getPosX()>ile.getPosX() && positions=="gauche") {
-                return ile.listeVoisin()[i];
+        for(int i=0;i<ile.listeVoisin().size();i++) {
+            if (ile.listeVoisin().get(i).getPosX()>ile.getPosX() && positions=="gauche") {
+                return ile.listeVoisin().get(i);
             }
-            else if (ile.listeVoisin()[i].getPosX()<ile.getPosX() && positions=="droit") {
-                return ile.listeVoisin()[i];
+            else if (ile.listeVoisin().get(i).getPosX()<ile.getPosX() && positions=="droit") {
+                return ile.listeVoisin().get(i);
             }
-            else if (ile.listeVoisin()[i].getPosY()>ile.getPosY() && positions=="haut") {
-                return ile.listeVoisin()[i];
+            else if (ile.listeVoisin().get(i).getPosY()>ile.getPosY() && positions=="haut") {
+                return ile.listeVoisin().get(i);
             }
-            else if (ile.listeVoisin()[i].getPosY()<ile.getPosY() && positions=="bas") {
-                return ile.listeVoisin()[i];
+            else if (ile.listeVoisin().get(i).getPosY()<ile.getPosY() && positions=="bas") {
+                return ile.listeVoisin().get(i);
             }
         }
+        return ile;
     }
 }
 
