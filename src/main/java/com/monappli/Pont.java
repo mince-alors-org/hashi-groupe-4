@@ -2,6 +2,8 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.ArcType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -71,7 +73,7 @@ public class Pont implements Serializable{
 
 	/**
 	 * Permet de savoir si un pont est verticale
-	 * 
+	 *
 	 * @param i1 le premier îlot su pont
 	 * @param i2 le sexond îlot du pont
 	 * @return true si le pont est verticale (si ils ont le même x)
@@ -96,7 +98,7 @@ public class Pont implements Serializable{
 	{
 		if (this==p)
 			return false;
-		
+
 		if (p.getNbTraits() == 0)
 			return false;
 
@@ -124,7 +126,7 @@ public class Pont implements Serializable{
 					return true ;
 				}
 			}
-			else 
+			else
 			{
 				if(
 					(
@@ -133,7 +135,7 @@ public class Pont implements Serializable{
 				   		(getIle1().getPosX() < p.getIle1().getPosX() && getIle1().getPosX() > p.getIle2().getPosX())
 					) &&
 					(
-						//on vérifie si le y de p est entre nos deux y 
+						//on vérifie si le y de p est entre nos deux y
 						(getIle1().getPosY() > p.getIle1().getPosY() && getIle2().getPosY() < p.getIle1().getPosY()) ||
 						(getIle1().getPosY() < p.getIle1().getPosY() && getIle2().getPosY() > p.getIle1().getPosY())
 					)
@@ -230,6 +232,12 @@ public class Pont implements Serializable{
 		double x2 = Math.max(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
 
 		double y2 = Math.max(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+
+
+
+    double width = this.getIle1().getPrefWidth();
+
+    double height = this.getIle1().getPrefHeight();
 		System.out.println(y1);
 		System.out.println(y2);
 
@@ -242,10 +250,18 @@ public class Pont implements Serializable{
 
 
 		if (this.estVerticale()){
-			gc.clearRect(x1-20,y1,x2+20,y2-y1);
+      gc.setStroke(Color.GREEN);
+      //gc.strokeArc(x1-(width/2),y1,width,y2-y1,120,360, ArcType.CHORD);
+			gc.clearRect(x1-(width/2)+10,y1,width-20,y2-y1);
+      System.out.println("verticale");
 		}
 		else {
-			gc.clearRect(x1,y1-20,x2-x1,y2+20);
+      gc.setStroke(Color.RED);
+
+      //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
+			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
+      System.out.println("horizontale");
+      System.out.println("OGHHHHHHH" +this.getIle1().getPrefWidth());
 		}
 
 
