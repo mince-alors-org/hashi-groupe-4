@@ -15,34 +15,12 @@ import javafx.scene.layout.Pane;
  */
 public class GameHandler extends DynamicEventHandler {
 
-    /**
-     * Parameters button
-     */
     @FXML
-    private Button paramButton; 
-
-    /**
-     * Power Button. To quit
-     */
-    @FXML
-    private Button powerButton;
-
-    /**
-     * Reset button. To reset the whole grid
-     */
-    @FXML
-    private Button restButton;
-
-    /**
-     * Help Button
-     */
-    @FXML
-    private Button helpButton;
-
-    @FXML
-    private Button lvlTitle;
+    private Pane gridPlacement;
 
     private Grille grille;
+
+
     /**
      * Initialization of GameHandler
      * @param parent parent pane of the currently handled pane

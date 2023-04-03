@@ -16,22 +16,6 @@ import javafx.stage.Stage;
  */
 
 public class DynamicEventHandler implements Handler{
-
-
-    @FXML
-    public Button hashiButton;
-    /**
-     * Parameter Button
-     */
-    @FXML
-    public Button paramButton;
-
-    /**
-     * Power Button (to quit the game)
-     */
-    @FXML
-    public Button powerButton;
-
     /**
      * backGround Pane
      */
@@ -89,7 +73,7 @@ public class DynamicEventHandler implements Handler{
      */
     public void quitClicked(){
         if (backGround.lookup("#pop") == null){
-            Stage stage = (Stage) powerButton.getScene().getWindow();
+            Stage stage = (Stage) backGround.getScene().getWindow();
             stage.close();
         }
     }

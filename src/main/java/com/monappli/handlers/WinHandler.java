@@ -11,12 +11,6 @@ import javafx.scene.layout.Pane;
 
 public class WinHandler extends DynamicEventHandler {
 
-    @FXML
-    private Button menuButton;
-
-    @FXML
-    private Button lvlButton;
-
     public WinHandler(Pane parent){
         super(parent);
     }
