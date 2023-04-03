@@ -21,6 +21,7 @@ import java.util.HashMap;
         technique.put("Iles avec autant de voisin que la moitié de leur cardinalité","Une ile qui a une cardinalité égale à 2 fois son nombre de voisins est forcément connecté avec ces derniers");
         technique.put("Iles avec un seul voisin", 
         "Les îles qui ont 1 ou 2 cardinalités et qui n'ont qu'un voisin sont forcement liée a celui-ci");
+        technique.put("Islands with 4 in the corner, 6 on the side and 8 in the middle:", "dd");
         technique.put("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu",
         "Une île marquée 3 dans un coin a 2 voisins avec un pont connecté à un voisin et 2 ponts connectés à l'autre. De manière similaire, un îlot de getValeur() 5 doit au minimum avoir un pont qui le connecte à ses 3 voisins et une île de getValeur() 7 doit avoir au minimum un pont qui la connecte à ses 4 voisins");
         technique.put("Cas spécial des 3 dans les coins, 5 sur les côtés et 7 au milieu",
@@ -31,7 +32,7 @@ import java.util.HashMap;
         "Si un Ilot a 6 cardinalité a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités: \n - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pond avec tout ces autres voisins \n - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponds avec tout ces voisins");
         technique.put("Isolation des segments","Il est interdit qu'un bloc d'île soit isolé du reste des autres, lorsqu'il y a 2 îles de cardinalité 1 ou deux îles de cardinalités 2, il est interdit de les connecter entre eux s'ils peuvent être connectés à d'autres." );
         technique.put("Isolation lorsqu'un pont joint une île","Veillez à ce que lorsque vous connectez les îles entre elles, elles forment toujours un seul et même chemin, il ne doit pas y avoir plusieurs blocs d'îles");
-        technique.put("Pas de technique", "Aucune techniqur trouvée");
+        technique.put("Pas de technique", "Aucune technique trouvée");
     }
 
     /**
@@ -63,18 +64,21 @@ import java.util.HashMap;
      */
     public static String getTechnique(){
         for(int i = 0 ; i < grille.getIlots().size() ; i++) {
-            if (ile_debut(grille.getIlots().get(i))) {
+            /*if (ile_debut(grille.getIlots().get(i))) {
                 System.out.print("1");
                 return technique.get("Iles avec autant de voisin que la moitié de leur cardinalité");
             }
             else if (ile_1_voisin(grille.getIlots().get(i))) {
                 System.out.print("2");
                 return technique.get("Iles avec un seul voisin");
-            }
-            else if (cas_3_coin_5_cote_7_milieu(grille.getIlots().get(i))) {
+            }*/
+            if (cas_3_coin_5_cote_7_milieu(grille.getIlots().get(i))) {
                 System.out.print("3");
                 return technique.get("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu");
             }
+            if(cas_4_6_8_cote(grille.getIlots().get(i))){
+                return technique.get("Islands with 4 in the corner, 6 on the side and 8 in the middle:");
+            }/* 
             else if (cas_4_avec_3_voisin_dont_2_1(grille.getIlots().get(i))) {
                 System.out.print("4");
                 return technique.get("Iles sur un coté avec 4 de cardinalités");
@@ -86,11 +90,12 @@ import java.util.HashMap;
             else if (isolation_iles(grille.getIlots().get(i))) {
                 return technique.get("Isolation des segments");
             }
-            */
+            
             else if (isolation_iles_3(grille.getIlots().get(i))) {
                 System.out.print("6");
                 return technique.get("");
             }
+            */
         }
         System.out.print(technique.get("Pas de technique"));
         return technique.get("Pas de technique");
@@ -214,18 +219,67 @@ import java.util.HashMap;
             return false;
         }
      }
+     /*
+      * 
+      */
+     public static boolean cas_3_coin_5_cote_7_milieu(Ilot ile){
+        System.out.println(ile);
+        if(ile.listeVoisin().size() > ile.listeVoisinRelier().size()){
+            if (((ile.getValeur()+1)/2) == ile.listeVoisin().size()) {
+                if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
+                    return true;
+                }
+            }
+        }
+        return false;
+     }
     /**
      * Fonction qui vérifie le cas 3_coin_5_cote_7_milieu.
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @return : Bool : True si au moins un des ilots de la grille confirme le cas. False sinon 
      */
-    public static boolean cas_3_coin_5_cote_7_milieu(Ilot ile) {
-        if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
-            for (Ilot neighbor : ile.listeVoisin()) {
-                if (neighbor.getValeur() == 1) {
+    public static boolean cas_spe_3_coin_5_cote_7_milieu(Ilot ile) {
+        System.out.println(ile);
+        if(ile.listeVoisinRelier().size() < 2){
+            if((ile.getPosX() == 0 && ile.getPosY() == 0 || ile.getPosY() == grille.calculateWidth()) || (ile.getPosY() == 0 && ile.getPosX() == 0 || ile.getPosX() == grille.calculateHeight())){
+            if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
+                for (Ilot neighbor : ile.listeVoisin()) {
+                    if (neighbor.getValeur() == 1) {
+                        return true;
+                    }
+                    return false;
+                }
+            }
+        }
+        }
+        
+        
+        return false;
+    }
+
+    public static int nb_ponts(Ilot ile) {
+        int tmp=0;
+        ArrayList<Pont> listpont = ile.getPonts();
+        for (int j=0;j<listpont.size();j++) {
+            tmp+=listpont.get(j).getNbTraits();
+        }
+        return tmp;
+    }
+
+    public static boolean cas_4_6_8_cote(Ilot ile){
+        if (Aide.nb_ponts(ile)< ile.getValeur()) {
+            if(ile.getValeur() == 6 ){
+                if(ile.getPosX() == 0 || ile.getPosY() == 0 || ile.getPosX() == grille.calculateWidth() || ile.getPosY() == grille.calculateHeight()){
                     return true;
                 }
-                return false;
+            }
+            else if(ile.getValeur() == 4){
+                if((ile.getPosX() == 0 && ile.getPosY() == 0 || ile.getPosY() == grille.calculateWidth()) || (ile.getPosY() == 0 && ile.getPosX() == 0 || ile.getPosX() == grille.calculateHeight())){
+                    return true;
+                }
+            }
+            else if(ile.getValeur() == 8){
+                return true;
             }
         }
         return false;
@@ -234,7 +288,7 @@ import java.util.HashMap;
     /**
      * Fonction qui vérifie le cas 4_avec_3_voisin_dont_2_1
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
-     * @ @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
+     * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
      */
     public static boolean cas_4_avec_3_voisin_dont_2_1(Ilot ile) {
         int compteur = 0;
