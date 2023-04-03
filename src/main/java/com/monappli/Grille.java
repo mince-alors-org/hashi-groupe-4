@@ -7,9 +7,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import com.monappli.handlers.WinHandler;
 import com.monappli.hashiScene.PopUp;
+
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
@@ -34,21 +34,17 @@ public class Grille {
     private GridPane grid;
     private Canvas fond;
     private Pane parent;
-
-
-
-    private static Pattern pontsDetection = Pattern.compile("[A-Z],?[0-9](?=(\\)])|(\\),))");
+    private boolean graphic;
 
     /**
      * Initialisation de la grille
      * @author Morgane Penchon
      * @param nomF nom du fichier à lire pour creer la grille
      */
-    public Grille(String nomF, Pane gridPlace, Canvas canvas, Pane bgParent) {
-       this.gridPlace= gridPlace;
-       this.fond=canvas;
-       this.parent= bgParent;
-       listeIlot = new ArrayList<>();
+
+    public Grille(String nomF, boolean graphic){
+      this.graphic= graphic;
+      listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
 
@@ -90,9 +86,9 @@ public class Grille {
 
 
 
-             Ilot a = new Ilot(xa,ya,canvas);
+             Ilot a = new Ilot(xa,ya,graphic);
 
-             Ilot b = new Ilot(xb,yb,canvas);
+             Ilot b = new Ilot(xb,yb,graphic);
              if (listeIlot.isEmpty()){
                listeIlot.add(a);
                listeIlot.add(b);
@@ -119,13 +115,26 @@ public class Grille {
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
-            grid = initGrid();
-            gridPlace.getChildren().add(grid);
-            for (Ilot i :this.getIlots()) {
-                i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
-                i.setCanvasY((1.0*gridPlace.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
-            }
+    }
 
+    public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) {
+      this(nomF, graphic);
+      this.gridPlace= gridPlace;
+      this.fond=canvas;
+      this.parent= bgParent;
+
+      if(this.graphic){
+        grid = initGrid();
+        gridPlace.getChildren().add(grid);
+        for (Ilot i :this.getIlots()) {
+            i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
+            i.setCanvasY((1.0*gridPlace.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
+        }
+      }
+    }
+
+    public Grille(String nomF, Pane gridPlace, Canvas canvas, Pane bgParent) {
+      this(nomF, true, gridPlace, canvas, bgParent);
     }
 
 

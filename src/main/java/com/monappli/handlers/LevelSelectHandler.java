@@ -23,12 +23,6 @@ public class LevelSelectHandler extends DynamicEventHandler{
     public static int curDiff;
 
     /**
-     * Back button. Leads to the main menu
-     */
-    @FXML
-    private Button backButton;
-
-    /**
      * Difficulty button
      */
     @FXML

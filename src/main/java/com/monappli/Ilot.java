@@ -57,8 +57,7 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	 * @param posY position de l'ilot courant dans l'axe des ordonnées (Y)
 	 * @param valeur nombre de ponts supportés par this
 	*/
-	public Ilot(int posX, int posY, int valeur) {
-		super();
+	public Ilot(int posX, int posY, int valeur, boolean graphic) {
 		this.posX = posX;
 		this.posY = posY;
 		canvasX = 0;
@@ -66,11 +65,11 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 		this.valeur = valeur;
 		ponts = new ArrayList<Pont>();
 		this.pontsSolution = new ArrayList<Pont>() ;
-		bouton= new IlotBtn(Integer.toString(valeur), posX, posY);
+		if(graphic)
+			bouton= new IlotBtn(Integer.toString(valeur), posX, posY);
 	}
 
-	public Ilot(int posX, int posY,Canvas fond){
-		super();
+	public Ilot(int posX, int posY, boolean graphic){
 		this.valeur=0;
 		canvasX = 0;
 		canvasY = 0;
@@ -78,7 +77,14 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 		this.posY = posY;
 		ponts = new ArrayList<>();
 		pontsSolution = new ArrayList<>();
-		bouton= new IlotBtn("0", posX, posY);
+		if(graphic)
+			bouton= new IlotBtn("0", posX, posY);
+	}
+	public Ilot(int posX, int posY){
+		this(posX,  posY, false);
+	}
+	public Ilot(int posX, int posY, int valeur){
+		this(posX,  posY, valeur, false);
 	}
 
 	/**

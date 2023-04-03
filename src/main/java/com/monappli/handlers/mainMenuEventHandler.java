@@ -15,23 +15,6 @@ import javafx.scene.layout.Pane;
  */
 public class mainMenuEventHandler extends  DynamicEventHandler{
 
-    /**
-     * Play Button
-     */
-    @FXML
-    private Button playButton;
-
-    /**
-     * Tutorial Button
-     */
-    @FXML
-    private Button tutoButton;
-
-    /**
-     * Challenge Button
-     */
-    @FXML
-    private Button challButton;
 
     /**
      * Initialization of mainMenuEventHandler
