@@ -74,8 +74,6 @@ public class Pont implements Serializable{
 	/**
 	 * Permet de savoir si un pont est verticale
 	 *
-	 * @param i1 le premier îlot su pont
-	 * @param i2 le sexond îlot du pont
 	 * @return true si le pont est verticale (si ils ont le même x)
 	 */
 	public boolean estVerticale()
@@ -177,8 +175,8 @@ public class Pont implements Serializable{
 	}
 
 	/**
-	 * Permet d'afficher le pont entre deux iles
-	 * @param doublon true si il existe déjà un trait entre ces deux îles
+	 * Permet d'afficher le pont entre deux iles avec ses nombre de traits correspondants (2 traits max)
+   * Efface tout traits avant chaque affichage
 	 * @param fond est le canvas qui permet l'affichage
 	*/
 	public void affiche(Canvas fond){
@@ -188,6 +186,10 @@ public class Pont implements Serializable{
 		gc.setStroke(Parametre.getCouleur_pont());
 
 		this.erase(fond);
+		System.out.println("Ilot 1 :");
+
+
+		System.out.println("Ilot 2 :");
 
 
     double width = this.getIle1().getBtn().getPrefWidth();
@@ -216,7 +218,7 @@ public class Pont implements Serializable{
 
 
 	/**
-	 * Permet d'effacer les traits entre les Ilots sur le Canvas
+	 * Permet d'effacer les traits pour un pont sur le canvas
 	 * @param fond le canvas à manipuler
 	 */
 	public void erase(Canvas fond){
