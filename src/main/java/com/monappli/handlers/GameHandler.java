@@ -5,7 +5,10 @@ import com.monappli.Grille;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -43,6 +46,13 @@ public class GameHandler extends DynamicEventHandler {
 
 
 
+
+
+    @FXML
+    private Button chrono;
+
+
+
     private Chrono chronometre;
 
 
@@ -52,7 +62,9 @@ public class GameHandler extends DynamicEventHandler {
      */
     public GameHandler(Pane parent){
         super(parent);
-        chronometre = new Chrono();
+
+
+
     }
 
     public void setGrille(Grille grille ){
@@ -93,5 +105,18 @@ public class GameHandler extends DynamicEventHandler {
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
         }
+    }
+
+    public void setChrono(){
+      chronometre = new Chrono(chrono);
+      //chronometre.run();
+    }
+
+  public Chrono getChronometre() {
+    return chronometre;
+  }
+
+  public void chronoStart(){
+    Platform.runLater(chronometre);
     }
 }

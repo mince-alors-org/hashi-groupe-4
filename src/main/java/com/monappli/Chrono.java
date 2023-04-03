@@ -1,15 +1,22 @@
 package com.monappli;
 
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class Chrono extends Thread{
+public class Chrono implements Runnable{
   boolean start;
   double time;
 
 
-  Label timeDisplay;
+  Button timeDisplay;
 
+  public Chrono(Button button) {
+    this.start = false;
+    this.time = 0;
 
+    timeDisplay = button;
+
+  }
 
   public Chrono() {
     this.start = false;
@@ -18,15 +25,17 @@ public class Chrono extends Thread{
   }
 
 
+
+
   public boolean isStart() {
     return start;
   }
 
-  public Label getTimeDisplay() {
+  public Button getTimeDisplay() {
     return timeDisplay;
   }
 
-  public void setTimeDisplay(Label timeDisplay) {
+  public void setTimeDisplay(Button timeDisplay) {
     this.timeDisplay = timeDisplay;
   }
 
@@ -47,22 +56,23 @@ public class Chrono extends Thread{
   public void run() {
     start = true;
 
-    while (start){
-
-      try {
-        this.sleep(100);
-        time+=0.001;
-        System.out.println(time);
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
+    while (start) {
 
 
-
-
-
+      time += 0.1;
+      timeDisplay.setText(String.valueOf(time));
+      System.out.println(time);
     }
   }
+
+
+
+
+
+
+
+
+
 
   public void halt(){
     start = false;
