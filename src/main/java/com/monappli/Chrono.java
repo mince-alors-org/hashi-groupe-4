@@ -1,9 +1,9 @@
 package com.monappli;
 
+import javafx.application.Platform;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
-public class Chrono implements Runnable{
+public class Chrono extends Thread{
   boolean start;
   double time;
 
@@ -54,15 +54,25 @@ public class Chrono implements Runnable{
 
   @Override
   public void run() {
-    start = true;
-
-    while (start) {
-
-
-      time += 0.1;
-      timeDisplay.setText(String.valueOf(time));
-      System.out.println(time);
+    for(int i =0; i<1000; i++){
+    try{
+    Thread.sleep(100);
     }
+    catch(Exception e){
+      e.printStackTrace();
+    }
+    time+=1;
+    Platform.runLater ( new Runnable() {
+      public void run(){
+        refreshTime();
+      }
+    });
+  }
+
+  }
+
+  public void refreshTime(){
+      timeDisplay.setText(String.valueOf(time));
   }
 
 

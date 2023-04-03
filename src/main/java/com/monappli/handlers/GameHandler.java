@@ -6,6 +6,8 @@ import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -90,6 +92,17 @@ public class GameHandler extends DynamicEventHandler {
   }
 
   public void chronoStart(){
-    Platform.runLater(chronometre);
-    }
+    System.out.println("oui");
+    /*Task<Chrono> task = new Task<Chrono>() {
+        @Override public Chrono call() {
+            chronometre.run();
+            return null;
+        }
+    };
+    task.setOnRunning(taskRun -> chronometre.refreshTime());
+    new Thread(task).start();
+    }*/
+
+    chronometre.start();
+    }   
 }
