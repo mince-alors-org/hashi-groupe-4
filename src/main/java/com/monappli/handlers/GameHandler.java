@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+import com.monappli.Chrono;
 import com.monappli.Grille;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
@@ -9,15 +10,40 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 /**
- * In game handler 
+ * In game handler
  * @author Ambre Collard
  */
 public class GameHandler extends DynamicEventHandler {
 
+    /**
+     * Parameters button
+     */
+    @FXML
+    private Button paramButton;
+
+    /**
+     * Power Button. To quit
+     */
+    @FXML
+    private Button powerButton;
+
+    /**
+     * Reset button. To reset the whole grid
+     */
+    @FXML
+    private Button restButton;
+
+    /**
+     * Help Button
+     */
     @FXML
     private Pane gridPlacement;
 
     private Grille grille;
+
+
+
+    private Chrono chronometre;
 
 
     /**
@@ -26,6 +52,7 @@ public class GameHandler extends DynamicEventHandler {
      */
     public GameHandler(Pane parent){
         super(parent);
+        chronometre = new Chrono();
     }
 
     public void setGrille(Grille grille ){

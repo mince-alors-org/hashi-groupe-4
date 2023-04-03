@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
 
 import com.monappli.handlers.WinHandler;
 import com.monappli.hashiScene.PopUp;
-
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
@@ -126,10 +125,10 @@ public class Grille {
       this.gridPlace= gridPlace;
       this.fond=canvas;
       this.parent= bgParent;
-  
+
       if(this.graphic){
         grid = initGrid();
-        gridPlace.getChildren().add(grid); 
+        gridPlace.getChildren().add(grid);
         for (Ilot i :this.getIlots()) {
             i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
             i.setCanvasY((1.0*gridPlace.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
@@ -166,12 +165,12 @@ public class Grille {
       for(int i=0; i<largeur; i++){
         grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (largeur)));
       }
-      
+
       //Sets sizes of rows from size of pane to be added on
       for(int i=0; i<longueur;i++)
         grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (longueur)));
 
-      
+
       for(Ilot ilot : listeIlot ){
         //Set the isle at the center
         GridPane.setHalignment(ilot.getBtn(), HPos.CENTER);
@@ -180,8 +179,8 @@ public class Grille {
         ilot.getBtn().setText(Integer.toString(ilot.getValeur()));
         //Set the size of the isle to ~0.77 the size of the cell (too big if not)
         ilot.getBtn().setPrefSize(
-              (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3, 
-              (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3 
+              (grid.getColumnConstraints().get(ilot.getPosX()).getPrefWidth()) /1.3,
+              (grid.getRowConstraints().get(ilot.getPosY()).getPrefHeight()) /1.3
         );
 
         //Set style of the ilse from Parametre
@@ -222,7 +221,7 @@ public class Grille {
 
               sauvegarde.ajoutCoup(pont);
               sauvegarde.actualiserFichier(fichier_sauvegarde);
-              
+
               ileAct.setActive(false);
               ilot.setActive(false);
             }
@@ -234,10 +233,10 @@ public class Grille {
               ileAct.setRed(true);
             }
           }
-          else 
+          else
             changeActive(ilot);
         }
-        else 
+        else
           ilot.setActive(!(ilot.getActive()));
 
         if(ileAct == ilot || ileAct == null)
@@ -274,20 +273,20 @@ public class Grille {
     public int calculateWidth(){
       int max=-1;
       for (Ilot ilot : listeIlot){
-        max = ilot.getPosX() > max ? ilot.getPosX() : max; 
+        max = ilot.getPosX() > max ? ilot.getPosX() : max;
       }
       return max+1;
     }
 
     /**
      * Calculate width of the isle grid
-     * @return height of the grid 
+     * @return height of the grid
      * @author Ambre Collard
      */
     public int calculateHeight(){
       int max=-1;
       for (Ilot ilot : listeIlot){
-        max = ilot.getPosY() > max ? ilot.getPosY() : max; 
+        max = ilot.getPosY() > max ? ilot.getPosY() : max;
       }
       return max+1;
     }
@@ -322,7 +321,7 @@ public class Grille {
     public Pane getGridPane(){
       return gridPlace;
     }
-    
+
     /**
      * Sets the style of the isle thanks to Parametre
      * @see Parametre
@@ -349,8 +348,8 @@ public class Grille {
     }
 
     /**
-     * Returns the the currently in game active isle 
-     * @return <code>Ilot</code> the currently in game active isle 
+     * Returns the the currently in game active isle
+     * @return <code>Ilot</code> the currently in game active isle
      * @author Ambre Collard
      */
     public Ilot getIlotActif(){
@@ -375,8 +374,8 @@ public class Grille {
       if (il1.estAligneVerticalement(il2)){
         for(Ilot i : listeIlot){
           if (
-              i.getPosX() == il1.getPosX() && 
-              i.getPosY() > (il1.getPosY() < il2.getPosY() ? il1 : il2).getPosY() && 
+              i.getPosX() == il1.getPosX() &&
+              i.getPosY() > (il1.getPosY() < il2.getPosY() ? il1 : il2).getPosY() &&
               i.getPosY() < (il1.getPosY() > il2.getPosY() ? il1 : il2).getPosY()){
             return false;
           }
@@ -386,8 +385,8 @@ public class Grille {
       else if (il1.estAligneHorizontalement(il2)){
         for (Ilot i : listeIlot){
           if (
-              i.getPosY() == il1.getPosY() && 
-              i.getPosX() > (il1.getPosX() < il2.getPosX() ? il1 : il2).getPosX() && 
+              i.getPosY() == il1.getPosY() &&
+              i.getPosX() > (il1.getPosX() < il2.getPosX() ? il1 : il2).getPosX() &&
               i.getPosX() < (il1.getPosX() > il2.getPosX() ? il1 : il2).getPosX()){
                 return false;
           }
@@ -439,7 +438,7 @@ public class Grille {
 
     /**
      * Reset the ilses' border to their active border state if they are currently red bordered.
-     * @see Ilot#setRed 
+     * @see Ilot#setRed
      */
     public void unsetReds(){
       for(Ilot ilot : listeIlot){
