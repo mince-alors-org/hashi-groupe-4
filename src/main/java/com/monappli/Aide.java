@@ -18,21 +18,29 @@ import java.util.HashMap;
 
     private static final HashMap<String, String> technique = new HashMap<String, String>();
     static {
-        technique.put("Iles avec autant de voisin que la moitié de leur cardinalité","Une ile qui a une cardinalité égale à 2 fois son nombre de voisins est forcément connecté avec ces derniers");
-        technique.put("Iles avec un seul voisin", 
-        "Les îles qui ont 1 ou 2 cardinalités et qui n'ont qu'un voisin sont forcement liée a celui-ci");
-        technique.put("Islands with 4 in the corner, 6 on the side and 8 in the middle:", "dd");
-        technique.put("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu",
-        "Une île marquée 3 dans un coin a 2 voisins avec un pont connecté à un voisin et 2 ponts connectés à l'autre. De manière similaire, un îlot de getValeur() 5 doit au minimum avoir un pont qui le connecte à ses 3 voisins et une île de getValeur() 7 doit avoir au minimum un pont qui la connecte à ses 4 voisins");
-        technique.put("Cas spécial des 3 dans les coins, 5 sur les côtés et 7 au milieu",
-        "Si une île est de getValeur() 3 et qu'un de ses voisins est une île avec l'indice 1, alors toutes les conditions sont réunies et les 3 ponts peuvent être tracés, la même logique peut être appliquée si une île de getValeur() 5 sur le côté ou une île de getValeur() 7 au milieu a pour voisin une île marquée par un 1");
-        technique.put("Iles sur un coté avec 4 de cardinalités",                        
-        "Si un Ilot a 3 voisins avec 4 de cardinalité et que 2 des ces voisins ont 1 de cardinalité, ces deux voisins sont forcement connecté a l'Ilot 4 et celui-ci a forcement 2 ponds avec son dernier voisin");
+        technique.put("Iles avec autant de voisins que la moitié de leur cardinalité",
+        "Une ile qui a une cardinalité égale à 2 fois son nombre de voisins est forcément connecté avec ces derniers");
+
+        technique.put("Iles avec un seul voisin",
+        "Les îles qui ont 1 ou 2 cardinalités et qui n'ont qu'un voisin sont forcement liées a celui-ci");
+
+        technique.put("Iles 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins",
+        "Une île marquée 3 avec 2 voisins doit obligatoire être reliée au moins une fois avec tous ses voisins, il en va de même pour les îles de valeur 5 qui vont trois voisins et les iles de valeur 7 avec quatre voisins");
+
+        technique.put("Cas spécial des 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins",
+        "Si une île est de valeur 3 et qu'un de ses voisins est une île avec l'indice 1, alors toutes les conditions sont réunies et les 3 ponts peuvent être tracés, la même logique peut être appliquée si une île de valeur 5 sur le côté ou une île de valeur 7 au milieu a pour voisin une île marquée par un 1");
+
         technique.put("Iles aux millieux avec 6 de cardinalités", 
         "Si un Ilot a 6 cardinalité a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités: \n - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pond avec tout ces autres voisins \n - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponds avec tout ces voisins");
-        technique.put("Isolation des segments","Il est interdit qu'un bloc d'île soit isolé du reste des autres, lorsqu'il y a 2 îles de cardinalité 1 ou deux îles de cardinalités 2, il est interdit de les connecter entre eux s'ils peuvent être connectés à d'autres." );
-        technique.put("Isolation lorsqu'un pont joint une île","Veillez à ce que lorsque vous connectez les îles entre elles, elles forment toujours un seul et même chemin, il ne doit pas y avoir plusieurs blocs d'îles");
-        technique.put("Pas de technique", "Aucune technique trouvée");
+
+        technique.put("Isolation des segments",
+        "Il est interdit qu'un bloc d'île soit isolé du reste des autres, lorsqu'il y a 2 îles de cardinalité 1 ou deux îles de cardinalités 2, il est interdit de les connecter entre eux s'ils peuvent être connectés à d'autres." );
+
+        technique.put("Isolation lorsqu'un pont joint une île",
+        "Veillez à ce que lorsque vous connectez les îles entre elles, elles forment toujours un seul et même chemin, il ne doit pas y avoir plusieurs blocs d'îles");
+
+        technique.put("Pas de technique applicable",
+        "Aucune technique applicable trouvée");
     }
 
     /**
@@ -64,21 +72,23 @@ import java.util.HashMap;
      */
     public static String getTechnique(){
         for(int i = 0 ; i < grille.getIlots().size() ; i++) {
-            /*if (ile_debut(grille.getIlots().get(i))) {
-                System.out.print("1");
-                return technique.get("Iles avec autant de voisin que la moitié de leur cardinalité");
-            }
-            else if (ile_1_voisin(grille.getIlots().get(i))) {
+            /*if (ile_1_voisin(grille.getIlots().get(i))) {
                 System.out.print("2");
                 return technique.get("Iles avec un seul voisin");
-            }*/
+            }
             if (cas_3_coin_5_cote_7_milieu(grille.getIlots().get(i))) {
                 System.out.print("3");
-                return technique.get("Iles avec 3 dans les coins, 5 sur les côtés et 7 au milieu");
+                return technique.get("Iles 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
+            }
+            */
+            if(cas_spe_3_coin_5_cote_7_milieu(grille.getIlots().get(i))){
+                return technique.get("Cas spécial des 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
             }
             if(cas_4_6_8_cote(grille.getIlots().get(i))){
-                return technique.get("Islands with 4 in the corner, 6 on the side and 8 in the middle:");
-            }/* 
+                System.out.print("4");
+                return technique.get("Iles avec autant de voisins que la moitié de leur cardinalité");
+            }
+            /* 
             else if (cas_4_avec_3_voisin_dont_2_1(grille.getIlots().get(i))) {
                 System.out.print("4");
                 return technique.get("Iles sur un coté avec 4 de cardinalités");
@@ -97,8 +107,7 @@ import java.util.HashMap;
             }
             */
         }
-        System.out.print(technique.get("Pas de technique"));
-        return technique.get("Pas de technique");
+        return technique.get("Pas de technique applicable");
     }
     
     /**
@@ -191,24 +200,11 @@ import java.util.HashMap;
         
     }  
 
-    /**
-     * Fonction qui peut indiquer lorsque le plateau présente des cas où les voisins de l'ilot concernés sont au nombre de la cardinalité de l'ilot divisée par 2
-     * @param : Ilot : Tous les ilôts de la grilles 
-     * @return : Bool : True si un des ilots de la grille de jeu présente le cas énoncé ci-dessus. FAlse sinon.
-     */
-     public static boolean ile_debut(Ilot ile) {
-        int nbVoisinRestant = ile.listeVoisin().size() - ile.listeVoisinRelier().size();
-        if (nbVoisinRestant== ile.getValeur()/2) {
-            return true;
-        }
-        else {
-            return false;
-        }
-     }
+
 
     /**
      * Fonction indiquant lorsque le plateau présente une île qui n'a qu'un seul voisin, et qui est donc facilement reliable sans possiblité d'erreur
-     * @param : Ilot : TChaque ilot de la grille sera traité par la fonction
+     * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @return : Bool :True si un des îlots de la grille de jeu présente le cas. False sinon.
      */
      public static boolean ile_1_voisin(Ilot ile) {
@@ -223,10 +219,10 @@ import java.util.HashMap;
       * 
       */
      public static boolean cas_3_coin_5_cote_7_milieu(Ilot ile){
-        System.out.println(ile);
         if(ile.listeVoisin().size() > ile.listeVoisinRelier().size()){
             if (((ile.getValeur()+1)/2) == ile.listeVoisin().size()) {
                 if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
+                    System.out.println(ile + "cas 357");
                     return true;
                 }
             }
@@ -239,21 +235,17 @@ import java.util.HashMap;
      * @return : Bool : True si au moins un des ilots de la grille confirme le cas. False sinon 
      */
     public static boolean cas_spe_3_coin_5_cote_7_milieu(Ilot ile) {
-        System.out.println(ile);
-        if(ile.listeVoisinRelier().size() < 2){
-            if((ile.getPosX() == 0 && ile.getPosY() == 0 || ile.getPosY() == grille.calculateWidth()) || (ile.getPosY() == 0 && ile.getPosX() == 0 || ile.getPosX() == grille.calculateHeight())){
-            if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
-                for (Ilot neighbor : ile.listeVoisin()) {
-                    if (neighbor.getValeur() == 1) {
-                        return true;
-                    }
-                    return false;
+        if(Aide.nb_ponts(ile)!=ile.getValeur()){
+            if (((ile.getValeur()+1)/2) == ile.listeVoisin().size()) {
+                if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
+                    for (Ilot neighbor : ile.listeVoisin()) {
+                        if (neighbor.getValeur() == 1) {
+                            return true;
+                        }
+                    } 
                 }
             }
         }
-        }
-        
-        
         return false;
     }
 
@@ -269,12 +261,12 @@ import java.util.HashMap;
     public static boolean cas_4_6_8_cote(Ilot ile){
         if (Aide.nb_ponts(ile)< ile.getValeur()) {
             if(ile.getValeur() == 6 ){
-                if(ile.getPosX() == 0 || ile.getPosY() == 0 || ile.getPosX() == grille.calculateWidth() || ile.getPosY() == grille.calculateHeight()){
+                if(ile.listeVoisin().size()==3) {
                     return true;
                 }
             }
             else if(ile.getValeur() == 4){
-                if((ile.getPosX() == 0 && ile.getPosY() == 0 || ile.getPosY() == grille.calculateWidth()) || (ile.getPosY() == 0 && ile.getPosX() == 0 || ile.getPosX() == grille.calculateHeight())){
+                if(ile.listeVoisin().size()==2) {
                     return true;
                 }
             }
@@ -380,7 +372,6 @@ import java.util.HashMap;
                 int pontConnecteVoisin = voisin.listeVoisinRelier().size();
                 int pontManquantVoisin = voisinValeur - pontConnecteVoisin;
                 if (pontManquantVoisin >= ile.getValeur()- nbVoisinRestant) {
-                    System.out.print(ile);
                     return true;
                 }
             }
