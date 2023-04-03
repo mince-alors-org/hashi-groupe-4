@@ -29,10 +29,11 @@ public class Grille {
      */
     public static int longueur;
     public static int largeur;
-    public static List<Ilot> listeIlot;
-    private Pane parent;
+    public List<Ilot> listeIlot;
+    private Pane gridPlace;
     private GridPane grid;
     private Canvas fond;
+    private Pane parent;
 
     private static Pattern pontsDetection = Pattern.compile("[A-Z],?[0-9](?=(\\)])|(\\),))");
 
@@ -41,9 +42,10 @@ public class Grille {
      * @author Morgane Penchon
      * @param nomF nom du fichier à lire pour creer la grille
      */
-    public Grille(String nomF, Pane parent, Canvas canvas) {
-       this.parent=parent;
+    public Grille(String nomF, Pane gridPlace, Canvas canvas, Pane bgParent) {
+       this.gridPlace= gridPlace;
        this.fond=canvas;
+       this.parent= bgParent;
        listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
@@ -116,10 +118,10 @@ public class Grille {
            throw new RuntimeException(e);
        }
             grid = initGrid();
-            parent.getChildren().add(grid); 
+            gridPlace.getChildren().add(grid); 
             for (Ilot i :this.getIlots()) {
-                i.setCanvasX((1.0*parent.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
-                i.setCanvasY((1.0*parent.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
+                i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
+                i.setCanvasY((1.0*gridPlace.getPrefHeight() / (longueur)) * (i.getPosY()+0.5));
             }
 
     }
@@ -137,12 +139,12 @@ public class Grille {
 
       //Sets sizes of columns from size of pane to be added on
       for(int i=0; i<largeur; i++){
-        grid.getColumnConstraints().add(new ColumnConstraints(1.0*parent.getPrefWidth() / (largeur)));
+        grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (largeur)));
       }
       
       //Sets sizes of rows from size of pane to be added on
       for(int i=0; i<longueur;i++)
-        grid.getRowConstraints().add(new RowConstraints(1.0*parent.getPrefHeight() / (longueur)));
+        grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (longueur)));
 
       
       for(Ilot ilot : listeIlot ){
@@ -164,16 +166,12 @@ public class Grille {
         //During this part, setActive and change active are manly for graphic purposes
         //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
         ilot.getBtn().setOnAction(e -> {
-          if (this.getParentPane().lookup("#pop") == null){
+          if (this.getGridPane().lookup("#pop") == null){
             Ilot ileAct = this.getIlotActif() ;
 
-            if (ileAct == ilot){
-              ilot.setActive(false);
-            }
-
-            else if (ileAct != null){
+            if (ileAct != null){
               //If the active and clicked isle are neighbours
-              if (Grille.sontVoisin(ileAct, ilot) ){
+              if (this.sontVoisin(ileAct, ilot) ){
 
                 //Get what could be the bridge
                 Pont pont = ileAct.liaisonP(ilot);
@@ -181,7 +179,6 @@ public class Grille {
                 if (!this.croisePont(pont)){
 		              pont.incrementer();
                   pont.affiche(fond);
-                  changeActive(ilot);
                   
                   ileAct.setActive(false);
                   ilot.setActive(false);
@@ -192,9 +189,6 @@ public class Grille {
                   ileAct.setRed(true);
                 }
               }
-              else {
-                changeActive(ilot);
-              }
             }
             else 
               ilot.setActive(!(ilot.getActive()));
@@ -203,16 +197,19 @@ public class Grille {
               ilot.setRed(true);
             }
 
+            if(ileAct == ilot || ileAct == null)
+              changeActive(ilot);
+
             if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
               ileAct.setRed(true);
             }
             if (this.isWin()){
-              PopUp win = new PopUp((Pane)((Pane)this.parent.getScene().getRoot()).getChildren().get(0));
+              PopUp win = new PopUp(this.parent);
               try{
-                win.pasteAndHandle("/view/winLayout.fxml", new WinHandler((Pane)((Pane)this.parent.getScene().getRoot()).getChildren().get(0)));
+                win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent));
               }
               catch (Exception ex){
-                System.out.println("err");
+                ex.printStackTrace();
               }
             }
           }
@@ -292,8 +289,8 @@ public class Grille {
       return grid;
     }
 
-    public Pane getParentPane(){
-      return parent;
+    public Pane getGridPane(){
+      return gridPlace;
     }
     
     /**
@@ -301,7 +298,7 @@ public class Grille {
      * @see Parametre
      * @author Ambre Collard
      */
-    public static void setAllIsleStyle(){
+    public void setAllIsleStyle(){
       for (Ilot i : listeIlot){
         i.setStyleParam();
       }
@@ -332,7 +329,7 @@ public class Grille {
      * @return <code>true</code> if the two isle are neighbours, <code>false</code> if not
      * @author Ambre Collard
      */
-    public static boolean sontVoisin(Ilot il1, Ilot il2){
+    public boolean sontVoisin(Ilot il1, Ilot il2){
       if (il1 == il2){
         return false;
       }
@@ -388,6 +385,10 @@ public class Grille {
       i.setActive(true);
     }
 
+    /**
+     * Verify if the grid is completed, resulting in the player to win.
+     * @return <code>true</code> if the grid is completed, <code>false</code> otherwise.
+     */
     public boolean isWin(){
       for(Ilot ilot : listeIlot){
         System.out.println(ilot.equalsSol());
@@ -395,6 +396,13 @@ public class Grille {
           return false;
       }
       return true;
+    }
+
+    public void unsetReds(){
+      for(Ilot ilot : listeIlot){
+        if (ilot.nbPont() < ilot.getValeur())
+        ilot.setRed(false);
+      }
     }
     
 }

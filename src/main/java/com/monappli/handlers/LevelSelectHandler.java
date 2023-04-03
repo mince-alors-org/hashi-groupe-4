@@ -40,12 +40,15 @@ public class LevelSelectHandler extends DynamicEventHandler{
     @FXML
     private Pane selectPane;
 
+    private LevelScene lvlScene;
+
     /**
      * Initialization of LevelSelectHandler
      * @param parent parent of the current Pane
      */
-    public LevelSelectHandler(Pane parent){
+    public LevelSelectHandler(Pane parent, LevelScene lvlScene){
         super(parent);
+        this.lvlScene=lvlScene;
         curDiff=1;
     }
 
@@ -59,7 +62,7 @@ public class LevelSelectHandler extends DynamicEventHandler{
         curDiff= curDiff%LevelScene.nbDiff +1;
         diffButton.setText(intToDiff(curDiff));
 
-        GridPane newGrid= LevelScene.initGrid(LevelScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
+        GridPane newGrid= lvlScene.initGrid(LevelScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
         selectPane.getChildren().setAll(newGrid);
 
     }

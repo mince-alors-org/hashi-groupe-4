@@ -50,9 +50,9 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
      */
     public void playClicked() throws Exception {
         LevelScene game= new LevelScene(this.getParentPane());
-        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane()));
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
-        GridPane selGrid= LevelScene.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
         
     }
