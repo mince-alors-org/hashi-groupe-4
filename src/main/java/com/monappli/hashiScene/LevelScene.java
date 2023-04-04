@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import com.monappli.Grille;
 import com.monappli.Parametre;
 import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.LevelSelectHandler;
@@ -21,7 +20,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.canvas.Canvas;
 
 
 /**

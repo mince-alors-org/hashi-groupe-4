@@ -3,8 +3,6 @@ package com.monappli.handlers;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.MainPanel;
 
-import javafx.fxml.*;
-import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 

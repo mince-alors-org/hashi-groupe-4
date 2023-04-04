@@ -13,6 +13,7 @@ import com.monappli.hashiScene.PopUp;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -137,6 +138,10 @@ public class Grille {
       this(nomF, true, gridPlace, canvas, bgParent);
     }
 
+
+    public Canvas getCanvas(){
+      return fond;
+    }
 
     /**
      * Creates a grid from a list of isle and set their onAction behaviors
@@ -312,6 +317,15 @@ public class Grille {
     public void setAllIsleStyle(){
       for (Ilot i : listeIlot){
         i.setStyleParam();
+      }
+    }
+
+    public void setBridgeStyle(){
+      GraphicsContext gc = getCanvas().getGraphicsContext2D();
+      gc.setFill(Parametre.getCouleur_fond());
+      gc.clearRect(0, 0, getCanvas().getWidth(), getCanvas().getHeight());
+      for (Pont p : listePontExistant()){
+        p.affiche(fond);
       }
     }
 

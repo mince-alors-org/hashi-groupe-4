@@ -1,10 +1,6 @@
 package com.monappli.handlers;
 
-import java.util.ArrayList;
-
 import com.monappli.Grille;
-import com.monappli.Ilot;
-
 import javafx.scene.layout.Pane;
 
 /**
@@ -32,5 +28,6 @@ public class GameParamHandler extends ParamHandler {
     public void changeAll() throws Exception{
         super.changeAll();
         grille.setAllIsleStyle();
+        grille.setBridgeStyle();
     }
 }

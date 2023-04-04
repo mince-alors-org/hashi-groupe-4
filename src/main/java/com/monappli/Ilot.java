@@ -3,12 +3,8 @@ package com.monappli;
 
 
 import java.io.Serializable;
-//import java.beans.EventHandler;
 import java.util.ArrayList;
 
-import javafx.beans.binding.BooleanExpression;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;

@@ -2,10 +2,6 @@ package com.monappli.handlers;
 
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.MainPanel;
-import com.monappli.hashiScene.PopUp;
-
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
