@@ -301,7 +301,7 @@ public class Grille {
       return listeIlot;
     }
 
-    public GridPane getGrid(){
+    public GridPane getGameGrid(){
       return grid;
     }
 
