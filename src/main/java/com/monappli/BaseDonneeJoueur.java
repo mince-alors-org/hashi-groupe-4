@@ -1,6 +1,8 @@
 package com.monappli;
 
+import java.io.File;
 import java.io.Serializable;
+import java.io.ObjectInputFilter.Status;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +58,16 @@ public class BaseDonneeJoueur implements Serializable{
             res += joueur.getnom() + " - " + joueur.getmotdepasse() + "\n";
         }
         return res;
+    }
+
+    public static boolean exisits(String nomF){
+        File directory=new File("src/main/resources/profiles");
+        ArrayList<String> search= new ArrayList<String>();
+
+        for (String e : directory.list()){
+            search.add(e);
+        }
+        return search.contains(nomF + ".prof");
     }
 }
     

@@ -2,6 +2,7 @@ package com.monappli;
 
 import java.io.Serializable;
 
+import javafx.css.FontCssMetaData;
 import javafx.scene.paint.Color;
 
 /**
@@ -22,7 +23,7 @@ public  class Parametre implements Serializable{
     private static Color couleur_aide_erreur=Color.BLACK;
     private static Color couleur_fond=new Color(1.0*69/255,1.0*123/255,1.0*248/255,1);
     private static int taille_texte;
-    private static int[] taille_fenetre = {800,600};
+    private static int[] taille_fenetre = {800,450};
     /**
      * Cette variable représente la possibilitée d'afficher automatiquement une aide visuelle quand trop de pont relie une île
      */
@@ -121,11 +122,11 @@ public  class Parametre implements Serializable{
     @Override
     public String toString(){
         return "Param{" +
-                "couleur_texte=" + couleur_texte.getRed() + "," + couleur_texte.getGreen() + "," + couleur_texte.getBlue() + 
-                ", couleur_ilot=" + couleur_ilot.getRed() + "," + couleur_ilot.getGreen() + "," + couleur_ilot.getBlue() +
-                ", couleur_pont=" + couleur_pont.getRed() + "," + couleur_pont.getGreen() + "," + couleur_pont.getBlue() +
-                ", couleur_aide_erreur=" + couleur_aide_erreur.getRed() + "," + couleur_aide_erreur.getGreen() + "," + couleur_aide_erreur.getBlue() +
-                ", couleur_fond=" + couleur_fond.getRed() + "," + couleur_fond.getGreen() + "," + couleur_fond.getBlue() +
+                "couleur_texte=" + toRGBForCSS(couleur_texte) + 
+                ", couleur_ilot=" + toRGBForCSS(couleur_ilot) +
+                ", couleur_pont=" + toRGBForCSS(couleur_pont) +
+                ", couleur_aide_erreur=" + toRGBForCSS(couleur_aide_erreur) +
+                ", couleur_fond=" + toRGBForCSS(couleur_fond) +
                 ", taille_texte=" + taille_texte +
                 ", taille_fenetre=" + taille_fenetre[0] + "," + taille_fenetre[1] +
                 ", affichage_depassment_cardinalite=" + affichage_depassment_cardinalite +
@@ -139,6 +140,10 @@ public  class Parametre implements Serializable{
             (int)( c.getRed() * 255 ),
             (int)( c.getGreen() * 255 ),
             (int)( c.getBlue() * 255 ) );
+    }
+
+    public static Color  toColor(String str){
+        return Color.web(str);
     }
 
     public void chargerFichierParametre(String fichier_parametre) {

@@ -49,4 +49,9 @@ public class BaseDonneeJoueurTest {
         joueur.initSave(joueur.getnom(), "1-1.niv");
         
     }
+
+    @Test
+    public void testExists(){
+        System.out.println(BaseDonneeJoueur.exisits("michel"));
+    }
 }
