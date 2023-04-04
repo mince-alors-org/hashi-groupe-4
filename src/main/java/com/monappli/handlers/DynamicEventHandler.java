@@ -14,7 +14,7 @@ import javafx.stage.Stage;
  * @author Ambre Collard
  */
 
-public class DynamicEventHandler implements Handler{
+public class DynamicEventHandler {
     /**
      * backGround Pane
      */

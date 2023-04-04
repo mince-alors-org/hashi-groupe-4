@@ -129,18 +129,13 @@ public class ParamHandler extends DynamicEventHandler{
      * Changes to the new parameters if they were selected
      * @throws Exception if the MainPanel can't load
      */
-    public void changeAll() throws Exception{
+    public <H extends DynamicEventHandler> void changeAll() throws Exception{
+        Parametre.setCouleur_fond(bgPicker.getValue());
+        Parametre.setCouleur_ilot(islePicker.getValue());
+        Parametre.setCouleur_pont(bridgePicker.getValue());
+        Parametre.setCouleur_texte(textPicker.getValue());
 
-        if (newBgColor !=null)
-            Parametre.setCouleur_fond(newBgColor);
-        if(newIsleColor != null)
-            Parametre.setCouleur_ilot(newIsleColor);
-        if(newbridgeColor != null)
-            Parametre.setCouleur_pont(newbridgeColor);
-        if(newTextColor!=null)
-            Parametre.setCouleur_texte(newTextColor);
-
-        Handler mainH= (Handler) paramPane.getParent().getUserData();
+        H mainH= (H) paramPane.getParent().getUserData();
         Pane parent = (Pane)paramPane.getParent();
 
         Pane grandparent=(Pane)(parent.getParent());

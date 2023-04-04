@@ -1,12 +1,12 @@
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/ParamHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/GameScene.java
+/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/MainMenuEventHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/MainPanel.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/GameHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/LevelScene.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/PopUp.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/LevelSelectHandler.java
-/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/mainMenuEventHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/DynamicEventHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/GameParamHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Hashi.java

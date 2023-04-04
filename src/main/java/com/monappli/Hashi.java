@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 
 
 public class Hashi extends Application {
-    Handler cont;
 
     public static void main(String[] args) {
         Application.launch(Hashi.class,args);
@@ -28,10 +27,10 @@ public class Hashi extends Application {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/mainBG.fxml"));
         Pane root = (Pane)loader.load();
 
-        this.cont = new mainMenuEventHandler(root);
+        
         MainPanel menuLoader= new MainPanel(root);
 
-        menuLoader.pasteAndHandle("/view/main_menu.fxml", cont);
+        menuLoader.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler(root));
 
 
 
