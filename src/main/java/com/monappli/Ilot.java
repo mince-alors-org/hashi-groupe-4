@@ -48,6 +48,12 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	private IlotBtn bouton;
 
 	/**
+	* Pour l'affichage
+	*/
+	private boolean active;
+
+
+	/**
 	 *
 	 * @param posX position de l'ilot courant dans l'axe des abscisses (X)
 	 * @param posY position de l'ilot courant dans l'axe des ordonnées (Y)
@@ -82,11 +88,6 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	public Ilot(int posX, int posY, int valeur){
 		this(posX,  posY, valeur, false);
 	}
-
-	/**
-	* Pour l'affichage
-	*/
-	private boolean active;
 
 	/**
 	* Set the style of an isle thanks to Parametre
