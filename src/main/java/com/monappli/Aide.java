@@ -31,7 +31,7 @@ import java.util.HashMap;
         "Si une île est de valeur 3 et qu'un de ses voisins est une île avec l'indice 1, alors toutes les conditions sont réunies et les 3 ponts peuvent être tracés, la même logique peut être appliquée si une île de valeur 5 sur le côté ou une île de valeur 7 au milieu a pour voisin une île marquée par un 1");
 
         technique.put("Iles aux millieux avec 6 de cardinalités", 
-        "Si un Ilot a 6 cardinalité a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités: \n - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pond avec tout ces autres voisins \n - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponds avec tout ces voisins");
+        "Si un Ilot a 6 cardinalité a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités: \n - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pont avec tout ses autres voisins \n - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponts avec tout ses voisins");
 
         technique.put("Isolation des segments",
         "Il est interdit qu'un bloc d'île soit isolé du reste des autres, lorsqu'il y a 2 îles de cardinalité 1 ou deux îles de cardinalités 2, il est interdit de les connecter entre eux s'ils peuvent être connectés à d'autres." );
@@ -81,31 +81,31 @@ import java.util.HashMap;
                 return technique.get("Iles 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
             }
             */
-            if(cas_spe_3_coin_5_cote_7_milieu(grille.getIlots().get(i))){
+            /*if(cas_spe_3_coin_5_cote_7_milieu(grille.getIlots().get(i))){
                 return technique.get("Cas spécial des 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
             }
             if(cas_4_6_8_cote(grille.getIlots().get(i))){
                 System.out.print("4");
                 return technique.get("Iles avec autant de voisins que la moitié de leur cardinalité");
             }
-            /* 
-            else if (cas_4_avec_3_voisin_dont_2_1(grille.getIlots().get(i))) {
+            
+            if (cas_4_avec_3_voisin_dont_2_1(grille.getIlots().get(i))) { // aucun cas
                 System.out.print("4");
                 return technique.get("Iles sur un coté avec 4 de cardinalités");
             }
-            else if (cas_6_milieu(grille.getIlots().get(i))) {
-                System.out.print("5");
-                return technique.get("Iles aux millieux avec 6 de cardinalités");
-            } /* 
             else if (isolation_iles(grille.getIlots().get(i))) {
                 return technique.get("Isolation des segments");
             }
-            
-            else if (isolation_iles_3(grille.getIlots().get(i))) {
+            */
+            /* 
+            if (cas_6_milieu(grille.getIlots().get(i))) {
+                System.out.print("4");
+                return technique.get("Iles aux millieux avec 6 de cardinalités");
+            } */
+            if (isolation_iles_3(grille.getIlots().get(i))) {
                 System.out.print("6");
                 return technique.get("");
             }
-            */
         }
         return technique.get("Pas de technique applicable");
     }
@@ -311,16 +311,16 @@ import java.util.HashMap;
      */
     public static boolean cas_6_milieu(Ilot ile) {
         if (ile.getValeur() == 6 && ile.listeVoisin().size() == 4) {
-            for (Ilot voisin : ile.listeVoisin()) {
-                if (voisin.getValeur()==1) {
-                    return true;
+            if (Aide.nb_ponts(ile) < 4) {
+                for (Ilot voisin : ile.listeVoisin()) {
+                    System.out.println(voisin);
+                    if (voisin.getValeur()==1) {
+                        return true;
+                    }
                 }
-            }
-            return false;
+            }    
         }
-        else {
-            return false;
-        }
+        return false;
     }
     /**
      * Fonction qui vérifie le cas isolation_iles
