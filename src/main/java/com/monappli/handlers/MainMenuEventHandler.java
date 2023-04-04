@@ -11,14 +11,14 @@ import javafx.scene.layout.Pane;
  * @see DynamicEventHandler 
  * @author Collard Ambre
  */
-public class mainMenuEventHandler extends  DynamicEventHandler{
+public class MainMenuEventHandler extends  DynamicEventHandler{
 
 
     /**
-     * Initialization of mainMenuEventHandler
+     * Initialization of MainMenuEventHandler
      * @param parentPane 
      */
-    public mainMenuEventHandler(Pane parentPane){
+    public MainMenuEventHandler(Pane parentPane){
         super(parentPane);
     }
 

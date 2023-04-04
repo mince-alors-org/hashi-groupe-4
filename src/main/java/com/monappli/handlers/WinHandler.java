@@ -13,7 +13,7 @@ public class WinHandler extends DynamicEventHandler {
 
     public void menuClicked() throws Exception{
         MainPanel main= new MainPanel(this.getParentPane());
-        main.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler((Pane)this.getParentPane()));
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler((Pane)this.getParentPane()));
     }
 
     public void lvlClicked() throws Exception{

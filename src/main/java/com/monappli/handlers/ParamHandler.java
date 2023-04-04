@@ -16,26 +16,6 @@ import javafx.scene.paint.Color;
 public class ParamHandler extends DynamicEventHandler{
 
     /**
-     * Color of the chosen locally text Color
-     */
-    private Color newTextColor;
-
-    /**
-     * Color of the chosen locally background color
-     */
-    private Color newBgColor;
-
-    /**
-     * Color of the chosen locally isle Color
-     */
-    private Color newIsleColor;
-
-    /**
-     * Color of the chosen locally bridge color
-     */
-    private Color newbridgeColor;
-
-    /**
      * Back Button
      */
     @FXML
@@ -95,34 +75,6 @@ public class ParamHandler extends DynamicEventHandler{
         bgPicker.setValue(Parametre.getCouleur_fond());
         islePicker.setValue(Parametre.getCouleur_ilot());
         bridgePicker.setValue(Parametre.getCouleur_pont());
-    }
-
-    /**
-     * Action when textPicker is clicked. Sets newTextColor to the new one.
-     */
-    public void textPickerClicked(){
-        this.newTextColor= textPicker.getValue();
-    }
-
-    /**
-     * Action when islePicker is clicked. Sets newIsleColor to the new one.
-     */
-    public void ilsePickerClicked(){
-        this.newIsleColor= islePicker.getValue();
-    }
-
-    /**
-     * Action when bridgePicker is clicked. Sets newBridgeColor to the new one.
-     */
-    public void bridgePickerClicked(){
-        this.newbridgeColor= bridgePicker.getValue();
-    }
-
-    /**
-     * Action when bgPicker is clicked. Sets newBgColor to the new one.
-     */
-    public void bgPickerClicked(){
-        this.newBgColor= bgPicker.getValue();
     }
 
     /**

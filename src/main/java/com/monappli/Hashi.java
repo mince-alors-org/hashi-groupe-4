@@ -30,7 +30,7 @@ public class Hashi extends Application {
         
         MainPanel menuLoader= new MainPanel(root);
 
-        menuLoader.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler(root));
+        menuLoader.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(root));
 
 
 
