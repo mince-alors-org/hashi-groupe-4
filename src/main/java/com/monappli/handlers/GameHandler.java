@@ -36,6 +36,9 @@ public class GameHandler extends DynamicEventHandler {
         System.out.println("Je suis rest");
         this.grille.remiseZero();
     }
+    public void resolClicked(){
+        System.out.println("Je suis le bouton résolution");
+    }
 
     public void helpClicked(){
         System.out.println("Je suis Aide");

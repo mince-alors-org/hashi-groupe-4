@@ -22,7 +22,7 @@ import javafx.scene.layout.RowConstraints;
 /**
  * Cette classe permet de représenter une Grille
  *
- * @author Morgane Pechon et Ambre Collard
+ * @author Morgane Pechon, Noe Mention et Ambre Collard
  */
 public class Grille {
     /**
