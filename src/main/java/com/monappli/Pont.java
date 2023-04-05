@@ -49,6 +49,12 @@ public class Pont implements Serializable{
 		ile1.calculValeur(nbTraits);
 		ile2.calculValeur(nbTraits);
 	}
+	/**
+	 * remise à zero du nombre de trait
+	 */
+	public void remiseZero(){
+		this.nombreTraits=0;
+	}
 
 	/**
 	 *@return nombreTraits indique la quantiter de trait afficher

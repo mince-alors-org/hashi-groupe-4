@@ -5,6 +5,7 @@ package com.monappli;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javafx.scene.canvas.Canvas;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -87,6 +88,15 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	}
 	public Ilot(int posX, int posY, int valeur){
 		this(posX,  posY, valeur, false);
+	}
+	/**
+	 * remise à zero de tout les pont d'une île
+	 */
+	public void remiseZero(Canvas c){
+		for(Pont p : this.ponts){
+			p.remiseZero();
+			p.erase(c);
+		}
 	}
 
 	/**

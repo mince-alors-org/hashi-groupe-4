@@ -138,6 +138,12 @@ public class Grille {
       this(nomF, true, gridPlace, canvas, bgParent);
     }
 
+    public void remiseZero(){
+      for(Ilot i: this.listeIlot){
+        i.remiseZero(this.fond);
+      }
+    }
+
 
     public Canvas getCanvas(){
       return fond;
