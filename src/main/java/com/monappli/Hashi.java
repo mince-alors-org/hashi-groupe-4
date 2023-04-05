@@ -33,7 +33,7 @@ public class Hashi extends Application {
         Pane root = (Pane)loader.load();
         MainPanel menuLoader= new MainPanel(root);
 
-        menuLoader.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler(root));
+        menuLoader.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(root));
 
         ProfileScene prof= new ProfileScene(menuLoader.getCurPane());
         prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
