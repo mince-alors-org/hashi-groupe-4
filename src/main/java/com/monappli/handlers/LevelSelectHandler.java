@@ -1,6 +1,7 @@
 package com.monappli.handlers;
 
 import com.monappli.hashiScene.LevelScene;
+import com.monappli.hashiScene.MainPanel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -9,21 +10,17 @@ import javafx.scene.layout.Pane;
 
 /**
  * Handler of the level selecting pane
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public class LevelSelectHandler extends DynamicEventHandler{
     
+    public static int curPage=1;
+
     /**
      * Static Integer of the current difficulty set on the grid (useful for creating the level selecting grid)
      * @see LevelScene#initGrid
      */
     public static int curDiff;
-
-    /**
-     * Current background Panel
-     */
-    @FXML
-    private Pane backGround;
 
     /**
      * Difficulty button
@@ -37,12 +34,15 @@ public class LevelSelectHandler extends DynamicEventHandler{
     @FXML
     private Pane selectPane;
 
+    private LevelScene lvlScene;
+
     /**
      * Initialization of LevelSelectHandler
      * @param parent parent of the current Pane
      */
-    public LevelSelectHandler(Pane parent){
+    public LevelSelectHandler(Pane parent, LevelScene lvlScene){
         super(parent);
+        this.lvlScene=lvlScene;
         curDiff=1;
     }
 
@@ -50,13 +50,13 @@ public class LevelSelectHandler extends DynamicEventHandler{
      * Action when diffButton is clicked. Changes the difficulty to chose from and reloads the level selection grid depending on the difficulty
      * @throws Exception if the grid can't load
      * @see LevelScene#initGrid
-     * @author Matthis Collard
+     * @author Ambre Collard
      */
     public void diffClicked() throws Exception{
         curDiff= curDiff%LevelScene.nbDiff +1;
         diffButton.setText(intToDiff(curDiff));
 
-        GridPane newGrid= LevelScene.initGrid(LevelScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
+        GridPane newGrid= lvlScene.initGrid(LevelScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
         selectPane.getChildren().setAll(newGrid);
 
     }
@@ -64,8 +64,8 @@ public class LevelSelectHandler extends DynamicEventHandler{
     /**
      * Returns the difficulty as a string from a number
      * @param diff difficulty (1,2 or 3)
-     * @return String representing difficulty (Example : 1 returns Facile)
-     * @author Matthis Collard
+     * @return <code>String</code> representing difficulty (Example : 1 returns Facile)
+     * @author Ambre Collard
      */
     public String intToDiff(int diff){
         switch (diff){
@@ -80,6 +80,10 @@ public class LevelSelectHandler extends DynamicEventHandler{
         }
     }
 
+    public void backClicked() throws Exception{
+        MainPanel main= new MainPanel(this.getParentPane());
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParentPane()));
+    }
 
     
 }

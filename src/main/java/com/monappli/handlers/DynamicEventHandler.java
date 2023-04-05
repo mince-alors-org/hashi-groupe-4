@@ -1,33 +1,20 @@
 package com.monappli.handlers;
 
 
+import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 /**
  * This class is the core of our different event handlers
  * @see Handler
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 
-public class DynamicEventHandler implements Handler{
-
-    /**
-     * Parameter Button
-     */
-    @FXML
-    public Button paramButton;
-
-    /**
-     * Power Button (to quit the game)
-     */
-    @FXML
-    public Button powerButton;
-
+public class DynamicEventHandler {
     /**
      * backGround Pane
      */
@@ -50,6 +37,7 @@ public class DynamicEventHandler implements Handler{
      */
     public DynamicEventHandler(Pane parentPane){
         this.parentPane=parentPane;
+        setCurPane(backGround);
     }
 
     /**
@@ -83,9 +71,10 @@ public class DynamicEventHandler implements Handler{
      * Action when powerButton is clicked. Quits the application
      */
     public void quitClicked(){
-        Stage stage = (Stage) powerButton.getScene().getWindow();
-        stage.close();
-        System.out.println("Je quitte");
+        if (backGround.lookup("#pop") == null){
+            Stage stage = (Stage) backGround.getScene().getWindow();
+            stage.close();
+        }
     }
  
     /**
@@ -94,7 +83,7 @@ public class DynamicEventHandler implements Handler{
      * @see PopUp
      * @see ParamHandler
      * @throws Exception if the PopUp can't load
-     * @author Matthis Collard
+     * @author Ambre Collard
      */
     public void paramClicked() throws Exception{
         if (backGround.lookup("#pop") == null){
@@ -102,7 +91,11 @@ public class DynamicEventHandler implements Handler{
             ParamHandler paramH= new ParamHandler(this.backGround);
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
-            System.out.println("Je suis Paramètre");
         }
+    }
+
+    public void hashiClicked() throws Exception{
+        MainPanel main= new MainPanel(this.getParentPane());
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParentPane()));
     }
 }

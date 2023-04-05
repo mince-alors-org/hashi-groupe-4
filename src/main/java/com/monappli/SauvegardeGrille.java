@@ -2,7 +2,6 @@ package com.monappli;
 
 import java.io.FileWriter;
 import java.io.FileReader;
-import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -10,10 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.awt.*;
-import javafx.scene.paint.Color;
 
 public class SauvegardeGrille implements Serializable{  
 
@@ -44,7 +40,7 @@ public class SauvegardeGrille implements Serializable{
      */
     public void ajoutCoup(Pont p1){ 
         if(p1 != null){
-            this.pileCoups.add(p1);
+            pileCoups.add(p1);
         }
     }
 

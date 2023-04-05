@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import com.monappli.Grille;
 import com.monappli.Parametre;
 import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.LevelSelectHandler;
@@ -21,13 +20,12 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.canvas.Canvas;
 
 
 /**
  * This class allows to create a special pane and grid for selecting a level
  * @see MainPanel
- * @author Matthis Collard
+ * @author Ambre Collard
  */
 public class LevelScene extends MainPanel {
     /**
@@ -57,11 +55,11 @@ public class LevelScene extends MainPanel {
      * @param w Width of the pane where the grid will be added 
      * @param h Height of the pane where the grid will be added
      * @param backPane Background pane, used to change the whole interface when clicking on a level Button
-     * @return The GridPane created from the parameters
+     * @return <code>GridPane</code> the GridPane created from the parameters
      * @throws Exception
-     * @author Matthis Collard
+     * @author Ambre Collard
      */
-    public static GridPane  initGrid(int nbLvl, int w, int h, Pane backPane) throws Exception{
+    public GridPane  initGrid(int nbLvl, int w, int h, Pane backPane) throws Exception{
         GridPane grid= new GridPane();
 
         /*
@@ -77,9 +75,9 @@ public class LevelScene extends MainPanel {
         for(int i=0; i<size;i++)
             grid.getRowConstraints().add(new RowConstraints(1.0*h / (size)));
         
-        
-        for (int i=size*size*(LevelSelectHandler.curDiff-1); i< nbLvl && i < size*size*LevelSelectHandler.curDiff; i++){
+        for (int i=size*size*(LevelSelectHandler.curPage-1); i< nbLvl && i < size*size*LevelSelectHandler.curPage; i++){
             Button btn = new Button(Integer.toString(i+1));
+
 
             /*
              * sets the button to the center of the cell
@@ -109,18 +107,16 @@ public class LevelScene extends MainPanel {
 
             //Set event handler
             btn.setOnAction(e -> {
-                MainPanel game= new MainPanel(backPane);
-                try {
-                    //if clicked, will try to load the game layout
-                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(backPane));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
                 //Get the file name of the level related to the button
-                String nomF = "../niveaux/" +LevelSelectHandler.curDiff+"-"+ btn.getText()+".niv";
+                String lvlF = "../niveaux/" +LevelSelectHandler.curDiff+"-"+ btn.getText()+".niv";
 
-                //Creates a new game grid
-                new Grille(nomF, (Pane)game.getParent().lookup("#gridPlacement"), (Canvas)game.getParent().lookup("#fond"));
+                //Creates a new game grid and the graphic interface
+                GameScene game = new GameScene(this.getParent());
+                try {
+                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParent()),lvlF );
+                } catch (Exception e1) {
+                    e1.printStackTrace();
+                }
 
                 //Get the level button above the game grid
                 Button lvlButton = (Button)game.getCurPane().lookup("#levelButton");
@@ -138,8 +134,8 @@ public class LevelScene extends MainPanel {
      * For example:
      *    Level 3 of difficulty 2 would be named : 2-3
      * @param diff Difficulty the program wants to search
-     * @return the number of levels in this difficulty
-     * @author Matthis Collard
+     * @return <code>int</code> the number of levels in this difficulty
+     * @author Ambre Collard
      */
     public static int countLvl(int diff){
         File directory=new File("src/main/java/com/monappli/niveaux");

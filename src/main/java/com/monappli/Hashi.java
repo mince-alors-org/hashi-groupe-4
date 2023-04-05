@@ -38,13 +38,9 @@ public class Hashi extends Application {
         ProfileScene prof= new ProfileScene(menuLoader.getCurPane());
         prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
 
-
-
-
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);
-        System.out.println(root.getChildren());
         stage.setResizable(false);
         stage.show();
     }

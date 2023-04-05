@@ -32,8 +32,8 @@ public class SauvegardeGrilleTest {
         this.sauvegarde = new SauvegardeGrille();
         this.bdd = new BaseDonneeJoueur();
         this.parametre = new Parametre();
-        this.ilot1 = new Ilot(3, 2, 1);
-        this.ilot2 = new Ilot(2, 1, 1);
+        this.ilot1 = new Ilot(3, 2, 1,false);
+        this.ilot2 = new Ilot(2, 1, 1,false);
 
         this.p1 = new Pont(ilot2, ilot1);
         File testEmptyFile = new File(fichier_sauvegarde);

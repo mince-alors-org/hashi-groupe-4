@@ -3,12 +3,9 @@ package com.monappli;
 
 
 import java.io.Serializable;
-//import java.beans.EventHandler;
 import java.util.ArrayList;
 
-
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -21,7 +18,7 @@ import javafx.scene.paint.Color;
  * Cette classe permet de représenter un Ilot
  * @author nmention
  */
-public class Ilot extends Button implements Comparable<Ilot>, Serializable{
+public class Ilot  implements Comparable<Ilot>, Serializable{
 	/**
 	 * position de this dans l'axe des abscisses (X)
 	 */
@@ -48,14 +45,22 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	private ArrayList<Pont> ponts;
 
 	private ArrayList<Pont> pontsSolution;
+
+	private IlotBtn bouton;
+
+	/**
+	* Pour l'affichage
+	*/
+	private boolean active;
+
+
 	/**
 	 *
 	 * @param posX position de l'ilot courant dans l'axe des abscisses (X)
 	 * @param posY position de l'ilot courant dans l'axe des ordonnées (Y)
 	 * @param valeur nombre de ponts supportés par this
 	*/
-	public Ilot(int posX, int posY, int valeur) {
-		super();
+	public Ilot(int posX, int posY, int valeur, boolean graphic) {
 		this.posX = posX;
 		this.posY = posY;
 		canvasX = 0;
@@ -63,10 +68,11 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		this.valeur = valeur;
 		ponts = new ArrayList<Pont>();
 		this.pontsSolution = new ArrayList<Pont>() ;
+		if(graphic)
+			bouton= new IlotBtn(Integer.toString(valeur), posX, posY);
 	}
 
-	public Ilot(int posX, int posY,Canvas fond){
-		super();
+	public Ilot(int posX, int posY, boolean graphic){
 		this.valeur=0;
 		canvasX = 0;
 		canvasY = 0;
@@ -74,21 +80,35 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		this.posY = posY;
 		ponts = new ArrayList<>();
 		pontsSolution = new ArrayList<>();
+		if(graphic)
+			bouton= new IlotBtn("0", posX, posY);
+	}
+	public Ilot(int posX, int posY){
+		this(posX,  posY, false);
+	}
+	public Ilot(int posX, int posY, int valeur){
+		this(posX,  posY, valeur, false);
+	}
+	/**
+	 * remise à zero de tout les pont d'une île
+	 */
+	public void remiseZero(Canvas c){
+		this.setActive(active);
+		for(Pont p : this.ponts){
+			p.remiseZero();
+			p.erase(c);
+		}
 	}
 
 	/**
-	* Pour l'affichage
-	*/
-	private boolean active;
-
-	/**
-	* Permet l'affichage grphique d'une île
+	* Set the style of an isle thanks to Parametre
+	* @see Parametre
 	* @author Ambre
 	* @param longueur
 	* @param largeur
 	*/
 	public void setStyleParam(){
-		this.setStyle(			 "-fx-background-radius: 200px;"+
+		this.getBtn().setStyle(			 "-fx-background-radius: 200px;"+
 									"\n-fx-background-insets: 0 0 0 0;"+
 									"\n-fx-background-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_ilot())+";"+
 									"\n-fx-font:"+ (int)(1.0*24/(1.0*Grille.longueur/6)) +" px;"
@@ -96,14 +116,14 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	}
 
 	/**
-	* Permet de gérer l'activiter d'une île
-	* @author Ambre,Morgane,Noé
-	* @param act
+	* Activate or deactivate an isle
+	* @author Ambre
+	* @param act <code>true</code> to activate this isle, <code>false</code> to deactivate it 
 	*/
 	public void setActive(boolean act){
 		this.active=act;
 		if(act){
-				this.setBorder(new Border(new BorderStroke(
+				this.getBtn().setBorder(new Border(new BorderStroke(
 										Color.GREEN, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
@@ -112,7 +132,7 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 		}
 			
 		else{
-			this.setBorder(new Border(new BorderStroke(
+			this.getBtn().setBorder(new Border(new BorderStroke(
 										Color.BLACK, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
@@ -121,6 +141,33 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 
 		}
 	}
+
+	/**
+	 * Change the color of the borders 
+	 * @param act <code>boolean</code> set to <code>true</code> to change the border to red, <code>false</code> to reset to the current active state
+	 * @author Ambre Collard
+	 */
+	public void setRed(boolean act){
+		if(act){
+			this.getBtn().setBorder(new Border(new BorderStroke(
+											Color.RED, 
+											BorderStrokeStyle.SOLID, 
+											new CornerRadii(200), 
+											new BorderWidths(4)
+								)));
+		}
+		else 
+			this.setActive(getActive());
+	}
+
+	public IlotBtn getBtn(){
+		return this.bouton;
+	}
+
+	/**
+	 * Get if an isle is active or not
+	 * @return <code>true</code> if the isle is active, <code>false</code> else
+	 */
 	public boolean getActive(){
 		return active;
 	}
@@ -172,15 +219,6 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
 	public void setPonts(ArrayList<Pont> ponts) {
 		this.ponts = ponts;
 	}
-
-	/*public void setOnAction(){
-		Btn b = this.getBtn();
-		this.setOnAction(new EventHandler<ActionEvent>() {
-			@Override public void handle(ActionEvent e) {
-			  b.setActive(!(b.getActive()));
-			}
-		});
-	}*/
 
 	/**
 	 * Ajout d'un pont connecté au nœud courant
@@ -330,6 +368,32 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
     this.setValeur(this.getValeur()+add);
   }
 
+  public ArrayList<Pont> getSolPonts(){
+	return this.pontsSolution;
+  }
+
+  public boolean pontInSol(Pont p){
+	for (Pont Spont : this.getSolPonts()){
+		if(Spont.equals(p))
+			return true;
+	}
+	return false;
+  }
+
+  public boolean equalsSol(){
+	int tot=0;
+	for(Pont p : this.getPonts()){
+		if (!this.pontInSol(p) && p.getNbTraits() != 0){
+			return false;
+		}
+		if(p.getNbTraits() != 0)
+			tot++;
+	}
+	if (tot == this.getSolPonts().size())
+		return true;
+	return false;
+  }
+
   @Override
 	public String toString() {
 		return "Ilot{" +
@@ -339,6 +403,4 @@ public class Ilot extends Button implements Comparable<Ilot>, Serializable{
       ", ponts=" + ponts +
       ", pontsSolution=" + pontsSolution;
 	}
-
-
 }
