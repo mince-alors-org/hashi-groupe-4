@@ -1,14 +1,7 @@
-com/monappli/handlers/GameHandler.class
-com/monappli/Joueur.class
-com/monappli/BaseDonneeJoueur.class
-com/monappli/Pont.class
-com/monappli/hashiScene/ProfileScene.class
-com/monappli/hashiScene/PopUp.class
-com/monappli/App.class
-com/monappli/Aide.class
 com/monappli/hashiScene/LevelScene.class
 com/monappli/handlers/LevelSelectHandler.class
 com/monappli/handlers/ParamHandler.class
+com/monappli/handlers/GameHandler.class
 com/monappli/handlers/GameParamHandler.class
 com/monappli/Parametre.class
 com/monappli/Grille.class
@@ -17,8 +10,6 @@ com/monappli/handlers/DynamicEventHandler.class
 com/monappli/handlers/MainMenuEventHandler.class
 com/monappli/hashiScene/GameScene.class
 com/monappli/hashiScene/DynamicScene.class
-com/monappli/SauvegardeGrille.class
-com/monappli/handlers/Handler.class
 com/monappli/IlotBtn.class
 com/monappli/Pont.class
 com/monappli/hashiScene/ProfileScene.class
