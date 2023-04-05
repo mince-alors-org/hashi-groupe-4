@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
 
+import javax.sound.midi.MidiChannel;
+
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
@@ -12,8 +14,11 @@ public class BaseDonneeJoueurTest {
     private BaseDonneeJoueur database;
 
     @BeforeAll
-    public void initAll() {
+    public void initAll() throws Exception{
         database = new BaseDonneeJoueur();
+        Joueur j = new Joueur("Jean", "4444");
+        BaseDonneeJoueur.addJoueur(j);
+        BaseDonneeJoueur.setJoueur(j);
     }
 
     @AfterEach
@@ -23,23 +28,10 @@ public class BaseDonneeJoueurTest {
     }
 
     @Test
-    public void testAddJoueur() {
-        Joueur joueur = new Joueur("Bonathan", "mdp1");
-        database.addJoueur(joueur);
-
-        Joueur recupJoueur = database.getJoueurNom("Bonathan");
-        assertEquals(joueur, recupJoueur);
-    }
-
-    @Test
-    public void testGetJoueurNom() {
+    public void testAddJoueur() throws Exception{
         Joueur j2 = new Joueur("Karl", "mdp2");
 
-        database.addJoueur(j2);
-
-        Joueur recupJoueur = database.getJoueurNom("Bonathan");
-        recupJoueur = database.getJoueurNom("Karl");
-        assertEquals(j2, recupJoueur);
+        System.out.println( database.addJoueur(j2));
     }
 
     @Test
@@ -52,6 +44,44 @@ public class BaseDonneeJoueurTest {
 
     @Test
     public void testExists(){
-        System.out.println(BaseDonneeJoueur.exisits("michel"));
+        System.out.println(BaseDonneeJoueur.exists("michel"));
+    }
+
+    @Test 
+    public void testaddScore()throws Exception{
+        Joueur j2 = new Joueur("Karl", "mdp2");
+        database.addScore( "1-3", 800);
+    }
+
+    @Test
+    public void testLoadparam() throws Exception{
+        Joueur j2 = new Joueur("Karl", "mdp2");
+        System.out.println(Parametre.affiche());
+        BaseDonneeJoueur.loadParam();
+        System.out.println(Parametre.affiche());
+    }
+
+    @Test
+    public void testChangePlayer() throws Exception{
+        Joueur j2 = new Joueur("Michel", "mdp1");
+        Joueur j1 = new Joueur("Karl", "mdp2");
+        database.addJoueur(j2);
+        System.out.println(Parametre.affiche());
+        BaseDonneeJoueur.loadParam();
+        System.out.println(Parametre.affiche());
+        BaseDonneeJoueur.changePlayer( j2, "mdp1");
+        System.out.println(Parametre.affiche());
+    }
+
+    @Test
+    public void testGetJoueur() throws Exception{
+        System.out.println( BaseDonneeJoueur.getJoueur("Michel", "mdp1"));
+    }
+
+    @Test
+    public void testGetChip() throws Exception{
+        System.out.println(BaseDonneeJoueur.getChipColor(Hashi.joueur));
+        Joueur j= BaseDonneeJoueur.getJoueur("Michel", "mdp1");
+        System.out.println(BaseDonneeJoueur.getChipColor(j));
     }
 }

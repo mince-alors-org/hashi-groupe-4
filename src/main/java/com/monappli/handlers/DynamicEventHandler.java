@@ -99,7 +99,7 @@ public class DynamicEventHandler implements Handler{
     public void paramClicked() throws Exception{
         if (backGround.lookup("#pop") == null){
             PopUp pop = new PopUp(this.getCurPane());
-            ParamHandler paramH= new GameParamHandler(this.backGround);
+            ParamHandler paramH= new ParamHandler(this.backGround);
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
             System.out.println("Je suis Paramètre");

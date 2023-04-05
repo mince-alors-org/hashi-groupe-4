@@ -1,6 +1,8 @@
 package com.monappli;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javafx.css.FontCssMetaData;
 import javafx.scene.paint.Color;
@@ -21,7 +23,7 @@ public  class Parametre implements Serializable{
      * Cette variable sert à stocker la couleur des différentes aides qui peuvent être mise sur la grille
      */
     private static Color couleur_aide_erreur=Color.BLACK;
-    private static Color couleur_fond=new Color(1.0*69/255,1.0*123/255,1.0*248/255,1);
+    private static Color couleur_fond=Color.web("#457BF8");
     private static int taille_texte;
     private static int[] taille_fenetre = {800,450};
     /**
@@ -135,6 +137,21 @@ public  class Parametre implements Serializable{
                 "}";
     }
 
+    public static String affiche(){
+        return "Param{" +
+                "\ncouleur_texte=" + toRGBForCSS(couleur_texte) + 
+                ",\ncouleur_ilot=" + toRGBForCSS(couleur_ilot) +
+                ",\ncouleur_pont=" + toRGBForCSS(couleur_pont) +
+                ",\ncouleur_aide_erreur=" + toRGBForCSS(couleur_aide_erreur) +
+                ",\ncouleur_fond=" + toRGBForCSS(couleur_fond) +
+                ",\ntaille_texte=" + taille_texte +
+                ",\ntaille_fenetre=" + taille_fenetre[0] + "," + taille_fenetre[1] +
+                ",\naffichage_depassment_cardinalite=" + affichage_depassment_cardinalite +
+                ",\naffichage_groupe_ferme=" + affichage_groupe_ferme +
+                ",\naffichage_ponts_possible=" + affichage_ponts_possible +
+                "\n}";
+    }
+
     public static String toRGBForCSS(Color c){
         return String.format( "#%02X%02X%02X",
             (int)( c.getRed() * 255 ),
@@ -146,6 +163,11 @@ public  class Parametre implements Serializable{
         return Color.web(str);
     }
 
-    public void chargerFichierParametre(String fichier_parametre) {
+    public static void load(List<String> param) {
+        Parametre.setCouleur_texte(toColor( param.get(0)));
+        Parametre.setCouleur_ilot(toColor( param.get(1)));
+        Parametre.setCouleur_pont(toColor( param.get(2)));
+        Parametre.setCouleur_aide_erreur(toColor( param.get(3)));
+        Parametre.setCouleur_fond(toColor( param.get(4)));
     }
 }

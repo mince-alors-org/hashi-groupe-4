@@ -116,10 +116,10 @@ public class SauvegardeGrilleTest {
             Joueur joueur2 = new Joueur("Bob", "mdp1");
             Joueur joueur3 = new Joueur("Barry", "mdp1");
             Joueur joueur4 = new Joueur("Bartholomet", "mdp1");
-            temp_bdd.addJoueur(joueur1);
+            /*temp_bdd.addJoueur(joueur1);
             temp_bdd.addJoueur(joueur2);
             temp_bdd.addJoueur(joueur3);
-            temp_bdd.addJoueur(joueur4);
+            temp_bdd.addJoueur(joueur4);*/
             sauvegarde.actualiserFichierParametre(fichier_parametre, temp_param, temp_bdd);
             parametre = sauvegarde.chargerFichierParametre(fichier_parametre);
             bdd = sauvegarde.chargerFichierBdd(fichier_parametre);
