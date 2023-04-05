@@ -117,11 +117,11 @@ public class BaseDonneeJoueur implements Serializable{
         return exists(j.getnom());
     }
 
-    public static boolean changePlayer( Joueur nextJ, String pwd) throws Exception{
+    public static boolean changePlayer( Joueur nextJ) throws Exception{
         if (!exists(nextJ))
             return false;
 
-        if(pwd.equals(getPassword(nextJ))) {
+        if(nextJ.getmotdepasse().equals(getPassword(nextJ))) {
             setJoueur(nextJ);
             return true;
         }

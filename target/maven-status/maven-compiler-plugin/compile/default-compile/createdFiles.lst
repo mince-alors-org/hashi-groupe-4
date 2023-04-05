@@ -1,8 +1,8 @@
 com/monappli/handlers/GameHandler.class
 com/monappli/Joueur.class
 com/monappli/BaseDonneeJoueur.class
-com/monappli/hashiScene/ProfileScene.class
 com/monappli/Pont.class
+com/monappli/hashiScene/ProfileScene.class
 com/monappli/hashiScene/PopUp.class
 com/monappli/App.class
 com/monappli/Aide.class

@@ -65,11 +65,11 @@ public class BaseDonneeJoueurTest {
     public void testChangePlayer() throws Exception{
         Joueur j2 = new Joueur("Michel", "mdp1");
         Joueur j1 = new Joueur("Karl", "mdp2");
-        database.addJoueur(j2);
+        BaseDonneeJoueur.addJoueur(j2);
         System.out.println(Parametre.affiche());
         BaseDonneeJoueur.loadParam();
         System.out.println(Parametre.affiche());
-        BaseDonneeJoueur.changePlayer( j2, "mdp1");
+        BaseDonneeJoueur.changePlayer(j2);
         System.out.println(Parametre.affiche());
     }
 
