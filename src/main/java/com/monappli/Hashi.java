@@ -31,9 +31,7 @@ public class Hashi extends Application {
         MainPanel menuLoader= new MainPanel(root);
 
         menuLoader.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(root));
-
-
-
+        
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);
