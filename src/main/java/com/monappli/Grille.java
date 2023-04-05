@@ -189,8 +189,8 @@ public class Grille {
         //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
         ilot.getBtn().setOnAction(e -> {
           if (this.getGridPane().lookup("#pop") == null){
+            unsetReds();
             Ilot ileAct = this.getIlotActif() ;
-
             if (ileAct != null){
               //If the active and clicked isle are neighbours
               if (this.sontVoisin(ileAct, ilot) ){
@@ -207,6 +207,8 @@ public class Grille {
                 }
 
                 else {
+                  ileAct.setActive(false);
+                  ilot.setActive(false);
                   ilot.setRed(true);
                   ileAct.setRed(true);
                 }
