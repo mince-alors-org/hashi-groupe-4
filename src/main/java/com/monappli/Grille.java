@@ -423,6 +423,10 @@ public class Grille {
       return true;
     }
 
+    /**
+     * Reset the ilses' border to their active border state if they are currently red bordered.
+     * @see Ilot#setRed 
+     */
     public void unsetReds(){
       for(Ilot ilot : listeIlot){
         if (ilot.nbPont() < ilot.getValeur())

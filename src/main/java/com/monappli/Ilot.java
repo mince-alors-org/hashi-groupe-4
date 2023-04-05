@@ -131,6 +131,11 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 		}
 	}
 
+	/**
+	 * Change the color of the borders 
+	 * @param act <code>boolean</code> set to <code>true</code> to change the border to red, <code>false</code> to reset to the current active state
+	 * @author Ambre Collard
+	 */
 	public void setRed(boolean act){
 		if(act){
 			this.getBtn().setBorder(new Border(new BorderStroke(
