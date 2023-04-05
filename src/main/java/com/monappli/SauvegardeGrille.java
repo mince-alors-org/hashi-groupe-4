@@ -96,11 +96,10 @@ public class SauvegardeGrille implements Serializable{
      * @param fichier_parametre nom du fichier de paramètres à actualiser
      * @param param objet Parametre a serialiser
      */
-    public void actualiserFichierParametre(String fichier_parametre, Parametre param, BaseDonneeJoueur bdd){
+    public void actualiserFichierParametre(String fichier_parametre, Parametre param){
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fichier_parametre));
             outputStream.writeObject(param);
-            outputStream.writeObject(bdd);
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -110,27 +109,13 @@ public class SauvegardeGrille implements Serializable{
     /**
      * Charge un objet Parametre depuis un fichier de parametre specifie
      * @param fichier_parametre Nom du fichier de parametre a charger
+     * @param param Objet Parametre a remplir avec les donnees charges depuis le fichier
      * @return objet Parametre rempli avec les donnees chargees depuis le fichier
      */
-    public Parametre chargerFichierParametre(String fichier_parametre) throws IOException, ClassNotFoundException{
+    public Parametre chargerFichierParametre(String fichier_parametre, Parametre param) throws IOException, ClassNotFoundException{
         ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fichier_parametre));
-        Parametre param = (Parametre) inputStream.readObject();
+        param = (Parametre) inputStream.readObject();
         inputStream.close();
         return param;
     }
-    
-    /**
-     * Charge un objet BaseDonneeJoueur depuis un fichier de parametre specifie
-     * @return objet BaseDonneeJoueur rempli avec les donnees chargees depuis le fichier
-     */
-    public BaseDonneeJoueur chargerFichierBdd(String fichier_parametre) throws IOException, ClassNotFoundException{
-        ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(fichier_parametre));
-        //Saut de parametre dans fichier_parametre
-        inputStream.readObject();
-        BaseDonneeJoueur bdd = (BaseDonneeJoueur) inputStream.readObject();
-        inputStream.close();
-        return bdd;
-    }   
-    
 }
-

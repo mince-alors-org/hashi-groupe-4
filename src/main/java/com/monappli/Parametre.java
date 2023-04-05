@@ -1,10 +1,7 @@
 package com.monappli;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
-import javafx.css.FontCssMetaData;
 import javafx.scene.paint.Color;
 
 /**
@@ -23,9 +20,9 @@ public  class Parametre implements Serializable{
      * Cette variable sert à stocker la couleur des différentes aides qui peuvent être mise sur la grille
      */
     private static Color couleur_aide_erreur=Color.BLACK;
-    private static Color couleur_fond=Color.web("#457BF8");
+    private static Color couleur_fond=new Color(1.0*69/255,1.0*123/255,1.0*248/255,1);
     private static int taille_texte;
-    private static int[] taille_fenetre = {800,450};
+    private static int[] taille_fenetre = {800,600};
     /**
      * Cette variable représente la possibilitée d'afficher automatiquement une aide visuelle quand trop de pont relie une île
      */
@@ -124,32 +121,17 @@ public  class Parametre implements Serializable{
     @Override
     public String toString(){
         return "Param{" +
-                "couleur_texte=" + toRGBForCSS(couleur_texte) + 
-                ", couleur_ilot=" + toRGBForCSS(couleur_ilot) +
-                ", couleur_pont=" + toRGBForCSS(couleur_pont) +
-                ", couleur_aide_erreur=" + toRGBForCSS(couleur_aide_erreur) +
-                ", couleur_fond=" + toRGBForCSS(couleur_fond) +
+                "couleur_texte=" + couleur_texte.getRed() + "," + couleur_texte.getGreen() + "," + couleur_texte.getBlue() + 
+                ", couleur_ilot=" + couleur_ilot.getRed() + "," + couleur_ilot.getGreen() + "," + couleur_ilot.getBlue() +
+                ", couleur_pont=" + couleur_pont.getRed() + "," + couleur_pont.getGreen() + "," + couleur_pont.getBlue() +
+                ", couleur_aide_erreur=" + couleur_aide_erreur.getRed() + "," + couleur_aide_erreur.getGreen() + "," + couleur_aide_erreur.getBlue() +
+                ", couleur_fond=" + couleur_fond.getRed() + "," + couleur_fond.getGreen() + "," + couleur_fond.getBlue() +
                 ", taille_texte=" + taille_texte +
                 ", taille_fenetre=" + taille_fenetre[0] + "," + taille_fenetre[1] +
                 ", affichage_depassment_cardinalite=" + affichage_depassment_cardinalite +
                 ", affichage_groupe_ferme=" + affichage_groupe_ferme +
                 ", affichage_ponts_possible=" + affichage_ponts_possible +
                 "}";
-    }
-
-    public static String affiche(){
-        return "Param{" +
-                "\ncouleur_texte=" + toRGBForCSS(couleur_texte) + 
-                ",\ncouleur_ilot=" + toRGBForCSS(couleur_ilot) +
-                ",\ncouleur_pont=" + toRGBForCSS(couleur_pont) +
-                ",\ncouleur_aide_erreur=" + toRGBForCSS(couleur_aide_erreur) +
-                ",\ncouleur_fond=" + toRGBForCSS(couleur_fond) +
-                ",\ntaille_texte=" + taille_texte +
-                ",\ntaille_fenetre=" + taille_fenetre[0] + "," + taille_fenetre[1] +
-                ",\naffichage_depassment_cardinalite=" + affichage_depassment_cardinalite +
-                ",\naffichage_groupe_ferme=" + affichage_groupe_ferme +
-                ",\naffichage_ponts_possible=" + affichage_ponts_possible +
-                "\n}";
     }
 
     public static String toRGBForCSS(Color c){
@@ -159,15 +141,6 @@ public  class Parametre implements Serializable{
             (int)( c.getBlue() * 255 ) );
     }
 
-    public static Color  toColor(String str){
-        return Color.web(str);
-    }
-
-    public static void load(List<String> param) {
-        Parametre.setCouleur_texte(toColor( param.get(0)));
-        Parametre.setCouleur_ilot(toColor( param.get(1)));
-        Parametre.setCouleur_pont(toColor( param.get(2)));
-        Parametre.setCouleur_aide_erreur(toColor( param.get(3)));
-        Parametre.setCouleur_fond(toColor( param.get(4)));
+    public void chargerFichierParametre(String fichier_parametre) {
     }
 }

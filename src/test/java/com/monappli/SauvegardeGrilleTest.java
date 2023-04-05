@@ -25,12 +25,10 @@ public class SauvegardeGrilleTest {
     private Pont p1;
     String fichier_sauvegarde = "src/test/java/com/monappli/save_move.txt";
     String fichier_parametre = "src/test/java/com/monappli/param.txt";
-    private BaseDonneeJoueur bdd;
 
     @BeforeAll
     void initAll() throws Exception{
         this.sauvegarde = new SauvegardeGrille();
-        this.bdd = new BaseDonneeJoueur();
         this.parametre = new Parametre();
         this.ilot1 = new Ilot(3, 2, 1,false);
         this.ilot2 = new Ilot(2, 1, 1,false);
@@ -65,7 +63,7 @@ public class SauvegardeGrilleTest {
     void afficheOk(TestInfo testInfo){
         System.out.println(testInfo.getDisplayName() + " Ok");
     }
-    
+
     @Test
     public void ajoutUnPont(){
         System.out.println("Nom du fichier " + fichier_sauvegarde);
@@ -85,67 +83,39 @@ public class SauvegardeGrilleTest {
     }
 
     @Test
+    void chargerFichierParametre() throws IOException, ClassNotFoundException{
+        File testEmptyFile = new File(fichier_parametre);
+        int[] n_taille_fenetre = {1920, 1080};
+        if (!testEmptyFile.exists() || testEmptyFile.length() == 0){
+            
+            parametre.setCouleur_texte(Color.BLUE);
+            parametre.setCouleur_ilot(Color.BLUE);
+            parametre.setCouleur_pont(Color.BLUE);
+            parametre.setCouleur_aide_erreur(Color.BLUE);
+            parametre.setCouleur_fond(Color.BLUE);
+            parametre.setTaille_texte(12);
+            parametre.setTaille_fenetre(n_taille_fenetre);
+            parametre.setAffichage_depassment_cardinalite(false);
+            parametre.setAffichage_groupe_ferme(true);
+            parametre.setAffichage_ponts_possible(false);
+            sauvegarde.actualiserFichierParametre(fichier_parametre, parametre);
+        }
+        else{
+            sauvegarde.chargerFichierParametre(fichier_parametre, parametre);
+        }
+        System.out.print(parametre.toString());
+        
+    }
+
+    @Test
     void sauvegarderParametre(){
         Color couleur_texte_test = Color.rgb(122, 100, 100);
         Color couleur_texte_init = parametre.getCouleur_texte();
         parametre.setCouleur_texte(couleur_texte_test);
         System.out.println("Modif de Couleur_texte = " + parametre.getCouleur_texte());
-        sauvegarde.actualiserFichierParametre(fichier_parametre, parametre, null);
+        sauvegarde.actualiserFichierParametre(fichier_parametre, parametre);
         parametre.setCouleur_texte(couleur_texte_init);
-        sauvegarde.actualiserFichierParametre(fichier_parametre, parametre, null);
+        sauvegarde.actualiserFichierParametre(fichier_parametre, parametre);
     }
-
-    @Test
-    void chargerFichierParametre() throws IOException, ClassNotFoundException{
-        File testEmptyFile = new File(fichier_parametre);
-        int[] n_taille_fenetre = {1920, 1080};
-        if (!testEmptyFile.exists() || testEmptyFile.length() == 0){
-            Parametre temp_param = new Parametre();
-            BaseDonneeJoueur temp_bdd = new BaseDonneeJoueur();
-            temp_param.setCouleur_texte(Color.PINK);
-            temp_param.setCouleur_ilot(Color.BLUE);
-            temp_param.setCouleur_pont(Color.BLUE);
-            temp_param.setCouleur_aide_erreur(Color.BLUE);
-            temp_param.setCouleur_fond(Color.BLUE);
-            temp_param.setTaille_texte(12);
-            temp_param.setTaille_fenetre(n_taille_fenetre);
-            temp_param.setAffichage_depassment_cardinalite(false);
-            temp_param.setAffichage_groupe_ferme(true);
-            temp_param.setAffichage_ponts_possible(false);
-            Joueur joueur1 = new Joueur("Bonathan", "mdp1");
-            Joueur joueur2 = new Joueur("Bob", "mdp1");
-            Joueur joueur3 = new Joueur("Barry", "mdp1");
-            Joueur joueur4 = new Joueur("Bartholomet", "mdp1");
-            /*temp_bdd.addJoueur(joueur1);
-            temp_bdd.addJoueur(joueur2);
-            temp_bdd.addJoueur(joueur3);
-            temp_bdd.addJoueur(joueur4);*/
-            sauvegarde.actualiserFichierParametre(fichier_parametre, temp_param, temp_bdd);
-            parametre = sauvegarde.chargerFichierParametre(fichier_parametre);
-            bdd = sauvegarde.chargerFichierBdd(fichier_parametre);
-
-        }
-        else{
-            parametre = sauvegarde.chargerFichierParametre(fichier_parametre);
-            bdd = sauvegarde.chargerFichierBdd(fichier_parametre);
-        }
-        System.out.println(parametre.toString());
-        System.out.println(bdd.toString());
-        
-    }
-
-    
 }
-
-       
-
-
-
-
     
-
-
-
-
-
-
