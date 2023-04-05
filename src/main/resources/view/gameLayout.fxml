@@ -15,8 +15,8 @@
          <children>
             <HBox prefHeight="150.0" prefWidth="450.0" spacing="54.0">
                <children>
-                  <Button id="paramButton" mnemonicParsing="false" onAction="#paramClicked" prefHeight="69.0" styleClass="optionalButton" />
-                  <Button id="title" mnemonicParsing="false" onAction="#hashiClicked" prefHeight="86.0" prefWidth="184.0" style="-fx-background-color: transparent;" text="Hashi" textFill="WHITE">
+                  <Button id="paramButton" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
+                  <Button id="title" mnemonicParsing="false" onAction="#hashiClicked" style="-fx-background-color: transparent;" text="Hashi" textFill="WHITE">
                      <font>
                         <Font size="65.0" />
                      </font>
@@ -43,15 +43,14 @@
                <children>
                   <VBox prefHeight="650.0" prefWidth="450.0">
                      <children>
-                        <HBox prefHeight="79.0" prefWidth="415.0" spacing="60.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                            <children>
-                              <ToolBar prefHeight="47.0" prefWidth="30.0">
-                                <items>
-                                    <Button id="aideButton" mnemonicParsing="false" onAction="#helpClicked" prefHeight="45.0" prefWidth="92.0" styleClass="optionalGameButton" />
-                                  <Button mnemonicParsing="false" onAction="#resolClicked" />
-                                </items>
-                              </ToolBar>
-                              <Button id="levelButton" mnemonicParsing="false" onAction="#lvlTitleClicked" prefHeight="47.0" prefWidth="133.0" text="levelButton" />
+                              <Button id="aideButton" mnemonicParsing="false" onAction="#helpClicked" styleClass="optionalGameButton">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Button id="levelButton" mnemonicParsing="false" onAction="#lvlTitleClicked" text="levelButton" />
                               <Button id="restButton" mnemonicParsing="false" onAction="#restClicked" styleClass="optionalGameButton" />
                            </children>
                            <VBox.margin>
@@ -70,8 +69,8 @@
                            </children></Pane>
                         <ToolBar prefHeight="194.0" prefWidth="450.0" style="-fx-background-color: transparent;">
                           <items>
-                              <Button id="undo" minHeight="30.0" minWidth="26.0" mnemonicParsing="false" onAction="#undoClicked" prefHeight="30.0" prefWidth="26.0" styleClass="optionalGameButton" translateX="140.0" />
-                            <Button id="redo" mnemonicParsing="false" onAction="#redoClicked" prefHeight="43.0" prefWidth="45.0" styleClass="optionalGameButton" translateX="170.0" />
+                              <Button id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" translateX="140.0" />
+                            <Button id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" translateX="170.0" />
                           </items>
                         </ToolBar>
                      </children>
