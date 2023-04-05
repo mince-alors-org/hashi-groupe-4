@@ -93,6 +93,7 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	 * remise à zero de tout les pont d'une île
 	 */
 	public void remiseZero(Canvas c){
+		this.setActive(active);
 		for(Pont p : this.ponts){
 			p.remiseZero();
 			p.erase(c);
