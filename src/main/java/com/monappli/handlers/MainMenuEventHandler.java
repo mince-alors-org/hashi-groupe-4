@@ -52,7 +52,6 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
      * 
      */
     public void challClicked() {
-        System.out.println("coucou");
     }
 
 }
