@@ -286,22 +286,19 @@ import java.util.HashMap;
         int compteur = 0;
         // si l'ilot a un voisin qui a une cardinalité de 4 et 3 voisins
         if (ile.getValeur() == 4 && ile.listeVoisin().size() == 3) {
-            // compte le nombre de voisin avec une cardinalité de 1
-            for (Ilot voisin : ile.listeVoisin()) {
-                if (voisin.getValeur()==1) {
-                    compteur+=1;
+            if(Aide.nb_ponts(ile) < 4){
+                // compte le nombre de voisin avec une cardinalité de 1
+                for (Ilot voisin : ile.listeVoisin()) {
+                    if (voisin.getValeur()==1) {
+                        compteur+=1;
+                    }
+                }    
+                if (compteur == 2) {
+                    return true;
                 }
-            }    
-            if (compteur == 2) {
-                return true;
-            }
-            else {
-                return false;
             }
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
     /**
@@ -327,37 +324,33 @@ import java.util.HashMap;
      * @param : Ilot : Chaque ilot de la grille sera traité par la fonction
      * @return : Bool :True si au moins un des ilots de la grille confirme le cas. False sinon
      */
-    /* 
-    public static boolean isolation_iles(Ilot ile) {
-        boolean condition = false;
-        if (ile.getPosX() == grille.getLongeur()-1 && ile.getValeur() == 2) {
-            if (ile.listeVoisin().size() == 2) {
-                Ilot voisinGauche = getVoisinDirection(ile,"gauche");
-                condition = (ile.getValeur() == 1 && voisinGauche.listeVoisin().size() == 1);
-            } else {
-                int requiredCol = ile.getPosY() + 2; // a revoir
-                Ilot voisin = grille.getIle(ile.getPosX(), requiredCol);
-                if (ile.listeVoisin().contains(voisin)) {
-                    condition = true;
-                }
-            }
-        } else if (ile.getPosY() == 0 && ile.getValeur() == 3) {
-            if (ile.listeVoisin().size() == 3) {
-                Ilot voisinHaut = getVoisinDirection(ile,"haut");
-                condition = (voisinHaut.getValeur() == 2 && voisinHaut.listeVoisin().size() == 2);
-            } else {
-                int requiredRow = ile.getPosX() - 2; // a revoir
-                Ilot voisin = getIle(requiredRow, ile.getPosY());
-                if (ile.listeVoisin().contains(voisin)) {
-                    condition = true;
-                }
-            }
-        } else {
-            condition = false;
+    public boolean isIsolatedSegment(Ilot ilot) {
+        // Vérifier que l'îlot a une seule liaison manquante
+        int nbPontManquant = ilot.getValeur()- Aide.nb_ponts(ilot);
+        if (nbPontManquant != 1) {
+            return false;
         }
-        return condition;
+        // Récupérer l'îlot voisin connecté par la liaison manquante
+        Ilot neighborIlot = null;
+        for (Ilot neighbor : ilot.listeVoisin()) {
+            if (ilot.listeVoisinRelier().contains(neighbor)) {
+                neighborIlot = neighbor;
+                break;
+            }
+        }
+        // Vérifier que l'îlot voisin est complété et a un nombre de ponts supérieur ou égal au nombre de l'îlot original
+        if (!(neighborIlot.getValeur() == Aide.nb_ponts(neighborIlot)) || neighborIlot.getValeur() < ilot.getValeur()) {
+            return false;
+        }
+        // Vérifier que la liaison de l'îlot original avec l'îlot voisin crée un segment isolé
+        int bridges = ilot.listeVoisinRelier().size() + neighborIlot.listeVoisinRelier().size();
+        if (bridges == (ilot.getValeur() + neighborIlot.getValeur())) {
+            return true;
+        } else {
+            return false;
+        }
     }
-    */
+    
 
     /**
      * Fonction qui vérifie le cas isolation_iles
