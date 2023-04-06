@@ -145,12 +145,17 @@ public class BaseDonneeJoueur implements Serializable{
 
     public static ArrayList<Joueur> getAllPlayers() throws Exception{
         ArrayList<Joueur> tab = new ArrayList<Joueur>();
-        File directory=new File("src/main/resources/profiles");
-        for(String nomF : directory.list()){
-            String nomJ=  nomF.replace(".prof", "");  
-            Joueur j= getJoueur(nomJ);
-            if (j!= null){
-                tab.add(j);
+        File directory=new File("src/main/resources/profiles/");
+        File[] liste2File=directory.listFiles();
+        for(int i=0;i<liste2File.length;i++){
+            File nomJ=  liste2File[i];
+            if(!nomJ.isFile()){
+                System.out.println(nomJ.getName());
+                Joueur j= getJoueur(nomJ.getName());
+                System.out.println(j);
+                if(j!=null){
+                    tab.add(j);
+                }
             }
         }
         return tab;
