@@ -45,7 +45,7 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
         MainPanel tuto= new MainPanel(this.getParentPane());
         
         
-        tuto.pasteAndHandle("/view/tuto.fxml", new TutorialEventHandler(this.getParentPane()));
+        tuto.pasteAndHandle("/view/tutoLayout.fxml", new TutorialEventHandler(this.getParentPane()));
     }
 
     /**
