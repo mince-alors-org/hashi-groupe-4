@@ -211,6 +211,7 @@ public class Grille {
 
             //Get what could be the bridge
             Pont pont = ileAct.liaisonP(ilot);
+
             //If it doesn't cross another bridge
             if (!this.croisePont(pont)){
               pont.incrementer();
@@ -227,20 +228,15 @@ public class Grille {
               ileAct.setRed(true);
             }
           }
+          else 
+            changeActive(ilot);
         }
         else 
           ilot.setActive(!(ilot.getActive()));
-      
-        if (ilot.nbPont() > ilot.getValeur()){
-          ilot.setRed(true);
-        }
 
         if(ileAct == ilot || ileAct == null)
           changeActive(ilot);
 
-        if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
-          ileAct.setRed(true);
-        }
         if (this.isWin()){
           PopUp win = new PopUp(this.parent);
           try{
