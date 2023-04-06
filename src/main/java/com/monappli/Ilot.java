@@ -3,12 +3,9 @@ package com.monappli;
 
 
 import java.io.Serializable;
-//import java.beans.EventHandler;
 import java.util.ArrayList;
 
-import javafx.beans.binding.BooleanExpression;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -52,6 +49,12 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	private IlotBtn bouton;
 
 	/**
+	* Pour l'affichage
+	*/
+	private boolean active;
+
+
+	/**
 	 *
 	 * @param posX position de l'ilot courant dans l'axe des abscisses (X)
 	 * @param posY position de l'ilot courant dans l'axe des ordonnées (Y)
@@ -86,11 +89,16 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	public Ilot(int posX, int posY, int valeur){
 		this(posX,  posY, valeur, false);
 	}
-
 	/**
-	* Pour l'affichage
-	*/
-	private boolean active;
+	 * remise à zero de tout les pont d'une île
+	 */
+	public void remiseZero(Canvas c){
+		this.setActive(active);
+		for(Pont p : this.ponts){
+			p.remiseZero();
+			p.erase(c);
+		}
+	}
 
 	/**
 	* Set the style of an isle thanks to Parametre
@@ -134,6 +142,11 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 		}
 	}
 
+	/**
+	 * Change the color of the borders 
+	 * @param act <code>boolean</code> set to <code>true</code> to change the border to red, <code>false</code> to reset to the current active state
+	 * @author Ambre Collard
+	 */
 	public void setRed(boolean act){
 		if(act){
 			this.getBtn().setBorder(new Border(new BorderStroke(

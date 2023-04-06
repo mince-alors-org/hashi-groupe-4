@@ -82,7 +82,7 @@ public class LevelSelectHandler extends DynamicEventHandler{
 
     public void backClicked() throws Exception{
         MainPanel main= new MainPanel(this.getParentPane());
-        main.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler(this.getParentPane()));
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParentPane()));
     }
 
     

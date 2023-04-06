@@ -16,26 +16,6 @@ import javafx.scene.paint.Color;
 public class ParamHandler extends DynamicEventHandler{
 
     /**
-     * Color of the chosen locally text Color
-     */
-    private Color newTextColor;
-
-    /**
-     * Color of the chosen locally background color
-     */
-    private Color newBgColor;
-
-    /**
-     * Color of the chosen locally isle Color
-     */
-    private Color newIsleColor;
-
-    /**
-     * Color of the chosen locally bridge color
-     */
-    private Color newbridgeColor;
-
-    /**
      * Back Button
      */
     @FXML
@@ -98,49 +78,16 @@ public class ParamHandler extends DynamicEventHandler{
     }
 
     /**
-     * Action when textPicker is clicked. Sets newTextColor to the new one.
-     */
-    public void textPickerClicked(){
-        this.newTextColor= textPicker.getValue();
-    }
-
-    /**
-     * Action when islePicker is clicked. Sets newIsleColor to the new one.
-     */
-    public void ilsePickerClicked(){
-        this.newIsleColor= islePicker.getValue();
-    }
-
-    /**
-     * Action when bridgePicker is clicked. Sets newBridgeColor to the new one.
-     */
-    public void bridgePickerClicked(){
-        this.newbridgeColor= bridgePicker.getValue();
-    }
-
-    /**
-     * Action when bgPicker is clicked. Sets newBgColor to the new one.
-     */
-    public void bgPickerClicked(){
-        this.newBgColor= bgPicker.getValue();
-    }
-
-    /**
      * Changes to the new parameters if they were selected
      * @throws Exception if the MainPanel can't load
      */
-    public void changeAll() throws Exception{
+    public <H extends DynamicEventHandler> void changeAll() throws Exception{
+        Parametre.setCouleur_fond(bgPicker.getValue());
+        Parametre.setCouleur_ilot(islePicker.getValue());
+        Parametre.setCouleur_pont(bridgePicker.getValue());
+        Parametre.setCouleur_texte(textPicker.getValue());
 
-        if (newBgColor !=null)
-            Parametre.setCouleur_fond(newBgColor);
-        if(newIsleColor != null)
-            Parametre.setCouleur_ilot(newIsleColor);
-        if(newbridgeColor != null)
-            Parametre.setCouleur_pont(newbridgeColor);
-        if(newTextColor!=null)
-            Parametre.setCouleur_texte(newTextColor);
-
-        Handler mainH= (Handler) paramPane.getParent().getUserData();
+        H mainH= (H) paramPane.getParent().getUserData();
         Pane parent = (Pane)paramPane.getParent();
 
         Pane grandparent=(Pane)(parent.getParent());

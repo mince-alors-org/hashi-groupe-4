@@ -2,8 +2,6 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.ArcType;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -50,6 +48,12 @@ public class Pont implements Serializable{
 		ile2.addPontSolution(this);
 		ile1.calculValeur(nbTraits);
 		ile2.calculValeur(nbTraits);
+	}
+	/**
+	 * remise à zero du nombre de trait
+	 */
+	public void remiseZero(){
+		this.nombreTraits=0;
 	}
 
 	/**

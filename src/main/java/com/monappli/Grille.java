@@ -13,6 +13,7 @@ import com.monappli.hashiScene.PopUp;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -137,6 +138,16 @@ public class Grille {
       this(nomF, true, gridPlace, canvas, bgParent);
     }
 
+    public void remiseZero(){
+      for(Ilot i: this.listeIlot){
+        i.remiseZero(this.fond);
+      }
+    }
+
+
+    public Canvas getCanvas(){
+      return fond;
+    }
 
     /**
      * Creates a grid from a list of isle and set their onAction behaviors
@@ -177,53 +188,7 @@ public class Grille {
         //During this part, setActive and change active are manly for graphic purposes
         //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
         ilot.getBtn().setOnAction(e -> {
-          if (this.getGridPane().lookup("#pop") == null){
-            Ilot ileAct = this.getIlotActif() ;
-
-            if (ileAct != null){
-              //If the active and clicked isle are neighbours
-              if (this.sontVoisin(ileAct, ilot) ){
-
-                //Get what could be the bridge
-                Pont pont = ileAct.liaisonP(ilot);
-                //If it doesn't cross another bridge
-                if (!this.croisePont(pont)){
-		              pont.incrementer();
-                  pont.affiche(fond);
-
-                  ileAct.setActive(false);
-                  ilot.setActive(false);
-                }
-
-                else {
-                  ilot.setRed(true);
-                  ileAct.setRed(true);
-                }
-              }
-            }
-            else
-              ilot.setActive(!(ilot.getActive()));
-
-            if (ilot.nbPont() > ilot.getValeur()){
-              ilot.setRed(true);
-            }
-
-            if(ileAct == ilot || ileAct == null)
-              changeActive(ilot);
-
-            if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
-              ileAct.setRed(true);
-            }
-            if (this.isWin()){
-              PopUp win = new PopUp(this.parent);
-              try{
-                win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent));
-              }
-              catch (Exception ex){
-                ex.printStackTrace();
-              }
-            }
-          }
+          ilotOnAction(ilot);
         });
 
         //Add the isle to the grid
@@ -234,6 +199,58 @@ public class Grille {
 
 
       return grid;
+    }
+
+    public void ilotOnAction(Ilot ilot){
+      if (this.getGridPane().lookup("#pop") == null){
+        unsetReds();
+        Ilot ileAct = this.getIlotActif() ;
+        if (ileAct != null){
+          //If the active and clicked isle are neighbours
+          if (this.sontVoisin(ileAct, ilot) ){
+
+            //Get what could be the bridge
+            Pont pont = ileAct.liaisonP(ilot);
+            //If it doesn't cross another bridge
+            if (!this.croisePont(pont)){
+              pont.incrementer();
+              pont.affiche(fond);
+
+              ileAct.setActive(false);
+              ilot.setActive(false);
+            }
+
+            else {
+              ileAct.setActive(false);
+              ilot.setActive(false);
+              ilot.setRed(true);
+              ileAct.setRed(true);
+            }
+          }
+        }
+        else
+          ilot.setActive(!(ilot.getActive()));
+
+        if (ilot.nbPont() > ilot.getValeur()){
+          ilot.setRed(true);
+        }
+
+        if(ileAct == ilot || ileAct == null)
+          changeActive(ilot);
+
+        if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
+          ileAct.setRed(true);
+        }
+        if (this.isWin()){
+          PopUp win = new PopUp(this.parent);
+          try{
+            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent));
+          }
+          catch (Exception ex){
+            ex.printStackTrace();
+          }
+        }
+      }
     }
 
 
@@ -296,7 +313,7 @@ public class Grille {
       return listeIlot;
     }
 
-    public GridPane getGrid(){
+    public GridPane getGameGrid(){
       return grid;
     }
 
@@ -312,6 +329,15 @@ public class Grille {
     public void setAllIsleStyle(){
       for (Ilot i : listeIlot){
         i.setStyleParam();
+      }
+    }
+
+    public void setBridgeStyle(){
+      GraphicsContext gc = getCanvas().getGraphicsContext2D();
+      gc.setFill(Parametre.getCouleur_fond());
+      gc.clearRect(0, 0, getCanvas().getWidth(), getCanvas().getHeight());
+      for (Pont p : listePontExistant()){
+        p.affiche(fond);
       }
     }
 
@@ -409,6 +435,10 @@ public class Grille {
       return true;
     }
 
+    /**
+     * Reset the ilses' border to their active border state if they are currently red bordered.
+     * @see Ilot#setRed
+     */
     public void unsetReds(){
       for(Ilot ilot : listeIlot){
         if (ilot.nbPont() < ilot.getValeur())

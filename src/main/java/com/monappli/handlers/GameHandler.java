@@ -52,6 +52,7 @@ public class GameHandler extends DynamicEventHandler {
 
     public void restClicked(){
         System.out.println("Je suis rest");
+        this.grille.remiseZero();
     }
 
     public void helpClicked(){
@@ -104,5 +105,5 @@ public class GameHandler extends DynamicEventHandler {
     }*/
 
     chronometre.start();
-    }   
+    }
 }

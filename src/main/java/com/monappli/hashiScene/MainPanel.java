@@ -48,7 +48,7 @@ public class MainPanel extends DynamicScene {
      * @throws Exception if the FXMLLoader can't load the resource
      * @see FXMLLoader
      */
-    public void  pasteAndHandle(String name, Handler handler) throws Exception  {
+    public <H extends DynamicEventHandler>  void  pasteAndHandle(String name, H handler) throws Exception  {
         FXMLLoader loader= new FXMLLoader(getClass().getResource(name));
         loader.setController(handler);
 
@@ -72,7 +72,7 @@ public class MainPanel extends DynamicScene {
      * @throws Exception if the FXMLLoader can't load the resource
      * @see FXMLLoader
      */
-    public void  pasteAndHandle(Pane pane, Handler hand) throws Exception  {
+    public <H extends DynamicEventHandler>  void  pasteAndHandle(Pane pane, H hand) throws Exception  {
         this.setCurPane(pane);
         hand.setCurPane(pane);
         pane.setUserData(hand);

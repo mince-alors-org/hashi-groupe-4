@@ -5,7 +5,6 @@ import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -15,7 +14,7 @@ import javafx.stage.Stage;
  * @author Ambre Collard
  */
 
-public class DynamicEventHandler implements Handler{
+public class DynamicEventHandler {
     /**
      * backGround Pane
      */
@@ -97,6 +96,6 @@ public class DynamicEventHandler implements Handler{
 
     public void hashiClicked() throws Exception{
         MainPanel main= new MainPanel(this.getParentPane());
-        main.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler(this.getParentPane()));
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParentPane()));
     }
 }

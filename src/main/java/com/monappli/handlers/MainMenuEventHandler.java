@@ -3,8 +3,6 @@ package com.monappli.handlers;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.MainPanel;
 
-import javafx.fxml.*;
-import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -13,14 +11,14 @@ import javafx.scene.layout.Pane;
  * @see DynamicEventHandler 
  * @author Collard Ambre
  */
-public class mainMenuEventHandler extends  DynamicEventHandler{
+public class MainMenuEventHandler extends  DynamicEventHandler{
 
 
     /**
-     * Initialization of mainMenuEventHandler
+     * Initialization of MainMenuEventHandler
      * @param parentPane 
      */
-    public mainMenuEventHandler(Pane parentPane){
+    public MainMenuEventHandler(Pane parentPane){
         super(parentPane);
     }
 
