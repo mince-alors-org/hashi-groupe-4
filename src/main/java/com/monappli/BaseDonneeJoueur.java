@@ -61,7 +61,7 @@ public class BaseDonneeJoueur implements Serializable{
     }
 
     public static void loadParam() throws Exception{
-        Path path = Paths.get(directory+Hashi.joueur.getnom()+ ".prof");
+        Path path = Paths.get(directory+Hashi.joueur.getnom()+ "/" + Hashi.joueur.getnom() +".prof");
         List<String> lines= Files.readAllLines(path);
         Parametre.load(lines.subList(1, 6));
     }
@@ -98,9 +98,10 @@ public class BaseDonneeJoueur implements Serializable{
         ArrayList<String> search= new ArrayList<String>();
 
         for (String e : directory.list()){
+            System.out.println(e);
             search.add(e);
         }
-        return search.contains(nomF + ".prof");
+        return search.contains(nomF );
     }
 
     public static boolean exists(Joueur j){

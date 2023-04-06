@@ -7,7 +7,6 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.TestInstance.Lifecycle;
 
-import javafx.scene.chart.PieChart.Data;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BaseDonneeJoueurTest {
