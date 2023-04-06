@@ -188,55 +188,7 @@ public class Grille {
         //During this part, setActive and change active are manly for graphic purposes
         //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
         ilot.getBtn().setOnAction(e -> {
-          if (this.getGridPane().lookup("#pop") == null){
-            unsetReds();
-            Ilot ileAct = this.getIlotActif() ;
-            if (ileAct != null){
-              //If the active and clicked isle are neighbours
-              if (this.sontVoisin(ileAct, ilot) ){
-
-                //Get what could be the bridge
-                Pont pont = ileAct.liaisonP(ilot);
-                //If it doesn't cross another bridge
-                if (!this.croisePont(pont)){
-		              pont.incrementer();
-                  pont.affiche(fond);
-                  
-                  ileAct.setActive(false);
-                  ilot.setActive(false);
-                }
-
-                else {
-                  ileAct.setActive(false);
-                  ilot.setActive(false);
-                  ilot.setRed(true);
-                  ileAct.setRed(true);
-                }
-              }
-            }
-            else 
-              ilot.setActive(!(ilot.getActive()));
-          
-            if (ilot.nbPont() > ilot.getValeur()){
-              ilot.setRed(true);
-            }
-
-            if(ileAct == ilot || ileAct == null)
-              changeActive(ilot);
-
-            if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
-              ileAct.setRed(true);
-            }
-            if (this.isWin()){
-              PopUp win = new PopUp(this.parent);
-              try{
-                win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent));
-              }
-              catch (Exception ex){
-                ex.printStackTrace();
-              }
-            }
-          }
+          ilotOnAction(ilot);
         });
 
         //Add the isle to the grid
@@ -247,6 +199,58 @@ public class Grille {
 
 
       return grid;
+    }
+
+    public void ilotOnAction(Ilot ilot){
+      if (this.getGridPane().lookup("#pop") == null){
+        unsetReds();
+        Ilot ileAct = this.getIlotActif() ;
+        if (ileAct != null){
+          //If the active and clicked isle are neighbours
+          if (this.sontVoisin(ileAct, ilot) ){
+
+            //Get what could be the bridge
+            Pont pont = ileAct.liaisonP(ilot);
+            //If it doesn't cross another bridge
+            if (!this.croisePont(pont)){
+              pont.incrementer();
+              pont.affiche(fond);
+              
+              ileAct.setActive(false);
+              ilot.setActive(false);
+            }
+
+            else {
+              ileAct.setActive(false);
+              ilot.setActive(false);
+              ilot.setRed(true);
+              ileAct.setRed(true);
+            }
+          }
+        }
+        else 
+          ilot.setActive(!(ilot.getActive()));
+      
+        if (ilot.nbPont() > ilot.getValeur()){
+          ilot.setRed(true);
+        }
+
+        if(ileAct == ilot || ileAct == null)
+          changeActive(ilot);
+
+        if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
+          ileAct.setRed(true);
+        }
+        if (this.isWin()){
+          PopUp win = new PopUp(this.parent);
+          try{
+            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent));
+          }
+          catch (Exception ex){
+            ex.printStackTrace();
+          }
+        }
+      }
     }
 
 

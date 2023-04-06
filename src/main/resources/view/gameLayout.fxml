@@ -16,7 +16,7 @@
             <HBox prefHeight="150.0" prefWidth="450.0" spacing="54.0">
                <children>
                   <Button id="paramButton" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
-                  <Button id="title" mnemonicParsing="false" onAction="#hashiClicked" style="-fx-background-color: transparent;" text="Hashi" textFill="WHITE">
+                  <Button id="title" mnemonicParsing="false" onAction="#hashiClicked" prefHeight="80.0" prefWidth="179.0" style="-fx-background-color: transparent;" text="Hashi" textFill="WHITE">
                      <font>
                         <Font size="65.0" />
                      </font>
@@ -45,11 +45,12 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                            <children>
-                              <Button id="aideButton" mnemonicParsing="false" onAction="#helpClicked" styleClass="optionalGameButton">
-                                 <HBox.margin>
-                                    <Insets />
-                                 </HBox.margin>
-                              </Button>
+                              <ToolBar prefHeight="47.0" prefWidth="19.0">
+                                <items>
+                                    <Button id="aideButton" mnemonicParsing="false" onAction="#helpClicked" styleClass="optionalGameButton" />
+                                  <Button fx:id="detectErr" mnemonicParsing="false" onAction="#errClicked" />
+                                </items>
+                              </ToolBar>
                               <Button id="levelButton" mnemonicParsing="false" onAction="#lvlTitleClicked" text="levelButton" />
                               <Button id="restButton" mnemonicParsing="false" onAction="#restClicked" styleClass="optionalGameButton" />
                            </children>
