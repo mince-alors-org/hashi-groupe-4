@@ -4,8 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import com.monappli.Aide;
-import com.monappli.Grille;
 import com.monappli.Parametre;
 import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.LevelSelectHandler;
@@ -119,12 +117,7 @@ public class LevelScene extends MainPanel {
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
-                //Get the file name of the level related to the button
-                String nomF = "../niveaux/" +LevelSelectHandler.curDiff+"-"+ btn.getText()+".niv";
 
-                //Creates a new game grid
-                Grille grille = new Grille(nomF, (Pane)game.getParent().lookup("#gridPlacement"), (Canvas)game.getParent().lookup("#fond"));
-                Aide.setGrille(grille);
                 //Get the level button above the game grid
                 Button lvlButton = (Button)game.getCurPane().lookup("#levelButton");
                 //Change the label to the level assigned name

@@ -17,26 +17,8 @@ public class GameHandler extends DynamicEventHandler {
     @FXML
     private Pane gridPlacement;
 
-    /**
-     * Power Button. To quit
-     */
-    @FXML
-    private Button powerButton;
+    private Grille grille;
 
-    /**
-     * Reset button. To reset the whole grid
-     */
-    @FXML
-    private Button restButton;
-
-    /**
-     * Help Button
-     */
-    @FXML
-    private Button helpButton;
-
-    @FXML
-    private Button lvlTitle;
 
     /**
      * Initialization of GameHandler
@@ -57,7 +39,6 @@ public class GameHandler extends DynamicEventHandler {
 
     public void helpClicked(){
         System.out.println("Je suis Aide");
-        System.out.println(Aide.getTechnique());
     }
     public void redoClicked(){
         System.out.println("Je suis redo");
