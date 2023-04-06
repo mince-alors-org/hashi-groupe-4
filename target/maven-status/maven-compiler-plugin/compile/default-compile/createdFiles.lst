@@ -19,6 +19,7 @@ com/monappli/handlers/MainMenuEventHandler.class
 com/monappli/hashiScene/DynamicScene.class
 com/monappli/handlers/TutorialEventHandler.class
 com/monappli/Hashi.class
-com/monappli/handlers/WinHandler.class
 com/monappli/SauvegardeGrille.class
+com/monappli/handlers/WinHandler.class
+com/monappli/handlers/ProfileHandler.class
 com/monappli/hashiScene/MainPanel.class

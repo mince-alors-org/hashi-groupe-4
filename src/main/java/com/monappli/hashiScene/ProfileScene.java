@@ -6,6 +6,7 @@ import java.util.logging.Handler;
 import com.monappli.BaseDonneeJoueur;
 import com.monappli.Joueur;
 import com.monappli.handlers.DynamicEventHandler;
+import com.monappli.handlers.MainMenuEventHandler;
 
 import javafx.geometry.HPos;
 import javafx.geometry.Pos;
@@ -45,6 +46,16 @@ public class ProfileScene extends PopUp {
             Button but= new Button(j.getnom());
             vBox.getChildren().add(but);
             setStyleButton(but);
+            but.setOnAction(e ->{
+                try{
+                    btnOnAction(j);
+                    MainPanel main= new MainPanel(this.getParent());
+                    main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
+                }
+                catch(Exception ex){
+                    System.out.println(ex);
+                }
+            });
         }
         return vBox;
     }
@@ -59,5 +70,9 @@ public class ProfileScene extends PopUp {
         v.setAlignment(Pos.TOP_CENTER);
         v.setPrefSize(this.gridP.getPrefWidth(), this.gridP.getPrefHeight());
         v.setSpacing(20);
+    }
+
+    public void btnOnAction(Joueur j) throws Exception{
+        BaseDonneeJoueur.setJoueur(j);
     }
 }

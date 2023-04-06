@@ -4,7 +4,11 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.monappli.handlers.DynamicEventHandler;
+import com.monappli.hashiScene.MainPanel;
+
 import javafx.css.FontCssMetaData;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 /**
@@ -163,7 +167,7 @@ public  class Parametre implements Serializable{
         return Color.web(str);
     }
 
-    public static void load(List<String> param) {
+    public static <H extends DynamicEventHandler>  void load(List<String> param) {
         Parametre.setCouleur_texte(toColor( param.get(0)));
         Parametre.setCouleur_ilot(toColor( param.get(1)));
         Parametre.setCouleur_pont(toColor( param.get(2)));
