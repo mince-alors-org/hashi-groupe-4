@@ -36,6 +36,8 @@ public class Grille {
     private Canvas fond;
     private Pane parent;
     private boolean graphic;
+    private SauvegardeGrille sauvegarde;
+    String fichier_sauvegarde = "src/test/java/com/monappli/save_move.txt";
 
     /**
      * Initialisation de la grille
@@ -45,6 +47,7 @@ public class Grille {
 
     public Grille(String nomF, boolean graphic){
       this.graphic= graphic;
+      this.sauvegarde = new SauvegardeGrille();
       listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
@@ -216,6 +219,9 @@ public class Grille {
             if (!this.croisePont(pont)){
               pont.incrementer();
               pont.affiche(fond);
+
+              sauvegarde.ajoutCoup(pont);
+              sauvegarde.actualiserFichier(fichier_sauvegarde);
               
               ileAct.setActive(false);
               ilot.setActive(false);
@@ -441,5 +447,24 @@ public class Grille {
         ilot.setRed(false);
       }
     }
-    
+
+    /**
+     * Undo/Rétablir la denière action
+     */
+    public void retablirAction(){
+      System.out.println("Dans retablir action");
+      sauvegarde.getLastPont().affiche(fond);
+      sauvegarde.retablir();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
+    }
+
+    /**
+     * Annule la dernière action
+     */
+    public void annulerAction(){
+      System.out.println("Dans annuler action");
+      sauvegarde.getLastPont().affiche(fond);
+      sauvegarde.annuler();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
+    }
 }
