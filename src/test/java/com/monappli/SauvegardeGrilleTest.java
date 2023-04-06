@@ -112,10 +112,10 @@ public class SauvegardeGrilleTest {
             temp_param.setAffichage_depassment_cardinalite(false);
             temp_param.setAffichage_groupe_ferme(true);
             temp_param.setAffichage_ponts_possible(false);
-            Joueur joueur1 = new Joueur("Bonathan", "mdp1");
-            Joueur joueur2 = new Joueur("Bob", "mdp1");
-            Joueur joueur3 = new Joueur("Barry", "mdp1");
-            Joueur joueur4 = new Joueur("Bartholomet", "mdp1");
+            Joueur joueur1 = new Joueur("Bonathan" );
+            Joueur joueur2 = new Joueur("Bob");
+            Joueur joueur3 = new Joueur("Barry");
+            Joueur joueur4 = new Joueur("Bartholomet");
             /*temp_bdd.addJoueur(joueur1);
             temp_bdd.addJoueur(joueur2);
             temp_bdd.addJoueur(joueur3);

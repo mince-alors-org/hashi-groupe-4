@@ -7,3 +7,12 @@
     -fx-pref-width:200.0px;
     -fx-pref-height:30.0px;
 }
+
+#vBox{
+    -fx-alignment: center;
+}
+
+.playerButton{
+    -fx-pref-width:200.0px;
+    -fx-pref-height:40.0px;
+}

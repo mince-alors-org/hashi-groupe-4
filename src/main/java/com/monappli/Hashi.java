@@ -35,8 +35,8 @@ public class Hashi extends Application {
 
         menuLoader.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(root));
 
-        //ProfileScene prof= new ProfileScene(menuLoader.getCurPane());
-        //prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
+        ProfileScene prof= new ProfileScene(menuLoader.getCurPane());
+        prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
 
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");

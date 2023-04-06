@@ -38,7 +38,7 @@ public class BaseDonneeJoueur implements Serializable{
         return true;
     }
 
-    public boolean addScore( String lvl, int score) throws Exception{
+    public static boolean addScore( String lvl, int score) throws Exception{
         Path path = Paths.get(directory+Hashi.joueur.getnom()+ ".prof");
         List<String> lines= Files.readAllLines(path);
         for (int i=0; i<lines.size(); i++){
@@ -63,13 +63,12 @@ public class BaseDonneeJoueur implements Serializable{
     public static void loadParam() throws Exception{
         Path path = Paths.get(directory+Hashi.joueur.getnom()+ ".prof");
         List<String> lines= Files.readAllLines(path);
-        Parametre.load(lines.subList(2, 7));
+        Parametre.load(lines.subList(1, 6));
     }
 
     public static void writeNewPlayer(Joueur joueur) throws Exception{
         FileWriter myWriter = new FileWriter(directory + joueur.getnom()+".prof");
         myWriter.write(joueur.getnom()+
-                "\n" + joueur.getmotdepasse()+
                 "\n#000000"+
                 "\n#ffffff"+
                 "\n#000000"+
@@ -94,15 +93,6 @@ public class BaseDonneeJoueur implements Serializable{
         return null;
     }*/
 
-    public static String getPassword(Joueur j) throws Exception{
-        if (exists(j)){
-            Path path = Paths.get(directory+j.getnom()+ ".prof");
-            List<String> lines= Files.readAllLines(path);
-            return lines.get(1);
-        }
-        return null;
-    }
-
     public static boolean exists(String nomF){
         File directory=new File("src/main/resources/profiles");
         ArrayList<String> search= new ArrayList<String>();
@@ -121,11 +111,8 @@ public class BaseDonneeJoueur implements Serializable{
         if (!exists(nextJ))
             return false;
 
-        if(nextJ.getmotdepasse().equals(getPassword(nextJ))) {
-            setJoueur(nextJ);
-            return true;
-        }
-        return false;  
+        setJoueur(nextJ);
+        return true;
     }
 
     public static void setJoueur(Joueur j) throws Exception{
@@ -137,29 +124,38 @@ public class BaseDonneeJoueur implements Serializable{
         if (exists(j)){
             Path path = Paths.get(directory+j.getnom()+ ".prof");
             List<String> lines= Files.readAllLines(path);
-            return Color.web( lines.get(6));
+            return Color.web( lines.get(5));
         }
         return null;
     }
 
-    public static Joueur getJoueur(String nom, String pwd) throws Exception{
+    public static String getNom(String nomF) throws Exception{
+        Path path = Paths.get(directory+nomF+ ".prof");
+        List<String> lines= Files.readAllLines(path);
+        return lines.get(0);
+    }
+
+    public static Joueur getJoueur(String nom) throws Exception{
         if (!exists(nom)){
             return null;
         }
-        Joueur joueur = new Joueur(nom, pwd);
-        if(getPassword(joueur).equals(pwd)){
-            return joueur;
-        }
-        return null;
+
+        return new Joueur(nom);
     }
 
-    /*public String toString() {
-        String res = "Liste des joueurs: \n";
-        for (Joueur joueur : joueurs) {
-            res += joueur.getnom() + " - " + joueur.getmotdepasse() + "\n";
+    public static ArrayList<Joueur> getAllPlayers() throws Exception{
+        ArrayList<Joueur> tab = new ArrayList<Joueur>();
+        File directory=new File("src/main/resources/profiles");
+        for(String nomF : directory.list()){
+            String nomJ=  nomF.replace(".prof", "");  
+            Joueur j= getJoueur(nomJ);
+            if (j!= null){
+                tab.add(j);
+            }
         }
-        return res;
-    }*/
+        return tab;
+    }
+
 }
     
 

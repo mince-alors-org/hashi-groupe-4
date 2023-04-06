@@ -10,10 +10,10 @@
    <children>
       <Pane fx:id="backGround" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="400.0" style="-fx-background-radius: 50; -fx-border-radius: 40; -fx-border-width: 10; -fx-border-color: #000000; -fx-background-color: #eeeeee;" stylesheets="@profileSelectStyle.css">
          <children>
-            <VBox alignment="TOP_CENTER" layoutX="15.0" layoutY="15.0" prefHeight="670.0" prefWidth="370.0">
+            <VBox alignment="TOP_CENTER" layoutX="15.0" layoutY="15.0" prefHeight="670.0" prefWidth="370.0" spacing="20.0">
                <children>
                   <Button id="newProfile" mnemonicParsing="false" text="Nouveau Profil" />
-                  <Pane prefHeight="484.0" prefWidth="370.0" />
+                  <Pane fx:id="gridP" prefHeight="480.0" prefWidth="350.0" />
                   <Button id="apply" mnemonicParsing="false" text="Appliquer" />
                </children>
                <opaqueInsets>
