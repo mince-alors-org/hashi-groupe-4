@@ -49,6 +49,12 @@ public class Pont implements Serializable{
 		ile1.calculValeur(nbTraits);
 		ile2.calculValeur(nbTraits);
 	}
+	/**
+	 * remise à zero du nombre de trait
+	 */
+	public void remiseZero(){
+		this.nombreTraits=0;
+	}
 
 	/**
 	 *@return nombreTraits indique la quantiter de trait afficher
@@ -71,7 +77,7 @@ public class Pont implements Serializable{
 
 	/**
 	 * Permet de savoir si un pont est verticale
-	 * 
+	 *
 	 * @param i1 le premier îlot su pont
 	 * @param i2 le sexond îlot du pont
 	 * @return true si le pont est verticale (si ils ont le même x)
@@ -96,7 +102,7 @@ public class Pont implements Serializable{
 	{
 		if (this==p)
 			return false;
-		
+
 		if (p.getNbTraits() == 0)
 			return false;
 
@@ -124,7 +130,7 @@ public class Pont implements Serializable{
 					return true ;
 				}
 			}
-			else 
+			else
 			{
 				if(
 					(
@@ -133,7 +139,7 @@ public class Pont implements Serializable{
 				   		(getIle1().getPosX() < p.getIle1().getPosX() && getIle1().getPosX() > p.getIle2().getPosX())
 					) &&
 					(
-						//on vérifie si le y de p est entre nos deux y 
+						//on vérifie si le y de p est entre nos deux y
 						(getIle1().getPosY() > p.getIle1().getPosY() && getIle2().getPosY() < p.getIle1().getPosY()) ||
 						(getIle1().getPosY() < p.getIle1().getPosY() && getIle2().getPosY() > p.getIle1().getPosY())
 					)
@@ -186,23 +192,21 @@ public class Pont implements Serializable{
 		gc.setStroke(Parametre.getCouleur_pont());
 
 		this.erase(fond);
-		System.out.println("Ilot 1 :");
-		/*System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle1().getCanvasY());*/
 
-		System.out.println("Ilot 2 :");
-		/*System.out.println(this.getIle2().getCanvasX());
-		System.out.println(this.getIle2().getCanvasY());*/
+
+    double width = this.getIle1().getBtn().getPrefWidth();
+
+    double height = this.getIle1().getBtn().getPrefHeight();
 
 
 		if (this.getNbTraits()==2){
 			if (this.estHorizontale()){
-				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-10);
-				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+10,this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+10);
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-(height/6));
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+(height/6));
 			}
 			else {
-				gc.strokeLine(this.getIle1().getCanvasX() -10,this.getIle1().getCanvasY(),this.getIle2().getCanvasX()-10,this.getIle2().getCanvasY());
-				gc.strokeLine(this.getIle1().getCanvasX()+10,this.getIle1().getCanvasY(),this.getIle2().getCanvasX()+10,this.getIle2().getCanvasY());
+				gc.strokeLine(this.getIle1().getCanvasX()-(width/6),this.getIle1().getCanvasY(),this.getIle2().getCanvasX()-(width/6),this.getIle2().getCanvasY());
+				gc.strokeLine(this.getIle1().getCanvasX()+(width/6),this.getIle1().getCanvasY(),this.getIle2().getCanvasX()+(width/6),this.getIle2().getCanvasY());
 			}
 
 		}
@@ -210,7 +214,6 @@ public class Pont implements Serializable{
 
 			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
 		}
-		System.out.println(this.getNbTraits());
 
 
 	}
@@ -230,6 +233,12 @@ public class Pont implements Serializable{
 		double x2 = Math.max(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
 
 		double y2 = Math.max(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+
+
+
+    double width = this.getIle1().getBtn().getPrefWidth();
+
+    double height = this.getIle1().getBtn().getPrefHeight();
 		System.out.println(y1);
 		System.out.println(y2);
 
@@ -242,10 +251,18 @@ public class Pont implements Serializable{
 
 
 		if (this.estVerticale()){
-			gc.clearRect(x1-20,y1,x2+20,y2-y1);
+
+      //gc.strokeArc(x1-(width/2),y1,width,y2-y1,120,360, ArcType.CHORD);
+			gc.clearRect(x1-(width/2)+10,y1,width-20,y2-y1);
+      System.out.println("verticale");
 		}
 		else {
-			gc.clearRect(x1,y1-20,x2-x1,y2+20);
+
+
+      //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
+			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
+      System.out.println("horizontale");
+      System.out.println("OGHHHHHHH" +this.getIle1().getBtn().getPrefWidth());
 		}
 
 
@@ -256,10 +273,15 @@ public class Pont implements Serializable{
 		this.nombreTraits = nombreTraits;
 	}
 
+	public boolean equals(Pont p){
+		return ((this.getIle1()==p.getIle1() && this.getIle2()==p.getIle2()) || (this.getIle1()== p.getIle2() && this.getIle2()==p.getIle1()))
+				&& (this.getNbTraits() == p.getNbTraits());
+	}
+
 	@Override
   public String toString() {
     return "Pont{" +
-      "nombreTraits=" + nombreTraits;
+      "nombreTraits=" + nombreTraits +"}";
 
   }
 }

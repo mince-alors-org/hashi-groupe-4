@@ -1,10 +1,10 @@
 package com.monappli.handlers;
 
-import com.monappli.Aide;
+import com.monappli.Grille;
 import com.monappli.hashiScene.LevelScene;
+import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -14,11 +14,8 @@ import javafx.scene.layout.Pane;
  */
 public class GameHandler extends DynamicEventHandler {
 
-    /**
-     * Parameters button
-     */
     @FXML
-    private Button paramButton; 
+    private Pane gridPlacement;
 
     /**
      * Power Button. To quit
@@ -49,8 +46,13 @@ public class GameHandler extends DynamicEventHandler {
         super(parent);
     }
 
+    public void setGrille(Grille grille ){
+        this.grille=grille;
+    }
+
     public void restClicked(){
         System.out.println("Je suis rest");
+        this.grille.remiseZero();
     }
 
     public void helpClicked(){
@@ -66,9 +68,19 @@ public class GameHandler extends DynamicEventHandler {
 
     public void lvlTitleClicked() throws Exception{
         LevelScene game= new LevelScene(this.getParentPane());
-        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane()));
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
-        GridPane selGrid= LevelScene.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
+    }
+
+    @Override
+    public void paramClicked() throws Exception{
+        if (backGround.lookup("#pop") == null){
+            PopUp pop = new PopUp(this.getCurPane());
+            GameParamHandler paramH= new GameParamHandler(this.backGround, this.grille );
+            pop.pasteAndHandle("/view/parameters.fxml", paramH);
+            paramH.setAll();
+        }
     }
 }

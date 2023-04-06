@@ -1,12 +1,7 @@
 package com.monappli.hashiScene;
 
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.fxml.*;
-import javafx.geometry.Insets;
 
 
 import com.monappli.Parametre;
@@ -55,7 +50,7 @@ public class PopUp extends DynamicScene{
      * @throws Exception if the FXMLLoader can't load the resource
      * @see FXMLLoader
      */
-    public void pasteAndHandle(String name, Handler hand) throws Exception {
+    public <H extends DynamicEventHandler>  void pasteAndHandle(String name, H hand) throws Exception {
         FXMLLoader loader= new FXMLLoader(getClass().getResource(name));
         loader.setController(hand);
 
@@ -68,7 +63,26 @@ public class PopUp extends DynamicScene{
         newP.setId("pop");
         this.getParent().getChildren().add(newP);
         this.setStyleParam();
+        
+    }
 
+    /**
+     * Adds to the parent's children the new Pane. Resulting Popping-up this pane
+     * And sets a new controller to this new Pane.
+     * @author Collard Ambre 
+     * @param pane Pane to be set on
+     * @param handler Handler specified to manage events occuring on this pane
+     * @throws Exception if the FXMLLoader can't load the resource
+     * @see FXMLLoader
+     */
+    public <H extends DynamicEventHandler>  void  pasteAndHandle(Pane pane, H hand) throws Exception  {
+        this.setCurPane(pane);
+        hand.setCurPane(pane);
+        pane.setUserData(hand);
+
+        this.getParent().getChildren().setAll(pane);
+        this.setStyleParam();
+        
     }
 
     /**
@@ -81,11 +95,5 @@ public class PopUp extends DynamicScene{
     public void setStyleParam(){
 
         this.getCurPane().setStyle("-fx-text-base-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_texte())+";");
-
-        BackgroundFill background_fill = new BackgroundFill(Color.TRANSPARENT, 
-                                          CornerRadii.EMPTY, Insets.EMPTY);
-  
-        Background background = new Background(background_fill);
-        this.getCurPane().setBackground(background);
     }
 }

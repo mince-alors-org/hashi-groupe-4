@@ -23,12 +23,6 @@ public class LevelSelectHandler extends DynamicEventHandler{
     public static int curDiff;
 
     /**
-     * Back button. Leads to the main menu
-     */
-    @FXML
-    private Button backButton;
-
-    /**
      * Difficulty button
      */
     @FXML
@@ -40,12 +34,15 @@ public class LevelSelectHandler extends DynamicEventHandler{
     @FXML
     private Pane selectPane;
 
+    private LevelScene lvlScene;
+
     /**
      * Initialization of LevelSelectHandler
      * @param parent parent of the current Pane
      */
-    public LevelSelectHandler(Pane parent){
+    public LevelSelectHandler(Pane parent, LevelScene lvlScene){
         super(parent);
+        this.lvlScene=lvlScene;
         curDiff=1;
     }
 
@@ -59,7 +56,7 @@ public class LevelSelectHandler extends DynamicEventHandler{
         curDiff= curDiff%LevelScene.nbDiff +1;
         diffButton.setText(intToDiff(curDiff));
 
-        GridPane newGrid= LevelScene.initGrid(LevelScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
+        GridPane newGrid= lvlScene.initGrid(LevelScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
         selectPane.getChildren().setAll(newGrid);
 
     }
@@ -85,7 +82,7 @@ public class LevelSelectHandler extends DynamicEventHandler{
 
     public void backClicked() throws Exception{
         MainPanel main= new MainPanel(this.getParentPane());
-        main.pasteAndHandle("/view/main_menu.fxml", new mainMenuEventHandler(this.getParentPane()));
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParentPane()));
     }
 
     

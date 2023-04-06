@@ -1,10 +1,10 @@
 package com.monappli.handlers;
 
 
+import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -14,20 +14,7 @@ import javafx.stage.Stage;
  * @author Ambre Collard
  */
 
-public class DynamicEventHandler implements Handler{
-
-    /**
-     * Parameter Button
-     */
-    @FXML
-    public Button paramButton;
-
-    /**
-     * Power Button (to quit the game)
-     */
-    @FXML
-    public Button powerButton;
-
+public class DynamicEventHandler {
     /**
      * backGround Pane
      */
@@ -50,6 +37,7 @@ public class DynamicEventHandler implements Handler{
      */
     public DynamicEventHandler(Pane parentPane){
         this.parentPane=parentPane;
+        setCurPane(backGround);
     }
 
     /**
@@ -83,8 +71,10 @@ public class DynamicEventHandler implements Handler{
      * Action when powerButton is clicked. Quits the application
      */
     public void quitClicked(){
-        Stage stage = (Stage) powerButton.getScene().getWindow();
-        stage.close();
+        if (backGround.lookup("#pop") == null){
+            Stage stage = (Stage) backGround.getScene().getWindow();
+            stage.close();
+        }
     }
  
     /**
@@ -98,9 +88,14 @@ public class DynamicEventHandler implements Handler{
     public void paramClicked() throws Exception{
         if (backGround.lookup("#pop") == null){
             PopUp pop = new PopUp(this.getCurPane());
-            ParamHandler paramH= new GameParamHandler(this.backGround);
+            ParamHandler paramH= new ParamHandler(this.backGround);
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
         }
+    }
+
+    public void hashiClicked() throws Exception{
+        MainPanel main= new MainPanel(this.getParentPane());
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParentPane()));
     }
 }

@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -16,13 +15,19 @@
          <children>
             <HBox prefHeight="150.0" prefWidth="450.0" spacing="54.0">
                <children>
-                  <Button id="paramButton" fx:id="paramButton" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
-                  <Label id="title" alignment="CENTER" text="Hashi" textFill="WHITE" HBox.hgrow="ALWAYS">
+                  <Button id="paramButton" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
+                  <Button id="title" mnemonicParsing="false" onAction="#hashiClicked" style="-fx-background-color: transparent;" text="Hashi" textFill="WHITE">
                      <font>
                         <Font size="65.0" />
                      </font>
-                  </Label>
-                  <Button id="powerButton" fx:id="powerButton" mnemonicParsing="false" onAction="#quitClicked" styleClass="optionalButton" />
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets top="-10.0" />
+                     </padding>
+                  </Button>
+                  <Button id="powerButton" mnemonicParsing="false" onAction="#quitClicked" styleClass="optionalButton" />
                </children>
                <opaqueInsets>
                   <Insets />
@@ -40,13 +45,13 @@
                      <children>
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
                            <children>
-                              <Button id="aideButton" fx:id="helpButton" mnemonicParsing="false" onAction="#helpClicked" styleClass="optionalGameButton">
+                              <Button id="aideButton" mnemonicParsing="false" onAction="#helpClicked" styleClass="optionalGameButton">
                                  <HBox.margin>
                                     <Insets />
                                  </HBox.margin>
                               </Button>
-                              <Button id="levelButton" fx:id="lvlTitle" mnemonicParsing="false" onAction="#lvlTitleClicked" text="levelButton" />
-                              <Button id="restButton" fx:id="restButton" mnemonicParsing="false" onAction="#restClicked" styleClass="optionalGameButton" />
+                              <Button id="levelButton" mnemonicParsing="false" onAction="#lvlTitleClicked" text="levelButton" />
+                              <Button id="restButton" mnemonicParsing="false" onAction="#restClicked" styleClass="optionalGameButton" />
                            </children>
                            <VBox.margin>
                               <Insets />
@@ -64,8 +69,8 @@
                            </children></Pane>
                         <ToolBar prefHeight="194.0" prefWidth="450.0" style="-fx-background-color: transparent;">
                           <items>
-                              <Button id="undo" fx:id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" translateX="140.0" />
-                            <Button id="redo" fx:id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" translateX="170.0" />
+                              <Button id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" translateX="140.0" />
+                            <Button id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" translateX="170.0" />
                           </items>
                         </ToolBar>
                      </children>

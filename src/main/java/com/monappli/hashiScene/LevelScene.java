@@ -22,7 +22,6 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
-import javafx.scene.canvas.Canvas;
 
 
 /**
@@ -62,7 +61,7 @@ public class LevelScene extends MainPanel {
      * @throws Exception
      * @author Ambre Collard
      */
-    public static GridPane  initGrid(int nbLvl, int w, int h, Pane backPane) throws Exception{
+    public GridPane  initGrid(int nbLvl, int w, int h, Pane backPane) throws Exception{
         GridPane grid= new GridPane();
 
         /*
@@ -110,12 +109,15 @@ public class LevelScene extends MainPanel {
 
             //Set event handler
             btn.setOnAction(e -> {
-                MainPanel game= new MainPanel(backPane);
+                //Get the file name of the level related to the button
+                String lvlF = "../niveaux/" +LevelSelectHandler.curDiff+"-"+ btn.getText()+".niv";
+
+                //Creates a new game grid and the graphic interface
+                GameScene game = new GameScene(this.getParent());
                 try {
-                    //if clicked, will try to load the game layout
-                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(backPane));
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParent()),lvlF );
+                } catch (Exception e1) {
+                    e1.printStackTrace();
                 }
                 //Get the file name of the level related to the button
                 String nomF = "../niveaux/" +LevelSelectHandler.curDiff+"-"+ btn.getText()+".niv";

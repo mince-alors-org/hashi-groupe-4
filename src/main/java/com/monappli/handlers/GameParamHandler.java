@@ -1,7 +1,6 @@
 package com.monappli.handlers;
 
 import com.monappli.Grille;
-
 import javafx.scene.layout.Pane;
 
 /**
@@ -14,9 +13,12 @@ public class GameParamHandler extends ParamHandler {
      * Initialization of GameParamHandler
      * @param parent parent pane of the currently handled pane
      */
-    public GameParamHandler(Pane parent){
+
+    private Grille grille;
+
+    public GameParamHandler(Pane parent, Grille grille){
         super(parent);
-        this.setCurPane(this.getParamPane());
+        this.grille=grille;
     }
 
     /**
@@ -25,6 +27,7 @@ public class GameParamHandler extends ParamHandler {
     @Override
     public void changeAll() throws Exception{
         super.changeAll();
-        Grille.setAllIsleStyle();
+        grille.setAllIsleStyle();
+        grille.setBridgeStyle();
     }
 }

@@ -3,8 +3,6 @@ package com.monappli.handlers;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.MainPanel;
 
-import javafx.fxml.*;
-import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -13,33 +11,15 @@ import javafx.scene.layout.Pane;
  * @see DynamicEventHandler 
  * @author Collard Ambre
  */
-public class mainMenuEventHandler extends  DynamicEventHandler{
+public class MainMenuEventHandler extends  DynamicEventHandler{
+
 
     /**
-     * Play Button
-     */
-    @FXML
-    private Button playButton;
-
-    /**
-     * Tutorial Button
-     */
-    @FXML
-    private Button tutoButton;
-
-    /**
-     * Challenge Button
-     */
-    @FXML
-    private Button challButton;
-
-    /**
-     * Initialization of mainMenuEventHandler
+     * Initialization of MainMenuEventHandler
      * @param parentPane 
      */
-    public mainMenuEventHandler(Pane parentPane){
+    public MainMenuEventHandler(Pane parentPane){
         super(parentPane);
-        setCurPane(backGround);
     }
 
     /**
@@ -51,10 +31,11 @@ public class mainMenuEventHandler extends  DynamicEventHandler{
      */
     public void playClicked() throws Exception {
         LevelScene game= new LevelScene(this.getParentPane());
-        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane()));
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
-        GridPane selGrid= LevelScene.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
+        
     }
 
     /**

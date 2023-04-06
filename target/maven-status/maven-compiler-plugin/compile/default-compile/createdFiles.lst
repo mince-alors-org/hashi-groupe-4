@@ -7,12 +7,16 @@ com/monappli/Parametre.class
 com/monappli/Grille.class
 com/monappli/Ilot.class
 com/monappli/handlers/DynamicEventHandler.class
-com/monappli/handlers/mainMenuEventHandler.class
+com/monappli/handlers/MainMenuEventHandler.class
+com/monappli/hashiScene/GameScene.class
 com/monappli/hashiScene/DynamicScene.class
+com/monappli/IlotBtn.class
 com/monappli/Pont.class
+com/monappli/hashiScene/ProfileScene.class
 com/monappli/handlers/TutorialEventHandler.class
 com/monappli/Hashi.class
 com/monappli/hashiScene/PopUp.class
+com/monappli/handlers/WinHandler.class
 com/monappli/SauvegardeGrille.class
 com/monappli/handlers/Handler.class
 com/monappli/App.class
