@@ -54,7 +54,8 @@ public class Chrono extends Thread{
 
   @Override
   public void run() {
-    for(int i =0; i<1000; i++){
+    start = true;
+    while(start){
     try{
     Thread.sleep(100);
     }

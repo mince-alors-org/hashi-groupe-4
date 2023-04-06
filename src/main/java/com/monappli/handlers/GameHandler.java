@@ -2,6 +2,7 @@ package com.monappli.handlers;
 
 import com.monappli.Chrono;
 import com.monappli.Grille;
+import com.monappli.SauvegardeGrille;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
 
@@ -13,6 +14,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+import java.io.PrintWriter;
 
 /**
  * In game handler
@@ -56,8 +61,6 @@ public class GameHandler extends DynamicEventHandler {
 
 
     private Chrono chronometre;
-
-
     /**
      * Initialization of GameHandler
      * @param parent parent pane of the currently handled pane
@@ -97,6 +100,23 @@ public class GameHandler extends DynamicEventHandler {
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
+        System.out.println("Chrono_time : " + chronometre.getTime());
+        /*PrintWriter writer = new PrintWriter("src/test/java/com/monappli/save_move.txt");
+        writer.print("");
+        writer.close();*/
+
+
+        this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
+
+
+        /*ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/test/java/com/monappli/save_move.txt"));
+        double result = ois.readDouble();
+        ois.close();
+        System.out.println("RESSSULT " + result);*/
+
+
+
+
     }
 
     @Override
@@ -111,7 +131,6 @@ public class GameHandler extends DynamicEventHandler {
 
     public void setChrono(){
       chronometre = new Chrono(chrono);
-      //chronometre.run();
     }
 
   public Chrono getChronometre() {
@@ -120,16 +139,12 @@ public class GameHandler extends DynamicEventHandler {
 
   public void chronoStart(){
     System.out.println("oui");
-    /*Task<Chrono> task = new Task<Chrono>() {
-        @Override public Chrono call() {
-            chronometre.run();
-            return null;
-        }
-    };
-    task.setOnRunning(taskRun -> chronometre.refreshTime());
-    new Thread(task).start();
-    }*/
-
     chronometre.start();
-    }   
+    }
+
+  @Override
+  public void quitClicked() {
+      this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
+      super.quitClicked();
+  }
 }
