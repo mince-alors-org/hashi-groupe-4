@@ -71,8 +71,8 @@
                            </children></Pane>
                         <ToolBar prefHeight="194.0" prefWidth="450.0" style="-fx-background-color: transparent;">
                           <items>
-                              <Button id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" translateX="140.0" />
-                            <Button id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" translateX="170.0" />
+                              <Button id="undo" mnemonicParsing="false" onAction="#undoClicked" styleClass="optionalGameButton" text="&lt;" translateX="140.0" />
+                            <Button id="redo" mnemonicParsing="false" onAction="#redoClicked" styleClass="optionalGameButton" text="&gt;" translateX="170.0" />
                           </items>
                         </ToolBar>
                      </children>
