@@ -93,7 +93,7 @@ public class PopUp extends DynamicScene{
      * @author Collard Ambre 
      */
     public void setStyleParam(){
-
         this.getCurPane().setStyle("-fx-text-base-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_texte())+";");
+        this.getCurPane().toFront();
     }
 }

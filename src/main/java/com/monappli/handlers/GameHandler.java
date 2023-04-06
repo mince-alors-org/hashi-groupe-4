@@ -74,6 +74,9 @@ public class GameHandler extends DynamicEventHandler {
         System.out.println("Je suis Aide");
         cptActivationAide ++;
     }
+    public void errClicked(){
+        System.out.println("Je detecte 1 erreur");
+    }
     public void redoClicked(){
         System.out.println("Je suis redo");
     }

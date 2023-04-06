@@ -36,6 +36,8 @@ public class Grille {
     private Canvas fond;
     private Pane parent;
     private boolean graphic;
+    private SauvegardeGrille sauvegarde;
+    String fichier_sauvegarde = "src/test/java/com/monappli/save_move.txt";
 
     /**
      * Initialisation de la grille
@@ -45,6 +47,7 @@ public class Grille {
 
     public Grille(String nomF, boolean graphic){
       this.graphic= graphic;
+      this.sauvegarde = new SauvegardeGrille();
       listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
@@ -211,10 +214,14 @@ public class Grille {
 
             //Get what could be the bridge
             Pont pont = ileAct.liaisonP(ilot);
+
             //If it doesn't cross another bridge
             if (!this.croisePont(pont)){
               pont.incrementer();
               pont.affiche(fond);
+
+              sauvegarde.ajoutCoup(pont);
+              sauvegarde.actualiserFichier(fichier_sauvegarde);
 
               ileAct.setActive(false);
               ilot.setActive(false);
@@ -227,20 +234,15 @@ public class Grille {
               ileAct.setRed(true);
             }
           }
+          else
+            changeActive(ilot);
         }
         else
           ilot.setActive(!(ilot.getActive()));
 
-        if (ilot.nbPont() > ilot.getValeur()){
-          ilot.setRed(true);
-        }
-
         if(ileAct == ilot || ileAct == null)
           changeActive(ilot);
 
-        if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
-          ileAct.setRed(true);
-        }
         if (this.isWin()){
           PopUp win = new PopUp(this.parent);
           try{
@@ -446,4 +448,23 @@ public class Grille {
       }
     }
 
+    /**
+     * Undo/Rétablir la denière action
+     */
+    public void retablirAction(){
+      System.out.println("Dans retablir action");
+      sauvegarde.getLastPont().affiche(fond);
+      sauvegarde.retablir();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
+    }
+
+    /**
+     * Annule la dernière action
+     */
+    public void annulerAction(){
+      System.out.println("Dans annuler action");
+      sauvegarde.getLastPont().affiche(fond);
+      sauvegarde.annuler();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
+    }
 }

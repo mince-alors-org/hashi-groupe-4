@@ -1,13 +1,13 @@
 package com.monappli;
 
 import org.junit.jupiter.api.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
-
-import javax.sound.midi.MidiChannel;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.TestInstance.Lifecycle;
+
+import javafx.scene.chart.PieChart.Data;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BaseDonneeJoueurTest {
@@ -16,7 +16,7 @@ public class BaseDonneeJoueurTest {
     @BeforeAll
     public void initAll() throws Exception{
         database = new BaseDonneeJoueur();
-        Joueur j = new Joueur("Jean", "4444");
+        Joueur j = new Joueur("Jean");
         BaseDonneeJoueur.addJoueur(j);
         BaseDonneeJoueur.setJoueur(j);
     }
@@ -29,14 +29,14 @@ public class BaseDonneeJoueurTest {
 
     @Test
     public void testAddJoueur() throws Exception{
-        Joueur j2 = new Joueur("Karl", "mdp2");
+        Joueur j2 = new Joueur("Karl");
 
-        System.out.println( database.addJoueur(j2));
+        System.out.println( BaseDonneeJoueur.addJoueur(j2));
     }
 
     @Test
     public void testCréerFichierSauvegarde() throws IOException{
-        Joueur joueur = new Joueur("Baptiste","mdp");
+        Joueur joueur = new Joueur("Baptiste");
 
         joueur.initSave(joueur.getnom(), "1-1.niv");
         
@@ -49,13 +49,13 @@ public class BaseDonneeJoueurTest {
 
     @Test 
     public void testaddScore()throws Exception{
-        Joueur j2 = new Joueur("Karl", "mdp2");
-        database.addScore( "1-3", 800);
+        Joueur j2 = new Joueur("Karl");
+        BaseDonneeJoueur.addScore( "1-3", 800);
     }
 
     @Test
     public void testLoadparam() throws Exception{
-        Joueur j2 = new Joueur("Karl", "mdp2");
+        Joueur j2 = new Joueur("Karl");
         System.out.println(Parametre.affiche());
         BaseDonneeJoueur.loadParam();
         System.out.println(Parametre.affiche());
@@ -63,8 +63,8 @@ public class BaseDonneeJoueurTest {
 
     @Test
     public void testChangePlayer() throws Exception{
-        Joueur j2 = new Joueur("Michel", "mdp1");
-        Joueur j1 = new Joueur("Karl", "mdp2");
+        Joueur j2 = new Joueur("Michel");
+        Joueur j1 = new Joueur("Karl");
         BaseDonneeJoueur.addJoueur(j2);
         System.out.println(Parametre.affiche());
         BaseDonneeJoueur.loadParam();
@@ -75,13 +75,21 @@ public class BaseDonneeJoueurTest {
 
     @Test
     public void testGetJoueur() throws Exception{
-        System.out.println( BaseDonneeJoueur.getJoueur("Michel", "mdp1"));
+        System.out.println( BaseDonneeJoueur.getJoueur("Michel"));
     }
 
     @Test
     public void testGetChip() throws Exception{
         System.out.println(BaseDonneeJoueur.getChipColor(Hashi.joueur));
-        Joueur j= BaseDonneeJoueur.getJoueur("Michel", "mdp1");
+        Joueur j= BaseDonneeJoueur.getJoueur("Michel");
         System.out.println(BaseDonneeJoueur.getChipColor(j));
+    }
+
+    @Test
+    public void testGetAll() throws Exception{
+        ArrayList<Joueur> tab= BaseDonneeJoueur.getAllPlayers();
+        for (Joueur j : tab){
+            System.out.println(j);
+        }
     }
 }

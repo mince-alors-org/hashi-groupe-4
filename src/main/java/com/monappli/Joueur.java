@@ -10,16 +10,14 @@ import java.util.Objects;
  */
 public class Joueur implements Serializable{
     private String nom;
-    private String motdepasse;
 
     /**
      * Constructeur d'un joueur
      * @param nom nom du joueur
      * @param motdepasse mot de passe du joueur
      */
-    public Joueur(String nom, String motdepasse) {
+    public Joueur(String nom) {
         this.nom = nom;
-        this.motdepasse = motdepasse;
 
         File fichier = new File("src/main/java/com/monappli/Profiles/" + nom);
         fichier.mkdir();
@@ -34,21 +32,13 @@ public class Joueur implements Serializable{
         return nom;
     }
 
-    public String getmotdepasse() {
-        return motdepasse;
-    }
-
     public void setnom(String nom) {
         this.nom = nom;
-    }
-
-    public void setmotdepasse(String motdepasse) {
-        this.motdepasse = motdepasse;
     }
     
     @Override
     public String toString(){
-        return "Nom= "+nom+" MDP = "+motdepasse;
+        return "Nom= "+nom;
     }
 
     /**
@@ -65,7 +55,7 @@ public class Joueur implements Serializable{
             return false;
         }
         Joueur other = (Joueur) obj;
-        return Objects.equals(nom, other.nom) && Objects.equals(motdepasse, other.motdepasse);
+        return Objects.equals(nom, other.nom) ;
     }
 
 }

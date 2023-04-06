@@ -144,5 +144,14 @@ public class SauvegardeGrille implements Serializable{
         return bdd;
     }
 
+    }
+
+    public Pont getLastPont(){
+        if (pileCoups.isEmpty()){
+            return null;
+        }
+        System.out.println("Test : " + pileCoups.get(pileCoups.size()-1));
+        return pileCoups.get(pileCoups.size()-1);
+    }
 }
 
