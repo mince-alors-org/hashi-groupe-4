@@ -17,13 +17,13 @@ public class Hashi extends Application {
     public static Joueur joueur;
 
     public static void main(String[] args) {
-        try{
+        /*try{
             joueur= BaseDonneeJoueur.getJoueur("Michel", "mdp1");
             BaseDonneeJoueur.loadParam();
         }
         catch(Exception e){
             e.printStackTrace();
-        }
+        }*/
         Application.launch(Hashi.class,args);
     }
 
