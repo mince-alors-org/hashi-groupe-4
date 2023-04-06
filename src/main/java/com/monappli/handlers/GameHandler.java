@@ -30,6 +30,10 @@ public class GameHandler extends DynamicEventHandler {
 
 
 
+    private int cptActivationAide;
+
+
+
 
 
     private Grille grille;
@@ -50,6 +54,7 @@ public class GameHandler extends DynamicEventHandler {
      */
     public GameHandler(Pane parent){
         super(parent);
+        cptActivationAide = 0;
 
 
 
@@ -67,6 +72,7 @@ public class GameHandler extends DynamicEventHandler {
 
     public void helpClicked(){
         System.out.println("Je suis Aide");
+        cptActivationAide ++;
     }
     public void redoClicked(){
         System.out.println("Je suis redo");
