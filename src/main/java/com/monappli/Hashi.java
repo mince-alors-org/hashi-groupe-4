@@ -28,7 +28,7 @@ public class Hashi extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception { 
+    public void start(Stage stage) throws Exception {
         FXMLLoader loader= new FXMLLoader(getClass().getResource("/view/mainBG.fxml"));
         Pane root = (Pane)loader.load();
         MainPanel menuLoader= new MainPanel(root);
@@ -36,7 +36,7 @@ public class Hashi extends Application {
         menuLoader.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(root));
 
         ProfileScene prof= new ProfileScene(menuLoader.getCurPane());
-        prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
+        //prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
 
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");

@@ -41,7 +41,7 @@
             </HBox>
             <Pane prefHeight="86.0" prefWidth="450.0">
                <children>
-                  <Button fx:id="chrono" layoutX="194.0" layoutY="17.0" mnemonicParsing="false" onAction="#chronoStart" text="OHHH" />
+                  <Button fx:id="chrono" layoutX="194.0" layoutY="17.0" mnemonicParsing="false" onAction="#chronoStart" style="-fx-background-color: red; -fx-font-family: Arial;" text="OHHH" textFill="#362e75" />
                </children>
             </Pane>
             <Pane prefHeight="650.0" prefWidth="450.0">
