@@ -2,6 +2,10 @@ package com.monappli;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * Cette classe permet de proposer différents types d'aides au joueur :
@@ -46,7 +50,7 @@ import java.util.HashMap;
     /**
      * Constructeur de la classe Aide qui permet d'associer l'aide à la grille
      */
-    public static void setGrille(Grille grille){
+    public static void setGrilleAide(Grille grille){
         Aide.grille = grille;
     }
 
@@ -55,16 +59,16 @@ import java.util.HashMap;
      */
 
     // Code d'erreur qui signifie qu'un ilot a trop de ponts (erreur de cardinalité) 
-    final String nbCardinaliteIncorrect="ERR101";
+    final static String nbCardinaliteIncorrect="ERR101";
 
     // Code d'erreur qui signifie qu'il n'y a pas le bon nombre de ponts
-    final String nbPontIncorrectCorrects="ERR102";
+    final static String nbPontIncorrectCorrects="ERR102";
 
     // Code d'erreur qui signifie qu'il y a un endroit fermé sur la grille
-    final String endroitLock="ERR103";
+    final static String endroitLock="ERR103";
 
     // Code qui signifie qu'il y a pas d'erreur
-    final String pasderreur="NOERR";
+    final static String pasderreur="NOERR";
 
     /**
      * pour cela la méthode parcours le plateau et avec une série de conditions détermine la bonne technique a renvoyer
@@ -109,21 +113,22 @@ import java.util.HashMap;
         }
         return technique.get("Pas de technique applicable");
     }
+
     
     /**
      * Verifie si le plateau actuel contient des erreurs ou non
      * @return String : contenant le code d'erreur correspondant a l'erreur trouver sur la grille
      */ 
-    public String checkErreur() {
-        if (Aide.nbCardinalité()) {
-            return nbCardinaliteIncorrect;
+    public static String checkErreur() {
+        for (Ilot ile : grille.getIlots()) {
+            if (Aide.nbCardinalité(ile)) {
+                return Aide.nbCardinaliteIncorrect;
+            }
+            else if (Aide.estEnsembleFerme(ile)) {
+                return Aide.endroitLock;
+            }
         }
-        else if (Aide.endroitFerme()) {
-            return endroitLock;
-        }
-        else {
-            return pasderreur;
-        }
+        return Aide.pasderreur;
     }
 
 
@@ -131,17 +136,10 @@ import java.util.HashMap;
     * Fonction qui vérifie si un ilôt a son bon nombre de ponts 
     * @return Bool : Vrai ou faux en fonction de si l'ilôt a le nombre de ponts correspondant à celui qu'il devrait avoir 
     */
-    public static boolean nbCardinalité() {
-        int tmp;
-        for(int i=0;i<grille.getIlots().size();i++){
-            tmp=0;
-            ArrayList<Pont> listpont = grille.getIlots().get(i).getPonts();
-            for (int j=0;j<listpont.size();j++) {
-                tmp+=listpont.get(j).getNbTraits();
-            }
-            if (tmp>grille.getIlots().get(i).getValeur()) {
-                return true;
-            }
+    public static boolean nbCardinalité(Ilot ile) {
+        if(ile.getValeur() < nb_ponts(ile)) {
+            ile.setStyleRed();
+            return true;
         }
         return false;
     }
@@ -150,38 +148,51 @@ import java.util.HashMap;
     * Fonction qui détecte quand le jeu forme un endroit fermé qui ne peut plus être lié au reste du plateau sur le plateau
     * @return : true ou false si le plateau présente au moment T au moins un endroit fermé
     */
-    public static boolean endroitFerme() {
-        for (Ilot ile : Aide.grille.getIlots()) {
-            //ArrayList<Ilot> voisins = ile.listeVoisin();
-            ArrayList<Ilot> voisinsRelies = ile.listeVoisinRelier();
-            int numVois = voisinsRelies.size();
-            int numPontsRelies = 0;
-            int tmp = 0;
-            for (Ilot voisin : voisinsRelies) {
-                // Comptez le nombre de ponts reliant chaque voisin
-                if (ile.listeVoisin().contains(voisin)) {
-                    numPontsRelies++;
+    public static boolean estEnsembleFerme(Ilot ile) {
+        if (ile.getValeur()== Aide.nb_ponts(ile) && ile.getValeur()==3) {
+            System.out.println(ile);
+            HashMap<Ilot,Boolean> ilesVisitees = new HashMap<>();
+            ilesVisitees = estEnsembleFermeRecursive(ile, ilesVisitees); // Appel à la fonction récursive
+            Set<Entry<Ilot, Boolean>> entrySet = ilesVisitees.entrySet();
+            for (Map.Entry<Ilot, Boolean> entry : entrySet) {
+                if(!entry.getValue()) {
+                    return false;
                 }
             }
-            for (int i=0;i<ile.getPonts().size();i++) {
-                tmp+=ile.getPonts().get(i).getNbTraits();
+            for (Map.Entry<Ilot, Boolean> entry : entrySet) {
+                entry.getKey().setStyleRed();
             }
-            if (numVois == 0 || numVois == 2) {
-                // Si l'île a zéro ou deux voisins connectés, elle peut être fermée
-                if (tmp + numPontsRelies < 2) {
-                    return true;
-                }
-            } 
-            else if (numVois == 1) {
-                // Si l'île a un voisin connecté, elle doit avoir un pont ou être fermée
-                if (tmp + numPontsRelies < 1) {
-                    return true;
-                }
-            }
+            return true;
         }
-        // Si on n'a pas trouvé d'île fermée, la grille est valide
         return false;
     }
+    
+    private static HashMap<Ilot, Boolean> estEnsembleFermeRecursive(Ilot ile, HashMap<Ilot, Boolean> ilesVisitees) {
+        int tmp=0;
+        for (Ilot voisin : ile.listeVoisinRelier()) {
+            if (ilesVisitees.containsKey(voisin)) {
+                tmp++;
+            }
+        }   
+        if (tmp == ile.listeVoisinRelier().size() && ilesVisitees.containsKey(ile)) {
+            return ilesVisitees;
+        }
+        else {
+            if (ile.getValeur()==Aide.nb_ponts(ile) && !ilesVisitees.containsKey(ile)) {
+                ilesVisitees.put(ile,true);
+            }
+            else if (!ilesVisitees.containsKey(ile)) {
+                ilesVisitees.put(ile,false);
+            }
+            for (Ilot voisin : ile.listeVoisinRelier()) {
+                estEnsembleFermeRecursive(voisin,ilesVisitees);
+            }
+        }
+        return ilesVisitees;
+    }
+    
+    
+    
 
 
     /**

@@ -1,5 +1,7 @@
 package com.monappli.handlers;
 
+
+import com.monappli.Aide;
 import com.monappli.Grille;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
@@ -38,10 +40,10 @@ public class GameHandler extends DynamicEventHandler {
     }
 
     public void helpClicked(){
-        System.out.println("Je suis Aide");
+        System.out.println(Aide.getTechnique());
     }
     public void errClicked(){
-        System.out.println("Je detecte 1 erreur");
+        System.out.println(Aide.checkErreur());
     }
     public void redoClicked(){
         System.out.println("Je suis redo");
