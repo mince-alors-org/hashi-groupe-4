@@ -7,11 +7,20 @@ import com.monappli.Joueur;
 import com.monappli.handlers.DynamicEventHandler;
 import com.monappli.handlers.MainMenuEventHandler;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
+
+/**
+ * 
+ */
 public class ProfileScene extends PopUp {
     private Pane gridP;
 
@@ -41,8 +50,21 @@ public class ProfileScene extends PopUp {
         ArrayList<Joueur> tabJ= BaseDonneeJoueur.getAllPlayers();
         for(Joueur j : tabJ){
             Button but= new Button(j.getnom());
-            vBox.getChildren().add(but);
+            Pane pane = new Pane();
+
+            pane.getStyleClass().add("chip");
+
+            HBox hBox = new HBox();
+            
+            hBox.getChildren().add(pane);
+            hBox.getChildren().add(but);
+
+            setStyleHBox(hBox);
+
+
+            vBox.getChildren().add(hBox);
             setStyleButton(but);
+            setStyleChip(pane, j);
             but.setOnAction(e ->{
                 try{
                     btnOnAction(j);
@@ -58,6 +80,17 @@ public class ProfileScene extends PopUp {
 
     public void setStyleButton(Button b){
         b.getStyleClass().add("playerButton");
+    }
+
+    public void setStyleChip(Pane p, Joueur j) throws Exception{
+        Background bg = new Background( new BackgroundFill(BaseDonneeJoueur.getChipColor(j),new CornerRadii(20),Insets.EMPTY));
+        p.setBackground(bg);
+    }
+
+    public void setStyleHBox(HBox h){
+        h.setAlignment(Pos.CENTER);
+        h.setSpacing(20);
+        h.setPrefSize(this.gridP.getPrefWidth(), this.gridP.getPrefHeight());
     }
 
     public void setStyleGrid(VBox v){
