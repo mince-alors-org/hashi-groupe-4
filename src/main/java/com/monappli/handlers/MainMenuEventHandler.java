@@ -42,10 +42,11 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
      * @throws Exception
      */
     public void tutoClicked() throws Exception {
-        MainPanel tuto= new MainPanel(this.getParentPane());
-        
-        
-        tuto.pasteAndHandle("/view/tutoLayout.fxml", new TutorialEventHandler(this.getParentPane()));
+        LevelScene game= new LevelScene(this.getParentPane());
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
+        Pane select= (Pane)game.getCurPane().lookup("#selectPane");
+        GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        select.getChildren().add(selGrid);
     }
 
     /**

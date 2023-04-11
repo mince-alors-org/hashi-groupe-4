@@ -16,8 +16,8 @@
          <children>
             <HBox prefHeight="150.0" prefWidth="450.0" spacing="54.0">
                <children>
-                  <Button id="paramButton" mnemonicParsing="false" onAction="#paramClicked" styleClass="optionalButton" />
-                  <Button id="title" mnemonicParsing="false" onAction="#hashiClicked" prefHeight="80.0" prefWidth="179.0" style="-fx-background-color: transparent;" text="Hashi" textFill="WHITE">
+                  <Button id="paramButton" mnemonicParsing="false" onAction="#paramClicked" prefHeight="68.0" prefWidth="73.0" styleClass="optionalButton" />
+                  <Button id="title" mnemonicParsing="false" onAction="#hashiClicked" prefHeight="80.0" prefWidth="190.0" style="-fx-background-color: transparent;" text="Hashi" textFill="WHITE">
                      <font>
                         <Font size="65.0" />
                      </font>
@@ -28,7 +28,7 @@
                         <Insets top="-10.0" />
                      </padding>
                   </Button>
-                  <Button id="powerButton" mnemonicParsing="false" onAction="#quitClicked" styleClass="optionalButton" />
+                  <Button id="powerButton" mnemonicParsing="false" onAction="#quitClicked" prefWidth="67.0" styleClass="optionalButton" />
                </children>
                <opaqueInsets>
                   <Insets />

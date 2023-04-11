@@ -52,7 +52,7 @@ public class ProfileScene extends PopUp {
             but.setOnAction(e ->{
                 try{
                     btnOnAction(j);
-                    //System.out.println("coucou ="+newJ.getAccessibleHelp());
+                    System.out.println("coucou ="+newJ.getText());
                     MainPanel main= new MainPanel(this.getParent());
                     main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
                 }
@@ -78,8 +78,5 @@ public class ProfileScene extends PopUp {
 
     public void btnOnAction(Joueur j) throws Exception{
         BaseDonneeJoueur.setJoueur(j);
-    }
-    public void appliClicked(){
-        //System.out.println("new joueur =");        
     }
 }

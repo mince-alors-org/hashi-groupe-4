@@ -13,6 +13,6 @@ public class ProfileHandler extends DynamicEventHandler{
     }
 
     public void applyClicked(){
-        
+       System.out.println("coucou"); 
     }
 }

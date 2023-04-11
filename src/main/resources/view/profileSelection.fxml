@@ -16,7 +16,7 @@
                <children>
                   <Label text="Nouveaux compte" />
                   <TextField id="newJ" fx:id="newJ" alignment="CENTER" promptText="Nom Joueur" />
-                  <Button id="apply" mnemonicParsing="false" text="Appliquer" />
+                  <Button id="apply" mnemonicParsing="false" onAction="#applyClicked" text="Appliquer" />
                   <Separator prefWidth="200.0" />
                   <Label prefHeight="16.0" prefWidth="103.0" text="Compte actif" />
                   <Pane fx:id="gridP" prefHeight="428.0" prefWidth="337.0" />
