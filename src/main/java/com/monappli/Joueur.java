@@ -19,7 +19,7 @@ public class Joueur implements Serializable{
     public Joueur(String nom) {
         this.nom = nom;
 
-        File fichier = new File("src/main/java/com/monappli/Profiles/" + nom);
+        File fichier = new File("src/main/java/com/monappli/profiles/" + nom);
         fichier.mkdir();
     }
 

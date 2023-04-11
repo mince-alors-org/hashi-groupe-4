@@ -162,6 +162,19 @@ public class BaseDonneeJoueur implements Serializable{
         return tab;
     }
 
+    public static void saveParam(){
+        Path path = Paths.get(directory+Hashi.joueur.getnom()+ "/" + Hashi.joueur.getnom() +".prof");
+        try{
+            List<String> lines= Files.readAllLines(path);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        //for (String str : lines){
+
+        
+    }
+
 }
     
 
