@@ -20,6 +20,8 @@ import java.util.Map.Entry;
 
     private static Grille grille;
 
+    private static HashMap<Ilot, Boolean> marque;
+
     private static final HashMap<String, String> technique = new HashMap<String, String>();
     static {
         technique.put("Iles avec autant de voisins que la moitié de leur cardinalité",
@@ -52,6 +54,7 @@ import java.util.Map.Entry;
      */
     public static void setGrilleAide(Grille grille){
         Aide.grille = grille;
+        Aide.marque = new HashMap<>();
     }
 
     /**
@@ -124,7 +127,7 @@ import java.util.Map.Entry;
             if (Aide.nbCardinalité(ile)) {
                 return Aide.nbCardinaliteIncorrect;
             }
-            else if (Aide.estEnsembleFerme(ile)) {
+            else if (estEnsembleFerme(ile)) {
                 return Aide.endroitLock;
             }
         }
@@ -144,57 +147,72 @@ import java.util.Map.Entry;
         return false;
     }
 
+    public static void setMarque(Ilot ile, Boolean marque) {
+        Aide.marque.put(ile, marque);
+    }
+
     /**
     * Fonction qui détecte quand le jeu forme un endroit fermé qui ne peut plus être lié au reste du plateau sur le plateau
     * @return : true ou false si le plateau présente au moment T au moins un endroit fermé
     */
-    public static boolean estEnsembleFerme(Ilot ile) {
-        if (ile.getValeur()== Aide.nb_ponts(ile) && ile.getValeur()==3) {
-            System.out.println(ile);
-            HashMap<Ilot,Boolean> ilesVisitees = new HashMap<>();
-            ilesVisitees = estEnsembleFermeRecursive(ile, ilesVisitees); // Appel à la fonction récursive
-            Set<Entry<Ilot, Boolean>> entrySet = ilesVisitees.entrySet();
-            for (Map.Entry<Ilot, Boolean> entry : entrySet) {
-                if(!entry.getValue()) {
-                    return false;
+    public static void estEnsembleFermeParcours(Ilot ile) {
+        Set<Ilot> ilesVisitees = new HashSet<>();
+        dfs(ile, ilesVisitees); 
+        for (Ilot i : ilesVisitees) {
+            Aide.setMarque(i,false); 
+        }
+        for (Ilot i : ilesVisitees) {
+            if (i.getValeur() == Aide.nb_ponts(i)) {
+                boolean ensembleFerme = true;
+                for (Ilot voisin : i.listeVoisinRelier()) {
+                    if (!ilesVisitees.contains(voisin)) {
+                        ensembleFerme = false; 
+                        break;
+                    }
+                }
+                if (ensembleFerme) {
+                    Aide.setMarque(i,true); 
                 }
             }
-            for (Map.Entry<Ilot, Boolean> entry : entrySet) {
-                entry.getKey().setStyleRed();
-            }
-            return true;
         }
-        return false;
     }
     
-    private static HashMap<Ilot, Boolean> estEnsembleFermeRecursive(Ilot ile, HashMap<Ilot, Boolean> ilesVisitees) {
-        int tmp=0;
+    private static void dfs(Ilot ile, Set<Ilot> ilesVisitees) {
+        ilesVisitees.add(ile); 
         for (Ilot voisin : ile.listeVoisinRelier()) {
-            if (ilesVisitees.containsKey(voisin)) {
+            if (!ilesVisitees.contains(voisin) && ile.getValeur() == Aide.nb_ponts(ile)) {
+                dfs(voisin, ilesVisitees);
+            }
+        }
+    }
+
+    private static boolean estEnsembleFerme(Ilot ile) {
+        Aide.estEnsembleFermeParcours(ile);
+        int tmp=0;
+        for (Map.Entry<Ilot, Boolean> entry : Aide.marque.entrySet()) {
+            Boolean value = entry.getValue();
+            if (value) {
                 tmp++;
             }
-        }   
-        if (tmp == ile.listeVoisinRelier().size() && ilesVisitees.containsKey(ile)) {
-            return ilesVisitees;
+        }
+        if (tmp==marque.size()) {
+            for (Map.Entry<Ilot, Boolean> entry : Aide.marque.entrySet()) {
+                Ilot key = entry.getKey(); 
+                Boolean value = entry.getValue(); 
+                if (value) {
+                    key.setStyleRed();
+                }
+            }
+            Aide.marque=new HashMap<>();
+            return true;
         }
         else {
-            if (ile.getValeur()==Aide.nb_ponts(ile) && !ilesVisitees.containsKey(ile)) {
-                ilesVisitees.put(ile,true);
-            }
-            else if (!ilesVisitees.containsKey(ile)) {
-                ilesVisitees.put(ile,false);
-            }
-            for (Ilot voisin : ile.listeVoisinRelier()) {
-                estEnsembleFermeRecursive(voisin,ilesVisitees);
-            }
+            Aide.marque=new HashMap<>();
+            return false;
         }
-        return ilesVisitees;
     }
     
     
-    
-
-
     /**
      * Colorie des ilots a changer pour aider le joueur 
      * La couleur depend de la valeur de la variable d'instance de couleur_aide_erreur de la classe Parametre  @see {@link #setCouleur_aide_erreur()}

@@ -131,6 +131,14 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 									);
 	}
 
+	public void setStyleBlue(){
+		this.getBtn().setStyle(			 "-fx-background-radius: 200px;"+
+									"\n-fx-background-insets: 0 0 0 0;"+
+									"\n-fx-background-color: Blue;"+
+									"\n-fx-font:"+ (int)(1.0*24/(1.0*Grille.longueur/6)) +" px;"
+									);
+	}
+
 	/**
 	* Activate or deactivate an isle
 	* @author Ambre
