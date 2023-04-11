@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.PrintWriter;
 
@@ -154,7 +155,19 @@ public class GameHandler extends DynamicEventHandler {
 
   @Override
   public void quitClicked() {
+      //this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
+    try {
+      //this.getSave().effacerFichier();
+      //this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
       this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
-      super.quitClicked();
+      this.getSave().chargerFichier2("src/test/java/com/monappli/save_move.txt");
+
+
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+    super.quitClicked();
   }
 }

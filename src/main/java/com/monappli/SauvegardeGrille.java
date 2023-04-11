@@ -1,14 +1,6 @@
 package com.monappli;
 
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 
 public class SauvegardeGrille implements Serializable{
@@ -49,18 +41,14 @@ public class SauvegardeGrille implements Serializable{
      */
     public void actualiserFichier(String fichier_sauvegarde) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fichier_sauvegarde))) {
-            for (Pont p1 : pileCoups) {
-                outputStream.writeObject(p1);
-            }
+          outputStream.writeObject(pileCoups);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
   public void actualiserFichier(String fichier_sauvegarde,double chrono_time) {
     try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fichier_sauvegarde))) {
-      for (Pont p1 : pileCoups) {
-        outputStream.writeObject(p1);
-      }
+      outputStream.writeObject(pileCoups);
       outputStream.writeDouble(chrono_time);
       outputStream.close();
     } catch (IOException e) {
@@ -89,6 +77,7 @@ public class SauvegardeGrille implements Serializable{
             while (true) {
                 //Lit un objet Pont à partir du flux d'entrée
                 Pont pont = (Pont) objectInputStream.readObject();
+
                 ponts.add(pont);
             }
         } catch (EOFException e) {
@@ -102,6 +91,20 @@ public class SauvegardeGrille implements Serializable{
             ajoutCoup(pont);
         }
     }
+
+
+  public void chargerFichier2(String fichier_sauvegarde) throws IOException, ClassNotFoundException {
+    FileInputStream fileInputStream = new FileInputStream(fichier_sauvegarde);
+    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+    pileCoups = (ArrayList<Pont>) objectInputStream.readObject();
+    System.out.println(pileCoups);
+
+
+
+
+
+
+  }
 
     /**
      * Actualiser le fichier_parametre en serialisant un objet Parametre
@@ -142,6 +145,20 @@ public class SauvegardeGrille implements Serializable{
         BaseDonneeJoueur bdd = (BaseDonneeJoueur) inputStream.readObject();
         inputStream.close();
         return bdd;
+    }
+
+  /**
+   * Permet d'effacer les fichiers de sauvegarde (le fichier deviendra vide)
+   */
+  public void effacerFichier(){
+      PrintWriter writer = null;
+      try {
+        writer = new PrintWriter("src/test/java/com/monappli/save_move.txt");
+        writer.print("");
+        writer.close();
+      } catch (FileNotFoundException e) {
+        throw new RuntimeException(e);
+      }
     }
 
     public Pont getLastPont(){
