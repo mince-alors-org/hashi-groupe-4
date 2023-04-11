@@ -2,6 +2,7 @@ package com.monappli.handlers;
 
 import com.monappli.BaseDonneeJoueur;
 import com.monappli.Joueur;
+import com.monappli.hashiScene.MainPanel;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -25,6 +26,7 @@ public class ProfileHandler extends DynamicEventHandler{
        Joueur j = new Joueur(newJ.getText());
        try {
             BaseDonneeJoueur.writeNewPlayer(j);
+            BaseDonneeJoueur.changePlayer(j);
         } catch (Exception e) {
             e.printStackTrace();
         }

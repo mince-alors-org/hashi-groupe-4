@@ -18,14 +18,17 @@ public class Joueur implements Serializable{
      */
     public Joueur(String nom) {
         this.nom = nom;
-        File fichier = new File("src/main/java/com/monappli/profiles/"+nom);
+        String chemin="src/main/resources/profiles/"+nom;
+        File fichier = new File(chemin);
         if(fichier.mkdir()){
             System.out.println("Création du dossier");
-        };
+        }else{
+            System.out.println("error");
+        }
     }
 
     public void initSave(String nomJoueur, String nomNiveaux) throws IOException{
-        File fichier = new File("src/main/java/com/monappli/profiles/"+nomJoueur+"/"+nomNiveaux);
+        File fichier = new File("/profiles/"+nomJoueur+"/"+nomNiveaux);
         fichier.createNewFile();
     }
 

@@ -50,8 +50,6 @@ public class ProfileScene extends PopUp {
             but.setOnAction(e ->{
                 try{
                     btnOnAction(j);
-                    MainPanel main= new MainPanel(this.getParent());
-                    main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
                 }
                 catch(Exception ex){
                     System.out.println(ex);
@@ -75,5 +73,7 @@ public class ProfileScene extends PopUp {
 
     public void btnOnAction(Joueur j) throws Exception{
         BaseDonneeJoueur.setJoueur(j);
+        MainPanel main= new MainPanel(this.getParent());
+        main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
     }
 }
