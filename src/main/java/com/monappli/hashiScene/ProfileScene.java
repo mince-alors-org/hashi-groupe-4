@@ -76,8 +76,4 @@ public class ProfileScene extends PopUp {
         MainPanel main= new MainPanel(this.getParent());
         main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
     }
-
-    public void remove(){
-        super.remove();
-    }
 }
