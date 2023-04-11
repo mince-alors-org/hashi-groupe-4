@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
  * Représente une base de données comprenant une liste de joueurs
  * @author Ambre Collard
  */
-public class BaseDonneeJoueur implements Serializable{
+public abstract class BaseDonneeJoueur implements Serializable{
     public static String directory="src/main/resources/profiles/";
 
 

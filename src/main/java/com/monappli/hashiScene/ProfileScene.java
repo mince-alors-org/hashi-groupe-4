@@ -19,7 +19,8 @@ import javafx.scene.layout.VBox;
 
 
 /**
- * 
+ * Profile scene appearing when launching the application
+ * @author Ambre Collard
  */
 public class ProfileScene extends PopUp {
     private Pane gridP;

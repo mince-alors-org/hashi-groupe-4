@@ -11,11 +11,9 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BaseDonneeJoueurTest {
-    private BaseDonneeJoueur database;
 
     @BeforeAll
     public void initAll() throws Exception{
-        database = new BaseDonneeJoueur();
         Joueur j = new Joueur("Jean");
         BaseDonneeJoueur.addJoueur(j);
         BaseDonneeJoueur.setJoueur(j);
@@ -24,7 +22,6 @@ public class BaseDonneeJoueurTest {
     @AfterEach
     public void afficheOk(TestInfo testInfo){
         System.out.println(testInfo.getDisplayName() + " Ok");
-        System.out.println(database.toString());  
     }
 
     @Test
@@ -50,7 +47,8 @@ public class BaseDonneeJoueurTest {
     @Test 
     public void testaddScore()throws Exception{
         Joueur j2 = new Joueur("Karl");
-        BaseDonneeJoueur.addScore( "1-3", 800);
+        BaseDonneeJoueur.setJoueur(j2);
+        BaseDonneeJoueur.addScore( "1-3", 300);
     }
 
     @Test
