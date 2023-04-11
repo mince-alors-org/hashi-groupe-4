@@ -40,6 +40,7 @@ public class PopUp extends DynamicScene{
         this.getParent().getChildren().add(newP);
         this.setStyleParam();
     }
+    
 
     /**
      * Adds to the parent's children a new Pane loaded thanks to the name of the FXML file. Resulting Popping-up this pane

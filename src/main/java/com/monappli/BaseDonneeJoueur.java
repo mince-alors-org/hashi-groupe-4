@@ -67,7 +67,7 @@ public class BaseDonneeJoueur implements Serializable{
     }
 
     public static void writeNewPlayer(Joueur joueur) throws Exception{
-        FileWriter myWriter = new FileWriter(directory + joueur.getnom()+".prof");
+        FileWriter myWriter = new FileWriter(directory +"/"+joueur.getnom()+"/"+joueur.getnom()+".prof");
         myWriter.write(joueur.getnom()+
                 "\n#000000"+
                 "\n#ffffff"+

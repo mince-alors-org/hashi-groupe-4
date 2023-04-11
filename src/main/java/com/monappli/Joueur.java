@@ -24,7 +24,7 @@ public class Joueur implements Serializable{
     }
 
     public void initSave(String nomJoueur, String nomNiveaux) throws IOException{
-        File fichier = new File("src/main/java/com/monappli/Profiles/"+nomJoueur+"/"+nomNiveaux);
+        File fichier = new File("src/main/java/com/monappli/profiles/"+nomJoueur+"/"+nomNiveaux);
         fichier.createNewFile();
     }
 

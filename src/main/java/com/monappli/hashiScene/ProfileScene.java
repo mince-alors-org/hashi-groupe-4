@@ -12,11 +12,14 @@ import javafx.geometry.HPos;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
 public class ProfileScene extends PopUp {
     private Pane gridP;
+    private TextField newJ;
+    //private Button apply;
 
 
     public ProfileScene (Pane parent){
@@ -49,6 +52,7 @@ public class ProfileScene extends PopUp {
             but.setOnAction(e ->{
                 try{
                     btnOnAction(j);
+                    //System.out.println("coucou ="+newJ.getAccessibleHelp());
                     MainPanel main= new MainPanel(this.getParent());
                     main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
                 }
@@ -74,5 +78,8 @@ public class ProfileScene extends PopUp {
 
     public void btnOnAction(Joueur j) throws Exception{
         BaseDonneeJoueur.setJoueur(j);
+    }
+    public void appliClicked(){
+        //System.out.println("new joueur =");        
     }
 }
