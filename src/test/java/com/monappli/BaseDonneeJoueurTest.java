@@ -43,7 +43,7 @@ public class BaseDonneeJoueurTest {
 
     @Test
     public void testExists(){
-        System.out.println(BaseDonneeJoueur.exists("michel"));
+        System.out.println(BaseDonneeJoueur.exists("Michel"));
     }
 
     @Test 

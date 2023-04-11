@@ -1,5 +1,7 @@
 package com.monappli.handlers;
 
+import java.io.File;
+
 import com.monappli.BaseDonneeJoueur;
 import com.monappli.Joueur;
 
