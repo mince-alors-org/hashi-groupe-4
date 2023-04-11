@@ -14,16 +14,9 @@ import javafx.stage.Stage;
 
 
 public class Hashi extends Application {
-    public static Joueur joueur;
+    public static Joueur joueur=null;
 
     public static void main(String[] args) {
-        /*try{
-            joueur= BaseDonneeJoueur.getJoueur("Michel", "mdp1");
-            BaseDonneeJoueur.loadParam();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }*/
         Application.launch(Hashi.class,args);
     }
 
@@ -36,8 +29,8 @@ public class Hashi extends Application {
         menuLoader.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(root));
 
         ProfileScene prof= new ProfileScene(menuLoader.getCurPane());
-        prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
-        
+        prof.pasteAndHandle("/view/profileSelection.fxml", new ProfileHandler(menuLoader.getCurPane()));
+
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);

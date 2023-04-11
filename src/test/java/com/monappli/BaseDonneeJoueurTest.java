@@ -2,6 +2,7 @@ package com.monappli;
 
 import org.junit.jupiter.api.*;
 
+import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -10,11 +11,9 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BaseDonneeJoueurTest {
-    private BaseDonneeJoueur database;
 
     @BeforeAll
     public void initAll() throws Exception{
-        database = new BaseDonneeJoueur();
         Joueur j = new Joueur("Jean");
         BaseDonneeJoueur.addJoueur(j);
         BaseDonneeJoueur.setJoueur(j);
@@ -23,7 +22,6 @@ public class BaseDonneeJoueurTest {
     @AfterEach
     public void afficheOk(TestInfo testInfo){
         System.out.println(testInfo.getDisplayName() + " Ok");
-        System.out.println(database.toString());  
     }
 
     @Test
@@ -43,18 +41,20 @@ public class BaseDonneeJoueurTest {
 
     @Test
     public void testExists(){
-        System.out.println(BaseDonneeJoueur.exists("michel"));
+        System.out.println(BaseDonneeJoueur.exists("Michel"));
     }
 
     @Test 
     public void testaddScore()throws Exception{
         Joueur j2 = new Joueur("Karl");
-        BaseDonneeJoueur.addScore( "1-3", 800);
+        BaseDonneeJoueur.setJoueur(j2);
+        BaseDonneeJoueur.addScore( "1-3", 300);
     }
 
     @Test
     public void testLoadparam() throws Exception{
         Joueur j2 = new Joueur("Karl");
+        BaseDonneeJoueur.setJoueur(j2);
         System.out.println(Parametre.affiche());
         BaseDonneeJoueur.loadParam();
         System.out.println(Parametre.affiche());
@@ -80,7 +80,7 @@ public class BaseDonneeJoueurTest {
     @Test
     public void testGetChip() throws Exception{
         System.out.println(BaseDonneeJoueur.getChipColor(Hashi.joueur));
-        Joueur j= BaseDonneeJoueur.getJoueur("Michel");
+        Joueur j= BaseDonneeJoueur.getJoueur("Karl");
         System.out.println(BaseDonneeJoueur.getChipColor(j));
     }
 
@@ -90,5 +90,24 @@ public class BaseDonneeJoueurTest {
         for (Joueur j : tab){
             System.out.println(j);
         }
+    }
+
+    @Test
+    public void testSaveParam() throws Exception{
+        System.out.println( Parametre.affiche());
+        Joueur j= new Joueur("Michel");
+        BaseDonneeJoueur.addJoueur(j);
+        BaseDonneeJoueur.changePlayer(j);
+        Parametre.setCouleur_texte(Color.RED);
+        System.out.println( Parametre.affiche());
+        BaseDonneeJoueur.saveParam();
+        BaseDonneeJoueur.loadParam();
+        System.out.println( Parametre.affiche());
+    }
+
+    @Test 
+    public void testDelete() throws Exception{
+        Joueur j= BaseDonneeJoueur.getJoueur("Michel");
+        System.out.println( BaseDonneeJoueur.deletePlayer(j));
     }
 }

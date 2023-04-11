@@ -16,11 +16,8 @@ public class Joueur implements Serializable{
      * @param nom nom du joueur
      * @param motdepasse mot de passe du joueur
      */
-    public Joueur(String nom) {
+    public Joueur(String nom) throws IllegalArgumentException{
         this.nom = nom;
-
-        File fichier = new File("src/main/resources/profiles" + nom);
-        fichier.mkdir();
     }
 
     public void initSave(String nomJoueur, String nomNiveaux) throws IOException{
