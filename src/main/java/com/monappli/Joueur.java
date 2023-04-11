@@ -19,12 +19,12 @@ public class Joueur implements Serializable{
     public Joueur(String nom) {
         this.nom = nom;
 
-        File fichier = new File("src/main/java/com/monappli/Profiles/" + nom);
+        File fichier = new File("src/main/resources/profiles" + nom);
         fichier.mkdir();
     }
 
     public void initSave(String nomJoueur, String nomNiveaux) throws IOException{
-        File fichier = new File("src/main/java/com/monappli/Profiles/"+nomJoueur+"/"+nomNiveaux);
+        File fichier = new File("src/main/resources/profiles"+nomJoueur+"/"+nomNiveaux);
         fichier.createNewFile();
     }
 
