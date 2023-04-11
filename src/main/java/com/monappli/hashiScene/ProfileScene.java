@@ -18,8 +18,6 @@ import javafx.scene.layout.VBox;
 
 public class ProfileScene extends PopUp {
     private Pane gridP;
-    private TextField newJ;
-    //private Button apply;
 
 
     public ProfileScene (Pane parent){
@@ -52,7 +50,6 @@ public class ProfileScene extends PopUp {
             but.setOnAction(e ->{
                 try{
                     btnOnAction(j);
-                    System.out.println("coucou ="+newJ.getText());
                     MainPanel main= new MainPanel(this.getParent());
                     main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
                 }
