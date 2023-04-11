@@ -151,7 +151,7 @@ public  class Parametre implements Serializable{
         Parametre.setCouleur_texte(toColor( param.get(0)));
         Parametre.setCouleur_ilot(toColor( param.get(1)));
         Parametre.setCouleur_pont(toColor( param.get(2)));
-        Parametre.setCouleur_aide_erreur(toColor( param.get(3)));
-        Parametre.setCouleur_fond(toColor( param.get(4)));
+        Parametre.setCouleur_fond(toColor( param.get(3)));
+        Parametre.setCouleur_aide_erreur(toColor( param.get(4)));
     }
 }

@@ -17,14 +17,16 @@ import javafx.scene.paint.Color;
 
 /**
  * Représente une base de données comprenant une liste de joueurs
+ * @author Ambre Collard
  */
 public class BaseDonneeJoueur implements Serializable{
     public static String directory="src/main/resources/profiles/";
 
 
     /**
-     * Ajoute un joueur dans la base de donnee
-     * @param joueur joueur à inclure dans la base de donnee
+     * Creates a File if the player doesn't already exists in the database.
+     * @param joueur the player
+     * @author Ambre Collard
      */
     public static boolean addJoueur(Joueur joueur) throws Exception {
         if (exists(joueur))
@@ -44,6 +46,14 @@ public class BaseDonneeJoueur implements Serializable{
         return true;
     }
 
+    /**
+     * Adds the score of a level in the database file
+     * @param lvl the level
+     * @param score the score
+     * @return <code>true</code> if the level was already in the database for the current player, <code>false</code> otherwise.
+     * @throws Exception If the player's file couldn't be opened
+     * @author Ambre Collard
+     */
     public static boolean addScore( String lvl, int score) throws Exception{
         Path path = Paths.get(directory+Hashi.joueur.getnom()+ "/"+ Hashi.joueur.getnom() + ".prof");
         List<String> lines= Files.readAllLines(path);
@@ -66,12 +76,24 @@ public class BaseDonneeJoueur implements Serializable{
         return false;
     }
 
+
+    /**
+     * Set the parameters of from the player's file
+     * @throws Exception if the player's file couldn't be opened
+     * @author Ambre Collard
+     */
     public static void loadParam() throws Exception{
         Path path = Paths.get(directory+Hashi.joueur.getnom()+ "/" + Hashi.joueur.getnom() +".prof");
         List<String> lines= Files.readAllLines(path);
         Parametre.load(lines.subList(1, 6));
     }
 
+    /**
+     * Writes the default parameters for a new player in the database
+     * @param joueur the player
+     * @throws Exception if the file couldn't be created
+     * @author Ambre Collard
+     */
     public static void writeNewPlayer(Joueur joueur) throws Exception{
         FileWriter myWriter = new FileWriter(directory +"/"+joueur.getnom()+"/"+joueur.getnom()+".prof");
         myWriter.write(joueur.getnom()+
@@ -83,21 +105,13 @@ public class BaseDonneeJoueur implements Serializable{
                 );
         myWriter.close();
     }
-    
-    /**
-     * Retourne un joueur par le nom dans la base de donnee
-     * @param name nom du joueur à récupérer
-     * @return joueur au nom donnée, ou null si il n'existe pas
-     */
-    /*public Joueur getJoueurNom(String nom) {
-        for (Joueur joueur : joueurs) {
-            if (joueur.getnom().equals(nom)) {
-                return joueur;
-            }
-        }
-        return null;
-    }*/
 
+    /**
+     * Verify if a players already exists in the database
+     * @param nomF the file name
+     * @return <code>true</code> if the profile's folder contains the file name, <code>false</code> otherwise
+     * @author Ambre Collard
+     */
     public static boolean exists(String nomF){
         File directory=new File("src/main/resources/profiles");
         ArrayList<String> search= new ArrayList<String>();
@@ -108,10 +122,23 @@ public class BaseDonneeJoueur implements Serializable{
         return search.contains(nomF );
     }
 
+    /**
+     * Verify if a players already exists in the database
+     * @param j the player
+     * @return <code>true</code> if the profile's folder contains the file name, <code>false</code> otherwise
+     * @author Ambre Collard
+     */
     public static boolean exists(Joueur j){
         return exists(j.getnom());
     }
 
+    /**
+     * Changes the current player to another if it exists in the database
+     * @param nextJ the new current player
+     * @return <code>true</code> if the new player exists in the database, <code>false</code> otherwise 
+     * @throws Exception if the folder couldn't be opened
+     * @author Ambre
+     */
     public static boolean changePlayer( Joueur nextJ) throws Exception{
         if (!exists(nextJ))
             return false;
@@ -120,11 +147,24 @@ public class BaseDonneeJoueur implements Serializable{
         return true;
     }
 
+    /**
+     * Sets the new current player and changes the parameters
+     * @param j the new player
+     * @throws Exception if the folder couldn't be opened
+     * @author Ambre Collard
+     */
     public static void setJoueur(Joueur j) throws Exception{
         Hashi.joueur= j;
         loadParam();
     }
 
+    /**
+     * Get the chip color for graphic use
+     * @param j the player to get the chip color
+     * @return the <code>Color</code> of the chip color if the new player exists, <code>null</code> otherwise
+     * @throws Exception if the player's file couldn't be opened
+     * @author Ambre Collard
+     */
     public static Color getChipColor(Joueur j) throws Exception{
         if (exists(j)){
             Path path = Paths.get(directory+j.getnom()+"/"+  j.getnom()+ ".prof");
@@ -134,12 +174,13 @@ public class BaseDonneeJoueur implements Serializable{
         return null;
     }
 
-    public static String getNom(String nomF) throws Exception{
-        Path path = Paths.get(directory+nomF+ ".prof");
-        List<String> lines= Files.readAllLines(path);
-        return lines.get(0);
-    }
-
+    /**
+     * Creates a Joueur from a file
+     * @param nom name of the player
+     * @return  A <code>Joueur</code> if the player exists in the database, <code>null</code> otherwise
+     * @throws Exception
+     * @author Ambre Collard
+     */
     public static Joueur getJoueur(String nom) throws Exception{
         if (!exists(nom)){
             return null;
@@ -148,6 +189,12 @@ public class BaseDonneeJoueur implements Serializable{
         return new Joueur(nom);
     }
 
+    /**
+     * Return a array of all the players in the database
+     * @return the <code>ArrayList</code> of all <code>Joueur</code> in the database
+     * @throws Exception
+     * @author Penchon Morgane et Ambre Collard
+     */
     public static ArrayList<Joueur> getAllPlayers() throws Exception{
         ArrayList<Joueur> tab = new ArrayList<Joueur>();
         File directory=new File("src/main/resources/profiles/");
@@ -155,7 +202,6 @@ public class BaseDonneeJoueur implements Serializable{
         for(int i=0;i<liste2File.length;i++){
             File nomJ=  liste2File[i];
             if(!nomJ.isFile()){
-                System.out.println(nomJ.getName());
                 Joueur j= getJoueur(nomJ.getName());
                 if(j!=null){
                     tab.add(j);
@@ -165,6 +211,10 @@ public class BaseDonneeJoueur implements Serializable{
         return tab;
     }
 
+    /**
+     * Saves the current <code>Parametre</code> in the current player's file
+     * @author Ambre Collard
+     */
     public static void saveParam(){
         try{
             FileWriter myWriter = new FileWriter(directory +"/"+Hashi.joueur.getnom()+"/"+Hashi.joueur.getnom()+".prof");
@@ -183,6 +233,13 @@ public class BaseDonneeJoueur implements Serializable{
         
     }
 
+    /**
+     * Deletes a player from the database
+     * @param j the player to be deleted
+     * @return <code>false</code> if the player doesn't exist, <code>true</code> if it has been deleted
+     * @throws Exception
+     * @author Ambre Collard
+     */
     public static boolean deletePlayer(Joueur j) throws Exception{
         if (!exists(j))
             return false;
@@ -191,6 +248,12 @@ public class BaseDonneeJoueur implements Serializable{
         return true;
     }
 
+    /**
+     * Recursively deletes a folder/file
+     * @param path <code>Path</code> to the folder
+     * @throws IOException
+     * @author Ambre Collard
+     */
     public static void deleteDirectoryRecursion(Path path) throws IOException {
         if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
           try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {

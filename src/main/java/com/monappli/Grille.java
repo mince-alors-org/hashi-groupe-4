@@ -468,6 +468,12 @@ public class Grille {
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
 
+    /**
+     * Returns the array of all possible and not crossing <code>Pont</code> from the <code>Grille</code>
+     * @param ilot
+     * @return the <code>ArrayList</code> of <code>Pont</code>
+     * @author Ambre Collard
+     */
     public ArrayList<Pont> getPontsPossible(Ilot ilot){
       ArrayList<Pont> list= new ArrayList<Pont>();
       for (Ilot searchI : this.listeIlot){
