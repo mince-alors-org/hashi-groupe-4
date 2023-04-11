@@ -35,7 +35,7 @@ public class BaseDonneeJoueur implements Serializable{
         for (String e : dossier.list()){
             search.add(e);
             System.out.println(e);
-            if (e.contains(joueur.getnom()))
+            if (e.equals(joueur.getnom()))
                 return false;
         }
         File nouv_dossier=new File(directory+joueur.getnom());
@@ -169,11 +169,11 @@ public class BaseDonneeJoueur implements Serializable{
         try{
             FileWriter myWriter = new FileWriter(directory +"/"+Hashi.joueur.getnom()+"/"+Hashi.joueur.getnom()+".prof");
             myWriter.write(Hashi.joueur.getnom()+
-                "\n" + Parametre.getCouleur_texte()+
-                "\n"+ Parametre.getCouleur_ilot()+
-                "\n"+ Parametre.getCouleur_pont()+
-                "\n"+ Parametre.getCouleur_fond()+
-                "\n" + Parametre.getCouleur_aide_erreur()
+                "\n" + Parametre.toRGBForCSS( Parametre.getCouleur_texte())+
+                "\n"+ Parametre.toRGBForCSS( Parametre.getCouleur_ilot())+
+                "\n"+ Parametre.toRGBForCSS( Parametre.getCouleur_pont())+
+                "\n"+ Parametre.toRGBForCSS( Parametre.getCouleur_fond())+
+                "\n" + Parametre.toRGBForCSS( Parametre.getCouleur_aide_erreur())
                 );
             myWriter.close();
         }
