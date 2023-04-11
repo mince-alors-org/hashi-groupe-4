@@ -52,7 +52,6 @@ public class ProfileScene extends PopUp {
             but.setOnAction(e ->{
                 try{
                     btnOnAction(j);
-                    System.out.println("coucou ="+newJ.getText());
                     MainPanel main= new MainPanel(this.getParent());
                     main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
                 }

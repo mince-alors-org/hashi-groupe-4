@@ -467,4 +467,18 @@ public class Grille {
       sauvegarde.annuler();
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
+
+    public ArrayList<Pont> getPontsPossible(Ilot ilot){
+      ArrayList<Pont> list= new ArrayList<Pont>();
+      for (Ilot searchI : this.listeIlot){
+        if(sontVoisin(ilot, searchI)){
+          Pont p= ilot.liaisonP(searchI);
+          if(!croisePont(p)){
+            list.add(p);
+          }
+        }
+      }
+      return list;
+    }
+
 }
