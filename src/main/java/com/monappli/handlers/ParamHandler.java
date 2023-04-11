@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+import com.monappli.BaseDonneeJoueur;
 import com.monappli.Parametre;
 import com.monappli.hashiScene.MainPanel;
 
@@ -7,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 /**
  * Handler to set new Parameters
@@ -86,6 +86,8 @@ public class ParamHandler extends DynamicEventHandler{
         Parametre.setCouleur_ilot(islePicker.getValue());
         Parametre.setCouleur_pont(bridgePicker.getValue());
         Parametre.setCouleur_texte(textPicker.getValue());
+
+        BaseDonneeJoueur.saveParam();
 
         H mainH= (H) paramPane.getParent().getUserData();
         Pane parent = (Pane)paramPane.getParent();

@@ -1,18 +1,14 @@
 package com.monappli.hashiScene;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
 import com.monappli.BaseDonneeJoueur;
 import com.monappli.Joueur;
 import com.monappli.handlers.DynamicEventHandler;
 import com.monappli.handlers.MainMenuEventHandler;
 
-import javafx.geometry.HPos;
 import javafx.geometry.Pos;
-import javafx.geometry.VPos;
 import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -73,7 +69,12 @@ public class ProfileScene extends PopUp {
 
     public void btnOnAction(Joueur j) throws Exception{
         BaseDonneeJoueur.setJoueur(j);
+        this.remove();
+    }
+
+    public void remove () throws Exception{
         MainPanel main= new MainPanel(this.getParent());
         main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
+        super.remove();
     }
 }

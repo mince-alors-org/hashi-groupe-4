@@ -3,7 +3,6 @@ package com.monappli;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.IntSummaryStatistics;
 import java.util.Objects;
 
 /**
@@ -17,15 +16,8 @@ public class Joueur implements Serializable{
      * @param nom nom du joueur
      * @param motdepasse mot de passe du joueur
      */
-    public Joueur(String nom) {
+    public Joueur(String nom) throws IllegalArgumentException{
         this.nom = nom;
-        String chemin="src/main/resources/profiles/"+nom;
-        File fichier = new File(chemin);
-        if(fichier.mkdir()){
-            System.out.println("Création du dossier");
-        }else{
-            System.out.println("error");
-        }
     }
 
     public void initSave(String nomJoueur, String nomNiveaux) throws IOException{

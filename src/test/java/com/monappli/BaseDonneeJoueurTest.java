@@ -2,6 +2,7 @@ package com.monappli;
 
 import org.junit.jupiter.api.*;
 
+import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -55,6 +56,7 @@ public class BaseDonneeJoueurTest {
     @Test
     public void testLoadparam() throws Exception{
         Joueur j2 = new Joueur("Karl");
+        BaseDonneeJoueur.setJoueur(j2);
         System.out.println(Parametre.affiche());
         BaseDonneeJoueur.loadParam();
         System.out.println(Parametre.affiche());
@@ -80,7 +82,7 @@ public class BaseDonneeJoueurTest {
     @Test
     public void testGetChip() throws Exception{
         System.out.println(BaseDonneeJoueur.getChipColor(Hashi.joueur));
-        Joueur j= BaseDonneeJoueur.getJoueur("Michel");
+        Joueur j= BaseDonneeJoueur.getJoueur("Karl");
         System.out.println(BaseDonneeJoueur.getChipColor(j));
     }
 
@@ -90,5 +92,24 @@ public class BaseDonneeJoueurTest {
         for (Joueur j : tab){
             System.out.println(j);
         }
+    }
+
+    @Test
+    public void testSaveParam() throws Exception{
+        System.out.println( Parametre.affiche());
+        Joueur j= new Joueur("Michel");
+        BaseDonneeJoueur.addJoueur(j);
+        BaseDonneeJoueur.changePlayer(j);
+        Parametre.setCouleur_texte(Color.RED);
+        System.out.println( Parametre.affiche());
+        BaseDonneeJoueur.saveParam();
+        BaseDonneeJoueur.loadParam();
+        System.out.println( Parametre.affiche());
+    }
+
+    @Test 
+    public void testDelete() throws Exception{
+        Joueur j= BaseDonneeJoueur.getJoueur("Michel");
+        System.out.println( BaseDonneeJoueur.deletePlayer(j));
     }
 }

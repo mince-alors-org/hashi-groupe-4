@@ -1,14 +1,10 @@
 package com.monappli;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.monappli.handlers.DynamicEventHandler;
-import com.monappli.hashiScene.MainPanel;
 
-import javafx.css.FontCssMetaData;
-import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 /**
@@ -125,22 +121,6 @@ public  class Parametre implements Serializable{
         affichage_ponts_possible = n_affichage_ponts_possible;
     }
 
-    @Override
-    public String toString(){
-        return "Param{" +
-                "couleur_texte=" + toRGBForCSS(couleur_texte) + 
-                ", couleur_ilot=" + toRGBForCSS(couleur_ilot) +
-                ", couleur_pont=" + toRGBForCSS(couleur_pont) +
-                ", couleur_aide_erreur=" + toRGBForCSS(couleur_aide_erreur) +
-                ", couleur_fond=" + toRGBForCSS(couleur_fond) +
-                ", taille_texte=" + taille_texte +
-                ", taille_fenetre=" + taille_fenetre[0] + "," + taille_fenetre[1] +
-                ", affichage_depassment_cardinalite=" + affichage_depassment_cardinalite +
-                ", affichage_groupe_ferme=" + affichage_groupe_ferme +
-                ", affichage_ponts_possible=" + affichage_ponts_possible +
-                "}";
-    }
-
     public static String affiche(){
         return "Param{" +
                 "\ncouleur_texte=" + toRGBForCSS(couleur_texte) + 
@@ -171,7 +151,7 @@ public  class Parametre implements Serializable{
         Parametre.setCouleur_texte(toColor( param.get(0)));
         Parametre.setCouleur_ilot(toColor( param.get(1)));
         Parametre.setCouleur_pont(toColor( param.get(2)));
-        Parametre.setCouleur_aide_erreur(toColor( param.get(3)));
-        Parametre.setCouleur_fond(toColor( param.get(4)));
+        Parametre.setCouleur_fond(toColor( param.get(3)));
+        Parametre.setCouleur_aide_erreur(toColor( param.get(4)));
     }
 }

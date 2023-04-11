@@ -2,8 +2,11 @@ package com.monappli;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -31,19 +34,22 @@ public class BaseDonneeJoueur implements Serializable{
 
         for (String e : dossier.list()){
             search.add(e);
-            if (e.contains(joueur.getnom()+".prof"))
+            System.out.println(e);
+            if (e.contains(joueur.getnom()))
                 return false;
         }
+        File nouv_dossier=new File(directory+joueur.getnom());
+        nouv_dossier.mkdir();
         writeNewPlayer(joueur);
         return true;
     }
 
     public static boolean addScore( String lvl, int score) throws Exception{
-        Path path = Paths.get(directory+Hashi.joueur.getnom()+ ".prof");
+        Path path = Paths.get(directory+Hashi.joueur.getnom()+ "/"+ Hashi.joueur.getnom() + ".prof");
         List<String> lines= Files.readAllLines(path);
         for (int i=0; i<lines.size(); i++){
             if (Pattern.matches(lvl +".*", lines.get(i))){
-                FileWriter fWriter= new FileWriter(directory + Hashi.joueur.getnom()+".prof");
+                FileWriter fWriter= new FileWriter(directory+Hashi.joueur.getnom()+ "/"+ Hashi.joueur.getnom() + ".prof");
                 lines.set(i, lvl + " "+ score);
                 String toWrite=new String();
                 for (String str : lines){
@@ -54,7 +60,7 @@ public class BaseDonneeJoueur implements Serializable{
                 return true;
             }
         }
-        FileWriter fWriter= new FileWriter(directory + Hashi.joueur.getnom()+".prof", true);
+        FileWriter fWriter= new FileWriter(directory+Hashi.joueur.getnom()+ "/"+ Hashi.joueur.getnom() + ".prof", true);
         fWriter.write("\n"+lvl + " "+ score);
         fWriter.close();
         return false;
@@ -75,7 +81,6 @@ public class BaseDonneeJoueur implements Serializable{
                 "\n#000000"+
                 "\n#457BF8"
                 );
-        System.out.println("Successfully wrote to the file.");
         myWriter.close();
     }
     
@@ -98,7 +103,6 @@ public class BaseDonneeJoueur implements Serializable{
         ArrayList<String> search= new ArrayList<String>();
 
         for (String e : directory.list()){
-            System.out.println(e);
             search.add(e);
         }
         return search.contains(nomF );
@@ -123,7 +127,7 @@ public class BaseDonneeJoueur implements Serializable{
 
     public static Color getChipColor(Joueur j) throws Exception{
         if (exists(j)){
-            Path path = Paths.get(directory+j.getnom()+ ".prof");
+            Path path = Paths.get(directory+j.getnom()+"/"+  j.getnom()+ ".prof");
             List<String> lines= Files.readAllLines(path);
             return Color.web( lines.get(5));
         }
@@ -153,7 +157,6 @@ public class BaseDonneeJoueur implements Serializable{
             if(!nomJ.isFile()){
                 System.out.println(nomJ.getName());
                 Joueur j= getJoueur(nomJ.getName());
-                System.out.println(j);
                 if(j!=null){
                     tab.add(j);
                 }
@@ -163,17 +166,41 @@ public class BaseDonneeJoueur implements Serializable{
     }
 
     public static void saveParam(){
-        Path path = Paths.get(directory+Hashi.joueur.getnom()+ "/" + Hashi.joueur.getnom() +".prof");
         try{
-            List<String> lines= Files.readAllLines(path);
+            FileWriter myWriter = new FileWriter(directory +"/"+Hashi.joueur.getnom()+"/"+Hashi.joueur.getnom()+".prof");
+            myWriter.write(Hashi.joueur.getnom()+
+                "\n" + Parametre.getCouleur_texte()+
+                "\n"+ Parametre.getCouleur_ilot()+
+                "\n"+ Parametre.getCouleur_pont()+
+                "\n"+ Parametre.getCouleur_fond()+
+                "\n" + Parametre.getCouleur_aide_erreur()
+                );
+            myWriter.close();
         }
         catch(Exception e){
             e.printStackTrace();
         }
-        //for (String str : lines){
-
         
     }
+
+    public static boolean deletePlayer(Joueur j) throws Exception{
+        if (!exists(j))
+            return false;
+        Path path = Paths.get(directory+j.getnom());
+        deleteDirectoryRecursion(path);
+        return true;
+    }
+
+    public static void deleteDirectoryRecursion(Path path) throws IOException {
+        if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
+          try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {
+            for (Path entry : entries) {
+              deleteDirectoryRecursion(entry);
+            }
+          }
+        }
+        Files.delete(path);
+      }
 
 }
     

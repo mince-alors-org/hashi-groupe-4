@@ -98,7 +98,7 @@ public class PopUp extends DynamicScene{
         this.getCurPane().toFront();
     }
 
-    public void remove(){
+    public void remove() throws Exception{
         this.getParent().getChildren().remove(this.getCurPane());
     }
 }

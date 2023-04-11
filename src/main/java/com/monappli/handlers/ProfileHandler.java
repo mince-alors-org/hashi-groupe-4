@@ -1,7 +1,5 @@
 package com.monappli.handlers;
 
-import java.io.File;
-
 import com.monappli.BaseDonneeJoueur;
 import com.monappli.Joueur;
 import com.monappli.hashiScene.MainPanel;
@@ -24,13 +22,32 @@ public class ProfileHandler extends DynamicEventHandler{
     }
 
     public void applyClicked(){
-       System.out.println("coucou "+newJ.getText()); 
        Joueur j = new Joueur(newJ.getText());
        try {
-            BaseDonneeJoueur.writeNewPlayer(j);
-            BaseDonneeJoueur.changePlayer(j);
+            if( BaseDonneeJoueur.addJoueur(j) == false){
+                System.out.println("La.e joueuse.r existe déjà !");
+            }
+            else {
+                BaseDonneeJoueur.changePlayer(j);
+                reload();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public <H extends DynamicEventHandler> void reload() throws Exception{
+
+        H mainH= (H) this.getCurPane().getParent().getUserData();
+        Pane parent = (Pane)this.getCurPane().getParent();
+
+        Pane grandparent=(Pane)(parent.getParent());
+
+        parent.getChildren().remove(this.getCurPane());
+        grandparent.getChildren().remove(parent);
+
+        MainPanel main= new MainPanel(grandparent);
+        main.pasteAndHandle(parent, mainH);
+
     }
 }
