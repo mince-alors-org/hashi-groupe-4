@@ -18,8 +18,6 @@ import javafx.scene.layout.VBox;
 
 public class ProfileScene extends PopUp {
     private Pane gridP;
-    private TextField newJ;
-    //private Button apply;
 
 
     public ProfileScene (Pane parent){
