@@ -49,6 +49,7 @@ public class BaseDonneeJoueurTest {
         Joueur j2 = new Joueur("Karl");
         BaseDonneeJoueur.setJoueur(j2);
         BaseDonneeJoueur.addScore( "1-3", 300);
+        
     }
 
     @Test
