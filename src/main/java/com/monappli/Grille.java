@@ -129,7 +129,7 @@ public class Grille {
   
       if(this.graphic){
         grid = initGrid();
-        chargerSauvegarde();
+        //chargerSauvegarde();
         gridPlace.getChildren().add(grid); 
         for (Ilot i :this.getIlots()) {
             i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
