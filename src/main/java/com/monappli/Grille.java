@@ -251,8 +251,6 @@ public class Grille {
             else {
               ileAct.setActive(false);
               ilot.setActive(false);
-              ilot.setRed(true);
-              ileAct.setRed(true);
             }
           }
           else
