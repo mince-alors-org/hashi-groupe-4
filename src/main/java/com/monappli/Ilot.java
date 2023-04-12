@@ -37,8 +37,6 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	 */
 	private int valeur;
 
-
-
 	/**
 	 * ponts reliés à this
 	 */

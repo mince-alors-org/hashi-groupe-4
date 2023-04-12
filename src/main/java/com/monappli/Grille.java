@@ -129,7 +129,7 @@ public class Grille {
   
       if(this.graphic){
         grid = initGrid();
-        //chargerSauvegarde();
+        chargerSauvegarde();
         gridPlace.getChildren().add(grid); 
         for (Ilot i :this.getIlots()) {
             i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
@@ -206,25 +206,28 @@ public class Grille {
       return grid;
     }
 
-    public void chargerSauvegarde() throws ClassNotFoundException, IOException{
-      //Charger les ponts de la sauvegarde
+    public void chargerSauvegarde() throws ClassNotFoundException, IOException {
+      // Charger les ponts de la sauvegarde
       File save_file = new File(fichier_sauvegarde);
-      if (save_file.exists()){
-        sauvegarde.chargerFichier(fichier_sauvegarde); 
-        for(Pont pont : sauvegarde.getPileCoups()){
-          for (Ilot ilot : this.listeIlot){
-            pont.affiche(fond);
-            if(ilot == pont.getIle1()){
-              
-              ilot.setActive(false);
-            }
+      if (save_file.exists()) {
+          sauvegarde.chargerFichier(fichier_sauvegarde);
+          for (Ilot ilot : this.listeIlot) {
+              for (Pont pont : sauvegarde.getPileCoups()) {
+                //System.out.println("Affichage :" +  ilot + " et " + pont.getIle1() + " et " + pont.getIle2());
+                  if (ilot.equals(pont.getIle1()) || ilot.equals(pont.getIle2())) {
+                      pont.affiche(fond);
+                      pont.incrementer();
+                      System.out.println("Nb trait : " + pont.getNbTraits());
+                  }
+              }
           }
-        }
       }
-    }
+  }
+  
 
     public void ilotOnAction(Ilot ilot){
       if (this.getGridPane().lookup("#pop") == null){
+        System.out.print("Je clique sur un ilot");
         unsetReds();
         Ilot ileAct = this.getIlotActif() ;
         if (ileAct != null){
@@ -253,14 +256,16 @@ public class Grille {
               ileAct.setRed(true);
             }
           }
-          else 
+          else
             changeActive(ilot);
         }
         else 
           ilot.setActive(!(ilot.getActive()));
 
-        if(ileAct == ilot || ileAct == null)
+        if(ileAct == ilot || ileAct == null){
           changeActive(ilot);
+          System.out.println("3");
+        } 
 
         if (this.isWin()){
           PopUp win = new PopUp(this.parent);
