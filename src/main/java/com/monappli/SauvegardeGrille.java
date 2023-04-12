@@ -2,12 +2,16 @@ package com.monappli;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class SauvegardeGrille implements Serializable{
 
     private FileWriter fileWriter;  //écrire dans un fichier
     private FileReader fileReader; //lire dans un fichier
     private static ArrayList<Pont> pileCoups = new ArrayList<Pont>();  //pile des coups joués et actifs sur la grille
+
+    public static double chrono_time = 0;
+
     private ArrayList<Pont> pileRetablissements = new ArrayList<Pont>();    //pile des coups précédemment joués mais annulés
 
     /**
@@ -62,6 +66,8 @@ public class SauvegardeGrille implements Serializable{
 
   }
 
+
+
     public ArrayList<Pont> getPileCoups(){
         return pileCoups;
     }
@@ -106,10 +112,28 @@ public class SauvegardeGrille implements Serializable{
     ObjectInputStream ois = new ObjectInputStream(fileInputStream);
     pileCoups = (ArrayList<Pont>) ois.readObject();
     double chrono = ois.readDouble();
+    chrono_time = chrono;
 
 
     System.out.println(pileCoups);
     System.out.println(chrono);
+
+
+
+
+
+
+  }
+
+  public double getTimeValueChrono(String fichier_sauvegarde) throws IOException, ClassNotFoundException {
+    FileInputStream fileInputStream = new FileInputStream(fichier_sauvegarde);
+    ObjectInputStream ois = new ObjectInputStream(fileInputStream);
+    pileCoups = (ArrayList<Pont>) ois.readObject();
+    double chrono = ois.readDouble();
+    System.out.println(pileCoups);
+    System.out.println(chrono);
+
+    return chrono;
 
 
 

@@ -13,10 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.PrintWriter;
+import java.io.*;
 
 /**
  * In game handler
@@ -86,6 +83,7 @@ public class GameHandler extends DynamicEventHandler {
 
     public void setGrille(Grille grille ){
         this.grille=grille;
+
     }
 
     public void restClicked(){
@@ -145,7 +143,15 @@ public class GameHandler extends DynamicEventHandler {
     }
 
     public void setChrono(){
-      chronometre = new Chrono(chrono);
+      File save = new File(this.getLvlNum());
+      if (save.isFile()){
+        chronometre = new Chrono(chrono,SauvegardeGrille.chrono_time);
+        chronometre.getTimeDisplay().setText(String.valueOf(chronometre.getTime()));
+      }
+      else {
+        chronometre = new Chrono(chrono);
+      }
+
     }
 
   public String getLvlNum() {
@@ -171,15 +177,14 @@ public class GameHandler extends DynamicEventHandler {
     try {
       //this.getSave().effacerFichier();
       //this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
-      this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
-      this.getSave().chargerFichier2("src/test/java/com/monappli/save_move.txt");
+      this.getSave().createSaveFile(this.getLvlNum());
+      this.getSave().actualiserFichier(this.getLvlNum(),chronometre.getTime());
+
       System.out.println(Hashi.joueur);
-      this.getSave().createSaveFile(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur));
+
 
 
     } catch (IOException e) {
-      throw new RuntimeException(e);
-    } catch (ClassNotFoundException e) {
       throw new RuntimeException(e);
     }
     super.quitClicked();

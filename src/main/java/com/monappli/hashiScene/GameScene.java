@@ -26,7 +26,8 @@ public class GameScene extends MainPanel{
         hand.setGrille(this.grille);
         hand.setLvlNum(lvlName);
         hand.setLvlNum(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) + formateLvlName(lvlName));
-        System.out.println(hand.getLvlNum());
+        hand.getSave().chargerFichier2(hand.getLvlNum());
+        //System.out.println(hand.getLvlNum());
 
 
 
@@ -34,7 +35,14 @@ public class GameScene extends MainPanel{
 
     }
 
-
+  /**
+   * Formatte un chemin
+   * @author nmention
+   *
+   * @param input path à formatter
+   * @return le chemin formatté pour construire le chemin final correspondant à l'emplacement de sauvegarde de niveau spécifique (e.g 1-1) pour chaque joueur
+   *
+   */
     public static String formateLvlName(String input){
       String result = "";
       Pattern pattern = Pattern.compile("(?<=/)[1-9].*");

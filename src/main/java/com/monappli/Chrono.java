@@ -10,11 +10,15 @@ public class Chrono extends Thread{
 
   Button timeDisplay;
 
-  public Chrono(Button button) {
+  public Chrono(Button button, double time) {
     this.start = false;
-    this.time = 0;
+    this.time = time;
 
     timeDisplay = button;
+
+  }
+  public Chrono(Button button) {
+    this(button,0);
 
   }
 
