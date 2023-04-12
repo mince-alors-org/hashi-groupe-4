@@ -13,17 +13,21 @@ public class SauvegardeGrille implements Serializable{
     /**
      * Undo
      */
-    public void retablir(){
-        pileCoups.add(pileRetablissements.get(pileRetablissements.size()-1));
-        pileRetablissements.remove(pileRetablissements.size()-1);
+    public void annuler(){
+        if(!pileCoups.isEmpty()){
+            pileRetablissements.add(pileCoups.get(pileCoups.size()-1));
+            pileCoups.remove(pileCoups.size()-1);
+        }
     }
 
     /**
      * Redo
      */
-    public void annuler(){
-        pileRetablissements.add(pileCoups.get(pileCoups.size()-1));
-        pileCoups.remove(pileCoups.size()-1);
+    public void retablir(){
+        if(!pileRetablissements.isEmpty()){
+            pileCoups.add(pileRetablissements.get(pileRetablissements.size()-1));
+            pileRetablissements.remove(pileRetablissements.size()-1);
+        }
     }
 
     /**
@@ -57,6 +61,10 @@ public class SauvegardeGrille implements Serializable{
 
   }
 
+    public ArrayList<Pont> getPileCoups(){
+        return pileCoups;
+    }
+
     public int getPileCoupsSize(){
         return pileCoups.size();
     }
@@ -77,7 +85,6 @@ public class SauvegardeGrille implements Serializable{
             while (true) {
                 //Lit un objet Pont à partir du flux d'entrée
                 Pont pont = (Pont) objectInputStream.readObject();
-
                 ponts.add(pont);
             }
         } catch (EOFException e) {
@@ -162,11 +169,20 @@ public class SauvegardeGrille implements Serializable{
     }
 
     public Pont getLastPont(){
+    }
+
+    public Pont getLastPileCoups(){
         if (pileCoups.isEmpty()){
             return null;
         }
-        System.out.println("Test : " + pileCoups.get(pileCoups.size()-1));
         return pileCoups.get(pileCoups.size()-1);
+    }
+
+    public Pont getLastPileReta(){
+        if (pileRetablissements.isEmpty()){
+            return null;
+        }
+        return pileRetablissements.get(pileRetablissements.size()-1);
     }
 }
 

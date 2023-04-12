@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
  * Représente une base de données comprenant une liste de joueurs
  * @author Ambre Collard
  */
-public class BaseDonneeJoueur implements Serializable{
+public abstract class BaseDonneeJoueur implements Serializable{
     public static String directory="src/main/resources/profiles/";
 
 
@@ -36,7 +36,6 @@ public class BaseDonneeJoueur implements Serializable{
 
         for (String e : dossier.list()){
             search.add(e);
-            System.out.println(e);
             if (e.equals(joueur.getnom()))
                 return false;
         }
@@ -100,8 +99,8 @@ public class BaseDonneeJoueur implements Serializable{
                 "\n#000000"+
                 "\n#ffffff"+
                 "\n#000000"+
-                "\n#000000"+
-                "\n#457BF8"
+                "\n#457BF8"+
+                "\n#000000"
                 );
         myWriter.close();
     }
@@ -169,7 +168,7 @@ public class BaseDonneeJoueur implements Serializable{
         if (exists(j)){
             Path path = Paths.get(directory+j.getnom()+"/"+  j.getnom()+ ".prof");
             List<String> lines= Files.readAllLines(path);
-            return Color.web( lines.get(5));
+            return Color.web( lines.get(4));
         }
         return null;
     }

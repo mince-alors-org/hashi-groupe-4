@@ -16,3 +16,9 @@
     -fx-pref-width:200.0px;
     -fx-pref-height:40.0px;
 }
+
+.chip{
+    -fx-pref-width:30.0px;
+    -fx-pref-height:30.0px;
+    -fx-max-height: 30px;
+}

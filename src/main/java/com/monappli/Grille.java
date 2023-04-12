@@ -2,7 +2,6 @@ package com.monappli;
 
 import java.util.ArrayList;
 import java.io.*;
-import java.io.FileReader;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +35,8 @@ public class Grille {
     private Pane parent;
     private boolean graphic;
     private SauvegardeGrille sauvegarde;
-    String fichier_sauvegarde = "src/test/java/com/monappli/save_move.txt";
+    private boolean undoOuRedo = false;
+    private String fichier_sauvegarde;
 
     /**
      * Initialisation de la grille
@@ -47,11 +47,11 @@ public class Grille {
     public Grille(String nomF, boolean graphic){
       this.graphic= graphic;
       this.sauvegarde = new SauvegardeGrille();
+
+      this.fichier_sauvegarde = "src/main/resources/profiles/Karl/1-2.niv";
       listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
-
-
        // Créer l'objet File Reader
        FileReader fr = null;
        try {
@@ -120,7 +120,7 @@ public class Grille {
        }
     }
 
-    public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) {
+    public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
       this(nomF, graphic);
       this.gridPlace= gridPlace;
       this.fond=canvas;
@@ -128,6 +128,7 @@ public class Grille {
 
       if(this.graphic){
         grid = initGrid();
+        //chargerSauvegarde();
         gridPlace.getChildren().add(grid);
         for (Ilot i :this.getIlots()) {
             i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
@@ -136,7 +137,7 @@ public class Grille {
       }
     }
 
-    public Grille(String nomF, Pane gridPlace, Canvas canvas, Pane bgParent) {
+    public Grille(String nomF, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
       this(nomF, true, gridPlace, canvas, bgParent);
     }
 
@@ -157,8 +158,10 @@ public class Grille {
      * @see Ilot
      * @return <code>GridPane</code> the playing grid, with isle at their places
      * @author Ambre Collard
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
-    public GridPane initGrid(){
+    public GridPane initGrid() throws ClassNotFoundException, IOException{
       GridPane grid= new GridPane();
 
       //Sets sizes of columns from size of pane to be added on
@@ -201,6 +204,23 @@ public class Grille {
 
 
       return grid;
+    }
+
+    public void chargerSauvegarde() throws ClassNotFoundException, IOException{
+      //Charger les ponts de la sauvegarde
+      File save_file = new File(fichier_sauvegarde);
+      if (save_file.exists()){
+        sauvegarde.chargerFichier(fichier_sauvegarde);
+        for(Pont pont : sauvegarde.getPileCoups()){
+          for (Ilot ilot : this.listeIlot){
+            pont.affiche(fond);
+            if(ilot == pont.getIle1()){
+
+              ilot.setActive(false);
+            }
+          }
+        }
+      }
     }
 
     public void ilotOnAction(Ilot ilot){
@@ -448,42 +468,34 @@ public class Grille {
     }
 
     /**
-     * Undo/Rétablir la denière action
-     */
-    public void retablirAction(){
-      System.out.println("Dans retablir action");
-      sauvegarde.getLastPont().affiche(fond);
-      sauvegarde.retablir();
-      sauvegarde.actualiserFichier(fichier_sauvegarde);
-    }
-
-    /**
-     * Annule la dernière action
+     * Undo/Annule la dernière action
      */
     public void annulerAction(){
       System.out.println("Dans annuler action");
-      sauvegarde.getLastPont().affiche(fond);
-      sauvegarde.annuler();
-      sauvegarde.actualiserFichier(fichier_sauvegarde);
+      if(!undoOuRedo){
+        sauvegarde.getLastPileCoups().erase(fond);
+        sauvegarde.annuler();
+        sauvegarde.actualiserFichier(fichier_sauvegarde);
+      }
+      undoOuRedo = true;
     }
 
     /**
-     * Returns the array of all possible and not crossing <code>Pont</code> from the <code>Grille</code>
-     * @param ilot
-     * @return the <code>ArrayList</code> of <code>Pont</code>
-     * @author Ambre Collard
+     * Redo/Rétablir la denière action
      */
-    public ArrayList<Pont> getPontsPossible(Ilot ilot){
-      ArrayList<Pont> list= new ArrayList<Pont>();
-      for (Ilot searchI : this.listeIlot){
-        if(sontVoisin(ilot, searchI)){
-          Pont p= ilot.liaisonP(searchI);
-          if(!croisePont(p)){
-            list.add(p);
-          }
-        }
+    public void retablirAction(){
+      System.out.println("Dans retablir action");
+      if(undoOuRedo){
+        sauvegarde.getLastPileReta().affiche(fond);
+        sauvegarde.retablir();
+        sauvegarde.actualiserFichier(fichier_sauvegarde);
       }
-      return list;
+      else{
+        sauvegarde.getLastPileReta().erase(fond);
+        sauvegarde.retablir();
+        sauvegarde.actualiserFichier(fichier_sauvegarde);
+      }
+      undoOuRedo = false;
     }
 
 }
