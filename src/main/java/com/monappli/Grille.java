@@ -48,10 +48,11 @@ public class Grille {
      */
 
     public Grille(String nomF, boolean graphic){
+      this.nomF= nomF;
       this.graphic= graphic;
       this.sauvegarde = new SauvegardeGrille();
 
-      this.fichier_sauvegarde = "src/main/resources/profiles/Karl/1-2.niv";
+      this.fichier_sauvegarde = "src/main/resources/profiles/" + Hashi.joueur.getnom() +"/" + this.getLvlName() +".niv";
       listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
@@ -235,11 +236,10 @@ public class Grille {
                      */
                     if (ilot.equals(pont.getIle1()) && ilot2.equals(pont.getIle2())) {
                       pont.affiche(fond);
-                      pontVoisin.setNombreTraits(pont.getNbTraits());
-                    }
                   }
                 }
               }
+            }
           }
       }
     }
@@ -286,10 +286,10 @@ public class Grille {
           changeActive(ilot);
         } 
 
-        if (this.isWin()){
+        if (isWin()){
           PopUp win = new PopUp(this.parent);
           try{
-            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent));
+            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent, getLvlName()));
           }
           catch (Exception ex){
             ex.printStackTrace();
@@ -334,6 +334,10 @@ public class Grille {
         max = ilot.getPosY() > max ? ilot.getPosY() : max; 
       }
       return max+1;
+    }
+
+    public String getLvlName(){
+      return this.nomF.replace("../niveaux/", "").replace(".niv", "");
     }
 
     /**

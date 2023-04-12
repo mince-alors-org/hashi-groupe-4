@@ -47,6 +47,7 @@ public class MainPanel extends DynamicScene {
      * @param handler Handler specified to manage events occuring on this pane
      * @throws Exception if the FXMLLoader can't load the resource
      * @see FXMLLoader
+     * @see MainPanel#setStyleParam
      */
     public <H extends DynamicEventHandler>  void  pasteAndHandle(String name, H handler) throws Exception  {
         FXMLLoader loader= new FXMLLoader(getClass().getResource(name));
