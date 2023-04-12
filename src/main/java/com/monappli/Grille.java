@@ -122,11 +122,11 @@ public class Grille {
     }
 
     public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
+      
       this(nomF, graphic);
       this.gridPlace= gridPlace;
       this.fond=canvas;
       this.parent= bgParent;
-  
       if(this.graphic){
         grid = initGrid();
         /**
@@ -259,8 +259,8 @@ public class Grille {
               pont.incrementer();
               pont.affiche(fond);
 
-              sauvegarde.ajoutCoup(pont);
-              sauvegarde.actualiserFichier(fichier_sauvegarde);
+              // sauvegarde.ajoutCoup(pont);
+              // sauvegarde.actualiserFichier(fichier_sauvegarde);
               
               ileAct.setActive(false);
               ilot.setActive(false);
