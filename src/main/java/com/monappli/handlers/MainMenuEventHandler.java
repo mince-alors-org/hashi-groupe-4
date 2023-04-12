@@ -2,12 +2,13 @@ package com.monappli.handlers;
 
 import com.monappli.hashiScene.LevelScene;
 
+import com.monappli.hashiScene.ScoresScene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 /**
  * Handler of the main menu
- * @see DynamicEventHandler 
+ * @see DynamicEventHandler
  * @author Collard Ambre
  */
 public class MainMenuEventHandler extends  DynamicEventHandler{
@@ -15,7 +16,7 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
 
     /**
      * Initialization of MainMenuEventHandler
-     * @param parentPane 
+     * @param parentPane
      */
     public MainMenuEventHandler(Pane parentPane){
         super(parentPane);
@@ -34,7 +35,7 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
-        
+
     }
 
     /**
@@ -49,9 +50,17 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
     }
 
     /**
-     * 
+     *
      */
     public void challClicked() {
     }
+
+    public void scoresClicked() throws Exception {
+      ScoresScene scores = new ScoresScene(this.getParentPane());
+      scores.pasteAndHandle("/view/scores.fxml",new DynamicEventHandler(this.getParentPane()));
+
+
+    }
+
 
 }

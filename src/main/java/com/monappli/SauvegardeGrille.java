@@ -222,5 +222,10 @@ public class SauvegardeGrille implements Serializable{
         }
         return pileRetablissements.get(pileRetablissements.size()-1);
     }
+
+    public void sauverNiveau(String path, double chrono_time) throws IOException {
+      this.createSaveFile(path);
+      this.actualiserFichier(path,chrono_time);
+    }
 }
 

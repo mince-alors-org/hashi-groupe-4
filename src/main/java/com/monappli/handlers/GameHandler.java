@@ -113,13 +113,7 @@ public class GameHandler extends DynamicEventHandler {
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
-        System.out.println("Chrono_time : " + chronometre.getTime());
-        /*PrintWriter writer = new PrintWriter("src/test/java/com/monappli/save_move.txt");
-        writer.print("");
-        writer.close();*/
-
-
-        this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
+        this.getSave().sauverNiveau(this.getLvlNum(), chronometre.getTime());
 
 
         /*ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/test/java/com/monappli/save_move.txt"));
@@ -168,6 +162,7 @@ public class GameHandler extends DynamicEventHandler {
 
   public void chronoStart(){
     System.out.println("oui");
+    chrono.setDisable(true);
     chronometre.start();
     }
 
@@ -177,8 +172,7 @@ public class GameHandler extends DynamicEventHandler {
     try {
       //this.getSave().effacerFichier();
       //this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
-      this.getSave().createSaveFile(this.getLvlNum());
-      this.getSave().actualiserFichier(this.getLvlNum(),chronometre.getTime());
+      this.getSave().sauverNiveau(this.getLvlNum(), chronometre.getTime());
 
       System.out.println(Hashi.joueur);
 
