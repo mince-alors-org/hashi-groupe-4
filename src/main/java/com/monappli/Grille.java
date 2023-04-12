@@ -124,13 +124,17 @@ public class Grille {
     }
 
     public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
+      
       this(nomF, graphic);
       this.gridPlace= gridPlace;
       this.fond=canvas;
       this.parent= bgParent;
-  
       if(this.graphic){
         grid = initGrid();
+        /**
+         * On charge les ponts déjà initié depuis la sauvegarde
+         * Il est vérifé dans la méthode si le fichier de sauvegarde existe
+         */
         chargerSauvegarde();
         gridPlace.getChildren().add(grid); 
         for (Ilot i :this.getIlots()) {
@@ -197,6 +201,7 @@ public class Grille {
         //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
         ilot.getBtn().setOnAction(e -> {
           ilotOnAction(ilot);
+          System.out.print("Salut");
         });
 
         //Add the isle to the grid
@@ -207,16 +212,27 @@ public class Grille {
       
       return grid;
     }
-
+    /**
+     * Charge une sauvegarde du jeu à partir d'un fichier donné
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
     public void chargerSauvegarde() throws ClassNotFoundException, IOException {
-      // Charger les ponts de la sauvegarde
       File save_file = new File(fichier_sauvegarde);
       if (save_file.exists()) {
           sauvegarde.chargerFichier(fichier_sauvegarde);
+          /**
+           * On itère sur un ilot de la listeIlot et on vérifie ses voisins pour former un pont
+           */
           for (Ilot ilot : this.listeIlot) {
               for (Pont pont : sauvegarde.getPileCoups()) {
-                //System.out.println("Affichage :" +  ilot + " et " + pont.getIle1() + " et " + pont.getIle2());
-                  if (ilot.equals(pont.getIle1()) || ilot.equals(pont.getIle2())) {
+                for(Ilot ilot2: this.listeIlot){
+                  if(this.sontVoisin(ilot2, ilot) && !ilot.equals(ilot2)){
+                    Pont pontVoisin = ilot.liaisonP(ilot2);
+                    /**
+                     * En comparant les 2 ilots voisins aux ilots composant un pont depuis la sauvegarde, on affiche le pont et on met le nombre de trait du pont de listeIlot à celui du pont de la sauvegarde 
+                     */
+                    if (ilot.equals(pont.getIle1()) && ilot2.equals(pont.getIle2())) {
                       pont.affiche(fond);
                   }
               }
@@ -242,8 +258,8 @@ public class Grille {
               pont.incrementer();
               pont.affiche(fond);
 
-              sauvegarde.ajoutCoup(pont);
-              sauvegarde.actualiserFichier(fichier_sauvegarde);
+              // sauvegarde.ajoutCoup(pont);
+              // sauvegarde.actualiserFichier(fichier_sauvegarde);
               
               ileAct.setActive(false);
               ilot.setActive(false);
