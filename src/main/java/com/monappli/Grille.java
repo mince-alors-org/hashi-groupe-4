@@ -216,13 +216,12 @@ public class Grille {
                 //System.out.println("Affichage :" +  ilot + " et " + pont.getIle1() + " et " + pont.getIle2());
                   if (ilot.equals(pont.getIle1()) || ilot.equals(pont.getIle2())) {
                       pont.affiche(fond);
-                      pont.incrementer();
                       System.out.println("Nb trait : " + pont.getNbTraits());
                   }
               }
           }
       }
-  }
+    }
   
 
     public void ilotOnAction(Ilot ilot){
