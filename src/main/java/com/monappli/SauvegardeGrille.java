@@ -65,6 +65,10 @@ public class SauvegardeGrille implements Serializable{
         return pileCoups;
     }
 
+    public ArrayList<Pont> getPileReta(){
+        return pileRetablissements;
+    }
+
     public int getPileCoupsSize(){
         return pileCoups.size();
     }
@@ -152,6 +156,15 @@ public class SauvegardeGrille implements Serializable{
             return null;
         }
         return pileRetablissements.get(pileRetablissements.size()-1);
+    }
+
+    /**
+     * Vide les piles pileCoups et pileRetablissements
+     * À utiliser dans remiseZero
+     */
+    public void viderPiles(){
+        pileCoups.clear();
+        pileRetablissements.clear();
     }
 }
 

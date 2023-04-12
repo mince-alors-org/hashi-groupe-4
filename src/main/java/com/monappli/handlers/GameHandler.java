@@ -45,11 +45,11 @@ public class GameHandler extends DynamicEventHandler {
     }
     public void redoClicked(){
         System.out.println("Je suis redo");
-        //this.grille.retablirAction();
+        this.grille.retablirAction();
     }
     public void undoClicked(){
         System.out.println("Je suis undo");
-        //this.grille.annulerAction();
+        this.grille.annulerAction();
     }
 
     public void lvlTitleClicked() throws Exception{
