@@ -112,10 +112,10 @@ public abstract class BaseDonneeJoueur implements Serializable{
      * @author Ambre Collard
      */
     public static boolean exists(String nomF){
-        File directory=new File("src/main/resources/profiles");
+        File dossier=new File(directory);
         ArrayList<String> search= new ArrayList<String>();
 
-        for (String e : directory.list()){
+        for (String e : dossier.list()){
             search.add(e);
         }
         return search.contains(nomF );
@@ -136,7 +136,7 @@ public abstract class BaseDonneeJoueur implements Serializable{
      * @param nextJ the new current player
      * @return <code>true</code> if the new player exists in the database, <code>false</code> otherwise 
      * @throws Exception if the folder couldn't be opened
-     * @author Ambre
+     * @author Ambre Collard
      */
     public static boolean changePlayer( Joueur nextJ) throws Exception{
         if (!exists(nextJ))
@@ -196,8 +196,8 @@ public abstract class BaseDonneeJoueur implements Serializable{
      */
     public static ArrayList<Joueur> getAllPlayers() throws Exception{
         ArrayList<Joueur> tab = new ArrayList<Joueur>();
-        File directory=new File("src/main/resources/profiles/");
-        File[] liste2File=directory.listFiles();
+        File dossier=new File(directory);
+        File[] liste2File=dossier.listFiles();
         for(int i=0;i<liste2File.length;i++){
             File nomJ=  liste2File[i];
             if(!nomJ.isFile()){
@@ -253,7 +253,7 @@ public abstract class BaseDonneeJoueur implements Serializable{
      * @throws IOException
      * @author Ambre Collard
      */
-    public static void deleteDirectoryRecursion(Path path) throws IOException {
+    private static void deleteDirectoryRecursion(Path path) throws IOException {
         if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
           try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {
             for (Path entry : entries) {
@@ -262,8 +262,16 @@ public abstract class BaseDonneeJoueur implements Serializable{
           }
         }
         Files.delete(path);
-      }
+    }
 
+    /**
+     * @return the number of players in the database
+     * @throws Exception
+     * @author Ambre Collard
+     */
+    public static int getNumberPlayers() throws Exception{
+            return  getAllPlayers().size();
+    }
 }
     
 

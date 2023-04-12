@@ -23,21 +23,40 @@ import javafx.scene.layout.VBox;
  * @author Ambre Collard
  */
 public class ProfileScene extends PopUp {
+
+    /**
+     * Variable of the Pane for the profile selection grid
+     */
     private Pane gridP;
 
 
+
+    /**
+     * Initialization of the profile scene
+     * @param parent the parent pane
+     * @author Ambre Collard
+     */
     public ProfileScene (Pane parent){
         super(parent);
     }
 
+    /**
+     * Sets the function attribute as the pane for the gridPlacement
+     * @param pane the pane on which the grid will be pasted
+     */
     public void setGridPlace(Pane pane){
         this.gridP= pane;
     }
 
+
+    /**
+     * @return the pane where the selection grid is pasted
+     */
     public Pane getGridPane(){
         return this.gridP;
     }
 
+    @Override
     public <H extends DynamicEventHandler> void pasteAndHandle(String res, H hand) throws Exception{
         super.pasteAndHandle(res,hand);
         this.setGridPlace((Pane)this.getParent().lookup("#gridP"));
@@ -46,6 +65,12 @@ public class ProfileScene extends PopUp {
         setStyleGrid(pBox);
     }
 
+    /**
+     * Initialize and return a vertical box to select the players profile from
+     * @return the <code>VBox</code> with all profile on it
+     * @throws Exception
+     * @author Ambre Collard
+     */
     public VBox initProfiles() throws Exception{
         VBox vBox= new VBox();
         ArrayList<Joueur> tabJ= BaseDonneeJoueur.getAllPlayers();
@@ -79,21 +104,49 @@ public class ProfileScene extends PopUp {
     }
 
 
+    /**
+     * Sets the style of a button
+     * @param b said <code>Button</code>
+     * @author Ambre Collard
+     */
     public void setStyleButton(Button b){
         b.getStyleClass().add("playerButton");
     }
 
+    /**
+     * Sets the style of a Pane considered as a chip to make the profile chosing more enjoyable
+     * @param p the "chip" <code>Pane</code>
+     * @param j the <code>Joueur</code> representing the profile
+     * @throws Exception
+     * @author Ambre Collard
+     */
     public void setStyleChip(Pane p, Joueur j) throws Exception{
         Background bg = new Background( new BackgroundFill(BaseDonneeJoueur.getChipColor(j),new CornerRadii(20),Insets.EMPTY));
         p.setBackground(bg);
     }
 
-    public void setStyleHBox(HBox h){
+    /**
+     * Sets the style of an horizontal box
+     * @param h said <code>HBox</code>
+     * @author Ambre Collard
+     */
+    public void setStyleHBox(HBox h) {
         h.setAlignment(Pos.CENTER);
         h.setSpacing(20);
-        h.setPrefSize(this.gridP.getPrefWidth(), this.gridP.getPrefHeight());
+        try{
+            h.setPrefSize(this.gridP.getPrefWidth(), this.gridP.getPrefHeight()/BaseDonneeJoueur.getNumberPlayers());
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+        h.setMaxHeight(30);
     }
 
+    /**
+     * Sets the style of an vertical box
+     * @param v said <code>VBox</code>
+     * @author Ambre Collard
+     */
     public void setStyleGrid(VBox v){
         v.setId("vBox");
         v.setAlignment(Pos.TOP_CENTER);
@@ -101,14 +154,27 @@ public class ProfileScene extends PopUp {
         v.setSpacing(20);
     }
 
+    /**
+     * Action performed when clicking on a profile
+     * @param j the said <code>Joueur</code> representing the profile
+     * @throws Exception
+     * @author Ambre Collard
+     */
     public void btnOnAction(Joueur j) throws Exception{
         BaseDonneeJoueur.setJoueur(j);
         this.remove();
     }
 
+    /**
+     * Removes the pop up and reload the background panes to match the current players parameters
+     * @throws Exception
+     * @author Ambre Collard
+     * @see MainPanel#pasteAndHandle
+     */
+    @Override
     public void remove () throws Exception{
+        super.remove();
         MainPanel main= new MainPanel(this.getParent());
         main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParent()));
-        super.remove();
     }
 }
