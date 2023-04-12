@@ -1,8 +1,6 @@
 package com.monappli.handlers;
 
-import com.monappli.Chrono;
-import com.monappli.Grille;
-import com.monappli.SauvegardeGrille;
+import com.monappli.*;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
 
@@ -55,6 +53,9 @@ public class GameHandler extends DynamicEventHandler {
     private int cptActivationAide;
 
 
+    private String lvlNum;
+
+
 
 
 
@@ -77,6 +78,7 @@ public class GameHandler extends DynamicEventHandler {
     public GameHandler(Pane parent){
         super(parent);
         cptActivationAide = 0;
+        lvlNum = "";
 
 
 
@@ -146,6 +148,14 @@ public class GameHandler extends DynamicEventHandler {
       chronometre = new Chrono(chrono);
     }
 
+  public String getLvlNum() {
+    return lvlNum;
+  }
+
+  public void setLvlNum(String lvlNum) {
+    this.lvlNum = lvlNum;
+  }
+
   public Chrono getChronometre() {
     return chronometre;
   }
@@ -163,6 +173,8 @@ public class GameHandler extends DynamicEventHandler {
       //this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
       this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
       this.getSave().chargerFichier2("src/test/java/com/monappli/save_move.txt");
+      System.out.println(Hashi.joueur);
+      this.getSave().createSaveFile(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur));
 
 
     } catch (IOException e) {

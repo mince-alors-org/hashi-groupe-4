@@ -46,6 +46,7 @@ public class SauvegardeGrille implements Serializable{
     public void actualiserFichier(String fichier_sauvegarde) {
         try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(fichier_sauvegarde))) {
           outputStream.writeObject(pileCoups);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -102,9 +103,13 @@ public class SauvegardeGrille implements Serializable{
 
   public void chargerFichier2(String fichier_sauvegarde) throws IOException, ClassNotFoundException {
     FileInputStream fileInputStream = new FileInputStream(fichier_sauvegarde);
-    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-    pileCoups = (ArrayList<Pont>) objectInputStream.readObject();
+    ObjectInputStream ois = new ObjectInputStream(fileInputStream);
+    pileCoups = (ArrayList<Pont>) ois.readObject();
+    double chrono = ois.readDouble();
+
+
     System.out.println(pileCoups);
+    System.out.println(chrono);
 
 
 
@@ -168,7 +173,16 @@ public class SauvegardeGrille implements Serializable{
       }
     }
 
-    public Pont getLastPont(){
+
+
+    public void createSaveFile(String filename) throws IOException {
+      File file = new File(filename);
+      if (file.createNewFile()){
+        System.out.println("Nv fichier de sauvegarde " + filename);
+      }
+      else {
+        System.out.println("File existe déjà");
+      }
     }
 
     public Pont getLastPileCoups(){

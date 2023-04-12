@@ -19,7 +19,7 @@ import javafx.scene.paint.Color;
  * Représente une base de données comprenant une liste de joueurs
  * @author Ambre Collard
  */
-public abstract class BaseDonneeJoueur implements Serializable{
+public class BaseDonneeJoueur implements Serializable{
     public static String directory="src/main/resources/profiles/";
 
 
@@ -40,11 +40,33 @@ public abstract class BaseDonneeJoueur implements Serializable{
                 return false;
         }
         File nouv_dossier=new File(directory+joueur.getnom());
+        String niv_path = "/niveaux";
+        File niveaux = new File(directory+joueur.getnom()+niv_path);
         nouv_dossier.mkdir();
+        System.out.println("OUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIii" +niveaux.mkdir());
         writeNewPlayer(joueur);
         return true;
     }
 
+    public static boolean addSauvegardeJoueur(Joueur joueur) throws Exception {
+      if (exists(joueur)){
+        return false;
+      }
+      File dossier=new File(directory);
+      ArrayList<String> search= new ArrayList<String>();
+
+      for (String e : dossier.list()){
+        search.add(e);
+        if (e.equals(joueur.getnom()))
+          return false;
+      }
+      File nouv_dossier=new File(directory+joueur.getnom());
+      nouv_dossier.mkdir();
+      writeNewPlayer(joueur);
+      return true;
+
+
+    }
     /**
      * Adds the score of a level in the database file
      * @param lvl the level
@@ -134,7 +156,7 @@ public abstract class BaseDonneeJoueur implements Serializable{
     /**
      * Changes the current player to another if it exists in the database
      * @param nextJ the new current player
-     * @return <code>true</code> if the new player exists in the database, <code>false</code> otherwise 
+     * @return <code>true</code> if the new player exists in the database, <code>false</code> otherwise
      * @throws Exception if the folder couldn't be opened
      * @author Ambre
      */
@@ -188,6 +210,10 @@ public abstract class BaseDonneeJoueur implements Serializable{
         return new Joueur(nom);
     }
 
+    public static String getJoueurEmplacementSauvegarde(Joueur joueur){
+      return directory + joueur.getnom() + "/niveaux";
+    }
+
     /**
      * Return a array of all the players in the database
      * @return the <code>ArrayList</code> of all <code>Joueur</code> in the database
@@ -229,7 +255,7 @@ public abstract class BaseDonneeJoueur implements Serializable{
         catch(Exception e){
             e.printStackTrace();
         }
-        
+
     }
 
     /**
@@ -265,5 +291,5 @@ public abstract class BaseDonneeJoueur implements Serializable{
       }
 
 }
-    
+
 
