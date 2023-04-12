@@ -134,10 +134,10 @@ public class BaseDonneeJoueur implements Serializable{
      * @author Ambre Collard
      */
     public static boolean exists(String nomF){
-        File directory=new File("src/main/resources/profiles");
+        File dossier=new File(directory);
         ArrayList<String> search= new ArrayList<String>();
 
-        for (String e : directory.list()){
+        for (String e : dossier.list()){
             search.add(e);
         }
         return search.contains(nomF );
@@ -222,8 +222,8 @@ public class BaseDonneeJoueur implements Serializable{
      */
     public static ArrayList<Joueur> getAllPlayers() throws Exception{
         ArrayList<Joueur> tab = new ArrayList<Joueur>();
-        File directory=new File("src/main/resources/profiles/");
-        File[] liste2File=directory.listFiles();
+        File dossier=new File(directory);
+        File[] liste2File=dossier.listFiles();
         for(int i=0;i<liste2File.length;i++){
             File nomJ=  liste2File[i];
             if(!nomJ.isFile()){
