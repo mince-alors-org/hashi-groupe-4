@@ -514,10 +514,9 @@ public class Grille {
      * Appelle de la méthode dans GameHandler
      */
     public void annulerAction(){
-      dernierPont.erase(fond);
-      dernierPont.setNombreTraits(dernierPont.getNbTraits()-1);
+      sauvegarde.getLastPileCoups().erase(fond);
+      sauvegarde.getLastPileCoups().setNombreTraits(sauvegarde.getLastPileCoups().getNbTraits()-1);
       sauvegarde.annuler();
-      dernierPont = sauvegarde.getLastPileCoups();
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
 
@@ -526,10 +525,10 @@ public class Grille {
      * Appelle de la méthode dans GameHandler
      */
     public void retablirAction(){
-      dernierPont.affiche(fond);
-      dernierPont.setNombreTraits(dernierPont.getNbTraits()+1);
       sauvegarde.retablir();
-      dernierPont = sauvegarde.getLastPileCoups();
+      sauvegarde.getLastPileCoups().affiche(fond);
+      sauvegarde.getLastPileCoups().setNombreTraits(sauvegarde.getLastPileCoups().getNbTraits()+1);
+      
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
   public String getFichier_sauvegarde() {
