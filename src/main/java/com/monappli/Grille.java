@@ -178,12 +178,12 @@ public class Grille {
 
       //Sets sizes of columns from size of pane to be added on
       for(int i=0; i<largeur; i++){
-        grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (largeur)));
+        grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (longueur)));
       }
       
       //Sets sizes of rows from size of pane to be added on
       for(int i=0; i<longueur;i++)
-        grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (longueur)));
+        grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (largeur)));
 
       
       for(Ilot ilot : listeIlot ){
@@ -253,7 +253,10 @@ public class Grille {
       if (this.getGridPane().lookup("#pop") == null){
         System.out.print("Je clique sur un ilot");
         unsetReds();
-        Ilot ileAct = this.getIlotActif() ;
+        Ilot ileAct = this.getIlotActif();
+        for (int i=0;i<this.getIlots().size();i++) {
+          this.getIlots().get(i).setStyleBase();
+        }
         if (ileAct != null){
           //If the active and clicked isle are neighbours
           if (this.sontVoisin(ileAct, ilot) ){
@@ -276,12 +279,17 @@ public class Grille {
             }
 
             else {
+              if(Parametre.isAffichage_depassment_cardinalite()){
               ileAct.setActive(false);
               ilot.setActive(false);
+                ileAct.setRed(true);
+                ilot.setRed(true);
+              }
             }
           }
-          else
+          else{
             changeActive(ilot);
+          }
         }
         else 
           ilot.setActive(!(ilot.getActive()));
@@ -289,6 +297,18 @@ public class Grille {
         if(ileAct == ilot){
           ilot.setActive(false);
         } 
+
+        if (Parametre.isAffichage_depassment_cardinalite()){
+          if (ilot.nbPont() > ilot.getValeur())
+            ilot.setRed(true);
+          if(ileAct.nbPont() > ileAct.getValeur())
+            ileAct.setRed(true);
+          if (ilot.nbPont() == ilot.getValeur())
+            ilot.setBlue(true);
+          if(ileAct.nbPont() == ileAct.getValeur())
+            ileAct.setBlue(true);
+
+        }
 
         if (isWin()){
           PopUp win = new PopUp(this.parent);
@@ -523,5 +543,18 @@ public class Grille {
       dernierPont = sauvegarde.getLastPileCoups();
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
+
+    public ArrayList<Pont> getAllValidPont(Ilot ilot){
+      ArrayList<Pont> tab = new ArrayList<Pont>();
+        for(Ilot search : this.listeIlot){
+          if (sontVoisin(ilot,search)){
+            Pont p = ilot.liaisonP(search);
+            if(!croisePont(p)) {
+              tab.add(p);
+            }
+          }
+        }
+        return tab; 
+      }
    
 }

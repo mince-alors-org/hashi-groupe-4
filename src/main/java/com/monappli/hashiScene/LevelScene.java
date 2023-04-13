@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
+import com.monappli.Parametre;
+import com.monappli.handlers.FenetreAide;
 import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.LevelSelectHandler;
 

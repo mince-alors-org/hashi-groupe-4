@@ -1,5 +1,6 @@
 package com.monappli.hashiScene;
 
+import com.monappli.Aide;
 import com.monappli.Grille;
 import com.monappli.handlers.GameHandler;
 
@@ -19,6 +20,7 @@ public class GameScene extends MainPanel{
     public void pasteAndHandle(String nomF, GameHandler hand, String lvlName) throws Exception{
         super.pasteAndHandle(nomF, hand);
         this.grille= new Grille(lvlName, (Pane)this.getParent().lookup("#gridPlacement"), (Canvas)this.getParent().lookup("#fond"), this.getParent());
+        Aide.setGrilleAide(grille);
         hand.setGrille(this.grille);
     }
 }

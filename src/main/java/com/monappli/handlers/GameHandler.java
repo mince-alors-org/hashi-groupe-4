@@ -1,5 +1,7 @@
 package com.monappli.handlers;
 
+
+import com.monappli.Aide;
 import java.io.IOException;
 
 import com.monappli.Grille;
@@ -27,8 +29,6 @@ public class GameHandler extends DynamicEventHandler {
 
     private Grille grille;
 
-    //private Popup po;
-
 
     /**
      * Initialization of GameHandler
@@ -48,7 +48,24 @@ public class GameHandler extends DynamicEventHandler {
     }
 
     public void helpClicked(){
-        System.out.println("Je suis Aide");
+        Popup po=new Popup();
+        po.setX(205);
+        po.setY(304);
+        Pane newP=null;
+        Stage s = (Stage) backGround.getScene().getWindow();
+        PopUpEH p= new PopUpEH(po);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/popTech.fxml"));
+        loader.setController(p);
+        //loader.setStyle("background-color: green;");
+
+        try {
+            newP = (Pane)loader.load();
+            po.getContent().add(newP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        po.show(s);
+        p.setText(Aide.getTechnique());
     }
     public void errClicked(){
         Popup po=new Popup();
@@ -68,6 +85,7 @@ public class GameHandler extends DynamicEventHandler {
             e.printStackTrace();
         }
         po.show(s);
+        p.setText(Aide.checkErreur());
     }
     public void redoClicked(){
         System.out.println("Je suis redo");

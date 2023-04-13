@@ -5,7 +5,11 @@ package com.monappli;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -113,6 +117,24 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 									);
 	}
 
+
+	/**
+	* Set the style of an isle thanks to Parametre
+	* @see Parametre
+	* @author Ambre
+	* @param longueur
+	* @param largeur
+	*/
+	public void setStyleRed(){
+		this.getBtn().setBackground( new Background(new BackgroundFill(Color.RED,
+		new CornerRadii(200) , Insets.EMPTY)	));
+	}
+
+	public void setStyleBase(){
+		this.getBtn().setBackground( new Background(new BackgroundFill(Parametre.getCouleur_ilot(),
+		new CornerRadii(200) , Insets.EMPTY)	));
+	}
+
 	/**
 	* Activate or deactivate an isle
 	* @author Ambre
@@ -125,7 +147,7 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 										Color.GREEN, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
-										new BorderWidths(4)
+										new BorderWidths(5)
 							)));
 		}
 			
@@ -134,7 +156,7 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 										Color.BLACK, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
-										new BorderWidths(4)
+										new BorderWidths(5)
 							)));
 
 		}
@@ -151,7 +173,20 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 											Color.RED, 
 											BorderStrokeStyle.SOLID, 
 											new CornerRadii(200), 
-											new BorderWidths(4)
+											new BorderWidths(5)
+								)));
+		}
+		else 
+			this.setActive(getActive());
+	}
+
+	public void setBlue(boolean act){
+		if(act){
+			this.getBtn().setBorder(new Border(new BorderStroke(
+											Parametre.toColor("#596fff"), 
+											BorderStrokeStyle.SOLID, 
+											new CornerRadii(200), 
+											new BorderWidths(5)
 								)));
 		}
 		else 
