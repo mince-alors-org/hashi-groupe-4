@@ -28,11 +28,10 @@ public class GameScene extends MainPanel{
         this.grille= new Grille(lvlName, (Pane)this.getParent().lookup("#gridPlacement"), (Canvas)this.getParent().lookup("#fond"), this.getParent());
         Aide.setGrilleAide(grille);
         hand.setGrille(this.grille);
-        hand.setLvlNum(lvlName);
-        hand.setLvlNum(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) + formateLvlName(lvlName));
-        this.grille.setFichier_sauvegarde(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) + formateLvlName(lvlName));
-        this.grille.setGh(hand);
-        this.grille.chargerSauvegarde();
+
+        hand.setScene(this.grille,lvlName);
+        //hand.setLvlNum(lvlName);
+
         System.out.println(this.grille.getFichier_sauvegarde());
         //hand.getSave().chargerFichier2(hand.getLvlNum());
         //System.out.println(hand.getLvlNum());

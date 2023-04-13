@@ -6,6 +6,7 @@ import com.monappli.Aide;
 import java.io.IOException;
 
 import com.monappli.Grille;
+import com.monappli.hashiScene.GameScene;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
 
@@ -69,19 +70,18 @@ public class GameHandler extends TutoGameH {
 
     }
 
+
     public void lvlTitleClicked() throws Exception{
         LevelScene game= new LevelScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
-        GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent(),this);
         select.getChildren().add(selGrid);
-        this.getSave().sauverNiveau(this.getLvlNum(), chronometre.getTime());
+        this.getSave().sauverNiveau(this.getLvlNum(), 200);
 
 
-        /*ObjectInputStream ois = new ObjectInputStream(new FileInputStream("src/test/java/com/monappli/save_move.txt"));
-        double result = ois.readDouble();
-        ois.close();
-        System.out.println("RESSSULT " + result);*/
+
+
 
 
 
@@ -135,7 +135,7 @@ public class GameHandler extends TutoGameH {
     try {
       //this.getSave().effacerFichier();
       //this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
-      this.getSave().sauverNiveau(this.getLvlNum(), chronometre.getTime());
+      this.getSave().sauverNiveau(this.getLvlNum(), 200);
 
       System.out.println(Hashi.joueur);
 
@@ -145,5 +145,14 @@ public class GameHandler extends TutoGameH {
       throw new RuntimeException(e);
     }
     super.quitClicked();
+  }
+
+  public void setScene(Grille grille,String lvlNum) throws IOException, ClassNotFoundException {
+      this.setGrille(grille);
+
+      this.setLvlNum(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) + GameScene.formateLvlName(lvlNum));
+      grille.setFichier_sauvegarde(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) +  GameScene.formateLvlName(lvlNum));
+      grille.setGh(this);
+      grille.chargerSauvegarde();
   }
 }

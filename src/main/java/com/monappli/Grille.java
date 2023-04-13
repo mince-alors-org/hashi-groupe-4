@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import com.monappli.handlers.GameHandler;
+import com.monappli.handlers.TutoGameH;
 import com.monappli.handlers.WinHandler;
 import com.monappli.hashiScene.PopUp;
 import javafx.geometry.HPos;
@@ -46,10 +47,11 @@ public class Grille {
   public GameHandler getGh() {
     return gh;
   }
-
-  public void setGh(GameHandler gh) {
+  public  void setGh(GameHandler gh) {
     this.gh = gh;
   }
+
+
 
   private GameHandler gh;
 
@@ -328,10 +330,10 @@ public class Grille {
         if (isWin()){
           PopUp win = new PopUp(this.parent);
           Score score = new Score();
-          gh.getChronometre().halt();
-          double time = gh.getChronometre().getTime();
-          System.out.println("WINNN " + time);
-          score.computeValue(time);
+          //gh.getChronometre().halt();
+         // double time = gh.getChronometre().getTime();
+          //System.out.println("WINNN " + time);
+          score.computeValue(200);
 
 
 
@@ -601,7 +603,7 @@ public class Grille {
   }
 
 
-}
+
 
 
     public ArrayList<Pont> getAllValidPont(Ilot ilot){
