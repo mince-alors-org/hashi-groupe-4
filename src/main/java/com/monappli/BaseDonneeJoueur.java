@@ -121,7 +121,7 @@ public class BaseDonneeJoueur implements Serializable{
                 "\n#000000"+
                 "\n#ffffff"+
                 "\n#000000"+
-                "\n#457BF8"+
+                "\n#d3def9"+
                 "\n#000000"
                 );
         myWriter.close();
@@ -304,5 +304,5 @@ public class BaseDonneeJoueur implements Serializable{
             return  getAllPlayers().size();
     }
 }
-
+    
 

@@ -1,10 +1,13 @@
 package com.monappli.hashiScene;
 
 import com.monappli.BaseDonneeJoueur;
+import com.monappli.Aide;
 import com.monappli.Grille;
 import com.monappli.Hashi;
 import com.monappli.handlers.GameHandler;
+import com.monappli.handlers.TutoGameH;
 
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.canvas.Canvas;
 
@@ -20,9 +23,10 @@ public class GameScene extends MainPanel{
         super(parent);
     }
 
-    public void pasteAndHandle(String nomF, GameHandler hand, String lvlName) throws Exception{
+    public <H extends TutoGameH> void pasteAndHandle(String nomF, H hand, String lvlName) throws Exception{
         super.pasteAndHandle(nomF, hand);
         this.grille= new Grille(lvlName, (Pane)this.getParent().lookup("#gridPlacement"), (Canvas)this.getParent().lookup("#fond"), this.getParent());
+        Aide.setGrilleAide(grille);
         hand.setGrille(this.grille);
         hand.setLvlNum(lvlName);
         hand.setLvlNum(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) + formateLvlName(lvlName));

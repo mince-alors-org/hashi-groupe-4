@@ -2,6 +2,8 @@ package com.monappli.handlers;
 
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.MainPanel;
+import com.monappli.hashiScene.ResolScene;
+import com.monappli.hashiScene.TutoScene;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -34,15 +36,15 @@ public class LevelSelectHandler extends DynamicEventHandler{
     @FXML
     private Pane selectPane;
 
-    private LevelScene lvlScene;
+    private ResolScene lvlScene;
 
     /**
      * Initialization of LevelSelectHandler
      * @param parent parent of the current Pane
      */
-    public LevelSelectHandler(Pane parent, LevelScene lvlScene){
+    public<L extends ResolScene> LevelSelectHandler(Pane parent, L game){
         super(parent);
-        this.lvlScene=lvlScene;
+        this.lvlScene=game;
         curDiff=1;
     }
 
@@ -56,7 +58,7 @@ public class LevelSelectHandler extends DynamicEventHandler{
         curDiff= curDiff%LevelScene.nbDiff +1;
         diffButton.setText(intToDiff(curDiff));
 
-        GridPane newGrid= lvlScene.initGrid(LevelScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
+        GridPane newGrid= lvlScene.initGrid(this.lvlScene.countLvl(curDiff), (int)selectPane.getPrefWidth(), (int)selectPane.getPrefHeight(), backGround) ;
         selectPane.getChildren().setAll(newGrid);
 
     }
@@ -70,11 +72,11 @@ public class LevelSelectHandler extends DynamicEventHandler{
     public String intToDiff(int diff){
         switch (diff){
             case (1):
-                return "Facile";
+                return "◂    Facile   ▸";
             case(2):
-                return "Moyen";
+                return "◂    Moyen   ▸";
             case(3):
-                return "Difficile";
+                return "◂    Difficile   ▸";
             default:
                 return "???";
         }

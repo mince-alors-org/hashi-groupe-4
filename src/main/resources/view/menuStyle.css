@@ -3,7 +3,7 @@
 }
 
 .mainButton{
-    -fx-background-color: #0e34a0;
+    -fx-background-color: #658eff;
     -fx-background-radius: 30px;
     -fx-pref-height:100.0px;
     -fx-pref-width:350.0px;
@@ -12,14 +12,15 @@
 }
 
 .mainButton:hover{     
-    -fx-background-color:#019632;
+    -fx-background-color:#63e78ff6;
 }
 
 .optionalButton{
+    -fx-background-insets: 0 0 0 0;
     -fx-border-color: transparent;
     -fx-background-color: transparent;
     -fx-background-radius: 35px;
-    -fx-pref-height:70.0px;
+    -fx-pref-height:70.0px; 
     -fx-pref-width:70.0px;
     -fx-max-height:70.0px;
     -fx-max-width:70.0px;
@@ -33,4 +34,8 @@
 
 #paramButton{
     -fx-background-image: url("./textures/icons/parameters.png");
+}
+
+#profileButton{
+    -fx-background-image: url("./textures/icons/profil.png");
 }

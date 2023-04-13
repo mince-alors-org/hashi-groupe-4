@@ -23,13 +23,13 @@ public  class Parametre implements Serializable{
      * Cette variable sert à stocker la couleur des différentes aides qui peuvent être mise sur la grille
      */
     private static Color couleur_aide_erreur=Color.BLACK;
-    private static Color couleur_fond=Color.web("#457BF8");
+    private static Color couleur_fond=Color.web("#d3def9");
     private static int taille_texte;
     private static int[] taille_fenetre = {800,450};
     /**
      * Cette variable représente la possibilitée d'afficher automatiquement une aide visuelle quand trop de pont relie une île
      */
-    private static boolean affichage_depassment_cardinalite;
+    private static boolean affichage_depassment_cardinalite= true;
     /**
      * Cette variable représente la possibilité de prévenir le jouueur lorsqu'il créer un groupe d'île ne pouvant pas être relié à un autre groupe d'île
      */

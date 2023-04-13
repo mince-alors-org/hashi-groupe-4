@@ -22,9 +22,34 @@
     -fx-background-radius: 20px;
     -fx-pref-height:50.0px;
     -fx-pref-width:200.0px;
+    -fx-background-color: #658eff;
+    -fx-border-color:#000000;
+    -fx-border-radius:10px;
+    -fx-border-width: 5px;
+    -fx-background-insets: 0 0 0 0;
 }
 
 .pageButton{
     -fx-pref-height:30.0px;
     -fx-pref-width:40.0px;
+}
+
+.mainButton{
+    -fx-background-color: #658eff;
+    -fx-background-radius: 30px;
+    -fx-pref-height:100.0px;
+    -fx-pref-width:350.0px;
+    -fx-font-size: 35pt;
+    -fx-alignment: center;
+}
+
+#diffButton:hover{     
+    -fx-background-color:#63e78ff6;
+}
+
+#backButton{
+    -fx-pref-height:40.0px;
+    -fx-pref-width:40.0px;
+    -fx-background-image: url("./textures/icons/back.png");
+    -fx-background-insets: -2 -2 -2 -2;
 }

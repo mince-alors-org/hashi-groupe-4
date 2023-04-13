@@ -48,15 +48,11 @@
                <children>
                   <VBox prefHeight="650.0" prefWidth="450.0">
                      <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="60.0">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                            <children>
-                              <ToolBar prefHeight="47.0" prefWidth="19.0">
-                                <items>
-                                    <Button id="aideButton" mnemonicParsing="false" onAction="#helpClicked" styleClass="optionalGameButton" />
-                                  <Button fx:id="detectErr" mnemonicParsing="false" onAction="#errClicked" />
-                                </items>
-                              </ToolBar>
-                              <Button id="levelButton" mnemonicParsing="false" onAction="#lvlTitleClicked" text="levelButton" />
+                              <Button id="aideButton" mnemonicParsing="false" onAction="#helpClicked" styleClass="optionalGameButton" />
+                            <Button id="detectErr" mnemonicParsing="false" onAction="#errClicked" styleClass="optionalGameButton" />
+                              <Button id="levelButton" mnemonicParsing="false" onAction="#lvlTitleClicked" prefWidth="135.0" text="levelButton" />
                               <Button id="restButton" mnemonicParsing="false" onAction="#restClicked" styleClass="optionalGameButton" />
                            </children>
                            <VBox.margin>

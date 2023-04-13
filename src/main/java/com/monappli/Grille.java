@@ -139,12 +139,11 @@ public class Grille {
     }
 
     public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
-
+      
       this(nomF, graphic);
       this.gridPlace= gridPlace;
       this.fond=canvas;
       this.parent= bgParent;
-
       if(this.graphic){
         grid = initGrid();
         /**
@@ -191,14 +190,14 @@ public class Grille {
 
       //Sets sizes of columns from size of pane to be added on
       for(int i=0; i<largeur; i++){
-        grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (largeur)));
+        grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (longueur)));
       }
-
+      
       //Sets sizes of rows from size of pane to be added on
       for(int i=0; i<longueur;i++)
-        grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (longueur)));
+        grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (largeur)));
 
-
+      
       for(Ilot ilot : listeIlot ){
         //Set the isle at the center
         GridPane.setHalignment(ilot.getBtn(), HPos.CENTER);
@@ -226,7 +225,7 @@ public class Grille {
         ilot.setActive(false);
 
       }
-
+      
       return grid;
     }
     /**
@@ -263,14 +262,16 @@ public class Grille {
         }
       }
     }
-
-
+  
 
     public void ilotOnAction(Ilot ilot){
       if (this.getGridPane().lookup("#pop") == null){
         System.out.print("Je clique sur un ilot");
         unsetReds();
-        Ilot ileAct = this.getIlotActif() ;
+        Ilot ileAct = this.getIlotActif();
+        for (int i=0;i<this.getIlots().size();i++) {
+          this.getIlots().get(i).setStyleBase();
+        }
         if (ileAct != null){
           //If the active and clicked isle are neighbours
           if (this.sontVoisin(ileAct, ilot) ){
@@ -286,29 +287,45 @@ public class Grille {
 
               sauvegarde.ajoutCoup(pont);
               sauvegarde.actualiserFichier(fichier_sauvegarde);
-
+              
               ileAct.setActive(false);
               ilot.setActive(false);
               dernierPont = pont;
             }
 
             else {
+              if(Parametre.isAffichage_depassment_cardinalite()){
               ileAct.setActive(false);
               ilot.setActive(false);
+                ileAct.setRed(true);
+                ilot.setRed(true);
+              }
             }
           }
-          else
+          else{
             changeActive(ilot);
+          }
         }
-        else
+        else 
           ilot.setActive(!(ilot.getActive()));
 
-        if(ileAct == ilot || ileAct == null){
-          changeActive(ilot);
+        if(ileAct == ilot){
+          ilot.setActive(false);
+        }
+
+        if (Parametre.isAffichage_depassment_cardinalite()){
+          if (ilot.nbPont() > ilot.getValeur())
+            ilot.setRed(true);
+          if(ileAct.nbPont() > ileAct.getValeur())
+            ileAct.setRed(true);
+          if (ilot.nbPont() == ilot.getValeur())
+            ilot.setBlue(true);
+          if(ileAct.nbPont() == ileAct.getValeur())
+            ileAct.setBlue(true);
+
         }
 
         if (isWin()){
-
           PopUp win = new PopUp(this.parent);
           Score score = new Score();
           gh.getChronometre().halt();
@@ -373,20 +390,20 @@ public class Grille {
     public int calculateWidth(){
       int max=-1;
       for (Ilot ilot : listeIlot){
-        max = ilot.getPosX() > max ? ilot.getPosX() : max;
+        max = ilot.getPosX() > max ? ilot.getPosX() : max; 
       }
       return max+1;
     }
 
     /**
      * Calculate width of the isle grid
-     * @return height of the grid
+     * @return height of the grid 
      * @author Ambre Collard
      */
     public int calculateHeight(){
       int max=-1;
       for (Ilot ilot : listeIlot){
-        max = ilot.getPosY() > max ? ilot.getPosY() : max;
+        max = ilot.getPosY() > max ? ilot.getPosY() : max; 
       }
       return max+1;
     }
@@ -425,7 +442,7 @@ public class Grille {
     public Pane getGridPane(){
       return gridPlace;
     }
-
+    
     /**
      * Sets the style of the isle thanks to Parametre
      * @see Parametre
@@ -452,8 +469,8 @@ public class Grille {
     }
 
     /**
-     * Returns the the currently in game active isle
-     * @return <code>Ilot</code> the currently in game active isle
+     * Returns the the currently in game active isle 
+     * @return <code>Ilot</code> the currently in game active isle 
      * @author Ambre Collard
      */
     public Ilot getIlotActif(){
@@ -478,8 +495,8 @@ public class Grille {
       if (il1.estAligneVerticalement(il2)){
         for(Ilot i : listeIlot){
           if (
-              i.getPosX() == il1.getPosX() &&
-              i.getPosY() > (il1.getPosY() < il2.getPosY() ? il1 : il2).getPosY() &&
+              i.getPosX() == il1.getPosX() && 
+              i.getPosY() > (il1.getPosY() < il2.getPosY() ? il1 : il2).getPosY() && 
               i.getPosY() < (il1.getPosY() > il2.getPosY() ? il1 : il2).getPosY()){
             return false;
           }
@@ -489,8 +506,8 @@ public class Grille {
       else if (il1.estAligneHorizontalement(il2)){
         for (Ilot i : listeIlot){
           if (
-              i.getPosY() == il1.getPosY() &&
-              i.getPosX() > (il1.getPosX() < il2.getPosX() ? il1 : il2).getPosX() &&
+              i.getPosY() == il1.getPosY() && 
+              i.getPosX() > (il1.getPosX() < il2.getPosX() ? il1 : il2).getPosX() && 
               i.getPosX() < (il1.getPosX() > il2.getPosX() ? il1 : il2).getPosX()){
                 return false;
           }
@@ -542,7 +559,7 @@ public class Grille {
 
     /**
      * Reset the ilses' border to their active border state if they are currently red bordered.
-     * @see Ilot#setRed
+     * @see Ilot#setRed 
      */
     public void unsetReds(){
       for(Ilot ilot : listeIlot){
@@ -552,7 +569,7 @@ public class Grille {
     }
 
     /**
-     * Undo/Annule la dernière action et controle l'affichage sur la grille
+     * Undo/Annule la dernière action et controle l'affichage sur la grille 
      * Appelle de la méthode dans GameHandler
      */
     public void annulerAction(){
@@ -564,7 +581,7 @@ public class Grille {
     }
 
     /**
-     * Redo/Rétablir la dernière action et controle l'affichage sur la grille
+     * Redo/Rétablir la dernière action et controle l'affichage sur la grille 
      * Appelle de la méthode dans GameHandler
      */
     public void retablirAction(){
@@ -583,5 +600,21 @@ public class Grille {
     this.fichier_sauvegarde = fichier_sauvegarde;
   }
 
+
+}
+
+
+    public ArrayList<Pont> getAllValidPont(Ilot ilot){
+      ArrayList<Pont> tab = new ArrayList<Pont>();
+        for(Ilot search : this.listeIlot){
+          if (sontVoisin(ilot,search)){
+            Pont p = ilot.liaisonP(search);
+            if(!croisePont(p)) {
+              tab.add(p);
+            }
+          }
+        }
+        return tab;
+      }
 
 }

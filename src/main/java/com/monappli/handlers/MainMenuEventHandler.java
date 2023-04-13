@@ -4,6 +4,9 @@ import com.monappli.BaseDonneeJoueur;
 import com.monappli.Joueur;
 import com.monappli.SauvegardeScore;
 import com.monappli.hashiScene.LevelScene;
+import com.monappli.hashiScene.MainPanel;
+import com.monappli.hashiScene.ProfileScene;
+import com.monappli.hashiScene.TutoScene;
 
 import com.monappli.hashiScene.ScoresScene;
 import javafx.scene.control.Label;
@@ -15,7 +18,7 @@ import java.util.ArrayList;
 
 /**
  * Handler of the main menu
- * @see DynamicEventHandler
+ * @see DynamicEventHandler 
  * @author Collard Ambre
  */
 public class MainMenuEventHandler extends  DynamicEventHandler{
@@ -23,7 +26,7 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
 
     /**
      * Initialization of MainMenuEventHandler
-     * @param parentPane
+     * @param parentPane 
      */
     public MainMenuEventHandler(Pane parentPane){
         super(parentPane);
@@ -40,26 +43,49 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
         LevelScene game= new LevelScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
-        GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
-
+        
     }
 
     /**
      * @throws Exception
      */
     public void tutoClicked() throws Exception {
-        LevelScene game= new LevelScene(this.getParentPane());
+        TutoScene game= new TutoScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
-        GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
     }
 
     /**
-     *
+     * 
      */
     public void challClicked() {
+    }
+
+    public void profileClicked(){
+        if (backGround.lookup("#pop") == null){
+            ProfileScene prof= new ProfileScene(this.getCurPane());
+            try{
+                prof.pasteAndHandle("/view/profileSelection.fxml", new ProfileHandler(this.getCurPane()));
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void rulesClicked(){
+        MainPanel rules= new MainPanel(backGround);
+        try{
+            rules.pasteAndHandle("/view/rulesLayout.fxml", new DynamicEventHandler(backGround));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     public void scoresClicked() throws Exception {
