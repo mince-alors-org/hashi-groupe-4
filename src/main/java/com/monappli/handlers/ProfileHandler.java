@@ -17,10 +17,6 @@ public class ProfileHandler extends DynamicEventHandler{
         super (p);
     }
 
-    public void newClicked(){
-
-    }
-
     public void applyClicked(){
        Joueur j = new Joueur(newJ.getText());
        try {
@@ -36,6 +32,12 @@ public class ProfileHandler extends DynamicEventHandler{
         }
     }
 
+
+    /**
+     * Reloads the panes and removes the active PopUp
+     * @param <H> Event handler
+     * @throws Exception
+     */
     public <H extends DynamicEventHandler> void reload() throws Exception{
 
         H mainH= (H) this.getCurPane().getParent().getUserData();
