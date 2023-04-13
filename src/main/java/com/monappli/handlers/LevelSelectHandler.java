@@ -72,11 +72,11 @@ public class LevelSelectHandler extends DynamicEventHandler{
     public String intToDiff(int diff){
         switch (diff){
             case (1):
-                return "Facile";
+                return "◂    Facile   ▸";
             case(2):
-                return "Moyen";
+                return "◂    Moyen   ▸";
             case(3):
-                return "Difficile";
+                return "◂    Difficile   ▸";
             default:
                 return "???";
         }

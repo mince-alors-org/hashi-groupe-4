@@ -1,0 +1,22 @@
+#title{
+    -fx-effect: dropshadow( gaussian , black , 5, 1.0, 1 , 1 );
+}
+
+.optionalButton{
+    -fx-border-color: transparent;
+    -fx-background-color: transparent;
+    -fx-background-radius: 35px;
+    -fx-pref-height:70.0px;
+    -fx-pref-width:70.0px;
+}
+
+#powerButton{
+    -fx-background-image: url("./textures/icons/powerButton.png");
+}
+
+#paramButton{
+    -fx-background-image: url("./textures/icons/parameters.png");
+}
+
+.gridIm{
+}
