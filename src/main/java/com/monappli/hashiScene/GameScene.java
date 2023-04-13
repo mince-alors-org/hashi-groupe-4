@@ -4,6 +4,7 @@ import com.monappli.Aide;
 import com.monappli.Grille;
 import com.monappli.handlers.GameHandler;
 
+import javafx.scene.layout.Background;
 import javafx.scene.layout.Pane;
 import javafx.scene.canvas.Canvas;
 

@@ -17,6 +17,5 @@ public class TestHashi {
     public void LancementInterface(){
         System.out.println("Test interface globale");
         Application.launch(Hashi.class);
-        
     }
 }
