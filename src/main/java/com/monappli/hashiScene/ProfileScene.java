@@ -10,6 +10,7 @@ import com.monappli.handlers.MainMenuEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
@@ -27,7 +28,7 @@ public class ProfileScene extends PopUp {
     /**
      * Variable of the Pane for the profile selection grid
      */
-    private Pane gridP;
+    private ScrollPane gridP;
 
 
 
@@ -44,7 +45,7 @@ public class ProfileScene extends PopUp {
      * Sets the function attribute as the pane for the gridPlacement
      * @param pane the pane on which the grid will be pasted
      */
-    public void setGridPlace(Pane pane){
+    public void setGridPlace(ScrollPane pane){
         this.gridP= pane;
     }
 
@@ -52,16 +53,16 @@ public class ProfileScene extends PopUp {
     /**
      * @return the pane where the selection grid is pasted
      */
-    public Pane getGridPane(){
+    public ScrollPane getGridPane(){
         return this.gridP;
     }
 
     @Override
     public <H extends DynamicEventHandler> void pasteAndHandle(String res, H hand) throws Exception{
         super.pasteAndHandle(res,hand);
-        this.setGridPlace((Pane)this.getParent().lookup("#gridP"));
+        this.setGridPlace((ScrollPane)this.getParent().lookup("#gridP"));
         VBox pBox= initProfiles();
-        getGridPane().getChildren().add(pBox);
+        getGridPane().setContent(pBox);
         setStyleGrid(pBox);
     }
 
