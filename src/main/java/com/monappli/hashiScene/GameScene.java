@@ -27,6 +27,7 @@ public class GameScene extends MainPanel{
         hand.setLvlNum(lvlName);
         hand.setLvlNum(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) + formateLvlName(lvlName));
         this.grille.setFichier_sauvegarde(BaseDonneeJoueur.getJoueurEmplacementSauvegarde(Hashi.joueur) + formateLvlName(lvlName));
+        this.grille.setGh(hand);
         this.grille.chargerSauvegarde();
         System.out.println(this.grille.getFichier_sauvegarde());
         //hand.getSave().chargerFichier2(hand.getLvlNum());

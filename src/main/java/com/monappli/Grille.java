@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.WinHandler;
 import com.monappli.hashiScene.PopUp;
 import javafx.geometry.HPos;
@@ -40,6 +41,16 @@ public class Grille {
     private Pont dernierPont;
     private int nbTraitAvantModif;
     private String nomF;
+
+  public GameHandler getGh() {
+    return gh;
+  }
+
+  public void setGh(GameHandler gh) {
+    this.gh = gh;
+  }
+
+  private GameHandler gh;
 
 
 
@@ -298,6 +309,14 @@ public class Grille {
         if (isWin()){
 
           PopUp win = new PopUp(this.parent);
+          Score score = new Score();
+          gh.getChronometre().halt();
+          double time = gh.getChronometre().getTime();
+          System.out.println("WINNN" + time);
+          score.computeValue(time);
+
+
+          this.getFichier_sauvegarde();
 
           sauvegarde.effacerFichier(this.getFichier_sauvegarde());
 
