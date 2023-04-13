@@ -36,10 +36,6 @@ public class GameHandler extends TutoGameH {
         select.getChildren().add(selGrid);
     }
 
-    public void lvlTitleClicked() throws Exception{
-        System.out.println("Je fait chier le monde");
-        this.affLvl();
-    }
 
     @Override
     public void paramClicked() throws Exception{
