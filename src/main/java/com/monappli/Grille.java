@@ -275,12 +275,17 @@ public class Grille {
             }
 
             else {
+              if(Parametre.isAffichage_depassment_cardinalite()){
               ileAct.setActive(false);
               ilot.setActive(false);
+                ileAct.setRed(true);
+                ilot.setRed(true);
+              }
             }
           }
-          else
+          else{
             changeActive(ilot);
+          }
         }
         else 
           ilot.setActive(!(ilot.getActive()));
@@ -288,6 +293,18 @@ public class Grille {
         if(ileAct == ilot){
           ilot.setActive(false);
         } 
+
+        if (Parametre.isAffichage_depassment_cardinalite()){
+          if (ilot.nbPont() > ilot.getValeur())
+            ilot.setRed(true);
+          if(ileAct.nbPont() > ileAct.getValeur())
+            ileAct.setRed(true);
+          if (ilot.nbPont() == ilot.getValeur())
+            ilot.setBlue(true);
+          if(ileAct.nbPont() == ileAct.getValeur())
+            ileAct.setBlue(true);
+
+        }
 
         if (isWin()){
           PopUp win = new PopUp(this.parent);

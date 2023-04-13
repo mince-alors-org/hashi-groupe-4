@@ -125,7 +125,7 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 										Color.GREEN, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
-										new BorderWidths(4)
+										new BorderWidths(5)
 							)));
 		}
 			
@@ -134,7 +134,7 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 										Color.BLACK, 
 										BorderStrokeStyle.SOLID, 
 										new CornerRadii(200), 
-										new BorderWidths(4)
+										new BorderWidths(5)
 							)));
 
 		}
@@ -151,7 +151,20 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 											Color.RED, 
 											BorderStrokeStyle.SOLID, 
 											new CornerRadii(200), 
-											new BorderWidths(4)
+											new BorderWidths(5)
+								)));
+		}
+		else 
+			this.setActive(getActive());
+	}
+
+	public void setBlue(boolean act){
+		if(act){
+			this.getBtn().setBorder(new Border(new BorderStroke(
+											Parametre.toColor("#596fff"), 
+											BorderStrokeStyle.SOLID, 
+											new CornerRadii(200), 
+											new BorderWidths(5)
 								)));
 		}
 		else 
