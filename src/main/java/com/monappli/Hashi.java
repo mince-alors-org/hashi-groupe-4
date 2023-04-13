@@ -18,6 +18,7 @@ public class Hashi extends Application {
 
     public static void main(String[] args) {
         Application.launch(Hashi.class);
+        
     }
 
     @Override
