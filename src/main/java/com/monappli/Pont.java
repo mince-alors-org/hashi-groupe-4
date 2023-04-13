@@ -12,18 +12,13 @@ import java.util.ArrayList;
  * Cette classe permet de représenter un Pont
  * @author Morgane Pechon
  */
-public class Pont implements Serializable, Cloneable{
+public class Pont implements Serializable{
 	/**
 	 * Nombre de trait entre les deux îles
 	 */
 	private int nombreTraits;
 
-  @Override
-  protected Object clone() throws CloneNotSupportedException {
-    return super.clone();
-  }
-
-  /**
+	/**
 	 * Table contenant les deux îles relier par le pont
 	 */
 	private ArrayList <Ilot> coords;
@@ -84,6 +79,8 @@ public class Pont implements Serializable, Cloneable{
 	/**
 	 * Permet de savoir si un pont est verticale
 	 *
+	 * @param i1 le premier îlot su pont
+	 * @param i2 le sexond îlot du pont
 	 * @return true si le pont est verticale (si ils ont le même x)
 	 */
 	public boolean estVerticale()
@@ -185,8 +182,8 @@ public class Pont implements Serializable, Cloneable{
 	}
 
 	/**
-	 * Permet d'afficher le pont entre deux iles avec ses nombre de traits correspondants (2 traits max)
-   * Efface tout traits avant chaque affichage
+	 * Permet d'afficher le pont entre deux iles
+	 * @param doublon true si il existe déjà un trait entre ces deux îles
 	 * @param fond est le canvas qui permet l'affichage
 	*/
 	public void affiche(Canvas fond){
@@ -195,9 +192,7 @@ public class Pont implements Serializable, Cloneable{
 		GraphicsContext gc=fond.getGraphicsContext2D();
 		gc.setStroke(Parametre.getCouleur_pont());
 
-
 		this.erase(fond);
-
 
 
     double width = this.getIle1().getBtn().getPrefWidth();
@@ -205,10 +200,8 @@ public class Pont implements Serializable, Cloneable{
     double height = this.getIle1().getBtn().getPrefHeight();
 
 
-
 		if (this.getNbTraits()==2){
 			if (this.estHorizontale()){
-
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-(height/6));
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+(height/6));
 			}
@@ -228,7 +221,7 @@ public class Pont implements Serializable, Cloneable{
 
 
 	/**
-	 * Permet d'effacer les traits pour un pont sur le canvas
+	 * Permet d'effacer les traits entre les Ilots sur le Canvas
 	 * @param fond le canvas à manipuler
 	 */
 	public void erase(Canvas fond){
@@ -249,22 +242,16 @@ public class Pont implements Serializable, Cloneable{
     double height = this.getIle1().getBtn().getPrefHeight();
 
 
-
-
-
-
 		if (this.estVerticale()){
 
       //gc.strokeArc(x1-(width/2),y1,width,y2-y1,120,360, ArcType.CHORD);
 			gc.clearRect(x1-(width/2)+10,y1,width-20,y2-y1);
-
 		}
 		else {
 
 
       //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
 			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
-
 		}
 
 

@@ -88,7 +88,6 @@ public class ParamHandler extends DynamicEventHandler{
     }
     /** */
     public void okAideVis(){
-        System.out.println(aideVis);
         if( aideVis.getText().equals("On")){
             aideVis.setText("Off");
         }else{

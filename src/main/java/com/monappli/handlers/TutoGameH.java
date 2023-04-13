@@ -34,7 +34,6 @@ public abstract class TutoGameH extends DynamicEventHandler{
     }
 
     public void restClicked(){
-        System.out.println("Je suis rest");
         this.grille.remiseZero();
     }
 
@@ -79,11 +78,9 @@ public abstract class TutoGameH extends DynamicEventHandler{
         p.setText(Aide.checkErreur());
     }
     public void redoClicked(){
-        System.out.println("Je suis redo");
         this.grille.retablirAction();
     }
     public void undoClicked(){
-        System.out.println("Je suis undo");
         this.grille.annulerAction();
     }
     @Override

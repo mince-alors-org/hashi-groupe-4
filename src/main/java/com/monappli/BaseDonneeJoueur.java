@@ -17,14 +17,15 @@ import javafx.scene.paint.Color;
 
 /**
  * Représente une base de données comprenant une liste de joueurs
+ *
  * @author Ambre Collard
  */
 public class BaseDonneeJoueur implements Serializable{
     public static String directory="src/main/resources/profiles/";
 
-
     /**
      * Creates a File if the player doesn't already exists in the database.
+     *
      * @param joueur the player
      * @author Ambre Collard
      */
@@ -97,9 +98,9 @@ public class BaseDonneeJoueur implements Serializable{
         return false;
     }
 
-
     /**
      * Set the parameters of from the player's file
+     *
      * @throws Exception if the player's file couldn't be opened
      * @author Ambre Collard
      */
@@ -111,6 +112,7 @@ public class BaseDonneeJoueur implements Serializable{
 
     /**
      * Writes the default parameters for a new player in the database
+     *
      * @param joueur the player
      * @throws Exception if the file couldn't be created
      * @author Ambre Collard
@@ -129,8 +131,10 @@ public class BaseDonneeJoueur implements Serializable{
 
     /**
      * Verify if a players already exists in the database
+     *
      * @param nomF the file name
-     * @return <code>true</code> if the profile's folder contains the file name, <code>false</code> otherwise
+     * @return <code>true</code> if the profile's folder contains the file name,
+     *         <code>false</code> otherwise
      * @author Ambre Collard
      */
     public static boolean exists(String nomF){
@@ -156,7 +160,7 @@ public class BaseDonneeJoueur implements Serializable{
     /**
      * Changes the current player to another if it exists in the database
      * @param nextJ the new current player
-     * @return <code>true</code> if the new player exists in the database, <code>false</code> otherwise
+     * @return <code>true</code> if the new player exists in the database, <code>false</code> otherwise 
      * @throws Exception if the folder couldn't be opened
      * @author Ambre Collard
      */
@@ -260,7 +264,7 @@ public class BaseDonneeJoueur implements Serializable{
         catch(Exception e){
             e.printStackTrace();
         }
-
+        
     }
 
     /**

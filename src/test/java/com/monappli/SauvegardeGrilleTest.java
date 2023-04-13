@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 import java.io.File;
 import java.io.IOException;
 
-import javafx.application.Application;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -21,8 +20,6 @@ import java.awt.*;
 public class SauvegardeGrilleTest {
     private SauvegardeGrille sauvegarde;
     private Parametre parametre;
-
-    private Chrono chrono;
     private Ilot ilot1;
     private Ilot ilot2;
     private Pont p1;
@@ -31,8 +28,7 @@ public class SauvegardeGrilleTest {
     private BaseDonneeJoueur bdd;
 
     @BeforeAll
-    void initAll() throws Exception{
-        this.chrono = new Chrono();
+    void initAll() throws Exception {
         this.sauvegarde = new SauvegardeGrille();
         this.bdd = new BaseDonneeJoueur();
         this.parametre = new Parametre();
@@ -61,7 +57,7 @@ public class SauvegardeGrilleTest {
         else{
             sauvegarde.chargerFichier(fichier_sauvegarde);
         }
-
+        
         assertEquals(14, sauvegarde.getPileCoupsSize());
     }
 
@@ -69,7 +65,7 @@ public class SauvegardeGrilleTest {
     void afficheOk(TestInfo testInfo){
         System.out.println(testInfo.getDisplayName() + " Ok");
     }
-
+    
     @Test
     public void ajoutUnPont(){
         System.out.println("Nom du fichier " + fichier_sauvegarde);
@@ -135,34 +131,18 @@ public class SauvegardeGrilleTest {
         }
         System.out.println(parametre.toString());
         System.out.println(bdd.toString());
-
+        
     }
 
-    @Test
-    void sauvegarde_chrono_time(){
-      Application.launch(Hashi.class);
-      this.chrono.start();
-      try {
-        Thread.sleep(100);
-        this.chrono.halt();
-      } catch (InterruptedException e) {
-        throw new RuntimeException(e);
-      }
-
-      System.out.println(this.chrono.getTime());
-
-
-    }
-
-
+    
 }
 
+       
 
 
 
 
-
-
+    
 
 
 

@@ -26,7 +26,7 @@ public class ProfileHandler extends DynamicEventHandler{
     public void applyClicked(){
        Joueur j = new Joueur(newJ.getText());
        try {
-            if(newJ.getText()!= "" &&  BaseDonneeJoueur.addJoueur(j) == true){
+            if(!newJ.getText().trim().isEmpty() &&  BaseDonneeJoueur.addJoueur(j) == true){
                 BaseDonneeJoueur.changePlayer(j);
                 reload();
             }

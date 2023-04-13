@@ -135,10 +135,11 @@ public class Grille {
            largeur= calculateHeight();
            longueur= calculateWidth();
 
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
     }
+  }
+
 
     public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
       
@@ -266,37 +267,36 @@ public class Grille {
     }
   
 
-    public void ilotOnAction(Ilot ilot){
-      if (this.getGridPane().lookup("#pop") == null){
-        System.out.print("Je clique sur un ilot");
-        unsetReds();
-        Ilot ileAct = this.getIlotActif();
-        for (int i=0;i<this.getIlots().size();i++) {
-          this.getIlots().get(i).setStyleBase();
-        }
-        if (ileAct != null){
-          //If the active and clicked isle are neighbours
-          if (this.sontVoisin(ileAct, ilot) ){
+  public void ilotOnAction(Ilot ilot) {
+    if (this.getGridPane().lookup("#pop") == null) {
+      unsetReds();
+      Ilot ileAct = this.getIlotActif();
+      for (int i = 0; i < this.getIlots().size(); i++) {
+        this.getIlots().get(i).setStyleBase();
+      }
+      if (ileAct != null) {
+        // If the active and clicked isle are neighbours
+        if (this.sontVoisin(ileAct, ilot)) {
 
-            //Get what could be the bridge
-            Pont pont = ileAct.liaisonP(ilot);
+          // Get what could be the bridge
+          Pont pont = ileAct.liaisonP(ilot);
 
-            //If it doesn't cross another bridge
-            if (!this.croisePont(pont)){
-              nbTraitAvantModif = pont.getNbTraits();
-              pont.incrementer();
-              pont.affiche(fond);
+          // If it doesn't cross another bridge
+          if (!this.croisePont(pont)) {
+            nbTraitAvantModif = pont.getNbTraits();
+            pont.incrementer();
+            pont.affiche(fond);
 
-              sauvegarde.ajoutCoup(pont);
-              sauvegarde.actualiserFichier(fichier_sauvegarde);
-              
-              ileAct.setActive(false);
-              ilot.setActive(false);
-              dernierPont = pont;
-            }
+            sauvegarde.ajoutCoup(pont);
+            sauvegarde.actualiserFichier(fichier_sauvegarde);
 
-            else {
-              if(Parametre.isAffichage_depassment_cardinalite()){
+            ileAct.setActive(false);
+            ilot.setActive(false);
+            dernierPont = pont;
+          }
+
+          else {
+            if (Parametre.isAffichage_depassment_cardinalite()) {
               ileAct.setActive(false);
               ilot.setActive(false);
                 ileAct.setRed(true);
@@ -313,7 +313,7 @@ public class Grille {
 
         if(ileAct == ilot){
           ilot.setActive(false);
-        }
+        } 
 
         if (Parametre.isAffichage_depassment_cardinalite()){
           if (ilot.nbPont() > ilot.getValeur())
