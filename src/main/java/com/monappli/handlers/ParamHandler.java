@@ -1,88 +1,115 @@
 package com.monappli.handlers;
 
-import java.net.NetworkInterface;
-
+import com.monappli.BaseDonneeJoueur;
 import com.monappli.Parametre;
 import com.monappli.hashiScene.MainPanel;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
+/**
+ * Handler to set new Parameters
+ * @author Ambre Collard
+ */
 public class ParamHandler extends DynamicEventHandler{
 
-    private Color newTextColor;
-    private Color newBgColor;
-    private Color newIsleColor;
-    private Color newbridgeColor;
-
+    /**
+     * Back Button
+     */
     @FXML
     private Button backButton;
 
+    /**
+     * Color picker for the text color
+     */
     @FXML
     private ColorPicker textPicker;
 
+    /**
+     * Color picker for the background color
+     */
     @FXML
     private ColorPicker bgPicker;
 
+    /**
+     * Color picker for the isle color
+     */
     @FXML
     private ColorPicker islePicker;
 
+    /**
+     * Color picker for the bridge color 
+     */
     @FXML
     private ColorPicker bridgePicker;
 
+    /**
+     * Background Pane for the parameter Pop-up 
+     */
     @FXML
     private Pane paramPane;
 
+    /**
+     * Toggel bouton on off
+     */
+    @FXML
+    private ToggleButton aideVis;
+
+    /**
+     * Initialization of ParamHandler
+     * @param parent parent of currently handled pane
+     * @author Ambre Collard
+     */
     public ParamHandler(Pane parent){
         super(parent);
-        this.setCurPane(paramPane);
     }
 
+    /**
+     * Action when backButton is clicked. Remove the current PopUp (parameters)
+     * @author Ambre Collard
+     */
     public void backClicked(){
         this.getParentPane().getChildren().remove(this.getParentPane().lookup("#pop"));
     }
 
+    /**
+     * Sets all the color Picker to the colors in Parametre
+     * @see Parametre
+     * @author Ambre Collard
+     */
     public void setAll(){
         textPicker.setValue(Parametre.getCouleur_texte());
         bgPicker.setValue(Parametre.getCouleur_fond());
         islePicker.setValue(Parametre.getCouleur_ilot());
         bridgePicker.setValue(Parametre.getCouleur_pont());
     }
-
-    public void textPickerClicked(){
-        this.newTextColor= textPicker.getValue();
+    /** */
+    public void okAideVis(){
+        System.out.println(aideVis);
+        if( aideVis.getText().equals("On")){
+            aideVis.setText("Off");
+        }else{
+            aideVis.setText("On");
+        }
     }
+    /**
+     * Changes to the new parameters if they were selected
+     * @throws Exception if the MainPanel can't load
+     * @author Ambre Collard
+     */
+    public <H extends DynamicEventHandler> void changeAll() throws Exception{
+        Parametre.setCouleur_fond(bgPicker.getValue());
+        Parametre.setCouleur_ilot(islePicker.getValue());
+        Parametre.setCouleur_pont(bridgePicker.getValue());
+        Parametre.setCouleur_texte(textPicker.getValue());
+        Parametre.setAffichage_depassment_cardinalite(aideVis.getText().equals("On"));
 
-    public void ilsePickerClicked(){
-        this.newIsleColor= islePicker.getValue();
-    }
+        BaseDonneeJoueur.saveParam();
 
-    public void bridgePickerClicked(){
-        this.newbridgeColor= bridgePicker.getValue();
-    }
-
-    public void bgPickerClicked(){
-        this.newBgColor= bgPicker.getValue();
-    }
-
-    public void changeAll() throws Exception{
-
-        if (newBgColor !=null)
-            Parametre.setCouleur_fond(newBgColor);
-        if(newIsleColor != null)
-            Parametre.setCouleur_ilot(newIsleColor);
-        if(newbridgeColor != null)
-            Parametre.setCouleur_pont(newbridgeColor);
-        if(newTextColor!=null)
-            Parametre.setCouleur_texte(newTextColor);
-
-        Handler mainH= (Handler) paramPane.getParent().getUserData();
+        H mainH= (H) paramPane.getParent().getUserData();
         Pane parent = (Pane)paramPane.getParent();
 
         Pane grandparent=(Pane)(parent.getParent());
@@ -92,9 +119,11 @@ public class ParamHandler extends DynamicEventHandler{
 
         MainPanel main= new MainPanel(grandparent);
         main.pasteAndHandle(parent, mainH);
-        
 
+    }
 
+    public Pane getParamPane(){
+        return paramPane;
     }
 
 

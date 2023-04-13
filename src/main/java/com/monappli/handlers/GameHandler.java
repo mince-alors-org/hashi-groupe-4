@@ -1,54 +1,49 @@
 package com.monappli.handlers;
 
+
+import com.monappli.Aide;
+import java.io.IOException;
+
+import com.monappli.Grille;
+import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
 import javafx.stage.Stage;
-
-public class GameHandler extends DynamicEventHandler {
-    @FXML
-    private Pane gameBG;
-
-    @FXML
-    private Button paramButton; 
-
-    @FXML
-    private Button powerButton;
-
-    @FXML
-    private Button undoButton;
-
-    @FXML
-    private Button helpButton;
-
+/**
+ * In game handler 
+ * @author Ambre Collard
+ */
+public class GameHandler extends TutoGameH {
 
     public GameHandler(Pane parent){
         super(parent);
     }
 
-    public void quitClicked(){
-        Stage stage = (Stage) powerButton.getScene().getWindow();
-        stage.close();
-        System.out.println("Je quitte");
+    public void lvlTitleClicked() throws Exception{
+        LevelScene game= new LevelScene(this.getParentPane());
+        game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
+        Pane select= (Pane)game.getCurPane().lookup("#selectPane");
+        GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        select.getChildren().add(selGrid);
     }
 
+
+    @Override
     public void paramClicked() throws Exception{
-        if (gameBG.lookup("#pop") == null){
+        if (backGround.lookup("#pop") == null){
             PopUp pop = new PopUp(this.getCurPane());
-            ParamHandler paramH= new ParamHandler(this.gameBG);
+            GameParamHandler paramH= new GameParamHandler(this.backGround, this.getGrille() );
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
-            System.out.println("Je suis Paramètre");
         }
-    }
-
-    public void undoClicked(){
-        System.out.println("Je suis undo");
-    }
-
-    public void helpClicked(){
-        System.out.println("Je suis Aide");
     }
 }

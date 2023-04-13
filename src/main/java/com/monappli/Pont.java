@@ -2,6 +2,8 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -9,15 +11,21 @@ import java.util.ArrayList;
  * Cette classe permet de représenter un Pont
  * @author Morgane Pechon
  */
-public class Pont {
+public class Pont implements Serializable{
 	/**
 	 * Nombre de trait entre les deux îles
 	 */
 	private int nombreTraits;
+
 	/**
 	 * Table contenant les deux îles relier par le pont
 	 */
 	private ArrayList <Ilot> coords;
+
+	/**
+	 * grille principale du niveau en cours
+	 */
+
 	/**
 	 *
 	 * @param ile1 Depart du pont
@@ -41,6 +49,12 @@ public class Pont {
 		ile1.calculValeur(nbTraits);
 		ile2.calculValeur(nbTraits);
 	}
+	/**
+	 * remise à zero du nombre de trait
+	 */
+	public void remiseZero(){
+		this.nombreTraits=0;
+	}
 
 	/**
 	 *@return nombreTraits indique la quantiter de trait afficher
@@ -60,6 +74,84 @@ public class Pont {
 	public Ilot getIle2(){
 		return this.coords.get(1);
 	}
+
+	/**
+	 * Permet de savoir si un pont est verticale
+	 *
+	 * @param i1 le premier îlot su pont
+	 * @param i2 le sexond îlot du pont
+	 * @return true si le pont est verticale (si ils ont le même x)
+	 */
+	public boolean estVerticale()
+	{
+		return this.getIle1().estAligneVerticalement(getIle2());
+	}
+
+	public boolean estHorizontale()
+	{
+		return this.getIle1().estAligneHorizontalement(getIle2());
+	}
+
+	/**
+	 * Permet de savoir si un pont en croise un autre.
+	 *
+	 * @param p l'autre pont
+	 * @return true si les deux ponts se croisent, false sinon
+	 */
+	public boolean croise(Pont p)
+	{
+		if (this==p)
+			return false;
+
+		if (p.getNbTraits() == 0)
+			return false;
+
+		if(p.estVerticale() == this.estVerticale())
+		{
+			return false;
+		}
+		else
+		{
+			if(estHorizontale())
+			{
+				if(
+					(
+						//on vérifie si le x de p est entre nos deux x
+						(getIle1().getPosX() > p.getIle1().getPosX() && getIle2().getPosX() < p.getIle1().getPosX() ) ||
+				   		(getIle1().getPosX() < p.getIle1().getPosX() && getIle2().getPosX() > p.getIle1().getPosX())
+					) &&
+					(
+						//on vérifie si notre y est entre deux y de p
+						(getIle1().getPosY() > p.getIle1().getPosY() && getIle1().getPosY() < p.getIle2().getPosY()) ||
+						(getIle1().getPosY() < p.getIle1().getPosY() && getIle1().getPosY() > p.getIle2().getPosY())
+					)
+				   )
+				{
+					return true ;
+				}
+			}
+			else
+			{
+				if(
+					(
+						//on vérifie si notre x est entre deux x de p
+						(getIle1().getPosX() > p.getIle1().getPosX() && getIle1().getPosX() < p.getIle2().getPosX() ) ||
+				   		(getIle1().getPosX() < p.getIle1().getPosX() && getIle1().getPosX() > p.getIle2().getPosX())
+					) &&
+					(
+						//on vérifie si le y de p est entre nos deux y
+						(getIle1().getPosY() > p.getIle1().getPosY() && getIle2().getPosY() < p.getIle1().getPosY()) ||
+						(getIle1().getPosY() < p.getIle1().getPosY() && getIle2().getPosY() > p.getIle1().getPosY())
+					)
+				   )
+				{
+					return true ;
+				}
+			}
+			return false;
+		}
+	}
+
 	/**
 	 * Incrémente le nombre de pont entre les deux îles
 	 */
@@ -70,15 +162,8 @@ public class Pont {
 			this.nombreTraits++;
 	}
 	/**
-	 * Renvoit la taille du trait entre les deux île
-	 * @return int taille du trai parapore au coordonée des l'îles
-	 */
-	public double tailleTrait(){
-		return Math.sqrt(Math.pow((this.getIle1().getCanvasX())-(this.getIle2().getCanvasX()),2)+Math.pow((getIle1().getCanvasY())-(getIle2().getCanvasY()),2));
-	}
-	/**
 	 * permet de trouver le voisin de l'ile entrée en paramètre
-	 * @param a Ilot qui recherche sont voisin
+	 * @param a Ilot qui recherche son voisin
 	 * @return Ilot opposer à l'ile entrée en paramètre
 	 */
 	public Ilot voisin(Ilot a){
@@ -96,27 +181,107 @@ public class Pont {
 	}
 
 	/**
-	 * Permet d'afficher le pont entre deux ile
-	 * @param fond et le canva qui permet l'affichage
+	 * Permet d'afficher le pont entre deux iles
+	 * @param doublon true si il existe déjà un trait entre ces deux îles
+	 * @param fond est le canvas qui permet l'affichage
 	*/
 	public void affiche(Canvas fond){
-		this.incrementer();
-		GraphicsContext gc=fond.getGraphicsContext2D();
-		System.out.println("Ilot 1 :");
-		System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle1().getCanvasY());
 
-		System.out.println("Ilot 2 :");
-		System.out.println(this.getIle2().getCanvasX());
-		System.out.println(this.getIle2().getCanvasY());
-		gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
+
+		GraphicsContext gc=fond.getGraphicsContext2D();
+		gc.setStroke(Parametre.getCouleur_pont());
+
+		this.erase(fond);
+
+
+    double width = this.getIle1().getBtn().getPrefWidth();
+
+    double height = this.getIle1().getBtn().getPrefHeight();
+
+
+		if (this.getNbTraits()==2){
+			if (this.estHorizontale()){
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-(height/6));
+				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+(height/6));
+			}
+			else {
+				gc.strokeLine(this.getIle1().getCanvasX()-(width/6),this.getIle1().getCanvasY(),this.getIle2().getCanvasX()-(width/6),this.getIle2().getCanvasY());
+				gc.strokeLine(this.getIle1().getCanvasX()+(width/6),this.getIle1().getCanvasY(),this.getIle2().getCanvasX()+(width/6),this.getIle2().getCanvasY());
+			}
+
+		}
+		else if (this.getNbTraits()==1) {
+
+			gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY(),this.getIle2().getCanvasX(),this.getIle2().getCanvasY());
+		}
+
 
 	}
 
-  @Override
+
+	/**
+	 * Permet d'effacer les traits entre les Ilots sur le Canvas
+	 * @param fond le canvas à manipuler
+	 */
+	public void erase(Canvas fond){
+		GraphicsContext gc = fond.getGraphicsContext2D();
+
+		double x1 = Math.min(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
+
+		double y1 = Math.min(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+
+		double x2 = Math.max(this.getIle1().getCanvasX(),this.getIle2().getCanvasX());
+
+		double y2 = Math.max(this.getIle1().getCanvasY(),this.getIle2().getCanvasY());
+
+
+
+    double width = this.getIle1().getBtn().getPrefWidth();
+
+    double height = this.getIle1().getBtn().getPrefHeight();
+		System.out.println(y1);
+		System.out.println(y2);
+
+
+		System.out.println();
+
+
+		System.out.println(this.getIle1().getCanvasX());
+		System.out.println(this.getIle2().getCanvasX());
+
+
+		if (this.estVerticale()){
+
+      //gc.strokeArc(x1-(width/2),y1,width,y2-y1,120,360, ArcType.CHORD);
+			gc.clearRect(x1-(width/2)+10,y1,width-20,y2-y1);
+      System.out.println("verticale");
+		}
+		else {
+
+
+      //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
+			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
+      System.out.println("horizontale");
+      System.out.println("OGHHHHHHH" +this.getIle1().getBtn().getPrefWidth());
+		}
+
+
+
+	}
+
+	public void setNombreTraits(int nombreTraits) {
+		this.nombreTraits = nombreTraits;
+	}
+
+	public boolean equals(Pont p){
+		return ((this.getIle1()==p.getIle1() && this.getIle2()==p.getIle2()) || (this.getIle1()== p.getIle2() && this.getIle2()==p.getIle1()))
+				&& (this.getNbTraits() == p.getNbTraits());
+	}
+
+	@Override
   public String toString() {
     return "Pont{" +
-      "nombreTraits=" + nombreTraits;
+      "nombreTraits=" + nombreTraits +"}";
 
   }
 }

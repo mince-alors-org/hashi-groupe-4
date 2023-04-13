@@ -1,0 +1,8 @@
+.winMsg{
+    -fx-effect: dropshadow( gaussian , black , 5, 1.0, 1 , 1 );
+}
+
+.buttons{
+    -fx-pref-height:40.0px;
+    -fx-pref-width:125.0px;
+}

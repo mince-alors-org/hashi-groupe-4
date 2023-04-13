@@ -35,13 +35,23 @@
     -fx-background-image: url("./textures/icons/parameters.png");
 }
 
-#undoButton{
+#restButton{
     -fx-background-color: white;
     -fx-background-image: url("./textures/icons/undo.png");
+}
+#undo{
+    -fx-background-color: white;
+}
+#redo{
+    -fx-background-color: white;
 }
 #aideButton{
     -fx-background-color: white;
     -fx-background-image: url("./textures/icons/lamp.png");
+}
+#detectErr{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/loupe.png");
 }
 
 
