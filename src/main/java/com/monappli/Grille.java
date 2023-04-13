@@ -40,6 +40,7 @@ public class Grille {
     private String fichier_sauvegarde;
     private Pont dernierPont;
     private int nbTraitAvantModif;
+    private String nomF;
 
     /**
      * Initialisation de la grille
