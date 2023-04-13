@@ -51,7 +51,6 @@ public class GameHandler extends DynamicEventHandler {
         System.out.println("Je suis Aide");
     }
     public void errClicked(){
-        System.out.println("Je detecte 1 erreur");
         Popup po=new Popup();
         po.setX(205);
         po.setY(304);
@@ -83,7 +82,7 @@ public class GameHandler extends DynamicEventHandler {
         LevelScene game= new LevelScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
-        GridPane selGrid= game.initGrid(LevelScene.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
+        GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
     }
 
