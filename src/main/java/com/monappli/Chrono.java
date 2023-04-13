@@ -55,6 +55,11 @@ public class Chrono extends Thread{
     this.time = time;
   }
 
+  @Override
+  public void interrupt() {
+    super.interrupt();
+    Thread.currentThread().interrupt();
+  }
 
   @Override
   public void run() {

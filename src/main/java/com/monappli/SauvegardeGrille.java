@@ -40,7 +40,13 @@ public class SauvegardeGrille implements Serializable{
      */
     public void ajoutCoup(Pont p1){
         if(p1 != null){
-            pileCoups.add(p1);
+          Pont p = null;
+          try {
+            p = (Pont)p1.clone();
+          } catch (CloneNotSupportedException e) {
+            throw new RuntimeException(e);
+          }
+          pileCoups.add(p);
         }
     }
 
@@ -189,10 +195,10 @@ public class SauvegardeGrille implements Serializable{
   /**
    * Permet d'effacer les fichiers de sauvegarde (le fichier deviendra vide)
    */
-  public void effacerFichier(){
+  public void effacerFichier(String path){
       PrintWriter writer = null;
       try {
-        writer = new PrintWriter("src/test/java/com/monappli/save_move.txt");
+        writer = new PrintWriter(path);
         writer.print("");
         writer.close();
       } catch (FileNotFoundException e) {

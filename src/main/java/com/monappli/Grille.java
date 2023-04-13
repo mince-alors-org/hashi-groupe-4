@@ -229,22 +229,28 @@ public class Grille {
           /**
            * On itère sur un ilot de la listeIlot et on vérifie ses voisins pour former un pont
            */
-          for (Ilot ilot : this.listeIlot) {
-              for (Pont pont : sauvegarde.getPileCoups()) {
-                for(Ilot ilot2: this.listeIlot){
-                  if(this.sontVoisin(ilot2, ilot) && !ilot.equals(ilot2)){
-                    Pont pontVoisin = ilot.liaisonP(ilot2);
-                    /**
-                     * En comparant les 2 ilots voisins aux ilots composant un pont depuis la sauvegarde, on affiche le pont et on met le nombre de trait du pont de listeIlot à celui du pont de la sauvegarde
-                     */
-                    if (ilot.equals(pont.getIle1()) && ilot2.equals(pont.getIle2())) {
-                      pont.affiche(fond);
-                  }
-                }
+      for (Pont pont : sauvegarde.getPileCoups())
+        System.out.println(pont);
+      for (Ilot ilot : this.listeIlot) {
+        for (Pont pont : sauvegarde.getPileCoups()) {
+
+          for(Ilot ilot2: this.listeIlot){
+            if(this.sontVoisin(ilot2, ilot) && !ilot.equals(ilot2)){
+              Pont pontVoisin = ilot.liaisonP(ilot2);
+
+              /**
+               * En comparant les 2 ilots voisins aux ilots composant un pont depuis la sauvegarde, on affiche le pont et on met le nombre de trait du pont de listeIlot à celui du pont de la sauvegarde
+               */
+              if (ilot.equals(pont.getIle1()) && ilot2.equals(pont.getIle2())) {
+                pontVoisin.setNombreTraits(pont.getNbTraits());
+                pontVoisin.affiche(fond);
+
               }
             }
           }
+        }
       }
+    }
 
 
 
@@ -290,7 +296,11 @@ public class Grille {
         }
 
         if (isWin()){
+
           PopUp win = new PopUp(this.parent);
+
+          sauvegarde.effacerFichier(this.getFichier_sauvegarde());
+
           try{
             win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent, getLvlName()));
           }

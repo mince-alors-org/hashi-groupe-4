@@ -2,6 +2,7 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,13 +12,18 @@ import java.util.ArrayList;
  * Cette classe permet de représenter un Pont
  * @author Morgane Pechon
  */
-public class Pont implements Serializable{
+public class Pont implements Serializable, Cloneable{
 	/**
 	 * Nombre de trait entre les deux îles
 	 */
 	private int nombreTraits;
 
-	/**
+  @Override
+  protected Object clone() throws CloneNotSupportedException {
+    return super.clone();
+  }
+
+  /**
 	 * Table contenant les deux îles relier par le pont
 	 */
 	private ArrayList <Ilot> coords;
@@ -189,11 +195,9 @@ public class Pont implements Serializable{
 		GraphicsContext gc=fond.getGraphicsContext2D();
 		gc.setStroke(Parametre.getCouleur_pont());
 
+
 		this.erase(fond);
-		System.out.println("Ilot 1 :");
 
-
-		System.out.println("Ilot 2 :");
 
 
     double width = this.getIle1().getBtn().getPrefWidth();
@@ -201,8 +205,10 @@ public class Pont implements Serializable{
     double height = this.getIle1().getBtn().getPrefHeight();
 
 
+
 		if (this.getNbTraits()==2){
 			if (this.estHorizontale()){
+
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()-(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()-(height/6));
 				gc.strokeLine(this.getIle1().getCanvasX(),this.getIle1().getCanvasY()+(height/6),this.getIle2().getCanvasX(),this.getIle2().getCanvasY()+(height/6));
 			}
@@ -241,30 +247,24 @@ public class Pont implements Serializable{
     double width = this.getIle1().getBtn().getPrefWidth();
 
     double height = this.getIle1().getBtn().getPrefHeight();
-		System.out.println(y1);
-		System.out.println(y2);
 
 
-		System.out.println();
 
 
-		System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle2().getCanvasX());
 
 
 		if (this.estVerticale()){
 
       //gc.strokeArc(x1-(width/2),y1,width,y2-y1,120,360, ArcType.CHORD);
 			gc.clearRect(x1-(width/2)+10,y1,width-20,y2-y1);
-      System.out.println("verticale");
+
 		}
 		else {
 
 
       //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
 			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
-      System.out.println("horizontale");
-      System.out.println("OGHHHHHHH" +this.getIle1().getBtn().getPrefWidth());
+
 		}
 
 
