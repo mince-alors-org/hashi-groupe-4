@@ -158,7 +158,7 @@ public class BaseDonneeJoueur implements Serializable{
      * @param nextJ the new current player
      * @return <code>true</code> if the new player exists in the database, <code>false</code> otherwise
      * @throws Exception if the folder couldn't be opened
-     * @author Ambre
+     * @author Ambre Collard
      */
     public static boolean changePlayer( Joueur nextJ) throws Exception{
         if (!exists(nextJ))
@@ -279,7 +279,7 @@ public class BaseDonneeJoueur implements Serializable{
      * @throws IOException
      * @author Ambre Collard
      */
-    public static void deleteDirectoryRecursion(Path path) throws IOException {
+    private static void deleteDirectoryRecursion(Path path) throws IOException {
         if (Files.isDirectory(path, LinkOption.NOFOLLOW_LINKS)) {
           try (DirectoryStream<Path> entries = Files.newDirectoryStream(path)) {
             for (Path entry : entries) {
@@ -288,8 +288,16 @@ public class BaseDonneeJoueur implements Serializable{
           }
         }
         Files.delete(path);
-      }
+    }
 
+    /**
+     * @return the number of players in the database
+     * @throws Exception
+     * @author Ambre Collard
+     */
+    public static int getNumberPlayers() throws Exception{
+            return  getAllPlayers().size();
+    }
 }
 
 

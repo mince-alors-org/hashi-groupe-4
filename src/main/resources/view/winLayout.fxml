@@ -34,7 +34,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="105.0" prefWidth="175.0">
                      <children>
-                        <Button fx:id="lvlButton" mnemonicParsing="false" onAction="#lvlClicked" styleClass="buttons" text="Menu Niveaux" />
+                        <Button fx:id="lvlButton" mnemonicParsing="false" onAction="#lvlClicked" styleClass="buttons" text="Prochain Niveau" />
                      </children>
                   </VBox>
                </children></HBox>
