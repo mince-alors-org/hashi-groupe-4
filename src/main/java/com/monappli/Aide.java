@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.Map.Entry;
 
 /**
  * Cette classe permet de proposer différents types d'aides au joueur :
@@ -31,13 +30,13 @@ import java.util.Map.Entry;
         "Les îles qui ont 1 ou 2 cardinalités et qui n'ont qu'un voisin sont forcement liées a celui-ci");
 
         technique.put("Iles 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins",
-        "Une île marquée 3 avec 2 voisins doit obligatoire être reliée au moins une fois avec tous ses voisins, il en va de même pour les îles de valeur 5 qui vont trois voisins et les iles de valeur 7 avec quatre voisins");
+        "Une île marquée 3 avec 2 voisins doit obligatoirement être reliée au moins une fois avec tous ses voisins, il en va de même pour les îles de valeur 5 qui vont trois voisins et les iles de valeur 7 avec quatre voisins");
 
         technique.put("Cas spécial des 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins",
         "Si une île est de valeur 3 et qu'un de ses voisins est une île avec l'indice 1, alors toutes les conditions sont réunies et les 3 ponts peuvent être tracés, la même logique peut être appliquée si une île de valeur 5 sur le côté ou une île de valeur 7 au milieu a pour voisin une île marquée par un 1");
 
         technique.put("Iles aux millieux avec 6 de cardinalités", 
-        "Si un Ilot a 6 cardinalité a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités: \n - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pont avec tout ses autres voisins \n - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponts avec tout ses voisins");
+        "Si une île est de valeur 6 et a 4 voisins et que l'un d'entre eux a 1 de cardinalité alors il y a 2 possibilités: \n - si l'ilot avec 1 de cardinalité est forcement liée a l'ilot 6 alors celui-ci a minimum 1 pont avec tout ses autres voisins \n - si l'ilot avec 1 de cardinalité n'est pas liée a l'ilot 6 alors celui-ci a forcement 2 ponts avec tout ses voisins");
 
         technique.put("Isolation des segments",
         "Il est interdit qu'un bloc d'île soit isolé du reste des autres, lorsqu'il y a 2 îles de cardinalité 1 ou deux îles de cardinalités 2, il est interdit de les connecter entre eux s'ils peuvent être connectés à d'autres." );
