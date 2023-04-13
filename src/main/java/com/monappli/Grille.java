@@ -514,8 +514,9 @@ public class Grille {
      * Appelle de la méthode dans GameHandler
      */
     public void annulerAction(){
-      sauvegarde.getLastPileCoups().erase(fond);
       sauvegarde.getLastPileCoups().setNombreTraits(sauvegarde.getLastPileCoups().getNbTraits()-1);
+      sauvegarde.getLastPileCoups().erase(fond);
+      
       sauvegarde.annuler();
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
@@ -526,8 +527,9 @@ public class Grille {
      */
     public void retablirAction(){
       sauvegarde.retablir();
-      sauvegarde.getLastPileCoups().affiche(fond);
       sauvegarde.getLastPileCoups().setNombreTraits(sauvegarde.getLastPileCoups().getNbTraits()+1);
+      sauvegarde.getLastPileCoups().affiche(fond);
+      
       
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
