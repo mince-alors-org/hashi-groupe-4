@@ -56,6 +56,7 @@ public class LevelScene extends ResolScene {
     @Override
     public void onAction(Button btn){
 
+        System.out.println("Pas bon");
                 //Get the file name of the level related to the button
                 String lvlF = "../niveaux/" +LevelSelectHandler.curDiff+"-"+ btn.getText()+".niv";
 

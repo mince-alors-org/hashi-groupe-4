@@ -95,13 +95,19 @@ public class GameHandler extends DynamicEventHandler {
         System.out.println("Je suis undo");
         this.grille.annulerAction();
     }
-
-    public void lvlTitleClicked() throws Exception{
+    protected void affLvl() throws Exception{
+        System.out.println("Je suis trop drôle");
+        System.out.println("Coucou");
         LevelScene game= new LevelScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
         select.getChildren().add(selGrid);
+    }
+
+    public void lvlTitleClicked() throws Exception{
+        System.out.println("Je fait chier le monde");
+        this.affLvl();
     }
 
     @Override

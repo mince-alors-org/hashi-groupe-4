@@ -23,7 +23,9 @@ public class TutorialEventHandler extends GameHandler{
     public TutorialEventHandler(Pane parent){
         super(parent);
     }
-    public void lvlTitleClicked() throws Exception{
+    @Override
+    protected void affLvl() throws Exception{
+        System.out.println("Victoire");
         TutoScene game= new TutoScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");

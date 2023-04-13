@@ -6,6 +6,7 @@ import java.util.regex.Pattern;
 
 import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.LevelSelectHandler;
+import com.monappli.handlers.TutorialEventHandler;
 
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
@@ -47,6 +48,7 @@ public class TutoScene extends ResolScene {
      */
     @Override
     public void onAction(Button btn){
+        System.out.println("Je charge la grille");
 
                 //Get the file name of the level related to the button
                 String lvlF = "../tutoNv/"+btn.getText()+".niv";
@@ -54,7 +56,7 @@ public class TutoScene extends ResolScene {
                 //Creates a new game grid and the graphic interface
                 GameScene game = new GameScene(this.getParent());
                 try {
-                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParent()),lvlF );
+                    game.pasteAndHandle("/view/gameLayout.fxml", new TutorialEventHandler(this.getParent()),lvlF );
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
