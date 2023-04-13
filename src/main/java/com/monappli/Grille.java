@@ -312,11 +312,22 @@ public class Grille {
           Score score = new Score();
           gh.getChronometre().halt();
           double time = gh.getChronometre().getTime();
-          System.out.println("WINNN" + time);
+          System.out.println("WINNN " + time);
           score.computeValue(time);
 
 
-          this.getFichier_sauvegarde();
+
+          String[] save = this.getFichier_sauvegarde().split("niveaux/[1-9]-[1-9].*");
+          String saveScore = save[0] + "scores.txt";
+
+          try {
+            SauvegardeScore.createScoreFile(saveScore);
+            SauvegardeScore.saveScore(saveScore,score);
+            SauvegardeScore.readScore(saveScore);
+          } catch (IOException | ClassNotFoundException e) {
+            throw new RuntimeException(e);
+          }
+
 
           sauvegarde.effacerFichier(this.getFichier_sauvegarde());
 

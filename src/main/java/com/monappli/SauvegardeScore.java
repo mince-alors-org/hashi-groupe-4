@@ -8,9 +8,9 @@ public class SauvegardeScore {
 
 
 
-  public static void saveScore(String lvlName, Score score) throws IOException {
-    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(lvlName));
-    oos.writeObject(lvlName);
+  public static void saveScore(String path, Score score) throws IOException {
+    ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(path));
+    oos.writeObject(path);
     oos.writeObject(score);
 
   }
@@ -21,11 +21,12 @@ public class SauvegardeScore {
     ObjectInputStream ois = new ObjectInputStream(new FileInputStream(lvlName));
     String name = (String) ois.readObject();
     Score score = (Score) ois.readObject();
+    System.out.println(score);
     currentScore = score;
 
   }
 
-  public static void createScoreFile(String path,String lvl) throws IOException {
+  public static void createScoreFile(String path) throws IOException {
 
     File file = new File(path);
     file.createNewFile();

@@ -1,6 +1,8 @@
 package com.monappli;
 
-public class Score {
+import java.io.Serializable;
+
+public class Score implements Serializable {
 
 
 
@@ -30,5 +32,12 @@ public class Score {
       this.setValue(value - 30);
     }
 
+  }
+
+  @Override
+  public String toString() {
+    return "Score{" +
+      "value=" + value +
+      '}';
   }
 }
