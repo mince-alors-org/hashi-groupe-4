@@ -24,11 +24,11 @@ public class TutorialEventHandler extends GameHandler{
         super(parent);
     }
     public void lvlTitleClicked() throws Exception{
-        ResolScene sc = new LevelScene(backGround);
+        /*ResolScene sc = new LevelScene(backGround);
         TutoScene game= new TutoScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= game.initGrid(sc.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
-        select.getChildren().add(selGrid);
+        select.getChildren().add(selGrid);*/
     }
 }
