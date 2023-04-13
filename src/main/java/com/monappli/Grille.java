@@ -177,12 +177,12 @@ public class Grille {
 
       //Sets sizes of columns from size of pane to be added on
       for(int i=0; i<largeur; i++){
-        grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (largeur)));
+        grid.getColumnConstraints().add(new ColumnConstraints(1.0*gridPlace.getPrefWidth() / (longueur)));
       }
       
       //Sets sizes of rows from size of pane to be added on
       for(int i=0; i<longueur;i++)
-        grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (longueur)));
+        grid.getRowConstraints().add(new RowConstraints(1.0*gridPlace.getPrefHeight() / (largeur)));
 
       
       for(Ilot ilot : listeIlot ){
