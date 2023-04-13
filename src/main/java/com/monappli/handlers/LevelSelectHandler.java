@@ -40,7 +40,7 @@ public class LevelSelectHandler extends DynamicEventHandler{
      * Initialization of LevelSelectHandler
      * @param parent parent of the current Pane
      */
-    public LevelSelectHandler(Pane parent, LevelScene lvlScene){
+    public <L extends LevelScene> LevelSelectHandler(Pane parent, L lvlScene){
         super(parent);
         this.lvlScene=lvlScene;
         curDiff=1;
