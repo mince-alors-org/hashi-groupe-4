@@ -7,3 +7,14 @@
     -fx-pref-width:200.0px;
     -fx-pref-height:30.0px;
 }
+
+.playerButton{
+    -fx-pref-width:150.0px;
+    -fx-pref-height:30.0px;
+}
+
+.chip{
+    -fx-pref-width:30.0px;
+    -fx-pref-height:30.0px;
+    -fx-max-height: 30px;
+}

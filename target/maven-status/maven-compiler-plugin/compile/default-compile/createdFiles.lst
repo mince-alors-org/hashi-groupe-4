@@ -3,10 +3,11 @@ com/monappli/Joueur.class
 com/monappli/BaseDonneeJoueur.class
 com/monappli/hashiScene/GameScene.class
 com/monappli/IlotBtn.class
-com/monappli/Pont.class
 com/monappli/hashiScene/ProfileScene.class
+com/monappli/Pont.class
 com/monappli/hashiScene/PopUp.class
 com/monappli/Aide.class
+com/monappli/hashiScene/TutoScene.class
 com/monappli/hashiScene/LevelScene.class
 com/monappli/handlers/LevelSelectHandler.class
 com/monappli/handlers/ParamHandler.class
@@ -21,5 +22,5 @@ com/monappli/hashiScene/DynamicScene.class
 com/monappli/handlers/TutorialEventHandler.class
 com/monappli/Hashi.class
 com/monappli/handlers/WinHandler.class
-com/monappli/SauvegardeGrille.class
+com/monappli/handlers/ProfileHandler.class
 com/monappli/hashiScene/MainPanel.class

@@ -1,5 +1,6 @@
 package com.monappli.handlers;
 
+import com.monappli.BaseDonneeJoueur;
 import com.monappli.Parametre;
 import com.monappli.hashiScene.MainPanel;
 
@@ -7,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 /**
  * Handler to set new Parameters
@@ -54,6 +54,7 @@ public class ParamHandler extends DynamicEventHandler{
     /**
      * Initialization of ParamHandler
      * @param parent parent of currently handled pane
+     * @author Ambre Collard
      */
     public ParamHandler(Pane parent){
         super(parent);
@@ -61,6 +62,7 @@ public class ParamHandler extends DynamicEventHandler{
 
     /**
      * Action when backButton is clicked. Remove the current PopUp (parameters)
+     * @author Ambre Collard
      */
     public void backClicked(){
         this.getParentPane().getChildren().remove(this.getParentPane().lookup("#pop"));
@@ -69,6 +71,7 @@ public class ParamHandler extends DynamicEventHandler{
     /**
      * Sets all the color Picker to the colors in Parametre
      * @see Parametre
+     * @author Ambre Collard
      */
     public void setAll(){
         textPicker.setValue(Parametre.getCouleur_texte());
@@ -80,12 +83,15 @@ public class ParamHandler extends DynamicEventHandler{
     /**
      * Changes to the new parameters if they were selected
      * @throws Exception if the MainPanel can't load
+     * @author Ambre Collard
      */
     public <H extends DynamicEventHandler> void changeAll() throws Exception{
         Parametre.setCouleur_fond(bgPicker.getValue());
         Parametre.setCouleur_ilot(islePicker.getValue());
         Parametre.setCouleur_pont(bridgePicker.getValue());
         Parametre.setCouleur_texte(textPicker.getValue());
+
+        BaseDonneeJoueur.saveParam();
 
         H mainH= (H) paramPane.getParent().getUserData();
         Pane parent = (Pane)paramPane.getParent();

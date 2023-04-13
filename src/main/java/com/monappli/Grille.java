@@ -2,7 +2,6 @@ package com.monappli;
 
 import java.util.ArrayList;
 import java.io.*;
-import java.io.FileReader;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,6 +35,12 @@ public class Grille {
     private Canvas fond;
     private Pane parent;
     private boolean graphic;
+    private SauvegardeGrille sauvegarde;
+    private boolean undoOuRedo = false;
+    private String fichier_sauvegarde;
+    private Pont dernierPont;
+    private int nbTraitAvantModif;
+    private String nomF;
 
     /**
      * Initialisation de la grille
@@ -44,12 +49,14 @@ public class Grille {
      */
 
     public Grille(String nomF, boolean graphic){
+      this.nomF= nomF;
       this.graphic= graphic;
+      this.sauvegarde = new SauvegardeGrille();
+
+      this.fichier_sauvegarde = "src/main/resources/profiles/" + Hashi.joueur.getnom() +"/" + this.getLvlName() +".niv";
       listeIlot = new ArrayList<>();
        // Le fichier d'entrée
        File file = new File("src/main/java/com/monappli/niveaux/" + nomF);
-
-
        // Créer l'objet File Reader
        FileReader fr = null;
        try {
@@ -118,14 +125,19 @@ public class Grille {
        }
     }
 
-    public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) {
+    public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
+      
       this(nomF, graphic);
       this.gridPlace= gridPlace;
       this.fond=canvas;
       this.parent= bgParent;
-  
       if(this.graphic){
         grid = initGrid();
+        /**
+         * On charge les ponts déjà initié depuis la sauvegarde
+         * Il est vérifé dans la méthode si le fichier de sauvegarde existe
+         */
+        chargerSauvegarde();
         gridPlace.getChildren().add(grid); 
         for (Ilot i :this.getIlots()) {
             i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
@@ -134,7 +146,7 @@ public class Grille {
       }
     }
 
-    public Grille(String nomF, Pane gridPlace, Canvas canvas, Pane bgParent) {
+    public Grille(String nomF, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
       this(nomF, true, gridPlace, canvas, bgParent);
     }
 
@@ -142,6 +154,8 @@ public class Grille {
       for(Ilot i: this.listeIlot){
         i.remiseZero(this.fond);
       }
+      sauvegarde.viderPiles();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
 
 
@@ -155,8 +169,10 @@ public class Grille {
      * @see Ilot
      * @return <code>GridPane</code> the playing grid, with isle at their places
      * @author Ambre Collard
+     * @throws IOException
+     * @throws ClassNotFoundException
      */
-    public GridPane initGrid(){
+    public GridPane initGrid() throws ClassNotFoundException, IOException{
       GridPane grid= new GridPane();
 
       //Sets sizes of columns from size of pane to be added on
@@ -196,13 +212,45 @@ public class Grille {
         ilot.setActive(false);
 
       }
-
-
+      
       return grid;
     }
+    /**
+     * Charge une sauvegarde du jeu à partir d'un fichier donné
+     * @throws ClassNotFoundException
+     * @throws IOException
+     */
+    public void chargerSauvegarde() throws ClassNotFoundException, IOException {
+      File save_file = new File(fichier_sauvegarde);
+      if (save_file.exists()) {
+          sauvegarde.chargerFichier(fichier_sauvegarde);
+          /**
+           * On itère sur un ilot de la listeIlot et on vérifie ses voisins pour former un pont
+           */
+          for (Ilot ilot : this.listeIlot) {
+              for (Pont pont : sauvegarde.getPileCoups()) {
+                for(Ilot ilot2: this.listeIlot){
+                  if(this.sontVoisin(ilot2, ilot) && !ilot.equals(ilot2)){
+                    Pont pontVoisin = ilot.liaisonP(ilot2);
+                    /**
+                     * En comparant les 2 ilots voisins aux ilots composant un pont depuis la sauvegarde, on affiche le pont et on met le nombre de trait du pont de listeIlot à celui du pont de la sauvegarde 
+                     */
+                    if (ilot.equals(pont.getIle1()) && ilot2.equals(pont.getIle2())) {
+                      pont.affiche(fond);
+                      pontVoisin.setNombreTraits(pont.getNbTraits());
+                    }
+                  }
+                }
+              }
+          }
+      }
+    }
+  
+  
 
     public void ilotOnAction(Ilot ilot){
       if (this.getGridPane().lookup("#pop") == null){
+        System.out.print("Je clique sur un ilot");
         unsetReds();
         Ilot ileAct = this.getIlotActif() ;
         if (ileAct != null){
@@ -211,45 +259,46 @@ public class Grille {
 
             //Get what could be the bridge
             Pont pont = ileAct.liaisonP(ilot);
+
             //If it doesn't cross another bridge
             if (!this.croisePont(pont)){
+              nbTraitAvantModif = pont.getNbTraits();
               pont.incrementer();
               pont.affiche(fond);
+
+              sauvegarde.ajoutCoup(pont);
+              sauvegarde.actualiserFichier(fichier_sauvegarde);
               
               ileAct.setActive(false);
               ilot.setActive(false);
+              dernierPont = pont;
             }
 
             else {
               ileAct.setActive(false);
               ilot.setActive(false);
-              ilot.setRed(true);
-              ileAct.setRed(true);
             }
           }
+          else
+            changeActive(ilot);
         }
         else 
           ilot.setActive(!(ilot.getActive()));
-      
-        if (ilot.nbPont() > ilot.getValeur()){
-          ilot.setRed(true);
-        }
 
-        if(ileAct == ilot || ileAct == null)
+        if(ileAct == ilot || ileAct == null){
           changeActive(ilot);
+        } 
 
-        if (ileAct != null && ileAct.nbPont() > ileAct.getValeur()){
-          ileAct.setRed(true);
-        }
-        if (this.isWin()){
+        if (isWin()){
           PopUp win = new PopUp(this.parent);
           try{
-            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent));
+            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent, getLvlName()));
           }
           catch (Exception ex){
             ex.printStackTrace();
           }
         }
+
       }
     }
 
@@ -288,6 +337,10 @@ public class Grille {
         max = ilot.getPosY() > max ? ilot.getPosY() : max; 
       }
       return max+1;
+    }
+
+    public String getLvlName(){
+      return this.nomF.replace("../niveaux/", "").replace(".niv", "");
     }
 
     /**
@@ -446,6 +499,29 @@ public class Grille {
       }
     }
 
+    /**
+     * Undo/Annule la dernière action et controle l'affichage sur la grille 
+     * Appelle de la méthode dans GameHandler
+     */
+    public void annulerAction(){
+      dernierPont.erase(fond);
+      dernierPont.setNombreTraits(dernierPont.getNbTraits()-1);
+      sauvegarde.annuler();
+      dernierPont = sauvegarde.getLastPileCoups();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
+    }
+
+    /**
+     * Redo/Rétablir la dernière action et controle l'affichage sur la grille 
+     * Appelle de la méthode dans GameHandler
+     */
+    public void retablirAction(){
+      dernierPont.affiche(fond);
+      dernierPont.setNombreTraits(dernierPont.getNbTraits()+1);
+      sauvegarde.retablir();
+      dernierPont = sauvegarde.getLastPileCoups();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
+    }
 
     public ArrayList<Pont> getAllValidPont(Ilot ilot){
       ArrayList<Pont> tab = new ArrayList<Pont>();
@@ -459,4 +535,5 @@ public class Grille {
         }
         return tab; 
       }
+   
 }

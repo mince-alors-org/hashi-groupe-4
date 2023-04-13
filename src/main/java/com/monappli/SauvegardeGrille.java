@@ -17,21 +17,25 @@ public class SauvegardeGrille implements Serializable{
     private FileReader fileReader; //lire dans un fichier
     private static ArrayList<Pont> pileCoups = new ArrayList<Pont>();  //pile des coups joués et actifs sur la grille
     private ArrayList<Pont> pileRetablissements = new ArrayList<Pont>();    //pile des coups précédemment joués mais annulés
-    
+
     /**
      * Undo
      */
-    public void retablir(){
-        pileCoups.add(pileRetablissements.get(pileRetablissements.size()-1));
-        pileRetablissements.remove(pileRetablissements.size()-1);
+    public void annuler(){
+        if(!pileCoups.isEmpty()){
+            pileRetablissements.add(pileCoups.get(pileCoups.size()-1));
+            pileCoups.remove(pileCoups.size()-1); 
+        }
     }
 
     /**
      * Redo
      */
-    public void annuler(){ 
-        pileRetablissements.add(pileCoups.get(pileCoups.size()-1));
-        pileCoups.remove(pileCoups.size()-1);
+    public void retablir(){
+        if(!pileRetablissements.isEmpty()){
+            pileCoups.add(pileRetablissements.get(pileRetablissements.size()-1));
+            pileRetablissements.remove(pileRetablissements.size()-1);
+        }
     }
 
     /**
@@ -55,6 +59,14 @@ public class SauvegardeGrille implements Serializable{
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Pont> getPileCoups(){
+        return pileCoups;
+    }
+
+    public ArrayList<Pont> getPileReta(){
+        return pileRetablissements;
     }
 
     public int getPileCoupsSize(){
@@ -132,5 +144,27 @@ public class SauvegardeGrille implements Serializable{
         return bdd;
     }   
     
+    public Pont getLastPileCoups(){
+        if (pileCoups.isEmpty()){
+            return null;
+        }
+        return pileCoups.get(pileCoups.size()-1);
+    }
+
+    public Pont getLastPileReta(){
+        if (pileRetablissements.isEmpty()){
+            return null;
+        }
+        return pileRetablissements.get(pileRetablissements.size()-1);
+    }
+
+    /**
+     * Vide les piles pileCoups et pileRetablissements
+     * À utiliser dans remiseZero
+     */
+    public void viderPiles(){
+        pileCoups.clear();
+        pileRetablissements.clear();
+    }
 }
 
