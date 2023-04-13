@@ -178,15 +178,15 @@ public class LevelScene extends MainPanel {
                 //Creates a new game grid and the graphic interface
                 GameScene game = new GameScene(this.getParent());
                 try {
-                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParent()),lvlF );
+                    //game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParent()),lvlF );
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }
 
                 //Get the level button above the game grid
-                Button lvlButton = (Button)game.getCurPane().lookup("#levelButton");
+                //Button lvlButton = (Button)game.getCurPane().lookup("#levelButton");
                 //Change the label to the level assigned name
-                lvlButton.setText(LevelSelectHandler.curDiff + "-" + btn.getText());
+                //lvlButton.setText(LevelSelectHandler.curDiff + "-" + btn.getText());
     }
 
 

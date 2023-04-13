@@ -112,19 +112,18 @@ public class SauvegardeGrille implements Serializable{
 
 
   public void chargerFichier2(String fichier_sauvegarde) throws IOException, ClassNotFoundException {
-    FileInputStream fileInputStream = new FileInputStream(fichier_sauvegarde);
-    ObjectInputStream ois = new ObjectInputStream(fileInputStream);
-    pileCoups = (ArrayList<Pont>) ois.readObject();
-    double chrono = ois.readDouble();
-    chrono_time = chrono;
+    File save = new File(fichier_sauvegarde);
+    if (save.isFile()){
+      FileInputStream fileInputStream = new FileInputStream(fichier_sauvegarde);
+      ObjectInputStream ois = new ObjectInputStream(fileInputStream);
+      pileCoups = (ArrayList<Pont>) ois.readObject();
+      double chrono = ois.readDouble();
+      chrono_time = chrono;
 
 
-    System.out.println(pileCoups);
-    System.out.println(chrono);
-
-
-
-
+      System.out.println(pileCoups);
+      System.out.println(chrono);
+    }
 
 
   }

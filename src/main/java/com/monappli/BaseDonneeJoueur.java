@@ -43,7 +43,7 @@ public class BaseDonneeJoueur implements Serializable{
         String niv_path = "/niveaux";
         File niveaux = new File(directory+joueur.getnom()+niv_path);
         nouv_dossier.mkdir();
-        System.out.println("OUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIii" +niveaux.mkdir());
+        niveaux.mkdir();
         writeNewPlayer(joueur);
         return true;
     }

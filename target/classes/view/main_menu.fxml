@@ -36,7 +36,7 @@
             </Button>
             <Button fx:id="tutoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#tutoClicked" prefHeight="88.0" prefWidth="347.0" styleClass="mainButton" text="Tutoriel" />
             <Button fx:id="challButton" alignment="CENTER" mnemonicParsing="false" onAction="#challClicked" styleClass="mainButton" text="Règles" />
-            <Button fx:id="scoresButton" alignment="CENTER" mnemonicParsing="false" styleClass="mainButton" text="Scores" />
+            <Button fx:id="scoresButton" alignment="CENTER" mnemonicParsing="false" onAction="#scoresClicked" styleClass="mainButton" text="Scores" />
          </children>
          <opaqueInsets>
             <Insets />

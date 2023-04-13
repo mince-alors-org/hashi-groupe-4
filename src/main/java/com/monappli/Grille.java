@@ -41,7 +41,9 @@ public class Grille {
     private int nbTraitAvantModif;
     private String nomF;
 
-    /**
+
+
+  /**
      * Initialisation de la grille
      * @author Morgane Penchon
      * @param nomF nom du fichier à lire pour creer la grille
@@ -137,7 +139,7 @@ public class Grille {
          * On charge les ponts déjà initié depuis la sauvegarde
          * Il est vérifé dans la méthode si le fichier de sauvegarde existe
          */
-        chargerSauvegarde();
+        //chargerSauvegarde();
         gridPlace.getChildren().add(grid);
         for (Ilot i :this.getIlots()) {
             i.setCanvasX((1.0*gridPlace.getPrefWidth() / (largeur)) * (i.getPosX()+0.5));
@@ -221,9 +223,9 @@ public class Grille {
      * @throws IOException
      */
     public void chargerSauvegarde() throws ClassNotFoundException, IOException {
-      File save_file = new File(fichier_sauvegarde);
-      if (save_file.exists()) {
-          sauvegarde.chargerFichier(fichier_sauvegarde);
+
+
+          sauvegarde.chargerFichier2(fichier_sauvegarde);
           /**
            * On itère sur un ilot de la listeIlot et on vérifie ses voisins pour former un pont
            */
@@ -243,7 +245,7 @@ public class Grille {
             }
           }
       }
-    }
+
 
 
     public void ilotOnAction(Ilot ilot){
@@ -520,6 +522,13 @@ public class Grille {
       dernierPont = sauvegarde.getLastPileCoups();
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
+  public String getFichier_sauvegarde() {
+    return fichier_sauvegarde;
+  }
+
+  public void setFichier_sauvegarde(String fichier_sauvegarde) {
+    this.fichier_sauvegarde = fichier_sauvegarde;
+  }
 
 
 }
