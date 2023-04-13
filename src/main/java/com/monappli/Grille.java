@@ -336,9 +336,13 @@ public class Grille {
 
           try{
             win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent, getLvlName(),score));
+
             Label label1 = (Label) win.getCurPane().lookup("#winScore");
-            Label label2 = (Label) win.getCurPane().lookup("#scoreValue");
+
             label1.setText("score : " + score.getValue());
+
+
+
 
 
           }
@@ -554,7 +558,7 @@ public class Grille {
     public void annulerAction(){
       sauvegarde.getLastPileCoups().setNombreTraits(sauvegarde.getLastPileCoups().getNbTraits()-1);
       sauvegarde.getLastPileCoups().erase(fond);
-      
+
       sauvegarde.annuler();
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
@@ -567,8 +571,8 @@ public class Grille {
       sauvegarde.retablir();
       sauvegarde.getLastPileCoups().setNombreTraits(sauvegarde.getLastPileCoups().getNbTraits()+1);
       sauvegarde.getLastPileCoups().affiche(fond);
-      
-      
+
+
       sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
   public String getFichier_sauvegarde() {

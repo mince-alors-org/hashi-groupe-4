@@ -35,26 +35,59 @@
                   <Insets left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="320.0" prefHeight="142.0" prefWidth="450.0" style="-fx-border-radius: 30px;">
+            <Pane id="mainPane" prefHeight="615.0" prefWidth="450.0">
                <children>
-                  <Label prefHeight="245.0" prefWidth="380.0" text="Joel" />
+                  <VBox prefHeight="615.0" prefWidth="450.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label id="label1" alignment="CENTER" prefHeight="111.0" prefWidth="456.0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label id="label2" alignment="CENTER" prefHeight="111.0" prefWidth="456.0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="103.0" prefWidth="450.0">
+                           <children>
+                              <Label id="label3" alignment="CENTER" prefHeight="111.0" prefWidth="456.0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label id="label4" alignment="CENTER" prefHeight="111.0" prefWidth="456.0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="313.0" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label id="label5" alignment="CENTER" prefHeight="111.0" prefWidth="456.0">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-            </HBox>
-            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="120.0" prefHeight="148.0" prefWidth="450.0">
-               <children>
-                  <Label prefHeight="245.0" prefWidth="380.0" text="Clara" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="120.0" prefHeight="147.0" prefWidth="450.0">
-               <children>
-                  <Label prefHeight="245.0" prefWidth="380.0" text="Victor" />
-               </children>
-            </HBox>
-            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="410.0" prefHeight="147.0" prefWidth="450.0">
-               <children>
-                  <Label prefHeight="245.0" prefWidth="380.0" text="Kim" />
-               </children>
-            </HBox>
+            </Pane>
          </children>
       </VBox>
    </children>

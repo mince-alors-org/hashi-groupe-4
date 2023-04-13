@@ -214,6 +214,11 @@ public class BaseDonneeJoueur implements Serializable{
       return directory + joueur.getnom() + "/niveaux";
     }
 
+
+    public static String getJoueurEmplacementScores(Joueur joueur){
+      return directory + joueur.getnom() + "/scores.txt";
+    }
+
     /**
      * Return a array of all the players in the database
      * @return the <code>ArrayList</code> of all <code>Joueur</code> in the database
