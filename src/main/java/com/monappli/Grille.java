@@ -38,6 +38,8 @@ public class Grille {
     private SauvegardeGrille sauvegarde;
     private boolean undoOuRedo = false;
     private String fichier_sauvegarde;
+    private Pont dernierPont;
+    private int nbTraitAvantModif;
     private String nomF;
 
     /**
@@ -152,6 +154,8 @@ public class Grille {
       for(Ilot i: this.listeIlot){
         i.remiseZero(this.fond);
       }
+      sauvegarde.viderPiles();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
 
 
@@ -201,7 +205,6 @@ public class Grille {
         //IleAct is the current active isle and if there is already one, we want to make a bridge between isleAct and ilot
         ilot.getBtn().setOnAction(e -> {
           ilotOnAction(ilot);
-          System.out.print("Salut");
         });
 
         //Add the isle to the grid
@@ -257,14 +260,16 @@ public class Grille {
 
             //If it doesn't cross another bridge
             if (!this.croisePont(pont)){
+              nbTraitAvantModif = pont.getNbTraits();
               pont.incrementer();
               pont.affiche(fond);
 
-              // sauvegarde.ajoutCoup(pont);
-              // sauvegarde.actualiserFichier(fichier_sauvegarde);
+              sauvegarde.ajoutCoup(pont);
+              sauvegarde.actualiserFichier(fichier_sauvegarde);
               
               ileAct.setActive(false);
               ilot.setActive(false);
+              dernierPont = pont;
             }
 
             else {
@@ -291,6 +296,7 @@ public class Grille {
             ex.printStackTrace();
           }
         }
+
       }
     }
 
@@ -492,35 +498,27 @@ public class Grille {
     }
 
     /**
-     * Undo/Annule la dernière action
+     * Undo/Annule la dernière action et controle l'affichage sur la grille 
+     * Appelle de la méthode dans GameHandler
      */
     public void annulerAction(){
-      System.out.println("Dans annuler action");
-      if(!undoOuRedo){
-        sauvegarde.getLastPileCoups().erase(fond);
-        sauvegarde.annuler();
-        sauvegarde.actualiserFichier(fichier_sauvegarde);
-      }
-      undoOuRedo = true;
+      dernierPont.erase(fond);
+      dernierPont.setNombreTraits(dernierPont.getNbTraits()-1);
+      sauvegarde.annuler();
+      dernierPont = sauvegarde.getLastPileCoups();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
 
     /**
-     * Redo/Rétablir la denière action
+     * Redo/Rétablir la dernière action et controle l'affichage sur la grille 
+     * Appelle de la méthode dans GameHandler
      */
     public void retablirAction(){
-      System.out.println("Dans retablir action");
-      if(undoOuRedo){
-        sauvegarde.getLastPileReta().affiche(fond);
-        sauvegarde.retablir();
-        sauvegarde.actualiserFichier(fichier_sauvegarde);
-      }
-      else{
-        sauvegarde.getLastPileReta().erase(fond);
-        sauvegarde.retablir();
-        sauvegarde.actualiserFichier(fichier_sauvegarde);
-      }
-      undoOuRedo = false;
+      dernierPont.affiche(fond);
+      dernierPont.setNombreTraits(dernierPont.getNbTraits()+1);
+      sauvegarde.retablir();
+      dernierPont = sauvegarde.getLastPileCoups();
+      sauvegarde.actualiserFichier(fichier_sauvegarde);
     }
-
-    
+   
 }
