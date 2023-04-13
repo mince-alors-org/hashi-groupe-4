@@ -14,7 +14,7 @@ import javafx.scene.layout.Pane;
  * In game handler 
  * @author Ambre Collard
  */
-public class TutorialEventHandler extends GameHandler{
+public class TutorialEventHandler extends TutoGameH{
 
     /**
      * Initialization of GameHandler
@@ -23,9 +23,8 @@ public class TutorialEventHandler extends GameHandler{
     public TutorialEventHandler(Pane parent){
         super(parent);
     }
-    @Override
-    protected void affLvl() throws Exception{
-        System.out.println("Victoire");
+
+    public void lvlTitleClicked() throws Exception{
         TutoScene game= new TutoScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");

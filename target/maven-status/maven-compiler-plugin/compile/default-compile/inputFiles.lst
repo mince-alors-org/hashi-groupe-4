@@ -1,3 +1,35 @@
+<<<<<<< HEAD
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/DynamicEventHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/ProfileHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Ilot.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/LevelSelectHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/GameParamHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/PopUp.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/LevelScene.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/BaseDonneeJoueur.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/ProfileScene.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/MainPanel.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/ResolScene.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Classement.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Parametre.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/PopUpEH.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Hashi.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/FenetreAide.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/DynamicScene.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/ParamHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/TutoScene.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/TutorialEventHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/GameScene.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/GameHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Pont.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/SauvegardeGrille.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Aide.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/MainMenuEventHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/Joueur.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/WinHandler.java
+/info/etu/l3info/s2201554/hashi/hashi-groupe-4/src/main/java/com/monappli/IlotBtn.java
+=======
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/hashiScene/TutoScene.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/ParamHandler.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Grille.java
@@ -27,4 +59,6 @@
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/PopUpEH.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Classement.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Ilot.java
+/info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/handlers/TutoGameH.java
 /info/etu/l3info/s181408/Documents/hashi/hashi-groupe-4/src/main/java/com/monappli/Aide.java
+>>>>>>> 84afbd6ac047d1f754edbe1b46c3ea61f7ce9f8b

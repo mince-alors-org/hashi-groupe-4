@@ -22,82 +22,13 @@ import javafx.stage.Stage;
  * In game handler 
  * @author Ambre Collard
  */
-public class GameHandler extends DynamicEventHandler {
+public class GameHandler extends TutoGameH {
 
-    @FXML
-    private Pane gridPlacement;
-
-    private Grille grille;
-
-
-    /**
-     * Initialization of GameHandler
-     * @param parent parent pane of the currently handled pane
-     */
     public GameHandler(Pane parent){
         super(parent);
     }
 
-    public void setGrille(Grille grille ){
-        this.grille=grille;
-    }
-
-    public void restClicked(){
-        System.out.println("Je suis rest");
-        this.grille.remiseZero();
-    }
-
-    public void helpClicked(){
-        Popup po=new Popup();
-        po.setX(205);
-        po.setY(304);
-        Pane newP=null;
-        Stage s = (Stage) backGround.getScene().getWindow();
-        PopUpEH p= new PopUpEH(po);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/popTech.fxml"));
-        loader.setController(p);
-        //loader.setStyle("background-color: green;");
-
-        try {
-            newP = (Pane)loader.load();
-            po.getContent().add(newP);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        po.show(s);
-        p.setText(Aide.getTechnique());
-    }
-    public void errClicked(){
-        Popup po=new Popup();
-        po.setX(205);
-        po.setY(304);
-        Pane newP=null;
-        Stage s = (Stage) backGround.getScene().getWindow();
-        PopUpEH p= new PopUpEH(po);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/popErr.fxml"));
-        loader.setController(p);
-        //loader.setStyle("background-color: green;");
-
-        try {
-            newP = (Pane)loader.load();
-            po.getContent().add(newP);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        po.show(s);
-        p.setText(Aide.checkErreur());
-    }
-    public void redoClicked(){
-        System.out.println("Je suis redo");
-        this.grille.retablirAction();
-    }
-    public void undoClicked(){
-        System.out.println("Je suis undo");
-        this.grille.annulerAction();
-    }
-    protected void affLvl() throws Exception{
-        System.out.println("Je suis trop drôle");
-        System.out.println("Coucou");
+    public void lvlTitleClicked() throws Exception{
         LevelScene game= new LevelScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
@@ -114,7 +45,7 @@ public class GameHandler extends DynamicEventHandler {
     public void paramClicked() throws Exception{
         if (backGround.lookup("#pop") == null){
             PopUp pop = new PopUp(this.getCurPane());
-            GameParamHandler paramH= new GameParamHandler(this.backGround, this.grille );
+            GameParamHandler paramH= new GameParamHandler(this.backGround, this.getGrille() );
             pop.pasteAndHandle("/view/parameters.fxml", paramH);
             paramH.setAll();
         }
