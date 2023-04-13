@@ -241,7 +241,6 @@ import java.util.Set;
         if(ile.listeVoisin().size() > ile.listeVoisinRelier().size()){
             if (((ile.getValeur()+1)/2) == ile.listeVoisin().size()) {
                 if (ile.getValeur() == 3 || ile.getValeur() == 5 || ile.getValeur() == 7) {
-                    System.out.println(ile + "cas 357");
                     return true;
                 }
             }
@@ -329,7 +328,6 @@ import java.util.Set;
         if (ile.getValeur() == 6 && ile.listeVoisin().size() == 4) {
             if (Aide.nb_ponts(ile) < 4) {
                 for (Ilot voisin : ile.listeVoisin()) {
-                    System.out.println(voisin);
                     if (voisin.getValeur()==1) {
                         return true;
                     }

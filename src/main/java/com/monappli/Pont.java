@@ -239,30 +239,18 @@ public class Pont implements Serializable{
     double width = this.getIle1().getBtn().getPrefWidth();
 
     double height = this.getIle1().getBtn().getPrefHeight();
-		System.out.println(y1);
-		System.out.println(y2);
-
-
-		System.out.println();
-
-
-		System.out.println(this.getIle1().getCanvasX());
-		System.out.println(this.getIle2().getCanvasX());
 
 
 		if (this.estVerticale()){
 
       //gc.strokeArc(x1-(width/2),y1,width,y2-y1,120,360, ArcType.CHORD);
 			gc.clearRect(x1-(width/2)+10,y1,width-20,y2-y1);
-      System.out.println("verticale");
 		}
 		else {
 
 
       //gc.fillArc(x1,y1-(height/2),x2-x1,(y2-y1) + height,120,360, ArcType.CHORD);
 			gc.clearRect(x1,y1-(height/2)+10,x2-x1,(y2-y1) + height-20);
-      System.out.println("horizontale");
-      System.out.println("OGHHHHHHH" +this.getIle1().getBtn().getPrefWidth());
 		}
 
 
