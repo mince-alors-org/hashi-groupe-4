@@ -7,6 +7,7 @@ import com.monappli.hashiScene.MainPanel;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
 
 /**
@@ -52,6 +53,12 @@ public class ParamHandler extends DynamicEventHandler{
     private Pane paramPane;
 
     /**
+     * Toggel bouton on off
+     */
+    @FXML
+    private ToggleButton aideVis;
+
+    /**
      * Initialization of ParamHandler
      * @param parent parent of currently handled pane
      * @author Ambre Collard
@@ -79,7 +86,15 @@ public class ParamHandler extends DynamicEventHandler{
         islePicker.setValue(Parametre.getCouleur_ilot());
         bridgePicker.setValue(Parametre.getCouleur_pont());
     }
-
+    /** */
+    public void okAideVis(){
+        System.out.println(aideVis);
+        if( aideVis.getText().equals("On")){
+            aideVis.setText("Off");
+        }else{
+            aideVis.setText("On");
+        }
+    }
     /**
      * Changes to the new parameters if they were selected
      * @throws Exception if the MainPanel can't load
@@ -90,6 +105,7 @@ public class ParamHandler extends DynamicEventHandler{
         Parametre.setCouleur_ilot(islePicker.getValue());
         Parametre.setCouleur_pont(bridgePicker.getValue());
         Parametre.setCouleur_texte(textPicker.getValue());
+        Parametre.setAffichage_depassment_cardinalite(aideVis.getText().equals("On"));
 
         BaseDonneeJoueur.saveParam();
 

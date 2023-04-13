@@ -10,6 +10,9 @@ import javafx.scene.layout.Pane;
 
 public class ProfileHandler extends DynamicEventHandler{
 
+    /**
+     * The text field for creating a new player
+     */
     @FXML
     private TextField newJ;
     
@@ -17,13 +20,13 @@ public class ProfileHandler extends DynamicEventHandler{
         super (p);
     }
 
+    /**
+     * Action performed when clicking apply, creating a new <code>Joueur</code>
+     */
     public void applyClicked(){
        Joueur j = new Joueur(newJ.getText());
        try {
-            if( BaseDonneeJoueur.addJoueur(j) == false){
-                System.out.println("La.e joueuse.r existe déjà !");
-            }
-            else {
+            if(newJ.getText()!= "" &&  BaseDonneeJoueur.addJoueur(j) == true){
                 BaseDonneeJoueur.changePlayer(j);
                 reload();
             }

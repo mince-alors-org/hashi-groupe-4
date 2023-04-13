@@ -10,11 +10,14 @@ import com.monappli.handlers.MainMenuEventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 
@@ -27,7 +30,7 @@ public class ProfileScene extends PopUp {
     /**
      * Variable of the Pane for the profile selection grid
      */
-    private Pane gridP;
+    private ScrollPane gridP;
 
 
 
@@ -44,7 +47,7 @@ public class ProfileScene extends PopUp {
      * Sets the function attribute as the pane for the gridPlacement
      * @param pane the pane on which the grid will be pasted
      */
-    public void setGridPlace(Pane pane){
+    public void setGridPlace(ScrollPane pane){
         this.gridP= pane;
     }
 
@@ -52,16 +55,18 @@ public class ProfileScene extends PopUp {
     /**
      * @return the pane where the selection grid is pasted
      */
-    public Pane getGridPane(){
+    public ScrollPane getGridPane(){
         return this.gridP;
     }
 
     @Override
     public <H extends DynamicEventHandler> void pasteAndHandle(String res, H hand) throws Exception{
         super.pasteAndHandle(res,hand);
-        this.setGridPlace((Pane)this.getParent().lookup("#gridP"));
+        this.setGridPlace((ScrollPane)this.getParent().lookup("#gridP"));
         VBox pBox= initProfiles();
-        getGridPane().getChildren().add(pBox);
+        getGridPane().setContent(pBox);
+        getGridPane().setFitToWidth(true);
+        getGridPane().setFitToHeight(true);
         setStyleGrid(pBox);
     }
 
@@ -85,7 +90,7 @@ public class ProfileScene extends PopUp {
             hBox.getChildren().add(pane);
             hBox.getChildren().add(but);
 
-            setStyleHBox(hBox);
+            setStyleHBox(hBox,vBox);
 
 
             vBox.getChildren().add(hBox);
@@ -130,11 +135,11 @@ public class ProfileScene extends PopUp {
      * @param h said <code>HBox</code>
      * @author Ambre Collard
      */
-    public void setStyleHBox(HBox h) {
+    public void setStyleHBox(HBox h,VBox v) {
         h.setAlignment(Pos.CENTER);
         h.setSpacing(20);
         try{
-            h.setPrefSize(this.gridP.getPrefWidth(), this.gridP.getPrefHeight()/BaseDonneeJoueur.getNumberPlayers());
+            h.setPrefSize(v.getPrefWidth(), this.gridP.getPrefHeight()/BaseDonneeJoueur.getNumberPlayers());
         }
         catch(Exception e){
             e.printStackTrace();
@@ -150,8 +155,10 @@ public class ProfileScene extends PopUp {
     public void setStyleGrid(VBox v){
         v.setId("vBox");
         v.setAlignment(Pos.TOP_CENTER);
-        v.setPrefSize(this.gridP.getPrefWidth(), this.gridP.getPrefHeight());
+        v.setPrefSize(this.gridP.getPrefWidth()*0.75, this.gridP.getPrefHeight()*0.98);
         v.setSpacing(20);
+        v.setPadding(new Insets(20, 0, 0, 0));
+        
     }
 
     /**

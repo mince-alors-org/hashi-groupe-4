@@ -29,7 +29,7 @@ public  class Parametre implements Serializable{
     /**
      * Cette variable représente la possibilitée d'afficher automatiquement une aide visuelle quand trop de pont relie une île
      */
-    private static boolean affichage_depassment_cardinalite;
+    private static boolean affichage_depassment_cardinalite= true;
     /**
      * Cette variable représente la possibilité de prévenir le jouueur lorsqu'il créer un groupe d'île ne pouvant pas être relié à un autre groupe d'île
      */
