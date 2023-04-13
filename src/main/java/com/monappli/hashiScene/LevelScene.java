@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.regex.Pattern;
 
 import com.monappli.Parametre;
+import com.monappli.handlers.FenetreAide;
 import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.LevelSelectHandler;
 
@@ -113,7 +114,7 @@ public class LevelScene extends MainPanel {
                 //Creates a new game grid and the graphic interface
                 GameScene game = new GameScene(this.getParent());
                 try {
-                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParent()),lvlF );
+                    game.pasteAndHandle("/view/gameLayout.fxml", new GameHandler(this.getParent(),new FenetreAide()),lvlF);
                 } catch (Exception e1) {
                     e1.printStackTrace();
                 }

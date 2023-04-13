@@ -19,6 +19,8 @@ public class GameHandler extends DynamicEventHandler {
     @FXML
     private Pane gridPlacement;
 
+    private FenetreAide aide;
+
     private Grille grille;
 
 
@@ -26,8 +28,9 @@ public class GameHandler extends DynamicEventHandler {
      * Initialization of GameHandler
      * @param parent parent pane of the currently handled pane
      */
-    public GameHandler(Pane parent){
+    public GameHandler(Pane parent,FenetreAide aide){
         super(parent);
+        this.aide=aide;
     }
 
     public void setGrille(Grille grille ){
@@ -43,6 +46,7 @@ public class GameHandler extends DynamicEventHandler {
         System.out.println(Aide.getTechnique());
     }
     public void errClicked(){
+        //this.aide.launch();
         System.out.println(Aide.checkErreur());
     }
     public void redoClicked(){

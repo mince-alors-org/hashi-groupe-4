@@ -15,6 +15,7 @@ com/monappli/Parametre.class
 com/monappli/Grille.class
 com/monappli/Ilot.class
 com/monappli/handlers/DynamicEventHandler.class
+com/monappli/handlers/FenetreAide.class
 com/monappli/handlers/MainMenuEventHandler.class
 com/monappli/hashiScene/DynamicScene.class
 com/monappli/handlers/TutorialEventHandler.class

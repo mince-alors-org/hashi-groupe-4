@@ -79,7 +79,7 @@ import java.util.Map.Entry;
      */
     public static String getTechnique(){
         for(int i = 0 ; i < grille.getIlots().size() ; i++) {
-            /*if (ile_1_voisin(grille.getIlots().get(i))) {
+            if (ile_1_voisin(grille.getIlots().get(i))) {
                 System.out.print("2");
                 return technique.get("Iles avec un seul voisin");
             }
@@ -87,8 +87,7 @@ import java.util.Map.Entry;
                 System.out.print("3");
                 return technique.get("Iles 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
             }
-            */
-            /*if(cas_spe_3_coin_5_cote_7_milieu(grille.getIlots().get(i))){
+            if(cas_spe_3_coin_5_cote_7_milieu(grille.getIlots().get(i))){
                 return technique.get("Cas spécial des 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
             }
             if(cas_4_6_8_cote(grille.getIlots().get(i))){
@@ -100,18 +99,13 @@ import java.util.Map.Entry;
                 System.out.print("4");
                 return technique.get("Iles sur un coté avec 4 de cardinalités");
             }
-            else if (isolation_iles(grille.getIlots().get(i))) {
-                return technique.get("Isolation des segments");
-            }
-            */
-            /* 
             if (cas_6_milieu(grille.getIlots().get(i))) {
                 System.out.print("4");
                 return technique.get("Iles aux millieux avec 6 de cardinalités");
-            } */
+            } 
             if (isolation_iles_3(grille.getIlots().get(i))) {
-                System.out.print("6");
-                return technique.get("");
+                System.out.print(grille.getIlots().get(i));
+                return technique.get("Isolation lorsqu'un pont joint une île");
             }
         }
         return technique.get("Pas de technique applicable");
@@ -123,16 +117,32 @@ import java.util.Map.Entry;
      * @return String : contenant le code d'erreur correspondant a l'erreur trouver sur la grille
      */ 
     public static String checkErreur() {
-        for (Ilot ile : grille.getIlots()) {
+        for (Ilot ile : grille.getIlots()) { 
             if (Aide.nbCardinalité(ile)) {
-                return Aide.nbCardinaliteIncorrect;
-            }
-            else if (estEnsembleFerme(ile)) {
+              return Aide.nbCardinaliteIncorrect;
+            } 
+            if (Aide.estEnsembleFerme(ile)) {
                 return Aide.endroitLock;
+            }
+            if (Aide.ileIsole(ile)) {
+                return Aide.nbPontIncorrectCorrects;
             }
         }
         return Aide.pasderreur;
     }
+
+    public static boolean ileIsole(Ilot ile) {
+        int nbValidPont=0;
+        for (Pont pont : grille.getAllValidPont(ile)) {
+            nbValidPont+= pont.getNbTraits();
+        }
+        if (grille.getAllValidPont(ile).size()-ile.listeVoisinRelier().size()==0 && (nbValidPont==grille.getAllValidPont(ile).size()*2) && (nbValidPont != ile.getValeur())) {
+            ile.setStyleRed();
+            return true;
+        } 
+        return false;
+    }
+
 
 
     /**
@@ -162,7 +172,7 @@ import java.util.Map.Entry;
             Aide.setMarque(i,false); 
         }
         for (Ilot i : ilesVisitees) {
-            if (i.getValeur() == Aide.nb_ponts(i)) {
+            if ((i.getValeur() <= Aide.nb_ponts(i)) || (grille.getAllValidPont(i).size()==0)) {
                 boolean ensembleFerme = true;
                 for (Ilot voisin : i.listeVoisinRelier()) {
                     if (!ilesVisitees.contains(voisin)) {
@@ -212,22 +222,6 @@ import java.util.Map.Entry;
         }
     }
     
-    
-    /**
-     * Colorie des ilots a changer pour aider le joueur 
-     * La couleur depend de la valeur de la variable d'instance de couleur_aide_erreur de la classe Parametre  @see {@link #setCouleur_aide_erreur()}
-     * @return void
-     */
-    public void indiceVisuel(){
-        
-    }
-    /** 
-     * Corrige les erreurs trouvees dans le plateau de jeu
-     * @return void
-     */
-    public void fixErreurs(){
-        
-    }  
 
 
 

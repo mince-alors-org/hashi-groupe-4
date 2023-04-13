@@ -445,5 +445,18 @@ public class Grille {
         ilot.setRed(false);
       }
     }
-    
+
+
+    public ArrayList<Pont> getAllValidPont(Ilot ilot){
+      ArrayList<Pont> tab = new ArrayList<Pont>();
+        for(Ilot search : this.listeIlot){
+          if (sontVoisin(ilot,search)){
+            Pont p = ilot.liaisonP(search);
+            if(!croisePont(p)) {
+              tab.add(p);
+            }
+          }
+        }
+        return tab; 
+      }
 }
