@@ -40,6 +40,7 @@ public abstract class BaseDonneeJoueur implements Serializable{
                 return false;
         }
         File nouv_dossier=new File(directory+joueur.getnom());
+        dossier.mkdir();
         nouv_dossier.mkdir();
         writeNewPlayer(joueur);
         return true;

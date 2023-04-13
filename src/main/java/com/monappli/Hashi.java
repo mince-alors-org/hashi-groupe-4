@@ -17,7 +17,7 @@ public class Hashi extends Application {
     public static Joueur joueur=null;
 
     public static void main(String[] args) {
-        Application.launch();
+        Application.launch(Hashi.class);
     }
 
     @Override
