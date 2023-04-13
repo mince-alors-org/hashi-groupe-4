@@ -164,10 +164,4 @@ public class LevelScene extends MainPanel {
                 //Change the label to the level assigned name
                 lvlButton.setText(LevelSelectHandler.curDiff + "-" + btn.getText());
     }
-
-    
-                //Get the level button above the game grid
-                Button lvlButton = (Button)game.getCurPane().lookup("#levelButton");
-                //Change the label to the level assigned name
-                lvlButton.setText(LevelSelectHandler.curDiff + "-" + btn.getText());
 }

@@ -27,20 +27,15 @@ public class GameHandler extends DynamicEventHandler {
     @FXML
     private Pane gridPlacement;
 
-    private FenetreAide aide;
-
     private Grille grille;
-
-    //private Popup po;
 
 
     /**
      * Initialization of GameHandler
      * @param parent parent pane of the currently handled pane
      */
-    public GameHandler(Pane parent,FenetreAide aide){
+    public GameHandler(Pane parent){
         super(parent);
-        this.aide=aide;
     }
 
     public void setGrille(Grille grille ){
@@ -53,10 +48,26 @@ public class GameHandler extends DynamicEventHandler {
     }
 
     public void helpClicked(){
-        System.out.println(Aide.getTechnique());
+        Popup po=new Popup();
+        po.setX(205);
+        po.setY(304);
+        Pane newP=null;
+        Stage s = (Stage) backGround.getScene().getWindow();
+        PopUpEH p= new PopUpEH(po);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/popTech.fxml"));
+        loader.setController(p);
+        //loader.setStyle("background-color: green;");
+
+        try {
+            newP = (Pane)loader.load();
+            po.getContent().add(newP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        po.show(s);
+        p.setText(Aide.getTechnique());
     }
     public void errClicked(){
-        System.out.println("Je detecte 1 erreur");
         Popup po=new Popup();
         po.setX(205);
         po.setY(304);
@@ -74,6 +85,7 @@ public class GameHandler extends DynamicEventHandler {
             e.printStackTrace();
         }
         po.show(s);
+        p.setText(Aide.checkErreur());
     }
     public void redoClicked(){
         System.out.println("Je suis redo");

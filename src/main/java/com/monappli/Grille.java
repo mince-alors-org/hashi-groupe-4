@@ -252,7 +252,10 @@ public class Grille {
       if (this.getGridPane().lookup("#pop") == null){
         System.out.print("Je clique sur un ilot");
         unsetReds();
-        Ilot ileAct = this.getIlotActif() ;
+        Ilot ileAct = this.getIlotActif();
+        for (int i=0;i<this.getIlots().size();i++) {
+          this.getIlots().get(i).setStyleBase();
+        }
         if (ileAct != null){
           //If the active and clicked isle are neighbours
           if (this.sontVoisin(ileAct, ilot) ){

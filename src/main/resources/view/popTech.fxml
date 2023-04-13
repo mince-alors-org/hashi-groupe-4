@@ -18,10 +18,10 @@
                <children>
                   <ImageView fitHeight="60.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@textures/icons/attention.png" />
+                        <Image url="@textures/icons/bulb.png" />
                      </image>
                   </ImageView>
-                  <Label prefHeight="16.0" prefWidth="153.0" text="Erreur !" />
+                  <Label prefHeight="16.0" prefWidth="153.0" text="Technique applicable" />
                </children>
             </HBox>
             <Text fx:id="typeErreur" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="352.7294921875" />

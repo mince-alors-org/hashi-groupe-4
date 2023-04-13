@@ -62,16 +62,16 @@ import java.util.Map.Entry;
      */
 
     // Code d'erreur qui signifie qu'un ilot a trop de ponts (erreur de cardinalité) 
-    final static String nbCardinaliteIncorrect="ERR101";
+    final static String nbCardinaliteIncorrect="L'îlot colorié en rouge a trop de ponts";
 
     // Code d'erreur qui signifie qu'il n'y a pas le bon nombre de ponts
-    final static String nbPontIncorrectCorrects="ERR102";
+    final static String ilotIsole="L'îlot colorié en rouge se retrouve isolé et ne pourra être relié au reste de la grille";
 
     // Code d'erreur qui signifie qu'il y a un endroit fermé sur la grille
-    final static String endroitLock="ERR103";
+    final static String endroitLock="Le groupe d'îlots colorié en rouge est isolé et ne pourra pas être relié au reste de la grille";
 
     // Code qui signifie qu'il y a pas d'erreur
-    final static String pasderreur="NOERR";
+    final static String pasderreur="Aucune erreur n'a été détectée dans la grille actuelle";
 
     /**
      * pour cela la méthode parcours le plateau et avec une série de conditions détermine la bonne technique a renvoyer
@@ -80,33 +80,30 @@ import java.util.Map.Entry;
     public static String getTechnique(){
         for(int i = 0 ; i < grille.getIlots().size() ; i++) {
             if (ile_1_voisin(grille.getIlots().get(i))) {
-                System.out.print("2");
                 return technique.get("Iles avec un seul voisin");
             }
             if (cas_3_coin_5_cote_7_milieu(grille.getIlots().get(i))) {
-                System.out.print("3");
                 return technique.get("Iles 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
             }
             if(cas_spe_3_coin_5_cote_7_milieu(grille.getIlots().get(i))){
                 return technique.get("Cas spécial des 3 avec deux voisins, 5 avec trois voisins et 7 avec quatre voisins");
             }
             if(cas_4_6_8_cote(grille.getIlots().get(i))){
-                System.out.print("4");
                 return technique.get("Iles avec autant de voisins que la moitié de leur cardinalité");
             }
             
             if (cas_4_avec_3_voisin_dont_2_1(grille.getIlots().get(i))) { // aucun cas
-                System.out.print("4");
                 return technique.get("Iles sur un coté avec 4 de cardinalités");
             }
             if (cas_6_milieu(grille.getIlots().get(i))) {
-                System.out.print("4");
                 return technique.get("Iles aux millieux avec 6 de cardinalités");
-            } 
+            }
+            /* 
             if (isolation_iles_3(grille.getIlots().get(i))) {
                 System.out.print(grille.getIlots().get(i));
                 return technique.get("Isolation lorsqu'un pont joint une île");
             }
+            */
         }
         return technique.get("Pas de technique applicable");
     }
@@ -125,7 +122,7 @@ import java.util.Map.Entry;
                 return Aide.endroitLock;
             }
             if (Aide.ileIsole(ile)) {
-                return Aide.nbPontIncorrectCorrects;
+                return Aide.ilotIsole;
             }
         }
         return Aide.pasderreur;

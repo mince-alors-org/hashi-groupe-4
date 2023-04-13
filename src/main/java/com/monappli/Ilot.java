@@ -5,7 +5,11 @@ package com.monappli;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.control.Button;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderStroke;
 import javafx.scene.layout.BorderStrokeStyle;
@@ -122,27 +126,13 @@ public class Ilot  implements Comparable<Ilot>, Serializable{
 	* @param largeur
 	*/
 	public void setStyleRed(){
-		this.getBtn().setStyle(			 "-fx-background-radius: 200px;"+
-									"\n-fx-background-insets: 0 0 0 0;"+
-									"\n-fx-background-color: Red;"+
-									"\n-fx-font:"+ (int)(1.0*24/(1.0*Grille.longueur/6)) +" px;"
-									);
+		this.getBtn().setBackground( new Background(new BackgroundFill(Color.RED,
+		new CornerRadii(200) , Insets.EMPTY)	));
 	}
 
-	public void setStyleBlue(){
-		this.getBtn().setStyle(			 "-fx-background-radius: 200px;"+
-									"\n-fx-background-insets: 0 0 0 0;"+
-									"\n-fx-background-color: Blue;"+
-									"\n-fx-font:"+ (int)(1.0*24/(1.0*Grille.longueur/6)) +" px;"
-									);
-	}
-
-	public void setStyleGreen(){
-		this.getBtn().setStyle(			 "-fx-background-radius: 200px;"+
-									"\n-fx-background-insets: 0 0 0 0;"+
-									"\n-fx-background-color: Green;"+
-									"\n-fx-font:"+ (int)(1.0*24/(1.0*Grille.longueur/6)) +" px;"
-									);
+	public void setStyleBase(){
+		this.getBtn().setBackground( new Background(new BackgroundFill(Parametre.getCouleur_ilot(),
+		new CornerRadii(200) , Insets.EMPTY)	));
 	}
 
 	/**
