@@ -1,13 +1,21 @@
 package com.monappli.handlers;
 
+import java.io.IOException;
+
 import com.monappli.Grille;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.PopUp;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
+import javafx.stage.Popup;
+import javafx.stage.PopupWindow;
+import javafx.stage.Stage;
 /**
  * In game handler 
  * @author Ambre Collard
@@ -18,6 +26,8 @@ public class GameHandler extends DynamicEventHandler {
     private Pane gridPlacement;
 
     private Grille grille;
+
+    //private Popup po;
 
 
     /**
@@ -42,6 +52,23 @@ public class GameHandler extends DynamicEventHandler {
     }
     public void errClicked(){
         System.out.println("Je detecte 1 erreur");
+        Popup po=new Popup();
+        po.setX(205);
+        po.setY(304);
+        Pane newP=null;
+        Stage s = (Stage) backGround.getScene().getWindow();
+        PopUpEH p= new PopUpEH(po);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/popErr.fxml"));
+        loader.setController(p);
+        //loader.setStyle("background-color: green;");
+
+        try {
+            newP = (Pane)loader.load();
+            po.getContent().add(newP);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        po.show(s);
     }
     public void redoClicked(){
         System.out.println("Je suis redo");

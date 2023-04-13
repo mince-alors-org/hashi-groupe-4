@@ -49,6 +49,10 @@
     -fx-background-color: white;
     -fx-background-image: url("./textures/icons/lamp.png");
 }
+#detectErr{
+    -fx-background-color: white;
+    -fx-background-image: url("./textures/icons/loupe.png");
+}
 
 
  
