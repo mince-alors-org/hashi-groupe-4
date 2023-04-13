@@ -3,6 +3,7 @@ package com.monappli.handlers;
 import com.monappli.hashiScene.LevelScene;
 import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.ProfileScene;
+import com.monappli.hashiScene.TutoScene;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -43,7 +44,7 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
      * @throws Exception
      */
     public void tutoClicked() throws Exception {
-        LevelScene game= new LevelScene(this.getParentPane());
+        TutoScene game= new TutoScene(this.getParentPane());
         game.pasteAndHandle("/view/levelSelect.fxml", new LevelSelectHandler(this.getParentPane(), game));
         Pane select= (Pane)game.getCurPane().lookup("#selectPane");
         GridPane selGrid= game.initGrid(game.countLvl(1),(int) select.getPrefWidth(), (int)select.getPrefHeight(), game.getParent());
