@@ -237,13 +237,15 @@ public class Grille {
                      */
                     if (ilot.equals(pont.getIle1()) && ilot2.equals(pont.getIle2())) {
                       pont.affiche(fond);
+                      pontVoisin.setNombreTraits(pont.getNbTraits());
+                    }
                   }
                 }
               }
-            }
           }
       }
     }
+  
   
 
     public void ilotOnAction(Ilot ilot){
