@@ -18,9 +18,14 @@
                         <Font size="38.0" />
                      </font>
                   </Label>
-                  <Label styleClass="winMsg" text="gagné !" textFill="WHITE">
+                  <Label styleClass="winMsg" text="gagné" textFill="WHITE">
                      <font>
                         <Font size="41.0" />
+                     </font>
+                  </Label>
+                  <Label id="winScore" fx:id="scores" layoutX="96.0" layoutY="101.0" styleClass="winMsg" textFill="WHITE">
+                     <font>
+                        <Font size="39.0" />
                      </font>
                   </Label>
                </children>

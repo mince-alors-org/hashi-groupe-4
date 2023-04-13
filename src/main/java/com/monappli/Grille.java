@@ -13,6 +13,7 @@ import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Label;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -324,6 +325,8 @@ public class Grille {
             SauvegardeScore.createScoreFile(saveScore);
             SauvegardeScore.saveScore(saveScore,score);
             SauvegardeScore.readScore(saveScore);
+
+
           } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
           }
@@ -332,7 +335,12 @@ public class Grille {
           sauvegarde.effacerFichier(this.getFichier_sauvegarde());
 
           try{
-            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent, getLvlName()));
+            win.pasteAndHandle("/view/winLayout.fxml", new WinHandler(this.parent, getLvlName(),score));
+            Label label1 = (Label) win.getCurPane().lookup("#winScore");
+            Label label2 = (Label) win.getCurPane().lookup("#scoreValue");
+            label1.setText("score : " + score.getValue());
+
+
           }
           catch (Exception ex){
             ex.printStackTrace();
