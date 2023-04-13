@@ -248,7 +248,6 @@ public class Grille {
 
   public void ilotOnAction(Ilot ilot) {
     if (this.getGridPane().lookup("#pop") == null) {
-      System.out.print("Je clique sur un ilot");
       unsetReds();
       Ilot ileAct = this.getIlotActif();
       for (int i = 0; i < this.getIlots().size(); i++) {
@@ -296,11 +295,11 @@ public class Grille {
       if (Parametre.isAffichage_depassment_cardinalite()) {
         if (ilot.nbPont() > ilot.getValeur())
           ilot.setRed(true);
-        if (ileAct.nbPont() > ileAct.getValeur())
+        if (ileAct != null && ileAct.nbPont() > ileAct.getValeur())
           ileAct.setRed(true);
         if (ilot.nbPont() == ilot.getValeur())
           ilot.setBlue(true);
-        if (ileAct.nbPont() == ileAct.getValeur())
+        if (ileAct != null && ileAct.nbPont() == ileAct.getValeur())
           ileAct.setBlue(true);
 
       }
