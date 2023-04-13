@@ -283,8 +283,8 @@ public class Grille {
         else 
           ilot.setActive(!(ilot.getActive()));
 
-        if(ileAct == ilot || ileAct == null){
-          changeActive(ilot);
+        if(ileAct == ilot){
+          ilot.setActive(false);
         } 
 
         if (isWin()){

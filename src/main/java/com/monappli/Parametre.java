@@ -23,7 +23,7 @@ public  class Parametre implements Serializable{
      * Cette variable sert à stocker la couleur des différentes aides qui peuvent être mise sur la grille
      */
     private static Color couleur_aide_erreur=Color.BLACK;
-    private static Color couleur_fond=Color.web("#457BF8");
+    private static Color couleur_fond=Color.web("#d3def9");
     private static int taille_texte;
     private static int[] taille_fenetre = {800,450};
     /**

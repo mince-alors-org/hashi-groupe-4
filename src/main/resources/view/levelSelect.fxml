@@ -28,16 +28,23 @@
             <Insets left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER" layoutY="107.0" prefHeight="57.0" prefWidth="200.0">
+      <HBox alignment="CENTER_LEFT" layoutY="107.0" prefHeight="57.0" prefWidth="212.0">
          <children>
-            <Button id="backButton" fx:id="backButton" alignment="CENTER" mnemonicParsing="false" onAction="#backClicked" styleClass="optionalGameButton" text="BackButton" />
+            <Button id="backButton" fx:id="backButton" mnemonicParsing="false" onAction="#backClicked" prefWidth="60.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;" HBox.hgrow="NEVER">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="50.0" />
+         </padding>
       </HBox>
       <HBox alignment="CENTER" layoutY="150.0" prefHeight="100.0" prefWidth="450.0" spacing="20.0">
          <children>
-            <Button mnemonicParsing="false" styleClass="pageButton" />
-            <Button id="diffButton" fx:id="diffButton" mnemonicParsing="false" onAction="#diffClicked" text="Facile" />
-            <Button mnemonicParsing="false" styleClass="pageButton" />
+            <Button id="diffButton" fx:id="diffButton" mnemonicParsing="false" onAction="#diffClicked" text="◂   Facile   ▸" />
          </children>
          <padding>
             <Insets left="20.0" />

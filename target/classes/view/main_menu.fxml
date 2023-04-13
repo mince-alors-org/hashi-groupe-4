@@ -27,7 +27,7 @@
             <Font size="75.0" />
          </font>
       </Label>
-      <VBox alignment="TOP_CENTER" layoutY="213.0" prefHeight="674.0" prefWidth="450.0" spacing="30.0">
+      <VBox alignment="TOP_CENTER" layoutY="213.0" prefHeight="498.0" prefWidth="450.0" spacing="30.0">
          <children>
             <Button fx:id="playButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#playClicked" prefHeight="80.0" prefWidth="300.0" styleClass="mainButton" text="Jeu Libre">
                <font>
@@ -35,12 +35,20 @@
                </font>
             </Button>
             <Button fx:id="tutoButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#tutoClicked" prefHeight="88.0" prefWidth="347.0" styleClass="mainButton" text="Tutoriel" />
-            <Button fx:id="challButton" alignment="CENTER" mnemonicParsing="false" onAction="#challClicked" styleClass="mainButton" text="Règles" />
+            <Button fx:id="ruleButton" alignment="CENTER" mnemonicParsing="false" onAction="#rulesClicked" styleClass="mainButton" text="Règles" />
             <Button fx:id="scoresButton" alignment="CENTER" mnemonicParsing="false" styleClass="mainButton" text="Scores" />
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
       </VBox>
+      <HBox alignment="CENTER_LEFT" layoutY="711.0" prefHeight="91.0" prefWidth="450.0">
+         <children>
+            <Button id="profileButton" mnemonicParsing="false" onAction="#profileClicked" style="-fx-background-color: #ffffff; -fx-background-radius: 200;" styleClass="optionalButton" />
+         </children>
+         <padding>
+            <Insets left="15.0" />
+         </padding>
+      </HBox>
    </children>
 </Pane>

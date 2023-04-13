@@ -1,6 +1,8 @@
 package com.monappli.handlers;
 
 import com.monappli.hashiScene.LevelScene;
+import com.monappli.hashiScene.MainPanel;
+import com.monappli.hashiScene.ProfileScene;
 
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -52,6 +54,29 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
      * 
      */
     public void challClicked() {
+    }
+
+    public void profileClicked(){
+        if (backGround.lookup("#pop") == null){
+            ProfileScene prof= new ProfileScene(this.getCurPane());
+            try{
+                prof.pasteAndHandle("/view/profileSelection.fxml", new ProfileHandler(this.getCurPane()));
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void rulesClicked(){
+        MainPanel rules= new MainPanel(backGround);
+        try{
+            rules.pasteAndHandle("/view/rulesLayout.fxml", new DynamicEventHandler(backGround));
+        }
+        catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
 }
