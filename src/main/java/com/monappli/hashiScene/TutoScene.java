@@ -27,7 +27,7 @@ public class TutoScene extends ResolScene {
      */
     @Override
     public int countLvl(int diff){
-        File directory=new File("src/main/java/com/monappli/tutoNv");
+        File directory=new File("src/main/java/com/monappli/tutoNv/");
         ArrayList<String> res= new ArrayList<String>();
         ArrayList<String> search= new ArrayList<String>();
 

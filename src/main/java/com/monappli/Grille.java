@@ -123,6 +123,7 @@ public class Grille {
        } catch (IOException e) {
            throw new RuntimeException(e);
        }
+       System.out.println("longueur ="+longueur+" Larguer ="+largeur);
     }
 
     public Grille(String nomF,boolean graphic, Pane gridPlace, Canvas canvas, Pane bgParent) throws ClassNotFoundException, IOException {
