@@ -84,6 +84,7 @@ public class DynamicEventHandler {
         }
     }
 
+
     /**
      * Action when paramButton is clicked. Creates a PopUp to change the parameters and sets a new ParamHandler on this PopUp
      * Clicking on the parameters button deactivates can not make another PopUp
