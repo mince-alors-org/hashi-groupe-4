@@ -3,4 +3,4 @@
 .idea
 hashi.iml
 target/
-src/main/resources/profiles
+src/main/resources/profiles/*
