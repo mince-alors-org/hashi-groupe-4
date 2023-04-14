@@ -1,6 +1,7 @@
 package com.monappli.handlers;
 
 
+import com.monappli.SauvegardeGrille;
 import com.monappli.hashiScene.MainPanel;
 import com.monappli.hashiScene.PopUp;
 
@@ -21,6 +22,11 @@ public class DynamicEventHandler {
     @FXML
     public Pane backGround;
 
+
+
+
+    private SauvegardeGrille save;
+
     /**
      * Parent pane of the current handled Pane
      */
@@ -38,6 +44,7 @@ public class DynamicEventHandler {
     public DynamicEventHandler(Pane parentPane){
         this.parentPane=parentPane;
         setCurPane(backGround);
+        this.save = new SauvegardeGrille();
     }
 
     /**
@@ -76,7 +83,8 @@ public class DynamicEventHandler {
             stage.close();
         }
     }
- 
+
+
     /**
      * Action when paramButton is clicked. Creates a PopUp to change the parameters and sets a new ParamHandler on this PopUp
      * Clicking on the parameters button deactivates can not make another PopUp
@@ -98,4 +106,12 @@ public class DynamicEventHandler {
         MainPanel main= new MainPanel(this.getParentPane());
         main.pasteAndHandle("/view/main_menu.fxml", new MainMenuEventHandler(this.getParentPane()));
     }
+
+  public SauvegardeGrille getSave() {
+    return save;
+  }
+
+  public void setSave(SauvegardeGrille save) {
+    this.save = save;
+  }
 }

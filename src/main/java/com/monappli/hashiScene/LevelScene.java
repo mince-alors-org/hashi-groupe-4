@@ -9,7 +9,11 @@ import com.monappli.handlers.FenetreAide;
 import com.monappli.handlers.GameHandler;
 import com.monappli.handlers.LevelSelectHandler;
 
+import javafx.application.Platform;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 /**
@@ -19,7 +23,17 @@ import javafx.scene.layout.Pane;
  */
 public class LevelScene extends ResolScene {
 
-    public LevelScene(Pane parent) {
+
+    /**
+     * Static integer to set the number of difficulties in total
+     */
+    public static int nbDiff=3;
+
+    /**
+     * Initialization of LevelScene
+     * @param parent parent pane
+     */
+    public LevelScene(Pane parent){
         super(parent);
     }
 
@@ -69,8 +83,16 @@ public class LevelScene extends ResolScene {
 
                 //Get the level button above the game grid
                 Button lvlButton = (Button)game.getCurPane().lookup("#levelButton");
+
+
                 //Change the label to the level assigned name
                 lvlButton.setText(LevelSelectHandler.curDiff + "-" + btn.getText());
     }
-    
+
+ 
+    public GridPane initGrid(int nbLvl, int w, int h, Pane backPane,GameHandler gh) throws Exception {
+         GridPane gridPane = super.initGrid(nbLvl, w, h, backPane);
+         //gh.setChrono();
+         return gridPane;
+    }
 }

@@ -1,5 +1,6 @@
 package com.monappli.hashiScene;
 
+import com.monappli.Score;
 import javafx.scene.layout.Pane;
 import javafx.fxml.*;
 
@@ -17,8 +18,8 @@ public class PopUp extends DynamicScene{
 
     /**
      * Initialization of PopUp
-     * @param parent 
-     * @author Collard Ambre 
+     * @param parent
+     * @author Collard Ambre
      */
     public PopUp(Pane parent){
         super(parent);
@@ -26,7 +27,7 @@ public class PopUp extends DynamicScene{
 
     /**
      * Adds to the parent's children a new Pane loaded thanks to the name of the FXML file. Resulting Popping-up this pane
-     * @author Collard Ambre 
+     * @author Collard Ambre
      * @param name Name of the FXML file
      * @throws Exception if the FXMLLoader can't load the resource
      * @see FXMLLoader
@@ -40,12 +41,12 @@ public class PopUp extends DynamicScene{
         this.getParent().getChildren().add(newP);
         this.setStyleParam();
     }
-    
+
 
     /**
      * Adds to the parent's children a new Pane loaded thanks to the name of the FXML file. Resulting Popping-up this pane
      * And sets a new controller to this new Pane.
-     * @author Collard Ambre 
+     * @author Collard Ambre
      * @param name Name of the FXML file
      * @param handler Handler specified to manage events occuring on this pane
      * @throws Exception if the FXMLLoader can't load the resource
@@ -58,19 +59,21 @@ public class PopUp extends DynamicScene{
         Pane newP= loader.load();
         this.setCurPane(newP);
         hand.setCurPane(newP);
+
+
         newP.setUserData(hand);
 
 
         newP.setId("pop");
         this.getParent().getChildren().add(newP);
         this.setStyleParam();
-        
+
     }
 
     /**
      * Adds to the parent's children the new Pane. Resulting Popping-up this pane
      * And sets a new controller to this new Pane.
-     * @author Collard Ambre 
+     * @author Collard Ambre
      * @param pane Pane to be set on
      * @param handler Handler specified to manage events occuring on this pane
      * @throws Exception if the FXMLLoader can't load the resource
@@ -83,7 +86,7 @@ public class PopUp extends DynamicScene{
 
         this.getParent().getChildren().setAll(pane);
         this.setStyleParam();
-        
+
     }
 
     /**
@@ -91,7 +94,7 @@ public class PopUp extends DynamicScene{
      * Slightly different from setStyleParam from DynamicScene because of the transparent background
      * @see DynamicScene#setStyleParam()
      * @see Parametre
-     * @author Collard Ambre 
+     * @author Collard Ambre
      */
     public void setStyleParam(){
         this.getCurPane().setStyle("-fx-text-base-color: "+ Parametre.toRGBForCSS(Parametre.getCouleur_texte())+";");

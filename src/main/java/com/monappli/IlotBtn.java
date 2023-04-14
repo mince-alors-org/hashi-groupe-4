@@ -13,5 +13,5 @@ public class IlotBtn extends Button implements Serializable{
 
     public IlotBtn(String lab, int x, int y){
         super(lab);
-    } 
+    }
 }

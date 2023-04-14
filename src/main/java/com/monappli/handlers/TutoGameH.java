@@ -17,11 +17,17 @@ public abstract class TutoGameH extends DynamicEventHandler{
     @FXML
     private Pane gridPlacement;
 
+    private String lvlNum;
+
     private Grille grille;
 
     public TutoGameH(Pane parent){
         super(parent);
+        lvlNum = "";
     }
+
+    public abstract void setScene(Grille grille,String formattage) throws IOException, ClassNotFoundException;
+
 
     public void setGrille(Grille grille ){
         this.grille=grille;
@@ -89,5 +95,13 @@ public abstract class TutoGameH extends DynamicEventHandler{
 
     public Grille getGrille(){
         return this.grille;
+    }
+
+    public String getLvlNum() {
+        return lvlNum;
+    }
+
+    public void setLvlNum(String lvlNum) {
+        this.lvlNum = lvlNum;
     }
 }

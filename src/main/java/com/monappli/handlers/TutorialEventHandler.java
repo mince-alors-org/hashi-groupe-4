@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
+import java.io.IOException;
+
 /**
  * In game handler 
  * @author Ambre Collard
@@ -22,6 +24,11 @@ public class TutorialEventHandler extends TutoGameH{
      */
     public TutorialEventHandler(Pane parent){
         super(parent);
+    }
+
+    @Override
+    public void setScene(Grille grille, String formattage) throws IOException, ClassNotFoundException {
+
     }
 
     public void lvlTitleClicked() throws Exception{

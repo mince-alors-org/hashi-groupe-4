@@ -32,12 +32,12 @@ public class SauvegardeGrilleTest {
         this.sauvegarde = new SauvegardeGrille();
         this.bdd = new BaseDonneeJoueur();
         this.parametre = new Parametre();
-        this.ilot1 = new Ilot(3, 2, 1, false);
-        this.ilot2 = new Ilot(2, 1, 1, false);
+        this.ilot1 = new Ilot(3, 2, 1,false);
+        this.ilot2 = new Ilot(2, 1, 1,false);
 
         this.p1 = new Pont(ilot2, ilot1);
         File testEmptyFile = new File(fichier_sauvegarde);
-        if (!testEmptyFile.exists() || testEmptyFile.length() == 0) {
+        if (!testEmptyFile.exists() || testEmptyFile.length() == 0){
             sauvegarde.ajoutCoup(p1);
             sauvegarde.ajoutCoup(p1);
             sauvegarde.ajoutCoup(p1);
@@ -53,20 +53,21 @@ public class SauvegardeGrilleTest {
             sauvegarde.ajoutCoup(p1);
             sauvegarde.ajoutCoup(p1);
             sauvegarde.actualiserFichier(fichier_sauvegarde);
-        } else {
+        }
+        else{
             sauvegarde.chargerFichier(fichier_sauvegarde);
         }
-
+        
         assertEquals(14, sauvegarde.getPileCoupsSize());
     }
 
     @AfterEach
-    void afficheOk(TestInfo testInfo) {
+    void afficheOk(TestInfo testInfo){
         System.out.println(testInfo.getDisplayName() + " Ok");
     }
-
+    
     @Test
-    public void ajoutUnPont() {
+    public void ajoutUnPont(){
         System.out.println("Nom du fichier " + fichier_sauvegarde);
         p1 = new Pont(ilot2, ilot1);
         sauvegarde.ajoutCoup(p1);
@@ -75,7 +76,7 @@ public class SauvegardeGrilleTest {
     }
 
     @Test
-    void annulerRetablir() throws IOException {
+    void annulerRetablir() throws IOException{
         sauvegarde.annuler();
         assertEquals(14, sauvegarde.getPileCoupsSize());
         sauvegarde.actualiserFichier(fichier_sauvegarde);
@@ -84,7 +85,7 @@ public class SauvegardeGrilleTest {
     }
 
     @Test
-    void sauvegarderParametre() {
+    void sauvegarderParametre(){
         Color couleur_texte_test = Color.rgb(122, 100, 100);
         Color couleur_texte_init = parametre.getCouleur_texte();
         parametre.setCouleur_texte(couleur_texte_test);
@@ -95,10 +96,10 @@ public class SauvegardeGrilleTest {
     }
 
     @Test
-    void chargerFichierParametre() throws IOException, ClassNotFoundException {
+    void chargerFichierParametre() throws IOException, ClassNotFoundException{
         File testEmptyFile = new File(fichier_parametre);
-        int[] n_taille_fenetre = { 1920, 1080 };
-        if (!testEmptyFile.exists() || testEmptyFile.length() == 0) {
+        int[] n_taille_fenetre = {1920, 1080};
+        if (!testEmptyFile.exists() || testEmptyFile.length() == 0){
             Parametre temp_param = new Parametre();
             BaseDonneeJoueur temp_bdd = new BaseDonneeJoueur();
             temp_param.setCouleur_texte(Color.PINK);
@@ -111,27 +112,40 @@ public class SauvegardeGrilleTest {
             temp_param.setAffichage_depassment_cardinalite(false);
             temp_param.setAffichage_groupe_ferme(true);
             temp_param.setAffichage_ponts_possible(false);
-            Joueur joueur1 = new Joueur("Bonathan");
+            Joueur joueur1 = new Joueur("Bonathan" );
             Joueur joueur2 = new Joueur("Bob");
             Joueur joueur3 = new Joueur("Barry");
             Joueur joueur4 = new Joueur("Bartholomet");
-            /*
-             * temp_bdd.addJoueur(joueur1);
-             * temp_bdd.addJoueur(joueur2);
-             * temp_bdd.addJoueur(joueur3);
-             * temp_bdd.addJoueur(joueur4);
-             */
+            /*temp_bdd.addJoueur(joueur1);
+            temp_bdd.addJoueur(joueur2);
+            temp_bdd.addJoueur(joueur3);
+            temp_bdd.addJoueur(joueur4);*/
             sauvegarde.actualiserFichierParametre(fichier_parametre, temp_param, temp_bdd);
             parametre = sauvegarde.chargerFichierParametre(fichier_parametre);
             bdd = sauvegarde.chargerFichierBdd(fichier_parametre);
 
-        } else {
+        }
+        else{
             parametre = sauvegarde.chargerFichierParametre(fichier_parametre);
             bdd = sauvegarde.chargerFichierBdd(fichier_parametre);
         }
         System.out.println(parametre.toString());
         System.out.println(bdd.toString());
-
+        
     }
 
+    
 }
+
+       
+
+
+
+
+    
+
+
+
+
+
+

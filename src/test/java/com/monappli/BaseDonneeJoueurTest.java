@@ -35,7 +35,7 @@ public class BaseDonneeJoueurTest {
         Joueur joueur = new Joueur("Baptiste");
 
         joueur.initSave(joueur.getnom(), "1-1.niv");
-        
+
     }
 
     @Test
@@ -43,7 +43,7 @@ public class BaseDonneeJoueurTest {
         System.out.println(BaseDonneeJoueur.exists("Michel"));
     }
 
-    @Test 
+    @Test
     public void testaddScore()throws Exception{
         Joueur j2 = new Joueur("123");
         if (!BaseDonneeJoueur.exists(j2)){
@@ -125,7 +125,7 @@ public class BaseDonneeJoueurTest {
         BaseDonneeJoueur.deletePlayer(j);
     }
 
-    @Test 
+    @Test
     public void testDelete() throws Exception{
         Joueur j= BaseDonneeJoueur.getJoueur("Michel");
         if(j != null)

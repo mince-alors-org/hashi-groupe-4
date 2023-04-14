@@ -2,6 +2,7 @@ package com.monappli;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.paint.Color;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
  * Cette classe permet de représenter un Pont
  * @author Morgane Pechon
  */
-public class Pont implements Serializable{
+public class Pont implements Serializable,Cloneable{
 	/**
 	 * Nombre de trait entre les deux îles
 	 */
@@ -264,6 +265,11 @@ public class Pont implements Serializable{
 	public boolean equals(Pont p){
 		return ((this.getIle1()==p.getIle1() && this.getIle2()==p.getIle2()) || (this.getIle1()== p.getIle2() && this.getIle2()==p.getIle1()))
 				&& (this.getNbTraits() == p.getNbTraits());
+	}
+
+	@Override
+	protected Object clone() throws CloneNotSupportedException {
+		return super.clone();
 	}
 
 	@Override
