@@ -58,7 +58,7 @@ public class ScoresScene extends MainPanel{
 
       String emplacement_score = BaseDonneeJoueur.getJoueurEmplacementScores(joueur);
       SauvegardeScore.readScore(emplacement_score);
-      System.out.println(emplacement_score);
+      //System.out.println(emplacement_score);
       label.setText(Integer.toString(SauvegardeScore.currentScore.getValue()));
 
     }

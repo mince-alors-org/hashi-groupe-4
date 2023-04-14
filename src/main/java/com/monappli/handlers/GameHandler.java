@@ -124,7 +124,6 @@ public class GameHandler extends TutoGameH {
   }
 
   public void chronoStart(){
-    System.out.println("oui");
     chrono.setDisable(true);
     chronometre.start();
     }
@@ -137,7 +136,7 @@ public class GameHandler extends TutoGameH {
       //this.getSave().actualiserFichier("src/test/java/com/monappli/save_move.txt",chronometre.getTime());
       this.getSave().sauverNiveau(this.getLvlNum(), 200);
 
-      System.out.println(Hashi.joueur);
+      //System.out.println(Hashi.joueur);
 
 
 

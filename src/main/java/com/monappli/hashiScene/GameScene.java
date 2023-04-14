@@ -32,7 +32,7 @@ public class GameScene extends MainPanel{
         hand.setScene(this.grille,lvlName);
         //hand.setLvlNum(lvlName);
 
-        System.out.println(this.grille.getFichier_sauvegarde());
+        //System.out.println(this.grille.getFichier_sauvegarde());
         //hand.getSave().chargerFichier2(hand.getLvlNum());
         //System.out.println(hand.getLvlNum());
 

@@ -243,8 +243,8 @@ public class Grille {
           /**
            * On itère sur un ilot de la listeIlot et on vérifie ses voisins pour former un pont
            */
-      for (Pont pont : sauvegarde.getPileCoups())
-        System.out.println(pont);
+      //for (Pont pont : sauvegarde.getPileCoups())
+      //  System.out.println(pont);
       for (Ilot ilot : this.listeIlot) {
         for (Pont pont : sauvegarde.getPileCoups()) {
 
@@ -318,11 +318,11 @@ public class Grille {
         if (Parametre.isAffichage_depassment_cardinalite()){
           if (ilot.nbPont() > ilot.getValeur())
             ilot.setRed(true);
-          if(ileAct.nbPont() > ileAct.getValeur())
+          if(ileAct != null && ileAct.nbPont() > ileAct.getValeur())
             ileAct.setRed(true);
           if (ilot.nbPont() == ilot.getValeur())
             ilot.setBlue(true);
-          if(ileAct.nbPont() == ileAct.getValeur())
+          if(ileAct != null && ileAct.nbPont() == ileAct.getValeur())
             ileAct.setBlue(true);
 
         }
@@ -552,7 +552,6 @@ public class Grille {
      */
     public boolean isWin(){
       for(Ilot ilot : listeIlot){
-        System.out.println(ilot.equalsSol());
         if(!ilot.equalsSol())
           return false;
       }

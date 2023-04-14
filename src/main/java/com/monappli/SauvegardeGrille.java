@@ -126,9 +126,6 @@ public class SauvegardeGrille implements Serializable{
       double chrono = ois.readDouble();
       chrono_time = chrono;
 
-
-      System.out.println(pileCoups);
-      System.out.println(chrono);
     }
 
 
@@ -139,8 +136,6 @@ public class SauvegardeGrille implements Serializable{
     ObjectInputStream ois = new ObjectInputStream(fileInputStream);
     pileCoups = (ArrayList<Pont>) ois.readObject();
     double chrono = ois.readDouble();
-    System.out.println(pileCoups);
-    System.out.println(chrono);
 
     return chrono;
 
@@ -211,7 +206,7 @@ public class SauvegardeGrille implements Serializable{
     public void createSaveFile(String filename) throws IOException {
       File file = new File(filename);
       if (file.createNewFile()){
-        System.out.println("Nv fichier de sauvegarde " + filename);
+        System.out.println("Nouveau fichier de sauvegarde " + filename);
       }
       else {
         System.out.println("File existe déjà");

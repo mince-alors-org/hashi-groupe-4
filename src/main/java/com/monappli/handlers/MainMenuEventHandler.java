@@ -120,7 +120,7 @@ public class MainMenuEventHandler extends  DynamicEventHandler{
         if (file.isFile()){
           SauvegardeScore.readScore(emplacement);
           labels.get(cpt).setText(joueur.getnom() + " : " + Integer.toString(SauvegardeScore.currentScore.getValue()));
-          System.out.println(emplacement);
+          //System.out.println(emplacement);
           cpt ++;
         }
 

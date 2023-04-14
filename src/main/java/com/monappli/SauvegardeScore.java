@@ -21,7 +21,6 @@ public class SauvegardeScore {
     ObjectInputStream ois = new ObjectInputStream(new FileInputStream(lvlName));
     String name = (String) ois.readObject();
     Score score = (Score) ois.readObject();
-    System.out.println(score);
     currentScore = score;
 
   }

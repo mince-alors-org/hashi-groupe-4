@@ -81,7 +81,7 @@ public class WinHandler extends DynamicEventHandler {
     public String getNextLvl(){
         int diff= Integer.parseInt(this.curLvl.replaceAll("-(\\d)*", ""));
         int niv=Integer.parseInt(this.curLvl.replaceAll("(\\d)*-", ""));
-        System.out.print(niv + " " + diff);
+        //System.out.print(niv + " " + diff);
         if (lvlExists(Integer.toString(diff) + "-" + Integer.toString(niv+1)))
             return Integer.toString(diff) + "-" + Integer.toString(niv+1);
         else if (lvlExists(Integer.toString(diff+1) + "-1"))
@@ -114,8 +114,8 @@ public class WinHandler extends DynamicEventHandler {
   }
 
   public void displayScore(){
-    System.out.println(score);
-    System.out.println(scores);
+    //System.out.println(score);
+    //System.out.println(scores);
     scores.setText("avec un score de : " + Integer.toString(score.getValue()));
   }
 
