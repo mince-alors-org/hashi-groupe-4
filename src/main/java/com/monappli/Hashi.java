@@ -33,6 +33,11 @@ public class Hashi extends Application {
         //prof.pasteAndHandle("/view/profileSelection.fxml", new DynamicEventHandler(menuLoader.getCurPane()));
         prof.pasteAndHandle("/view/profileSelection.fxml", new ProfileHandler(menuLoader.getCurPane()));
 
+        stage.setOnCloseRequest( e-> {
+            stage.close();
+        });
+
+
         Scene scene =new Scene(root,450,800);
         stage.setTitle("Hashi");
         stage.setScene(scene);
